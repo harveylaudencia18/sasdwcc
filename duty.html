@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Duty | SAS Student Portal</title>
+
+    <link rel="icon" type="image/png" href="./assets/sas-logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <img src="./assets/divine-logo.png"
+                 alt="Divine Logo"
+                 class="brand-logo">
+
+            <div class="logo-divider"></div>
+
+            <img src="./assets/sas-logo.png"
+                 alt="SAS Logo"
+                 class="brand-logo">
+
+            <div class="brand-text">
+                SAS STUDENT PORTAL
+            </div>
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="announcements.html">
+                Announcements
+            </a>
+
+            <a href="duty.html" class="active">
+                Duty
+            </a>
+
+            <a href="index.html#attendance">
+                Attendance
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open menu">
+            ☰
+        </button>
+
+    </nav>
+
+
+    <!-- ========================================
+         DUTY PAGE
+    ========================================= -->
+
+    <main class="duty-board-page">
+
+        <div class="duty-board-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="duty-board-header">
+
+                <span class="hero-badge">
+                    ✦ OFFICER DUTY
+                </span>
+
+                <h1>
+                    Duty
+                    <span>Board</span>
+                </h1>
+
+                <p>
+                    View the current duty status of
+                    School of Arts and Sciences officers.
+                </p>
+
+            </div>
+
+
+            <!-- OFFICER LOGIN BUTTON -->
+
+            <div class="officer-login-area">
+
+                <button
+                    class="officer-login-button"
+                    id="openOfficerLogin">
+
+                    <span class="login-button-icon">
+                        🔐
+                    </span>
+
+                    <span>
+                        Officer Log-in
+                    </span>
+
+                    <span class="login-button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN PANEL -->
+
+            <div
+                class="officer-login-panel"
+                id="officerLoginPanel">
+
+                <div class="login-panel-header">
+
+                    <div>
+
+                        <span class="login-panel-label">
+                            OFFICER ACCESS
+                        </span>
+
+                        <h2>
+                            Log in for Duty
+                        </h2>
+
+                    </div>
+
+                    <button
+                        class="close-login"
+                        id="closeOfficerLogin"
+                        aria-label="Close login">
+                        ✕
+                    </button>
+
+                </div>
+
+
+                <div class="login-form-grid">
+
+                    <div class="duty-form-group">
+
+                        <label for="dutyUsername">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="dutyUsername"
+                            placeholder="Enter username"
+                            autocomplete="username">
+
+                    </div>
+
+
+                    <div class="duty-form-group">
+
+                        <label for="dutyPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="dutyPassword"
+                            placeholder="Enter password"
+                            autocomplete="current-password">
+
+                    </div>
+
+
+                    <div class="duty-form-group location-field">
+
+                        <label for="dutyLocation">
+                            Duty Location
+                        </label>
+
+                        <select id="dutyLocation">
+
+                            <option value="">
+                                Select duty location
+                            </option>
+
+                            <option value="SAS Office near SAO">
+                                SAS Office near SAO
+                            </option>
+
+                            <option value="SAS Office">
+                                SAS Office
+                            </option>
+
+                            <option value="Student Lounge">
+                                Student Lounge
+                            </option>
+
+                            <option value="Department Office">
+                                Department Office
+                            </option>
+
+                            <option value="custom">
+                                Other / Custom Location
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        class="duty-form-group custom-location-group"
+                        id="customLocationGroup">
+
+                        <label for="customLocation">
+                            Enter Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customLocation"
+                            placeholder="Enter your duty location">
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary duty-login-button"
+                        id="dutyLoginButton">
+
+                        LOG IN FOR DUTY
+
+                    </button>
+
+                    <p
+                        class="duty-error"
+                        id="dutyError">
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 ON DUTY
+            ========================================= -->
+
+            <section class="duty-section on-duty-section">
+
+                <div class="duty-section-heading">
+
+                    <div>
+
+                        <span class="duty-section-label">
+                            LIVE STATUS
+                        </span>
+
+                        <h2>
+                            Officers <span>On Duty</span>
+                        </h2>
+
+                    </div>
+
+                    <div class="live-indicator">
+
+                        <span></span>
+                        LIVE
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="on-duty-list"
+                    id="onDutyList">
+
+
+                    <!-- SAMPLE ON-DUTY OFFICER -->
+
+                    <article class="officer-card on-duty-card">
+
+                        <div class="officer-photo-area">
+
+                            <div class="officer-photo-placeholder">
+                                OFFICER<br>PHOTO
+                            </div>
+
+                        </div>
+
+
+                        <div class="officer-information">
+
+                            <div class="officer-status">
+                                <span></span>
+                                ON DUTY
+                            </div>
+
+                            <h3>
+                                Harvey Keann Laudencia
+                            </h3>
+
+                            <div class="officer-detail">
+
+                                <span>📍</span>
+
+                                <span>
+                                    SAS Office near SAO
+                                </span>
+
+                            </div>
+
+                            <div class="officer-detail">
+
+                                <span>🕐</span>
+
+                                <span>
+                                    Started: 8:15 AM
+                                </span>
+
+                            </div>
+
+                            <div class="officer-duration">
+
+                                <span>
+                                    Duty Duration
+                                </span>
+
+                                <strong>
+                                    00:42:18
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div
+                    class="empty-duty-message"
+                    id="emptyDutyMessage">
+
+                    <span>🟢</span>
+
+                    <p>
+                        No officers are currently on duty.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================
+                 OFF DUTY
+            ========================================= -->
+
+            <section class="duty-section off-duty-section">
+
+                <div class="duty-section-heading">
+
+                    <div>
+
+                        <span class="duty-section-label">
+                            OFFICER LIST
+                        </span>
+
+                        <h2>
+                            Officers <span>Off Duty</span>
+                        </h2>
+
+                    </div>
+
+                    <div class="off-duty-count">
+                        3 OFF DUTY
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="off-duty-grid"
+                    id="offDutyList">
+
+
+                    <!-- OFFICER 1 -->
+
+                    <article class="officer-card off-duty-card">
+
+                        <div class="officer-photo-area">
+
+                            <div class="officer-photo-placeholder">
+                                OFFICER<br>PHOTO
+                            </div>
+
+                        </div>
+
+                        <div class="officer-information">
+
+                            <div class="officer-status off-status">
+                                <span></span>
+                                OFF DUTY
+                            </div>
+
+                            <h3>
+                                Juan Dela Cruz
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- OFFICER 2 -->
+
+                    <article class="officer-card off-duty-card">
+
+                        <div class="officer-photo-area">
+
+                            <div class="officer-photo-placeholder">
+                                OFFICER<br>PHOTO
+                            </div>
+
+                        </div>
+
+                        <div class="officer-information">
+
+                            <div class="officer-status off-status">
+                                <span></span>
+                                OFF DUTY
+                            </div>
+
+                            <h3>
+                                Maria Santos
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- OFFICER 3 -->
+
+                    <article class="officer-card off-duty-card">
+
+                        <div class="officer-photo-area">
+
+                            <div class="officer-photo-placeholder">
+                                OFFICER<br>PHOTO
+                            </div>
+
+                        </div>
+
+                        <div class="officer-information">
+
+                            <div class="officer-status off-status">
+                                <span></span>
+                                OFF DUTY
+                            </div>
+
+                            <h3>
+                                Alex Reyes
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-glow footer-glow-one"></div>
+        <div class="footer-glow footer-glow-two"></div>
+
+        <div class="footer-content">
+
+            <div class="footer-line"></div>
+
+            <div class="footer-brand">
+
+                <img
+                    src="./assets/sas-logo.png"
+                    alt="SAS Logo"
+                    class="footer-logo">
+
+            </div>
+
+            <p class="footer-copy">
+                School of Arts and Sciences
+            </p>
+
+            <p class="footer-small">
+                SAS Student Portal
+            </p>
+
+            <div class="footer-social">
+
+                <a
+                    href="#"
+                    class="social-link"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <span class="facebook-icon">
+                        f
+                    </span>
+
+                    <span class="facebook-name">
+                        @DWCCSASOffical
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="mailto:polpsychsas@gmail.com"
+                    class="social-link">
+
+                    <span class="email-icon">
+                        ✉
+                    </span>
+
+                    <span>
+                        @polpsychsas@gmail.com
+                    </span>
+
+                </a>
+
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <p class="developer-credit">
+
+                Developed by
+                <strong>
+                    PRO Harvey Keann Laudencia
+                </strong>
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        /* Mobile Menu */
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.querySelector(".nav-links");
+
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                navLinks.classList.toggle(
+                    "mobile-menu"
+                );
+
+                if (
+                    navLinks.classList.contains(
+                        "mobile-menu"
+                    )
+                ) {
+
+                    menuToggle.textContent = "✕";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Close menu"
+                    );
+
+                } else {
+
+                    menuToggle.textContent = "☰";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Open menu"
+                    );
+
+                }
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.classList.remove(
+                            "mobile-menu"
+                        );
+
+                        menuToggle.textContent = "☰";
+
+                        menuToggle.setAttribute(
+                            "aria-label",
+                            "Open menu"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* Officer Login Panel */
+
+        const openOfficerLogin =
+            document.getElementById(
+                "openOfficerLogin"
+            );
+
+        const closeOfficerLogin =
+            document.getElementById(
+                "closeOfficerLogin"
+            );
+
+        const officerLoginPanel =
+            document.getElementById(
+                "officerLoginPanel"
+            );
+
+
+        openOfficerLogin.addEventListener(
+            "click",
+            function () {
+
+                officerLoginPanel.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
+
+        closeOfficerLogin.addEventListener(
+            "click",
+            function () {
+
+                officerLoginPanel.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+        /* Custom Location */
+
+        const dutyLocation =
+            document.getElementById(
+                "dutyLocation"
+            );
+
+        const customLocationGroup =
+            document.getElementById(
+                "customLocationGroup"
+            );
+
+
+        dutyLocation.addEventListener(
+            "change",
+            function () {
+
+                if (
+                    dutyLocation.value === "custom"
+                ) {
+
+                    customLocationGroup.style.display =
+                        "flex";
+
+                } else {
+
+                    customLocationGroup.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

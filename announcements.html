@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Announcements | SAS Student Portal</title>
+
+    <link rel="icon" type="image/png" href="./assets/sas-logo.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <img src="./assets/divine-logo.png"
+                 alt="Divine Logo"
+                 class="brand-logo">
+
+            <div class="logo-divider"></div>
+
+            <img src="./assets/sas-logo.png"
+                 alt="SAS Logo"
+                 class="brand-logo">
+
+            <div class="brand-text">
+                SAS STUDENT PORTAL
+            </div>
+
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="announcements.html" class="active">Announcements</a>
+            <a href="#duty">Duty</a>
+            <a href="#attendance">Attendance</a>
+            <a href="#about">About</a>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        ☰
+        </button>
+
+    </nav>
+
+
+    <!-- Announcements Page -->
+    <section class="announcements-page">
+
+        <div class="announcements-page-content">
+
+            <div class="hero-badge">
+                ✦ ANNOUNCEMENTS
+            </div>
+
+            <h1>
+                SOMETHING
+                <span>IS COMING.</span>
+            </h1>
+
+            <p>
+                The SAS Announcements section is currently
+                under development. Please check back soon
+                for important updates, notices, and announcements.
+            </p>
+
+            <div class="wip-status">
+                <span class="status-dot"></span>
+                WORK IN PROGRESS
+            </div>
+
+            <br><br>
+
+            <a href="index.html" class="btn btn-primary">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </section>
+
+</body>
+
+<script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+
+        navLinks.classList.toggle("mobile-menu");
+
+        if (navLinks.classList.contains("mobile-menu")) {
+            menuToggle.textContent = "✕";
+            menuToggle.setAttribute("aria-label", "Close menu");
+        } else {
+            menuToggle.textContent = "☰";
+            menuToggle.setAttribute("aria-label", "Open menu");
+        }
+
+    });
+
+
+    /* Close menu after clicking a link */
+
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            navLinks.classList.remove("mobile-menu");
+
+            menuToggle.textContent = "☰";
+
+            menuToggle.setAttribute(
+                "aria-label",
+                "Open menu"
+            );
+
+        });
+
+    });
+</script>
+
+<!-- ========================================
+     SITE FOOTER
+======================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-glow footer-glow-one"></div>
+    <div class="footer-glow footer-glow-two"></div>
+
+    <div class="footer-content">
+
+        <div class="footer-line"></div>
+
+        <div class="footer-brand">
+
+            <img
+                src="./assets/sas-logo.png"
+                alt="SAS Logo"
+                class="footer-logo"
+            >
+
+        </div>
+
+        <p class="footer-copy">
+            School of Arts and Sciences
+        </p>
+
+        <p class="footer-small">
+            SAS Student Portal
+        </p>
+
+        <div class="footer-social">
+
+            <a
+                href="#"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+            >
+                <span class="facebook-icon">f</span>
+
+                <span class="facebook-name">
+                    @DWCCSASOffical
+                </span>
+            </a>
+
+            <a
+                href="mailto:polpsychsas@gmail.com"
+                class="social-link"
+                aria-label="Email"
+            >
+                <span class="email-icon">✉</span>
+
+                <span>
+                    @polpsychsas@gmail.com
+                </span>
+            </a>
+
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <p class="developer-credit">
+            Developed by
+            <strong>PRO Harvey Keann Laudencia</strong>
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

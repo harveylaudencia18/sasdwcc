@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Access | SAS Student Portal</title>
+
+    <link rel="icon" type="image/png" href="./assets/sas-logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <img
+                src="./assets/divine-logo.png"
+                alt="Divine Logo"
+                class="brand-logo">
+
+            <div class="logo-divider"></div>
+
+            <img
+                src="./assets/sas-logo.png"
+                alt="SAS Logo"
+                class="brand-logo">
+
+            <div class="brand-text">
+                SAS STUDENT PORTAL
+            </div>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="announcements.html">
+                Announcements
+            </a>
+
+            <a href="duty.html">
+                Duty
+            </a>
+
+            <a href="index.html#attendance">
+                Attendance
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+        </div>
+
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open menu">
+            ☰
+        </button>
+
+    </nav>
+
+
+    <!-- ========================================
+         ADMIN PAGE
+    ========================================= -->
+
+    <main class="admin-page">
+
+        <div class="admin-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="admin-header">
+
+                <span class="hero-badge">
+                    ✦ ADMIN ACCESS
+                </span>
+
+                <h1>
+                    Admin
+                    <span>Control Panel</span>
+                </h1>
+
+                <p>
+                    Manage officers, duty status, accounts,
+                    and duty records from one place.
+                </p>
+
+            </div>
+
+
+            <!-- ADMIN LOGIN -->
+
+            <section class="admin-login-card">
+
+                <div class="admin-login-icon">
+                    🔐
+                </div>
+
+                <div class="admin-login-content">
+
+                    <span class="admin-section-label">
+                        SECURE ACCESS
+                    </span>
+
+                    <h2>
+                        Administrator
+                        <span>Login</span>
+                    </h2>
+
+                    <p>
+                        Enter your administrator credentials
+                        to access the control panel.
+                    </p>
+
+
+                    <div class="admin-form">
+
+                        <div class="admin-form-group">
+
+                            <label for="adminUsername">
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminUsername"
+                                placeholder="Enter admin username"
+                                autocomplete="username">
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="adminPassword">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="adminPassword"
+                                placeholder="Enter admin password"
+                                autocomplete="current-password">
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn btn-primary admin-login-button"
+                            id="adminLoginButton">
+
+                            LOG IN TO ADMIN
+
+                        </button>
+
+
+                        <p
+                            class="admin-error"
+                            id="adminError">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================
+                 ADMIN DASHBOARD
+            ========================================= -->
+
+            <section
+                class="admin-dashboard"
+                id="adminDashboard">
+
+
+                <!-- DASHBOARD HEADER -->
+
+                <div class="admin-dashboard-header">
+
+                    <div>
+
+                        <span class="admin-section-label">
+                            ADMINISTRATION
+                        </span>
+
+                        <h2>
+                            Control
+                            <span>Panel</span>
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="admin-logout-button"
+                        id="adminLogoutButton">
+
+                        LOG OUT
+
+                    </button>
+
+                </div>
+
+
+                <!-- STATISTICS -->
+
+                <div class="admin-stat-grid">
+
+
+                    <div class="admin-stat-card">
+
+                        <span class="admin-stat-icon">
+                            👥
+                        </span>
+
+                        <div>
+
+                            <span class="admin-stat-label">
+                                TOTAL OFFICERS
+                            </span>
+
+                            <strong id="totalOfficers">
+                                17
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-stat-card">
+
+                        <span class="admin-stat-icon">
+                            🟢
+                        </span>
+
+                        <div>
+
+                            <span class="admin-stat-label">
+                                ON DUTY
+                            </span>
+
+                            <strong id="onDutyCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-stat-card">
+
+                        <span class="admin-stat-icon">
+                            ⚪
+                        </span>
+
+                        <div>
+
+                            <span class="admin-stat-label">
+                                OFF DUTY
+                            </span>
+
+                            <strong id="offDutyCount">
+                                17
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-stat-card">
+
+                        <span class="admin-stat-icon">
+                            📋
+                        </span>
+
+                        <div>
+
+                            <span class="admin-stat-label">
+                                DUTY RECORDS
+                            </span>
+
+                            <strong id="dutyRecords">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADMIN MENU -->
+
+                <div class="admin-menu-grid">
+
+
+                    <!-- OFFICER MANAGEMENT -->
+
+                    <button
+                        class="admin-menu-card"
+                        id="officerManagementButton">
+
+                        <span class="admin-menu-icon">
+                            👥
+                        </span>
+
+                        <span class="admin-menu-content">
+
+                            <strong>
+                                Officer Management
+                            </strong>
+
+                            <small>
+                                Add, edit, disable, and manage
+                                officer information.
+                            </small>
+
+                        </span>
+
+                        <span class="admin-menu-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- DUTY MANAGEMENT -->
+
+                    <button
+                        class="admin-menu-card"
+                        id="dutyManagementButton">
+
+                        <span class="admin-menu-icon">
+                            🟢
+                        </span>
+
+                        <span class="admin-menu-content">
+
+                            <strong>
+                                Duty Management
+                            </strong>
+
+                            <small>
+                                View active officers and
+                                force-end duty sessions.
+                            </small>
+
+                        </span>
+
+                        <span class="admin-menu-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- DUTY HISTORY -->
+
+                    <button
+                        class="admin-menu-card"
+                        id="dutyHistoryButton">
+
+                        <span class="admin-menu-icon">
+                            📊
+                        </span>
+
+                        <span class="admin-menu-content">
+
+                            <strong>
+                                Duty History
+                            </strong>
+
+                            <small>
+                                View previous duty sessions
+                                and attendance records.
+                            </small>
+
+                        </span>
+
+                        <span class="admin-menu-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- SETTINGS -->
+
+                    <button
+                        class="admin-menu-card"
+                        id="adminSettingsButton">
+
+                        <span class="admin-menu-icon">
+                            ⚙️
+                        </span>
+
+                        <span class="admin-menu-content">
+
+                            <strong>
+                                Admin Settings
+                            </strong>
+
+                            <small>
+                                Manage administrator access
+                                and system settings.
+                            </small>
+
+                        </span>
+
+                        <span class="admin-menu-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ========================================
+                     OFFICER MANAGEMENT PANEL
+                ========================================= -->
+
+                <section
+                    class="admin-panel"
+                    id="officerManagementPanel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <span class="admin-section-label">
+                                OFFICER MANAGEMENT
+                            </span>
+
+                            <h2>
+                                Officer
+                                <span>Information</span>
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="admin-add-button"
+                            id="addOfficerButton">
+
+                            + ADD OFFICER
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="admin-officer-list"
+                        id="adminOfficerList">
+
+                        <!-- Officer records will appear here -->
+
+                    </div>
+
+                </section>
+
+
+                <!-- ========================================
+                     DUTY MANAGEMENT PANEL
+                ========================================= -->
+
+                <section
+                    class="admin-panel"
+                    id="dutyManagementPanel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <span class="admin-section-label">
+                                LIVE MANAGEMENT
+                            </span>
+
+                            <h2>
+                                Active
+                                <span>Duty</span>
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="admin-active-duty-list"
+                        id="adminActiveDutyList">
+
+                        <div class="admin-empty-state">
+
+                            <span>
+                                🟢
+                            </span>
+
+                            <p>
+                                No officers are currently
+                                on duty.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ========================================
+                     DUTY HISTORY PANEL
+                ========================================= -->
+
+                <section
+                    class="admin-panel"
+                    id="dutyHistoryPanel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <span class="admin-section-label">
+                                RECORDS
+                            </span>
+
+                            <h2>
+                                Duty
+                                <span>History</span>
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="admin-history-table"
+                        id="adminHistoryTable">
+
+                        <div class="admin-empty-state">
+
+                            <span>
+                                📋
+                            </span>
+
+                            <p>
+                                No duty records available yet.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-glow footer-glow-one"></div>
+        <div class="footer-glow footer-glow-two"></div>
+
+        <div class="footer-content">
+
+            <div class="footer-line"></div>
+
+            <div class="footer-brand">
+
+                <img
+                    src="./assets/sas-logo.png"
+                    alt="SAS Logo"
+                    class="footer-logo">
+
+            </div>
+
+            <p class="footer-copy">
+                School of Arts and Sciences
+            </p>
+
+            <p class="footer-small">
+                SAS Student Portal
+            </p>
+
+            <div class="footer-social">
+
+                <a
+                    href="#"
+                    class="social-link"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <span class="facebook-icon">
+                        f
+                    </span>
+
+                    <span class="facebook-name">
+                        @DWCCSASOffical
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="mailto:polpsychsas@gmail.com"
+                    class="social-link">
+
+                    <span class="email-icon">
+                        ✉
+                    </span>
+
+                    <span>
+                        @polpsychsas@gmail.com
+                    </span>
+
+                </a>
+
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <p class="developer-credit">
+
+                Developed by
+                <strong>
+                    PRO Harvey Keann Laudencia
+                </strong>
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        /* ========================================
+           MOBILE MENU
+        ========================================= */
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.querySelector(".nav-links");
+
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                navLinks.classList.toggle(
+                    "mobile-menu"
+                );
+
+                if (
+                    navLinks.classList.contains(
+                        "mobile-menu"
+                    )
+                ) {
+
+                    menuToggle.textContent = "✕";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Close menu"
+                    );
+
+                } else {
+
+                    menuToggle.textContent = "☰";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Open menu"
+                    );
+
+                }
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.classList.remove(
+                            "mobile-menu"
+                        );
+
+                        menuToggle.textContent = "☰";
+
+                        menuToggle.setAttribute(
+                            "aria-label",
+                            "Open menu"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* ========================================
+           ADMIN LOGIN - TEMPORARY UI
+        ========================================= */
+
+        const adminLoginButton =
+            document.getElementById(
+                "adminLoginButton"
+            );
+
+        const adminDashboard =
+            document.getElementById(
+                "adminDashboard"
+            );
+
+        const adminError =
+            document.getElementById(
+                "adminError"
+            );
+
+
+        adminLoginButton.addEventListener(
+            "click",
+            function () {
+
+                /*
+                    TEMPORARY ONLY
+
+                    Actual authentication will be
+                    connected later to a secure backend.
+                */
+
+                adminDashboard.classList.add(
+                    "admin-visible"
+                );
+
+                adminError.textContent = "";
+
+            }
+        );
+
+
+        /* ========================================
+           ADMIN LOGOUT
+        ======================================== */
+
+        const adminLogoutButton =
+            document.getElementById(
+                "adminLogoutButton"
+            );
+
+
+        adminLogoutButton.addEventListener(
+            "click",
+            function () {
+
+                adminDashboard.classList.remove(
+                    "admin-visible"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* ========================================
+           ADMIN MENU PANELS
+        ======================================== */
+
+        const officerManagementButton =
+            document.getElementById(
+                "officerManagementButton"
+            );
+
+        const dutyManagementButton =
+            document.getElementById(
+                "dutyManagementButton"
+            );
+
+        const dutyHistoryButton =
+            document.getElementById(
+                "dutyHistoryButton"
+            );
+
+
+        const officerManagementPanel =
+            document.getElementById(
+                "officerManagementPanel"
+            );
+
+        const dutyManagementPanel =
+            document.getElementById(
+                "dutyManagementPanel"
+            );
+
+        const dutyHistoryPanel =
+            document.getElementById(
+                "dutyHistoryPanel"
+            );
+
+
+        function closeAdminPanels() {
+
+            officerManagementPanel.classList.remove(
+                "admin-panel-visible"
+            );
+
+            dutyManagementPanel.classList.remove(
+                "admin-panel-visible"
+            );
+
+            dutyHistoryPanel.classList.remove(
+                "admin-panel-visible"
+            );
+
+        }
+
+
+        officerManagementButton.addEventListener(
+            "click",
+            function () {
+
+                closeAdminPanels();
+
+                officerManagementPanel.classList.add(
+                    "admin-panel-visible"
+                );
+
+                officerManagementPanel.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+
+        dutyManagementButton.addEventListener(
+            "click",
+            function () {
+
+                closeAdminPanels();
+
+                dutyManagementPanel.classList.add(
+                    "admin-panel-visible"
+                );
+
+                dutyManagementPanel.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+
+        dutyHistoryButton.addEventListener(
+            "click",
+            function () {
+
+                closeAdminPanels();
+
+                dutyHistoryPanel.classList.add(
+                    "admin-panel-visible"
+                );
+
+                dutyHistoryPanel.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
