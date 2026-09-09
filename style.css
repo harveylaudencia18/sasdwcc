@@ -8741,4 +8741,340 @@ body {
     }
 }
 
+/* ========================================
+   ANNOUNCEMENTS — NO ANIMATIONS
+======================================== */
+
+/* Disable ALL animations */
+.construction-section,
+.construction-section *,
+.construction-section *::before,
+.construction-section *::after {
+    animation: none !important;
+}
+
+/* Disable animated visual effects */
+.construction-grid,
+.construction-glow,
+.technical-ring,
+.logo-halo,
+.construction-beam,
+.construction-particle,
+.development-glow {
+    animation: none !important;
+}
+
+/* Keep everything static */
+.sas-construction-logo,
+.sas-construction-logo img,
+.status-dot,
+.development-fill,
+.back-home-button {
+    animation: none !important;
+}
+
+/* Remove expensive glow/filter effects */
+.construction-section *,
+.construction-section *::before,
+.construction-section *::after {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* No unnecessary transitions */
+.construction-section * {
+    transition: none !important;
+}
+
+/* Exception: simple button hover */
+.back-home-button {
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease !important;
+}
+
+.back-home-button:hover {
+    transform: none !important;
+}
+
+/* Static status indicator */
+.status-dot {
+    box-shadow: none !important;
+}
+
+/* Static logo */
+.sas-construction-logo {
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Static progress bar */
+.development-fill {
+    box-shadow: none !important;
+}
+
+/* ========================================
+   LOADING SCREEN — MOBILE ALIGNMENT
+======================================== */
+
+@media (max-width: 768px) {
+
+    .portal-loader {
+        width: 100%;
+        min-height: 100dvh;
+        height: 100dvh;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 20px !important;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+    }
+
+    .loader-content {
+        width: min(100%, 360px);
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        text-align: center !important;
+
+        box-sizing: border-box;
+    }
+
+    /* Logo wrapper */
+    .loader-logo-wrapper {
+        width: 190px;
+        height: 190px;
+
+        margin: 0 auto 18px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        position: relative;
+    }
+
+    .loader-logo {
+        width: 125px !important;
+        height: 125px !important;
+
+        object-fit: contain;
+
+        display: block;
+
+        margin: 0 auto;
+    }
+
+    /* Keep rings centered */
+    .logo-ring {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%) !important;
+
+        pointer-events: none;
+    }
+
+    .ring-one {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .ring-two {
+        width: 185px !important;
+        height: 185px !important;
+    }
+
+    .logo-glow {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%) !important;
+
+        pointer-events: none;
+    }
+
+    /* Loader text */
+    .loader-text {
+        width: 100%;
+
+        margin: 0 auto !important;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center !important;
+    }
+
+    .loader-text h1 {
+        width: 100%;
+
+        margin: 0 !important;
+
+        font-size: clamp(24px, 7vw, 34px) !important;
+
+        line-height: 1.1;
+
+        text-align: center !important;
+
+        white-space: normal;
+    }
+
+    .loader-subtitle {
+        width: 100%;
+
+        margin: 9px auto 0 !important;
+
+        text-align: center !important;
+
+        font-size: 11px !important;
+
+        line-height: 1.5;
+    }
+
+    .loader-small-text {
+        width: 100%;
+
+        margin: 0 auto 8px !important;
+
+        text-align: center !important;
+    }
+
+    .developer-credit {
+        width: 100%;
+
+        margin: 8px auto 0 !important;
+
+        text-align: center !important;
+
+        font-size: 9px !important;
+    }
+
+    /* Progress */
+    .loader-progress-container {
+        width: 100% !important;
+        max-width: 300px !important;
+
+        margin: 24px auto 0 !important;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        box-sizing: border-box;
+    }
+
+    .loader-progress {
+        width: 100% !important;
+
+        margin: 0 auto !important;
+    }
+
+    .loader-status {
+        width: 100%;
+
+        margin-top: 9px !important;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center !important;
+
+        gap: 6px;
+    }
+
+    #loaderStatus {
+        text-align: center !important;
+    }
+
+    #loaderPercent {
+        min-width: 34px;
+
+        text-align: right;
+    }
+
+    /* Decorative lines */
+    .loader-line {
+        position: absolute;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: min(75%, 280px) !important;
+    }
+
+    .line-top {
+        top: 18px;
+    }
+
+    .line-bottom {
+        bottom: 18px;
+    }
+
+}
+
+
+/* ========================================
+   VERY SMALL PHONES
+======================================== */
+
+@media (max-width: 380px) {
+
+    .portal-loader {
+        padding: 15px !important;
+    }
+
+    .loader-logo-wrapper {
+        width: 155px;
+        height: 155px;
+
+        margin-bottom: 12px !important;
+    }
+
+    .loader-logo {
+        width: 105px !important;
+        height: 105px !important;
+    }
+
+    .ring-one {
+        width: 135px !important;
+        height: 135px !important;
+    }
+
+    .ring-two {
+        width: 155px !important;
+        height: 155px !important;
+    }
+
+    .loader-text h1 {
+        font-size: 23px !important;
+    }
+
+    .loader-progress-container {
+        max-width: 270px !important;
+
+        margin-top: 18px !important;
+    }
+
+}
+
 
