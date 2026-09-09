@@ -14,331 +14,892 @@
 
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
+    <!-- ========================================
+         PORTAL LOADING SCREEN
+    ========================================= -->
 
-        <div class="brand">
+    <div class="portal-loader" id="portalLoader">
 
-            <img src="./assets/divine-logo.png"
-                 alt="Divine Logo"
-                 class="brand-logo">
+        <div class="loader-content">
 
-            <div class="logo-divider"></div>
+            <!-- LOGO -->
+            <div class="loader-logo-wrapper">
 
-            <img src="./assets/sas-logo.png"
-                 alt="SAS Logo"
-                 class="brand-logo">
+                <div class="logo-glow"></div>
 
-            <div class="brand-text">
-                SAS STUDENT PORTAL
-            </div>
+                <div class="logo-ring ring-one"></div>
+                <div class="logo-ring ring-two"></div>
 
-        </div>
-
-        <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="announcements.html">Announcements</a>            <a href="#duty">Duty</a>
-            <a href="#attendance">Attendance</a>
-            <a href="#about">About</a>
-
-        </div>
-
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-            ☰
-        </button>
-
-    </nav>
-
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-
-        <div class="hero-content">
-
-            <div class="hero-badge">
-                ✦ SCHOOL OF ARTS AND SCIENCES
-            </div>
-
-            <h1>
-                Welcome to the
-                <span>SAS Student Portal</span>
-            </h1>
-
-            <p>
-                Your central hub for attendance, announcements,
-                student services, and important updates.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#attendance" class="btn btn-primary">
-                    Go to Attendance
-                </a>
-
-                <a href="#announcements" class="btn btn-secondary">
-                    View Announcements
-                </a>
+                <img
+                    src="./assets/sas-logo.png"
+                    alt="SAS Logo"
+                    class="loader-logo"
+                >
 
             </div>
 
-        </div>
 
-    </section>
+            <!-- TEXT -->
+            <div class="loader-text">
 
+                <p class="loader-small-text">
+                    WELCOME TO
+                </p>
 
-    <!-- Quick Access Section -->
-    <section class="quick-access">
+                <h1>
+                    SAS STUDENT PORTAL
+                </h1>
 
-        <div class="section-heading">
+                <p class="loader-subtitle">
+                    School of Arts and Sciences
+                </p>
 
-            <span class="section-label">
-                QUICK ACCESS
-            </span>
+            </div>
 
-            <h2>
-                Everything You Need,
-                <span>In One Place.</span>
-            </h2>
 
-            <p>
-                Quickly access the most important services and
-                information available on the SAS Student Portal.
-            </p>
-
-        </div>
-
-
-        <div class="quick-access-grid">
-
-            <!-- Announcements -->
-            <a href="announcements.html" class="quick-card">
-
-                <div class="quick-icon announcement-icon">
-                    📢
-                </div>
-
-                <div class="quick-card-content">
-
-                    <h3>
-                        Announcements
-                    </h3>
-
-                    <p>
-                        Stay updated with the latest SAS
-                        announcements and important notices.
-                    </p>
-
-                </div>
-
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- Duty -->
-            <a href="#duty" class="quick-card">
-
-                <div class="quick-icon duty-icon">
-                    🟢
-                </div>
-
-                <div class="quick-card-content">
-
-                    <h3>
-                        Duty
-                    </h3>
-
-                    <p>
-                        Check the current duty status and
-                        access duty-related information.
-                    </p>
-
-                </div>
-
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- Attendance -->
-            <a href="#attendance" class="quick-card">
-
-                <div class="quick-icon attendance-icon">
-                    🕒
-                </div>
-
-                <div class="quick-card-content">
-
-                    <h3>
-                        Attendance
-                    </h3>
-
-                    <p>
-                        Access attendance services and
-                        check your attendance information.
-                    </p>
-
-                </div>
-
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- About -->
-            <a href="#about" class="quick-card">
-
-                <div class="quick-icon about-icon">
-                    ℹ️
-                </div>
-
-                <div class="quick-card-content">
-
-                    <h3>
-                        About
-                    </h3>
-
-                    <p>
-                        Learn more about the SAS Student Portal
-                        and the School of Arts and Sciences.
-                    </p>
-
-                </div>
-
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-        </div>
-
-    </section>
-
-<!-- ========================================
-     SITE FOOTER
-======================================== -->
-
-<footer class="site-footer">
-
-    <div class="footer-glow footer-glow-one"></div>
-    <div class="footer-glow footer-glow-two"></div>
-
-    <div class="footer-content">
-
-        <div class="footer-line"></div>
-
-        <div class="footer-brand">
-
-            <img
-                src="./assets/sas-logo.png"
-                alt="SAS Logo"
-                class="footer-logo"
-            >
-
-        </div>
-
-
-        <p class="footer-copy">
-            School of Arts and Sciences
-        </p>
-
-        <p class="footer-small">
-            SAS Student Portal
-        </p>
-
-
-        <div class="footer-social">
-
-            <a
-                href="https://www.facebook.com/DWCCSASofficial"
-                class="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-            >
-                <span class="facebook-icon">f</span>
-
-                <span class="facebook-name">
-                    @DWCCSASOffical
-                </span>
-            </a>
-
-
-            <a
-                href="mailto:polpsychsas@gmail.com"
-                class="social-link"
-                aria-label="Email"
-            >
-                <span class="email-icon">✉</span>
+            <!-- DEVELOPER -->
+            <div class="developer-credit">
 
                 <span>
-                    @polpsychsas@gmail.com
+                    DEVELOPED BY:
                 </span>
-            </a>
+
+                <strong>
+                    PRO HARVEY KEANN L. LAUDENCIA
+                </strong>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+            <div class="loader-progress-container">
+
+                <div class="loader-progress-bar">
+
+                    <div
+                        class="loader-progress"
+                        id="loaderProgress">
+                    </div>
+
+                </div>
+
+
+                <div class="loader-status-row">
+
+                    <span id="loaderStatus">
+                        Initializing portal...
+                    </span>
+
+                    <strong id="loaderPercent">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
 
         </div>
-
-
-        <div class="footer-divider"></div>
-
-
-        <p class="developer-credit">
-            Developed by
-            <strong>PRO Harvey Keann Laudencia</strong>
-        </p>
 
     </div>
 
-</footer>
+
+    <!-- ========================================
+         MAIN PORTAL
+    ========================================= -->
+
+    <div
+        class="portal-main"
+        id="portalMain"
+    >
+
+
+        <!-- ====================================
+             HEADER
+        ===================================== -->
+
+        <header class="main-header">
+
+            <div class="header-container">
+
+
+                <!-- BRAND -->
+                <a
+                    href="index.html"
+                    class="brand"
+                >
+
+                    <img
+                        src="./assets/sas-logo.png"
+                        alt="SAS Logo"
+                        class="brand-logo"
+                    >
+
+                    <div class="brand-name">
+
+                        <strong>
+                            SAS STUDENT PORTAL
+                        </strong>
+
+                        <span>
+                            School of Arts and Sciences
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- NAVIGATION -->
+                <nav class="navigation">
+
+                    <a
+                        href="index.html"
+                        class="nav-link active"
+                    >
+                        Home
+                    </a>
+
+                    <a
+                        href="announcements.html"
+                        class="nav-link"
+                    >
+                        Announcements
+                    </a>
+
+                    <a
+                        href="duty.html"
+                        class="nav-link"
+                    >
+                        Duty
+                    </a>
+
+                    <a
+                        href="attendance.html"
+                        class="nav-link"
+                    >
+                        Attendance
+                    </a>
+
+
+                    <!-- ABOUT + CUSTOMER SERVICE -->
+                    <div class="about-nav-item">
+
+                        <a
+                            href="about.html"
+                            class="nav-link"
+                        >
+                            About
+                        </a>
+
+
+                        <!-- MESSENGER -->
+                        <a
+                            href="https://m.me/hrvy.knn.18"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="customer-service"
+                            aria-label="Customer Service"
+                            title="Customer Service"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <path
+                                    d="M20 11.5C20 15.09 16.42 18 12 18C10.86 18 9.77 17.8 8.8 17.44L5 19L6.15 15.7C5.42 14.55 5 13.2 5 11.5C5 7.91 8.58 5 12 5C16.42 5 20 7.91 20 11.5Z"
+                                    fill="currentColor"
+                                />
+
+                                <circle
+                                    cx="9"
+                                    cy="11.5"
+                                    r="1"
+                                    fill="white"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="11.5"
+                                    r="1"
+                                    fill="white"
+                                />
+
+                                <circle
+                                    cx="15"
+                                    cy="11.5"
+                                    r="1"
+                                    fill="white"
+                                />
+
+                            </svg>
+
+                        </a>
+
+                    </div>
+
+                </nav>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ====================================
+             HOME HERO
+        ===================================== -->
+
+        <main>
+
+            <section class="hero">
+
+
+                <!-- HERO CONTENT -->
+                <div class="hero-content">
+
+                    <p class="hero-label">
+                        SCHOOL OF ARTS AND SCIENCES
+                    </p>
+
+
+                    <h1>
+
+                        Welcome to the
+
+                        <span>
+                            SAS Student Portal
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Your centralized portal for
+                        announcements, duty information,
+                        attendance, and important updates
+                        from the School of Arts and Sciences.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="announcements.html"
+                            class="hero-button primary-button"
+                        >
+                            View Announcements
+                        </a>
+
+
+                        <a
+                            href="about.html"
+                            class="hero-button secondary-button"
+                        >
+                            Learn More
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HERO LOGO -->
+                <div class="hero-logo-area">
+
+                    <div class="hero-logo-glow"></div>
+
+                    <div class="hero-logo-ring"></div>
+
+                    <img
+                        src="./assets/sas-logo.png"
+                        alt="SAS Logo"
+                        class="hero-logo"
+                    >
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================
+                 STUDENT FEEDBACK
+            ================================== -->
+
+            <section class="feedback-section">
+
+
+                <!-- HEADING -->
+                <div class="feedback-heading">
+
+                    <p class="feedback-label">
+                        STUDENT FEEDBACK & SUPPORT
+                    </p>
+
+                    <h2>
+                        Your Voice Matters
+                    </h2>
+
+                    <span>
+
+                        Help us improve the student
+                        experience through your suggestions,
+                        recommendations, and concerns.
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- FEEDBACK CARDS -->
+                <div class="feedback-grid">
+
+
+                    <!-- SUGGESTION -->
+                    <div class="feedback-card suggestion-card">
+
+                        <div class="feedback-card-accent"></div>
+
+
+                        <div class="feedback-card-icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <path
+                                    d="M9 18h6"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M10 21h4"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M8.5 15.5C7.55 14.68 7 13.49 7 12.2C7 9.88 8.79 8 11 8H13C15.21 8 17 9.88 17 12.2C17 13.49 16.45 14.68 15.5 15.5C14.91 16.01 14.5 16.75 14.5 17.5H9.5C9.5 16.75 9.09 16.01 8.5 15.5Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linejoin="round"
+                                />
+
+                            </svg>
+
+                        </div>
+
+
+                        <div class="feedback-card-content">
+
+                            <p class="feedback-card-label">
+                                SUGGESTIONS
+                            </p>
+
+                            <h3>
+                                Share Your Ideas
+                            </h3>
+
+                            <p>
+
+                                Have an idea, recommendation,
+                                or proposal that could help
+                                improve student services,
+                                activities, or the overall
+                                SAS experience? Share it with us.
+
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="mailto:polpsychsas@gmail.com?subject=SAS%20Student%20Suggestion"
+                            class="feedback-button suggestion-button"
+                        >
+
+                            <span>
+                                Submit Suggestion
+                            </span>
+
+                            <span class="feedback-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- CONCERN -->
+                    <div class="feedback-card concern-card">
+
+                        <div class="feedback-card-accent"></div>
+
+
+                        <div class="feedback-card-icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <path
+                                    d="M12 8V13"
+                                    stroke="currentColor"
+                                    stroke-width="1.9"
+                                    stroke-linecap="round"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="16.5"
+                                    r="0.8"
+                                    fill="currentColor"
+                                />
+
+                                <path
+                                    d="M10.29 4.86L3.82 16.2C3.05 17.55 4.02 19.25 5.57 19.25H18.43C19.98 19.25 20.95 17.55 20.18 16.2L13.71 4.86C12.94 3.51 11.06 3.51 10.29 4.86Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linejoin="round"
+                                />
+
+                            </svg>
+
+                        </div>
+
+
+                        <div class="feedback-card-content">
+
+                            <p class="feedback-card-label">
+                                CONCERNS
+                            </p>
+
+                            <h3>
+                                Let Us Know
+                            </h3>
+
+                            <p>
+
+                                Encountering an issue or concern
+                                related to student services,
+                                activities, or other SAS matters?
+                                Let us know so your concern can
+                                be properly addressed.
+
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="mailto:polpsychsas@gmail.com?subject=SAS%20Student%20Concern"
+                            class="feedback-button concern-button"
+                        >
+
+                            <span>
+                                Report a Concern
+                            </span>
+
+                            <span class="feedback-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================
+                 PORTAL INFORMATION
+            ================================== -->
+
+            <section class="portal-info">
+
+                <div class="info-box">
+
+                    <div class="info-accent"></div>
+
+                    <div>
+
+                        <p class="info-label">
+                            SAS STUDENT PORTAL
+                        </p>
+
+                        <h2>
+                            One portal. Important information.
+                        </h2>
+
+                        <p>
+
+                            The SAS Student Portal provides
+                            students with convenient access
+                            to essential announcements, duty
+                            information, attendance updates,
+                            and other academic information
+                            in one place.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- ====================================
+             FOOTER
+        ===================================== -->
+
+        <footer class="site-footer">
+
+            <div class="footer-container">
+
+
+                <!-- FOOTER BRAND -->
+                <div class="footer-brand">
+
+                    <img
+                        src="./assets/sas-logo.png"
+                        alt="SAS Logo"
+                        class="footer-logo"
+                    >
+
+                    <div>
+
+                        <h3>
+                            SAS STUDENT PORTAL
+                        </h3>
+
+                        <p>
+                            School of Arts and Sciences
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FOOTER LINKS -->
+                <div class="footer-links">
+
+
+                    <!-- FACEBOOK -->
+                    <a
+                        href="https://www.facebook.com/DWCCSASOfficial"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="footer-link"
+                    >
+
+                        <span class="footer-link-icon facebook-icon">
+                            f
+                        </span>
+
+                        <span>
+                            @DWCCSASOfficial
+                        </span>
+
+                    </a>
+
+
+
+                    <!-- EMAIL -->
+                    <a
+                        href="mailto:polpsychsas@gmail.com"
+                        class="footer-link"
+                    >
+
+                        <span class="footer-link-icon email-icon">
+                            @
+                        </span>
+
+                        <span>
+                            polpsychsas@gmail.com
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- DEVELOPER -->
+                <div class="footer-developer">
+
+                    <span>
+                        DEVELOPED BY
+                    </span>
+
+                    <strong>
+                        PRO HARVEY KEANN L. LAUDENCIA
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER BOTTOM -->
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 SAS Student Portal.
+                    All Rights Reserved.
+                </p>
+
+                <span>
+                    School of Arts and Sciences
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+
+    <!-- ========================================
+         OPTIMIZED LOADING JAVASCRIPT
+         
+         ITO ANG CURRENT LOADING JS.
+         NASA PINAKABABA BAGO ANG </body>.
+    ========================================= -->
+
+    <script>
+
+        const portalLoader =
+            document.getElementById("portalLoader");
+
+        const portalMain =
+            document.getElementById("portalMain");
+
+        const loaderProgress =
+            document.getElementById("loaderProgress");
+
+        const loaderPercent =
+            document.getElementById("loaderPercent");
+
+        const loaderStatus =
+            document.getElementById("loaderStatus");
+
+
+        /*
+            Loading duration.
+
+            2500 = 2.5 seconds
+        */
+
+        const loadingTime = 2500;
+
+
+        /*
+            Start timer.
+        */
+
+        const startTime =
+            performance.now();
+
+
+        /*
+            Loading messages.
+        */
+
+        const statusMessages = [
+
+            "Initializing portal...",
+
+            "Loading SAS resources...",
+
+            "Preparing your experience...",
+
+            "Almost ready..."
+
+        ];
+
+
+        let lastStatus = -1;
+
+
+        /*
+            Main loading animation.
+
+            requestAnimationFrame is used
+            instead of setInterval para
+            mas smooth at mas efficient.
+        */
+
+        function updateLoader(currentTime) {
+
+            const elapsed =
+                currentTime - startTime;
+
+
+            let progress =
+                Math.min(
+                    elapsed / loadingTime,
+                    1
+                );
+
+
+            const percent =
+                Math.floor(
+                    progress * 100
+                );
+
+
+            /*
+                Update progress bar.
+            */
+
+            loaderProgress.style.width =
+                percent + "%";
+
+
+            /*
+                Update percentage.
+            */
+
+            loaderPercent.textContent =
+                percent + "%";
+
+
+            /*
+                Update status message.
+            */
+
+            const statusIndex =
+                Math.min(
+                    Math.floor(
+                        progress *
+                        statusMessages.length
+                    ),
+                    statusMessages.length - 1
+                );
+
+
+            if (
+                statusIndex !== lastStatus
+            ) {
+
+                loaderStatus.textContent =
+                    statusMessages[statusIndex];
+
+                lastStatus =
+                    statusIndex;
+
+            }
+
+
+            /*
+                Continue loading.
+            */
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    updateLoader
+                );
+
+            } else {
+
+                finishLoading();
+
+            }
+
+        }
+
+
+        /*
+            Finish loading.
+        */
+
+        function finishLoading() {
+
+            loaderStatus.textContent =
+                "Welcome to SAS!";
+
+
+            loaderPercent.textContent =
+                "100%";
+
+
+            loaderProgress.style.width =
+                "100%";
+
+
+            /*
+                Small pause before
+                opening the portal.
+            */
+
+            setTimeout(function () {
+
+                portalLoader.classList.add(
+                    "portal-opening"
+                );
+
+
+                portalMain.classList.add(
+                    "portal-reveal"
+                );
+
+
+                /*
+                    Completely remove
+                    loader after animation.
+                */
+
+                setTimeout(function () {
+
+                    portalLoader.style.display =
+                        "none";
+
+                }, 700);
+
+            }, 250);
+
+        }
+
+
+        /*
+            Start loading.
+        */
+
+        requestAnimationFrame(
+            updateLoader
+        );
+
+    </script>
 
 
 </body>
 
-<script>
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    menuToggle.addEventListener("click", function () {
-
-        navLinks.classList.toggle("mobile-menu");
-
-        if (navLinks.classList.contains("mobile-menu")) {
-            menuToggle.textContent = "✕";
-            menuToggle.setAttribute("aria-label", "Close menu");
-        } else {
-            menuToggle.textContent = "☰";
-            menuToggle.setAttribute("aria-label", "Open menu");
-        }
-
-    });
-
-
-    /* Close menu after clicking a link */
-
-    document.querySelectorAll(".nav-links a").forEach(function(link) {
-
-        link.addEventListener("click", function() {
-
-            navLinks.classList.remove("mobile-menu");
-
-            menuToggle.textContent = "☰";
-
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open menu"
-            );
-
-        });
-
-    });
-</script>
-
 </html>
-
