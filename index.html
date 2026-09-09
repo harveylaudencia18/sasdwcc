@@ -22,7 +22,6 @@
 
         <div class="loader-content">
 
-            <!-- LOGO -->
             <div class="loader-logo-wrapper">
 
                 <div class="logo-glow"></div>
@@ -39,7 +38,6 @@
             </div>
 
 
-            <!-- TEXT -->
             <div class="loader-text">
 
                 <p class="loader-small-text">
@@ -57,7 +55,6 @@
             </div>
 
 
-            <!-- DEVELOPER -->
             <div class="developer-credit">
 
                 <span>
@@ -71,7 +68,6 @@
             </div>
 
 
-            <!-- PROGRESS -->
             <div class="loader-progress-container">
 
                 <div class="loader-progress-bar">
@@ -103,6 +99,7 @@
     </div>
 
 
+
     <!-- ========================================
          MAIN PORTAL
     ========================================= -->
@@ -123,6 +120,7 @@
 
 
                 <!-- BRAND -->
+
                 <a
                     href="index.html"
                     class="brand"
@@ -149,8 +147,12 @@
                 </a>
 
 
-                <!-- NAVIGATION -->
-                <nav class="navigation">
+
+                <!-- =================================
+                     NAVIGATION
+                ================================== -->
+
+                <nav class="navigation" id="mainNavigation">
 
                     <a
                         href="index.html"
@@ -159,6 +161,7 @@
                         Home
                     </a>
 
+
                     <a
                         href="announcements.html"
                         class="nav-link"
@@ -166,12 +169,14 @@
                         Announcements
                     </a>
 
+
                     <a
                         href="duty.html"
                         class="nav-link"
                     >
                         Duty
                     </a>
+
 
                     <a
                         href="attendance.html"
@@ -181,7 +186,8 @@
                     </a>
 
 
-                    <!-- ABOUT + CUSTOMER SERVICE -->
+                    <!-- ABOUT -->
+
                     <div class="about-nav-item">
 
                         <a
@@ -192,7 +198,8 @@
                         </a>
 
 
-                        <!-- MESSENGER -->
+                        <!-- CUSTOMER SERVICE -->
+
                         <a
                             href="https://m.me/hrvy.knn.18"
                             target="_blank"
@@ -242,6 +249,27 @@
 
                 </nav>
 
+
+
+                <!-- =================================
+                     MOBILE HAMBURGER
+                ================================== -->
+
+                <button
+                    class="mobile-menu-toggle"
+                    id="mobileMenuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+
             </div>
 
         </header>
@@ -258,6 +286,7 @@
 
 
                 <!-- HERO CONTENT -->
+
                 <div class="hero-content">
 
                     <p class="hero-label">
@@ -310,6 +339,7 @@
 
 
                 <!-- HERO LOGO -->
+
                 <div class="hero-logo-area">
 
                     <div class="hero-logo-glow"></div>
@@ -334,8 +364,6 @@
 
             <section class="feedback-section">
 
-
-                <!-- HEADING -->
                 <div class="feedback-heading">
 
                     <p class="feedback-label">
@@ -347,22 +375,20 @@
                     </h2>
 
                     <span>
-
                         Help us improve the student
                         experience through your suggestions,
                         recommendations, and concerns.
-
                     </span>
 
                 </div>
 
 
 
-                <!-- FEEDBACK CARDS -->
                 <div class="feedback-grid">
 
 
                     <!-- SUGGESTION -->
+
                     <div class="feedback-card suggestion-card">
 
                         <div class="feedback-card-accent"></div>
@@ -413,13 +439,11 @@
                             </h3>
 
                             <p>
-
                                 Have an idea, recommendation,
                                 or proposal that could help
                                 improve student services,
                                 activities, or the overall
                                 SAS experience? Share it with us.
-
                             </p>
 
                         </div>
@@ -445,6 +469,7 @@
 
 
                     <!-- CONCERN -->
+
                     <div class="feedback-card concern-card">
 
                         <div class="feedback-card-accent"></div>
@@ -495,13 +520,11 @@
                             </h3>
 
                             <p>
-
                                 Encountering an issue or concern
                                 related to student services,
                                 activities, or other SAS matters?
                                 Let us know so your concern can
                                 be properly addressed.
-
                             </p>
 
                         </div>
@@ -551,14 +574,12 @@
                         </h2>
 
                         <p>
-
                             The SAS Student Portal provides
                             students with convenient access
                             to essential announcements, duty
                             information, attendance updates,
                             and other academic information
                             in one place.
-
                         </p>
 
                     </div>
@@ -580,7 +601,6 @@
             <div class="footer-container">
 
 
-                <!-- FOOTER BRAND -->
                 <div class="footer-brand">
 
                     <img
@@ -605,11 +625,9 @@
 
 
 
-                <!-- FOOTER LINKS -->
                 <div class="footer-links">
 
 
-                    <!-- FACEBOOK -->
                     <a
                         href="https://www.facebook.com/DWCCSASOfficial"
                         target="_blank"
@@ -629,7 +647,6 @@
 
 
 
-                    <!-- EMAIL -->
                     <a
                         href="mailto:polpsychsas@gmail.com"
                         class="footer-link"
@@ -649,7 +666,6 @@
 
 
 
-                <!-- DEVELOPER -->
                 <div class="footer-developer">
 
                     <span>
@@ -666,7 +682,6 @@
 
 
 
-            <!-- FOOTER BOTTOM -->
             <div class="footer-bottom">
 
                 <p>
@@ -687,13 +702,14 @@
 
 
     <!-- ========================================
-         OPTIMIZED LOADING JAVASCRIPT
-         
-         ITO ANG CURRENT LOADING JS.
-         NASA PINAKABABA BAGO ANG </body>.
+         LOADING + MOBILE MENU JAVASCRIPT
     ========================================= -->
 
     <script>
+
+        /* =====================================
+           LOADING SCREEN
+        ===================================== */
 
         const portalLoader =
             document.getElementById("portalLoader");
@@ -711,26 +727,11 @@
             document.getElementById("loaderStatus");
 
 
-        /*
-            Loading duration.
-
-            2500 = 2.5 seconds
-        */
-
         const loadingTime = 2500;
-
-
-        /*
-            Start timer.
-        */
 
         const startTime =
             performance.now();
 
-
-        /*
-            Loading messages.
-        */
 
         const statusMessages = [
 
@@ -748,21 +749,13 @@
         let lastStatus = -1;
 
 
-        /*
-            Main loading animation.
-
-            requestAnimationFrame is used
-            instead of setInterval para
-            mas smooth at mas efficient.
-        */
-
         function updateLoader(currentTime) {
 
             const elapsed =
                 currentTime - startTime;
 
 
-            let progress =
+            const progress =
                 Math.min(
                     elapsed / loadingTime,
                     1
@@ -775,25 +768,13 @@
                 );
 
 
-            /*
-                Update progress bar.
-            */
-
             loaderProgress.style.width =
                 percent + "%";
 
 
-            /*
-                Update percentage.
-            */
-
             loaderPercent.textContent =
                 percent + "%";
 
-
-            /*
-                Update status message.
-            */
 
             const statusIndex =
                 Math.min(
@@ -805,9 +786,7 @@
                 );
 
 
-            if (
-                statusIndex !== lastStatus
-            ) {
+            if (statusIndex !== lastStatus) {
 
                 loaderStatus.textContent =
                     statusMessages[statusIndex];
@@ -817,10 +796,6 @@
 
             }
 
-
-            /*
-                Continue loading.
-            */
 
             if (progress < 1) {
 
@@ -837,10 +812,6 @@
         }
 
 
-        /*
-            Finish loading.
-        */
-
         function finishLoading() {
 
             loaderStatus.textContent =
@@ -855,11 +826,6 @@
                 "100%";
 
 
-            /*
-                Small pause before
-                opening the portal.
-            */
-
             setTimeout(function () {
 
                 portalLoader.classList.add(
@@ -871,11 +837,6 @@
                     "portal-reveal"
                 );
 
-
-                /*
-                    Completely remove
-                    loader after animation.
-                */
 
                 setTimeout(function () {
 
@@ -889,13 +850,92 @@
         }
 
 
-        /*
-            Start loading.
-        */
-
         requestAnimationFrame(
             updateLoader
         );
+
+
+
+        /* =====================================
+           MOBILE HAMBURGER MENU
+        ===================================== */
+
+        const menuButton =
+            document.getElementById(
+                "mobileMenuToggle"
+            );
+
+        const navigation =
+            document.getElementById(
+                "mainNavigation"
+            );
+
+
+        if (menuButton && navigation) {
+
+
+            menuButton.addEventListener(
+                "click",
+                function () {
+
+                    const isOpen =
+                        navigation.classList.toggle(
+                            "mobile-open"
+                        );
+
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                            ? "true"
+                            : "false"
+                    );
+
+
+                    menuButton.setAttribute(
+                        "aria-label",
+                        isOpen
+                            ? "Close navigation menu"
+                            : "Open navigation menu"
+                    );
+
+                }
+            );
+
+
+
+            /* CLOSE MENU WHEN LINK IS CLICKED */
+
+            navigation
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navigation.classList.remove(
+                                "mobile-open"
+                            );
+
+
+                            menuButton.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+
+                            menuButton.setAttribute(
+                                "aria-label",
+                                "Open navigation menu"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
 
     </script>
 
