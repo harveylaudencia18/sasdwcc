@@ -2,488 +2,2429 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Duty | SAS Student Portal</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="icon" type="image/png" href="./assets/sas-logo.png">
-    <link rel="stylesheet" href="style.css">
+    <title>SAS Student Portal | Duty</title>
+
+    <meta
+        name="description"
+        content="School of Arts and Sciences Duty Management Portal."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared Main CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =====================================================
+         DUTY PAGE CSS
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           PAGE BACKGROUND
+        ====================================================== */
+
+        .duty-page {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 43, 85, 0.94) 0%,
+            rgba(0, 59, 115, 0.91) 35%,
+            rgba(0, 43, 85, 0.94) 100%
+        ),
+        url("assets/background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    padding: 55px 20px 80px;
+}
+
+
+        .duty-container {
+
+            width:
+                min(1180px, 100%);
+
+            margin:
+                0 auto;
+
+        }
+
+
+        /* =====================================================
+           INTRO
+        ====================================================== */
+
+        .duty-intro {
+
+            text-align: center;
+
+            margin-bottom:
+                35px;
+
+        }
+
+
+        .duty-kicker {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            color: #0057a8;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .duty-kicker::before,
+        .duty-kicker::after {
+
+            content: "";
+
+            width: 28px;
+
+            height: 2px;
+
+            background: #ffd200;
+
+        }
+
+
+        .duty-title {
+
+            margin: 0;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(32px, 5vw, 52px);
+
+            line-height: 1.1;
+
+            color: #003b73;
+
+        }
+
+
+        .duty-title span {
+
+            color: #0057a8;
+
+        }
+
+
+        .duty-subtitle {
+
+            max-width: 650px;
+
+            margin:
+                14px auto 0;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            color: #667085;
+
+        }
+
+
+        .duty-rule {
+
+            display: flex;
+
+            width: 100px;
+
+            height: 4px;
+
+            margin:
+                20px auto 0;
+
+            overflow: hidden;
+
+            border-radius: 10px;
+
+        }
+
+
+        .duty-rule span {
+
+            flex: 1;
+
+        }
+
+
+        .duty-rule-blue {
+
+            background: #0057a8;
+
+        }
+
+
+        .duty-rule-yellow {
+
+            background: #ffd200;
+
+        }
+
+
+        .duty-rule-red {
+
+            background: #d71920;
+
+        }
+
+
+        /* =====================================================
+           STATISTICS
+        ====================================================== */
+
+        .duty-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .duty-stat {
+
+            background: rgba(
+                255,
+                255,
+                255,
+                .96
+            );
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 8px 24px
+                rgba(
+                    0,
+                    59,
+                    115,
+                    .06
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .duty-stat::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: #0057a8;
+
+        }
+
+
+        .duty-stat:nth-child(2)::before {
+
+            background: #ffd200;
+
+        }
+
+
+        .duty-stat:nth-child(3)::before {
+
+            background: #d71920;
+
+        }
+
+
+        .duty-stat-label {
+
+            display: block;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+
+            color: #7a8699;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .duty-stat-value {
+
+            display: block;
+
+            font-size: 29px;
+
+            line-height: 1;
+
+            font-weight: 800;
+
+            color: #003b73;
+
+        }
+
+
+        /* =====================================================
+           BOARD
+        ====================================================== */
+
+        .duty-board-card {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .97
+                );
+
+            border:
+                1px solid #e1e7ef;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px
+                rgba(
+                    0,
+                    59,
+                    115,
+                    .08
+                );
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .duty-board-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding:
+                22px 25px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+        }
+
+
+        .duty-board-heading h2 {
+
+            margin:
+                0 0 5px;
+
+            color: #003b73;
+
+            font-size: 19px;
+
+            font-weight: 800;
+
+        }
+
+
+        .duty-board-heading p {
+
+            margin: 0;
+
+            color: #7a8699;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =====================================================
+           BOARD ACTIONS
+        ====================================================== */
+
+        .duty-board-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .duty-refresh {
+
+            border:
+                1px solid #d9e2ec;
+
+            background: #ffffff;
+
+            color: #0057a8;
+
+            border-radius: 10px;
+
+            padding:
+                9px 13px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .duty-refresh:hover {
+
+            background: #0057a8;
+
+            border-color:
+                #0057a8;
+
+            color: #ffffff;
+
+        }
+
+
+        .duty-refresh:disabled {
+
+            opacity: .6;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        .transparency-button {
+
+            border:
+                1px solid #003b73;
+
+            background: #003b73;
+
+            color: #ffffff;
+
+            border-radius: 10px;
+
+            padding:
+                9px 13px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .transparency-button:hover {
+
+            background: #0057a8;
+
+            border-color:
+                #0057a8;
+
+        }
+
+
+        /* =====================================================
+           OFFICER GRID
+        ====================================================== */
+
+        .duty-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap: 16px;
+
+            padding: 20px;
+
+        }
+
+
+        .officer-card {
+
+            position: relative;
+
+            min-width: 0;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .98
+                );
+
+            border:
+                1px solid #e4e9ef;
+
+            border-radius: 17px;
+
+            padding: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+
+            overflow: hidden;
+
+        }
+
+
+        .officer-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(
+                    0,
+                    59,
+                    115,
+                    .08
+                );
+
+        }
+
+
+        .officer-card.on-duty {
+
+            border-color:
+                rgba(
+                    0,
+                    87,
+                    168,
+                    .3
+                );
+
+            box-shadow:
+                0 12px 30px
+                rgba(
+                    0,
+                    87,
+                    168,
+                    .12
+                );
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .officer-card.on-duty::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 4px;
+            height: 100%;
+
+            background: #0057a8;
+
+        }
+
+
+        .officer-card.off-duty {
+
+            opacity: .78;
+
+        }
+
+
+        /* =====================================================
+           OFFICER PHOTO
+        ====================================================== */
+
+        .officer-photo-wrap {
+
+            flex:
+                0 0 76px;
+
+            width: 76px;
+
+            height: 92px;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #eaf4ff,
+                    #f4f6f9
+                );
+
+            border:
+                1px solid #dfe7ef;
+
+        }
+
+
+        .officer-photo {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position:
+                center top;
+
+            display: block;
+
+        }
+
+
+        .officer-photo-fallback {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #0057a8;
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           OFFICER INFO
+        ====================================================== */
+
+        .officer-info {
+
+            min-width: 0;
+
+            flex: 1;
+
+        }
+
+
+        .officer-name {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            line-height: 1.3;
+
+            font-weight: 800;
+
+            color: #183b5b;
+
+            word-break:
+                break-word;
+
+        }
+
+
+        .officer-position {
+
+            margin-top: 4px;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
+
+            color: #7b8796;
+
+        }
+
+
+        /* =====================================================
+           STATUS
+        ====================================================== */
+
+        .officer-status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 10px;
+
+            padding:
+                5px 8px;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: .6px;
+
+        }
+
+
+        .officer-status::before {
+
+            content: "";
+
+            width: 6px;
+
+            height: 6px;
+
+            border-radius: 50%;
+
+        }
+
+
+        .status-on {
+
+            background:
+                #e9f8ef;
+
+            color:
+                #16834a;
+
+        }
+
+
+        .status-on::before {
+
+            background:
+                #20a65a;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(
+                    32,
+                    166,
+                    90,
+                    .12
+                );
+
+        }
+
+
+        .status-off {
+
+            background:
+                #f1f3f5;
+
+            color:
+                #7b8490;
+
+        }
+
+
+        .status-off::before {
+
+            background:
+                #aab2bc;
+
+        }
+
+
+        /* =====================================================
+           DUTY META
+        ====================================================== */
+
+        .officer-duty-meta {
+
+            margin-top: 9px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+            font-size: 10px;
+
+            color: #687789;
+
+        }
+
+
+        .officer-duty-meta strong {
+
+            color: #36516b;
+
+        }
+
+
+        .live-duration {
+
+            color: #0057a8;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ====================================================== */
+
+        .duty-message {
+
+            grid-column:
+                1 / -1;
+
+            text-align: center;
+
+            padding:
+                55px 20px;
+
+            color: #7b8794;
+
+            font-size: 13px;
+
+        }
+
+
+        .duty-message strong {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: #003b73;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =====================================================
+           MODAL
+        ====================================================== */
+
+        .duty-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(
+                    0,
+                    25,
+                    50,
+                    .62
+                );
+
+            backdrop-filter:
+                blur(5px);
+
+        }
+
+
+        .duty-modal.show {
+
+            display: flex;
+
+        }
+
+
+        .modal-box {
+
+            width:
+                min(
+                    500px,
+                    100%
+                );
+
+            max-height:
+                90vh;
+
+            overflow-y: auto;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 30px 70px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .25
+                );
+
+            animation:
+                modalIn .25s ease;
+
+        }
+
+
+        @keyframes modalIn {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(15px)
+                    scale(.98);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        .modal-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            padding:
+                20px 22px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+        }
+
+
+        .modal-header h3 {
+
+            margin: 0;
+
+            color: #003b73;
+
+            font-size: 18px;
+
+        }
+
+
+        .modal-subtitle {
+
+            margin:
+                4px 0 0;
+
+            color: #7b8794;
+
+            font-size: 10px;
+
+        }
+
+
+        .modal-close {
+
+            flex:
+                0 0 34px;
+
+            width: 34px;
+
+            height: 34px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: #f1f4f7;
+
+            color: #526273;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+        }
+
+
+        .modal-body {
+
+            padding: 22px;
+
+        }
+
+
+        /* =====================================================
+           TRANSPARENCY MODAL
+        ====================================================== */
+
+        .transparency-modal-box {
+
+            width:
+                min(
+                    900px,
+                    100%
+                );
+
+        }
+
+
+        .transparency-officer-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap: 12px;
+
+        }
+
+
+        .transparency-officer-card {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px;
+
+            border:
+                1px solid #e1e7ef;
+
+            border-radius: 14px;
+
+            background:
+                #fafcff;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .transparency-officer-card:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                #c9d9e8;
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    0,
+                    59,
+                    115,
+                    .07
+                );
+
+        }
+
+
+        .transparency-officer-photo {
+
+            flex:
+                0 0 62px;
+
+            width: 62px;
+
+            height: 74px;
+
+            overflow: hidden;
+
+            border-radius: 10px;
+
+            background:
+                #eaf4ff;
+
+            border:
+                1px solid #dbe5ee;
+
+        }
+
+
+        .transparency-officer-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position:
+                center top;
+
+            display: block;
+
+        }
+
+
+        .transparency-officer-photo-fallback {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            color: #0057a8;
+
+        }
+
+
+        .transparency-officer-info {
+
+            min-width: 0;
+
+            flex: 1;
+
+        }
+
+
+        .transparency-officer-name {
+
+            margin: 0;
+
+            color: #183b5b;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            line-height: 1.3;
+
+        }
+
+
+        .transparency-officer-position {
+
+            margin-top: 3px;
+
+            color: #7b8794;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing: .4px;
+
+        }
+
+
+        .transparency-hours {
+
+            display: flex;
+
+            gap: 18px;
+
+            margin-top: 10px;
+
+        }
+
+
+        .transparency-hour-item span {
+
+            display: block;
+
+            color: #8994a0;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing: .7px;
+
+        }
+
+
+        .transparency-hour-item strong {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #0057a8;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ====================================================== */
+
+        .login-intro {
+
+            text-align: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .login-intro strong {
+
+            display: block;
+
+            color: #003b73;
+
+            font-size: 15px;
+
+        }
+
+
+        .login-intro span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            color: #7c8794;
+
+            font-size: 11px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .form-label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #45586b;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .form-input,
+        .form-select {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding:
+                12px 13px;
+
+            border:
+                1px solid #dce3ea;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #243b53;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .form-input:focus,
+        .form-select:focus {
+
+            border-color:
+                #0057a8;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    0,
+                    87,
+                    168,
+                    .08
+                );
+
+        }
+
+
+        .password-wrap {
+
+            position: relative;
+
+        }
+
+
+        .password-wrap
+        .form-input {
+
+            padding-right: 70px;
+
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 8px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: 0;
+
+            background:
+                transparent;
+
+            color: #0057a8;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        .primary-button {
+
+            width: 100%;
+
+            border: 0;
+
+            border-radius: 11px;
+
+            padding:
+                13px 16px;
+
+            background: #0057a8;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .primary-button:hover {
+
+            background:
+                #003b73;
+
+        }
+
+
+        .primary-button:disabled {
+
+            opacity: .6;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        .secondary-button {
+
+            width: 100%;
+
+            margin-top: 9px;
+
+            border:
+                1px solid #dce3ea;
+
+            border-radius: 11px;
+
+            padding:
+                12px 16px;
+
+            background: #ffffff;
+
+            color: #526273;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        .form-error {
+
+            display: none;
+
+            padding:
+                10px 12px;
+
+            margin-bottom: 14px;
+
+            border-radius: 9px;
+
+            background:
+                #fff1f1;
+
+            border:
+                1px solid #ffd1d1;
+
+            color:
+                #c62828;
+
+            font-size: 11px;
+
+        }
+
+
+        .form-error.show {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           OFFICER SESSION
+        ====================================================== */
+
+        .officer-session {
+
+            text-align: center;
+
+            padding-bottom: 18px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .session-name {
+
+            font-size: 17px;
+
+            font-weight: 800;
+
+            color: #003b73;
+
+        }
+
+
+        .session-position {
+
+            margin-top: 4px;
+
+            color: #7b8794;
+
+            font-size: 10px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .session-status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 11px;
+
+            padding:
+                6px 10px;
+
+            border-radius: 20px;
+
+            background:
+                #f1f3f5;
+
+            color:
+                #7b8490;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+
+        .session-status::before {
+
+            content: "";
+
+            width: 6px;
+
+            height: 6px;
+
+            border-radius: 50%;
+
+            background:
+                #aab2bc;
+
+        }
+
+
+        .session-status.active {
+
+            background:
+                #e9f8ef;
+
+            color:
+                #16834a;
+
+        }
+
+
+        .session-status.active::before {
+
+            background:
+                #20a65a;
+
+        }
+
+
+        .active-duty-box {
+
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 17px;
+
+            border-radius: 14px;
+
+            background:
+                #f3f8fd;
+
+            border:
+                1px solid #d8e8f6;
+
+        }
+
+
+        .active-duty-box.show {
+
+            display: block;
+
+        }
+
+
+        .active-duty-label {
+
+            font-size: 9px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing: 1px;
+
+            font-weight: 800;
+
+            color: #0057a8;
+
+        }
+
+
+        .active-duty-timer {
+
+            margin-top: 6px;
+
+            font-size: 30px;
+
+            line-height: 1;
+
+            font-weight: 800;
+
+            color: #003b73;
+
+        }
+
+
+        .active-duty-location {
+
+            margin-top: 8px;
+
+            font-size: 11px;
+
+            color: #657789;
+
+        }
+
+
+        .officer-actions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap: 10px;
+
+        }
+
+
+        .action-button {
+
+            border: 0;
+
+            border-radius: 11px;
+
+            padding: 12px;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .action-end {
+
+            background:
+                #d71920;
+
+            color:
+                #ffffff;
+
+        }
+
+
+        .action-end:hover {
+
+            background:
+                #b9141a;
+
+        }
+
+
+        .custom-location {
+
+            display: none;
+
+            margin-top: 10px;
+
+        }
+
+
+        .custom-location.show {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           END REASON
+        ====================================================== */
+
+        .reason-options {
+
+            display: grid;
+
+            gap: 8px;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .reason-option {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                11px 12px;
+
+            border:
+                1px solid #e0e6ec;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            color: #45586b;
+
+        }
+
+
+        .reason-option input {
+
+            accent-color:
+                #0057a8;
+
+        }
+
+
+        /* =====================================================
+           TOAST
+        ====================================================== */
+
+        .duty-toast {
+
+            position: fixed;
+
+            z-index: 10000;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            width:
+                min(
+                    360px,
+                    calc(100% - 40px)
+                );
+
+            padding:
+                13px 15px;
+
+            border-radius: 12px;
+
+            background:
+                #003b73;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 15px 35px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .2
+                );
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transform:
+                translateY(20px);
+
+            opacity: 0;
+
+            pointer-events:
+                none;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .duty-toast.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .duty-toast.error {
+
+            background:
+                #d71920;
+
+        }
+
+
+        .duty-toast.success {
+
+            background:
+                #16834a;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 1000px) {
+
+            .duty-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .duty-page {
+
+                padding:
+                    40px 14px 60px;
+
+                background-attachment:
+                    scroll;
+
+            }
+
+
+            .duty-stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .duty-board-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .duty-board-actions {
+
+                width: 100%;
+
+            }
+
+
+            .duty-board-actions
+            .duty-refresh,
+            .duty-board-actions
+            .transparency-button {
+
+                flex: 1;
+
+                text-align:
+                    center;
+
+            }
+
+
+            .duty-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                padding: 14px;
+
+            }
+
+
+            .transparency-officer-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .officer-card {
+
+                padding: 14px;
+
+            }
+
+
+            .officer-photo-wrap {
+
+                flex-basis: 66px;
+
+                width: 66px;
+
+                height: 82px;
+
+            }
+
+
+            .officer-name {
+
+                font-size: 13px;
+
+            }
+
+
+            .duty-title {
+
+                font-size: 32px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
 
-        <div class="brand">
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-            <img src="./assets/divine-logo.png"
-                 alt="Divine Logo"
-                 class="brand-logo">
+    <header
+        class="site-header"
+        id="siteHeader"
+    >
 
-            <div class="logo-divider"></div>
+        <div class="header-container">
 
-            <img src="./assets/sas-logo.png"
-                 alt="SAS Logo"
-                 class="brand-logo">
+            <a
+                href="index.html"
+                class="brand"
+            >
 
-            <div class="brand-text">
-                SAS STUDENT PORTAL
-            </div>
+                <div class="brand-logos">
+
+                    <img
+                        src="assets/divine-logo.png"
+                        alt="Divine Word College of Calapan"
+                        class="divine-logo"
+                    >
+
+                    <span
+                        class="logo-divider"
+                    ></span>
+
+                    <img
+                        src="assets/sas-logo.png"
+                        alt="School of Arts and Sciences"
+                        class="sas-logo"
+                    >
+
+                </div>
+
+
+                <div class="brand-info">
+
+                    <span class="brand-institution">
+                        DIVINE WORD COLLEGE OF CALAPAN
+                    </span>
+
+                    <span class="brand-title">
+                        SAS STUDENT PORTAL
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <nav
+                class="desktop-navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-item"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="announcements.html"
+                    class="nav-item"
+                >
+                    Announcements
+                </a>
+
+                <a
+                    href="duty.html"
+                    class="nav-item active"
+                >
+                    Duty
+                </a>
+
+                <a
+                    href="attendance.html"
+                    class="nav-item"
+                >
+                    Attendance
+                </a>
+
+                <a
+                    href="about.html"
+                    class="nav-item"
+                >
+                    About
+                </a>
+
+            </nav>
+
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation"
+                aria-expanded="false"
+                type="button"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
 
         </div>
 
-        <div class="nav-links">
 
-            <a href="index.html">
+        <nav
+            class="mobile-navigation"
+            id="mobileNavigation"
+        >
+
+            <a
+                href="index.html"
+                class="mobile-nav-item"
+            >
                 Home
             </a>
 
-            <a href="announcements.html">
+            <a
+                href="announcements.html"
+                class="mobile-nav-item"
+            >
                 Announcements
             </a>
 
-            <a href="duty.html" class="active">
+            <a
+                href="duty.html"
+                class="mobile-nav-item active"
+            >
                 Duty
             </a>
 
-            <a href="index.html#attendance">
+            <a
+                href="attendance.html"
+                class="mobile-nav-item"
+            >
                 Attendance
             </a>
 
-            <a href="index.html#about">
+            <a
+                href="about.html"
+                class="mobile-nav-item"
+            >
                 About
             </a>
 
-        </div>
+        </nav>
 
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu">
-            ☰
-        </button>
-
-    </nav>
+    </header>
 
 
-    <!-- ========================================
-         DUTY PAGE
-    ========================================= -->
 
-    <main class="duty-board-page">
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
-        <div class="duty-board-container">
+    <main class="duty-page">
+
+        <div class="duty-container">
 
 
-            <!-- PAGE HEADER -->
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
 
-            <div class="duty-board-header">
+            <section class="duty-intro">
 
-                <span class="hero-badge">
-                    ✦ OFFICER DUTY
-                </span>
+                <div class="duty-kicker">
+                    SAS STUDENT SERVICES
+                </div>
 
-                <h1>
-                    Duty
-                    <span>Board</span>
+
+                <h1 class="duty-title">
+
+                    Officer
+                    <span>Duty Board</span>
+
                 </h1>
 
-                <p>
-                    View the current duty status of
-                    School of Arts and Sciences officers.
+
+                <p class="duty-subtitle">
+
+                    View the current duty status of the School of
+                    Arts and Sciences Department Officers.
+
                 </p>
 
-            </div>
 
+                <div class="duty-rule">
 
-            <!-- OFFICER LOGIN BUTTON -->
+                    <span
+                        class="duty-rule-blue"
+                    ></span>
 
-            <div class="officer-login-area">
+                    <span
+                        class="duty-rule-yellow"
+                    ></span>
 
-                <button
-                    class="officer-login-button"
-                    id="openOfficerLogin">
-
-                    <span class="login-button-icon">
-                        🔐
-                    </span>
-
-                    <span>
-                        Officer Log-in
-                    </span>
-
-                    <span class="login-button-arrow">
-                        →
-                    </span>
-
-                </button>
-
-            </div>
-
-
-            <!-- LOGIN PANEL -->
-
-            <div
-                class="officer-login-panel"
-                id="officerLoginPanel">
-
-                <div class="login-panel-header">
-
-                    <div>
-
-                        <span class="login-panel-label">
-                            OFFICER ACCESS
-                        </span>
-
-                        <h2>
-                            Log in for Duty
-                        </h2>
-
-                    </div>
-
-                    <button
-                        class="close-login"
-                        id="closeOfficerLogin"
-                        aria-label="Close login">
-                        ✕
-                    </button>
-
-                </div>
-
-
-                <div class="login-form-grid">
-
-                    <div class="duty-form-group">
-
-                        <label for="dutyUsername">
-                            Username
-                        </label>
-
-                        <input
-                            type="text"
-                            id="dutyUsername"
-                            placeholder="Enter username"
-                            autocomplete="username">
-
-                    </div>
-
-
-                    <div class="duty-form-group">
-
-                        <label for="dutyPassword">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            id="dutyPassword"
-                            placeholder="Enter password"
-                            autocomplete="current-password">
-
-                    </div>
-
-
-                    <div class="duty-form-group location-field">
-
-                        <label for="dutyLocation">
-                            Duty Location
-                        </label>
-
-                        <select id="dutyLocation">
-
-                            <option value="">
-                                Select duty location
-                            </option>
-
-                            <option value="SAS Office near SAO">
-                                SAS Office near SAO
-                            </option>
-
-                            <option value="SAS Office">
-                                SAS Office
-                            </option>
-
-                            <option value="Student Lounge">
-                                Student Lounge
-                            </option>
-
-                            <option value="Department Office">
-                                Department Office
-                            </option>
-
-                            <option value="custom">
-                                Other / Custom Location
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div
-                        class="duty-form-group custom-location-group"
-                        id="customLocationGroup">
-
-                        <label for="customLocation">
-                            Enter Location
-                        </label>
-
-                        <input
-                            type="text"
-                            id="customLocation"
-                            placeholder="Enter your duty location">
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="btn btn-primary duty-login-button"
-                        id="dutyLoginButton">
-
-                        LOG IN FOR DUTY
-
-                    </button>
-
-                    <p
-                        class="duty-error"
-                        id="dutyError">
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- ========================================
-                 ON DUTY
-            ========================================= -->
-
-            <section class="duty-section on-duty-section">
-
-                <div class="duty-section-heading">
-
-                    <div>
-
-                        <span class="duty-section-label">
-                            LIVE STATUS
-                        </span>
-
-                        <h2>
-                            Officers <span>On Duty</span>
-                        </h2>
-
-                    </div>
-
-                    <div class="live-indicator">
-
-                        <span></span>
-                        LIVE
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="on-duty-list"
-                    id="onDutyList">
-
-
-                    <!-- SAMPLE ON-DUTY OFFICER -->
-
-                    <article class="officer-card on-duty-card">
-
-                        <div class="officer-photo-area">
-
-                            <div class="officer-photo-placeholder">
-                                OFFICER<br>PHOTO
-                            </div>
-
-                        </div>
-
-
-                        <div class="officer-information">
-
-                            <div class="officer-status">
-                                <span></span>
-                                ON DUTY
-                            </div>
-
-                            <h3>
-                                Harvey Keann Laudencia
-                            </h3>
-
-                            <div class="officer-detail">
-
-                                <span>📍</span>
-
-                                <span>
-                                    SAS Office near SAO
-                                </span>
-
-                            </div>
-
-                            <div class="officer-detail">
-
-                                <span>🕐</span>
-
-                                <span>
-                                    Started: 8:15 AM
-                                </span>
-
-                            </div>
-
-                            <div class="officer-duration">
-
-                                <span>
-                                    Duty Duration
-                                </span>
-
-                                <strong>
-                                    00:42:18
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-                <div
-                    class="empty-duty-message"
-                    id="emptyDutyMessage">
-
-                    <span>🟢</span>
-
-                    <p>
-                        No officers are currently on duty.
-                    </p>
+                    <span
+                        class="duty-rule-red"
+                    ></span>
 
                 </div>
 
             </section>
 
 
-            <!-- ========================================
-                 OFF DUTY
-            ========================================= -->
 
-            <section class="duty-section off-duty-section">
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
 
-                <div class="duty-section-heading">
+            <section class="duty-stats">
 
-                    <div>
+                <div class="duty-stat">
 
-                        <span class="duty-section-label">
-                            OFFICER LIST
-                        </span>
+                    <span class="duty-stat-label">
+                        Total Officers
+                    </span>
+
+                    <strong
+                        class="duty-stat-value"
+                        id="totalOfficers"
+                    >
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="duty-stat">
+
+                    <span class="duty-stat-label">
+                        Currently On Duty
+                    </span>
+
+                    <strong
+                        class="duty-stat-value"
+                        id="onDutyCount"
+                    >
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="duty-stat">
+
+                    <span class="duty-stat-label">
+                        Currently Off Duty
+                    </span>
+
+                    <strong
+                        class="duty-stat-value"
+                        id="offDutyCount"
+                    >
+                        —
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DUTY BOARD
+            ================================================== -->
+
+            <section
+                class="duty-board-card"
+            >
+
+                <div
+                    class="duty-board-header"
+                >
+
+                    <div
+                        class="duty-board-heading"
+                    >
 
                         <h2>
-                            Officers <span>Off Duty</span>
+                            Current Duty Status
                         </h2>
+
+                        <p id="lastUpdated">
+                            Updating duty information...
+                        </p>
 
                     </div>
 
-                    <div class="off-duty-count">
-                        3 OFF DUTY
+
+                    <div
+                        class="duty-board-actions"
+                    >
+
+                        <button
+                            type="button"
+                            class="duty-refresh"
+                            id="refreshBoard"
+                        >
+                            Refresh
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="transparency-button"
+                            id="openTransparency"
+                        >
+                            Officers Transparency
+                        </button>
+
                     </div>
 
                 </div>
 
 
                 <div
-                    class="off-duty-grid"
-                    id="offDutyList">
+                    class="duty-grid"
+                    id="dutyGrid"
+                >
 
+                    <div
+                        class="duty-message"
+                    >
 
-                    <!-- OFFICER 1 -->
+                        <strong>
+                            Loading duty board
+                        </strong>
 
-                    <article class="officer-card off-duty-card">
+                        Please wait while we retrieve the latest
+                        officer status.
 
-                        <div class="officer-photo-area">
-
-                            <div class="officer-photo-placeholder">
-                                OFFICER<br>PHOTO
-                            </div>
-
-                        </div>
-
-                        <div class="officer-information">
-
-                            <div class="officer-status off-status">
-                                <span></span>
-                                OFF DUTY
-                            </div>
-
-                            <h3>
-                                Juan Dela Cruz
-                            </h3>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- OFFICER 2 -->
-
-                    <article class="officer-card off-duty-card">
-
-                        <div class="officer-photo-area">
-
-                            <div class="officer-photo-placeholder">
-                                OFFICER<br>PHOTO
-                            </div>
-
-                        </div>
-
-                        <div class="officer-information">
-
-                            <div class="officer-status off-status">
-                                <span></span>
-                                OFF DUTY
-                            </div>
-
-                            <h3>
-                                Maria Santos
-                            </h3>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- OFFICER 3 -->
-
-                    <article class="officer-card off-duty-card">
-
-                        <div class="officer-photo-area">
-
-                            <div class="officer-photo-placeholder">
-                                OFFICER<br>PHOTO
-                            </div>
-
-                        </div>
-
-                        <div class="officer-information">
-
-                            <div class="officer-status off-status">
-                                <span></span>
-                                OFF DUTY
-                            </div>
-
-                            <h3>
-                                Alex Reyes
-                            </h3>
-
-                        </div>
-
-                    </article>
+                    </div>
 
                 </div>
 
@@ -494,50 +2435,49 @@
     </main>
 
 
-    <!-- ========================================
+
+    <!-- =====================================================
          FOOTER
-    ========================================= -->
+    ====================================================== -->
 
-    <footer class="site-footer">
+    <footer
+        class="site-footer"
+    >
 
-        <div class="footer-glow footer-glow-one"></div>
-        <div class="footer-glow footer-glow-two"></div>
+        <div
+            class="footer-container"
+        >
 
-        <div class="footer-content">
-
-            <div class="footer-line"></div>
-
-            <div class="footer-brand">
-
-                <img
-                    src="./assets/sas-logo.png"
-                    alt="SAS Logo"
-                    class="footer-logo">
-
-            </div>
-
-            <p class="footer-copy">
-                School of Arts and Sciences
-            </p>
-
-            <p class="footer-small">
-                SAS Student Portal
-            </p>
-
-            <div class="footer-social">
+            <div
+                class="footer-contact"
+            >
 
                 <a
-                    href="#"
-                    class="social-link"
+                    href="https://www.facebook.com/DWCCSASOfficial"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                    class="contact-item"
+                >
 
-                    <span class="facebook-icon">
-                        f
+                    <span
+                        class="contact-icon facebook-icon"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.7.3-1 1-1z"
+                            />
+
+                        </svg>
+
                     </span>
 
-                    <span class="facebook-name">
-                        @DWCCSASOffical
+                    <span class="contact-text">
+                        @DWCCSASOfficial
                     </span>
 
                 </a>
@@ -545,13 +2485,37 @@
 
                 <a
                     href="mailto:polpsychsas@gmail.com"
-                    class="social-link">
+                    class="contact-item"
+                >
 
-                    <span class="email-icon">
-                        ✉
+                    <span
+                        class="contact-icon gmail-icon"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M3 6.5
+                                   L12 13
+                                   L21 6.5"
+                            />
+
+                            <rect
+                                x="3"
+                                y="5"
+                                width="18"
+                                height="14"
+                                rx="2"
+                            />
+
+                        </svg>
+
                     </span>
 
-                    <span>
+                    <span class="contact-text">
                         @polpsychsas@gmail.com
                     </span>
 
@@ -559,172 +2523,3310 @@
 
             </div>
 
-            <div class="footer-divider"></div>
 
-            <p class="developer-credit">
+            <div
+                class="footer-developer"
+            >
 
-                Developed by
-                <strong>
-                    PRO Harvey Keann Laudencia
-                </strong>
+                <span
+                    class="developer-label"
+                >
+                    DEVELOPER
+                </span>
 
-            </p>
+                <span
+                    class="developer-name"
+                >
+                    Harvey Keann Laudencia
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="footer-bottom"
+        >
+
+            <span>
+                © 2026 School of Arts and Sciences
+            </span>
+
+            <span
+                class="footer-separator"
+            >
+                |
+            </span>
+
+            <span>
+                Divine Word College of Calapan
+            </span>
 
         </div>
 
     </footer>
 
 
-    <!-- ========================================
+
+    <!-- =====================================================
+         OFFICER LOGIN MODAL
+    ====================================================== -->
+
+    <div
+        class="duty-modal"
+        id="loginModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h3>
+                    Officer Access
+                </h3>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close="loginModal"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="login-intro">
+
+                    <strong>
+                        SAS Officer Login
+                    </strong>
+
+                    <span>
+                        Authorized officers only.
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="form-error"
+                    id="loginError"
+                ></div>
+
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="username"
+                    >
+                        ID NUMBER
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        class="form-input"
+                        placeholder="Enter your ID number"
+                        autocomplete="username"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="password"
+                    >
+                        PASSWORD
+                    </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                        >
+                            SHOW
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="loginButton"
+                >
+                    SIGN IN
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         OFFICER MANAGEMENT MODAL
+    ====================================================== -->
+
+    <div
+        class="duty-modal"
+        id="officerModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h3>
+                    Duty Management
+                </h3>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close="officerModal"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div
+                    class="officer-session"
+                >
+
+                    <div
+                        class="session-name"
+                        id="sessionName"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="session-position"
+                        id="sessionPosition"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="session-status"
+                        id="sessionStatus"
+                    >
+                        OFF DUTY
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIVE DUTY -->
+
+                <div
+                    class="active-duty-box"
+                    id="activeDutyBox"
+                >
+
+                    <div
+                        class="active-duty-label"
+                    >
+                        CURRENT DUTY SESSION
+                    </div>
+
+
+                    <div
+                        class="active-duty-timer"
+                        id="activeDutyTimer"
+                    >
+                        00:00:00
+                    </div>
+
+
+                    <div
+                        class="active-duty-location"
+                        id="activeDutyLocation"
+                    >
+                        Location: —
+                    </div>
+
+                </div>
+
+
+                <!-- START DUTY -->
+
+                <div
+                    id="startDutySection"
+                >
+
+                    <div
+                        class="form-group"
+                    >
+
+                        <label
+                            class="form-label"
+                            for="locationSelect"
+                        >
+                            DUTY LOCATION
+                        </label>
+
+
+                        <select
+                            id="locationSelect"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                Select location
+                            </option>
+
+                            <option
+                                value="SAS Office near SAO"
+                            >
+                                SAS Office near SAO
+                            </option>
+
+                            <option
+                                value="custom"
+                            >
+                                Other / Custom Location
+                            </option>
+
+                        </select>
+
+
+                        <div
+                            class="custom-location"
+                            id="customLocation"
+                        >
+
+                            <input
+                                type="text"
+                                id="customLocationInput"
+                                class="form-input"
+                                placeholder="Enter duty location"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="startDutyButton"
+                    >
+                        START DUTY
+                    </button>
+
+                </div>
+
+
+                <!-- END DUTY -->
+
+                <div
+                    id="endDutySection"
+                    style="display:none;"
+                >
+
+                    <div
+                        class="form-group"
+                    >
+
+                        <label
+                            class="form-label"
+                        >
+                            END DUTY
+                        </label>
+
+
+                        <div
+                            class="reason-options"
+                        >
+
+                            <label
+                                class="reason-option"
+                            >
+
+                                <input
+                                    type="radio"
+                                    name="endReason"
+                                    value="Completed Duty"
+                                    checked
+                                >
+
+                                Completed Duty
+
+                            </label>
+
+
+                            <label
+                                class="reason-option"
+                            >
+
+                                <input
+                                    type="radio"
+                                    name="endReason"
+                                    value="Left Office"
+                                >
+
+                                Left Office
+
+                            </label>
+
+
+                            <label
+                                class="reason-option"
+                            >
+
+                                <input
+                                    type="radio"
+                                    name="endReason"
+                                    value="Other"
+                                >
+
+                                Other
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="action-button action-end"
+                        id="endDutyButton"
+                        style="width:100%;"
+                    >
+                        END DUTY
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="logoutButton"
+                >
+                    LOG OUT
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         OFFICERS TRANSPARENCY MODAL
+    ====================================================== -->
+
+    <div
+        class="duty-modal"
+        id="transparencyModal"
+    >
+
+        <div
+            class="modal-box transparency-modal-box"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h3>
+                        Officers Transparency
+                    </h3>
+
+                    <p
+                        class="modal-subtitle"
+                    >
+                        Duty hours of School of Arts and Sciences Department Officers
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close="transparencyModal"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div
+                    class="transparency-officer-grid"
+                    id="transparencyGrid"
+                >
+
+                    <div
+                        class="duty-message"
+                    >
+
+                        <strong>
+                            Loading...
+                        </strong>
+
+                        Retrieving officer duty records.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        class="duty-toast"
+        id="dutyToast"
+    ></div>
+
+
+
+    <!-- =====================================================
          JAVASCRIPT
-    ========================================= -->
+    ====================================================== -->
 
     <script>
 
-        /* Mobile Menu */
-
-        const menuToggle =
-            document.getElementById("menuToggle");
-
-        const navLinks =
-            document.querySelector(".nav-links");
+        "use strict";
 
 
-        menuToggle.addEventListener(
-            "click",
-            function () {
+        /* =====================================================
+           EXACT DUTY API URL
+        ====================================================== */
 
-                navLinks.classList.toggle(
-                    "mobile-menu"
+        const DUTY_API_URL =
+            "https://script.google.com/macros/s/AKfycbyKNaHwmd20pryj0GHCe2iFHgFtQOp0BJFL_qFH_qNzwoBL1Nij7A_yJx9vXntGTM-2vA/exec";
+
+
+        const MAX_DUTY_HOURS = 5;
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        const header =
+            document.getElementById(
+                "siteHeader"
+            );
+
+
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
+
+
+        const mobileNavigation =
+            document.getElementById(
+                "mobileNavigation"
+            );
+
+
+        function updateHeader() {
+
+            if (!header) {
+                return;
+            }
+
+
+            if (
+                window.scrollY > 30
+            ) {
+
+                header.classList.add(
+                    "scrolled"
                 );
 
-                if (
-                    navLinks.classList.contains(
-                        "mobile-menu"
-                    )
-                ) {
+            } else {
 
-                    menuToggle.textContent = "✕";
-
-                    menuToggle.setAttribute(
-                        "aria-label",
-                        "Close menu"
-                    );
-
-                } else {
-
-                    menuToggle.textContent = "☰";
-
-                    menuToggle.setAttribute(
-                        "aria-label",
-                        "Open menu"
-                    );
-
-                }
+                header.classList.remove(
+                    "scrolled"
+                );
 
             }
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            updateHeader
         );
 
 
-        document
-            .querySelectorAll(".nav-links a")
-            .forEach(function (link) {
+        updateHeader();
 
-                link.addEventListener(
-                    "click",
-                    function () {
 
-                        navLinks.classList.remove(
-                            "mobile-menu"
+        if (
+            menuButton &&
+            mobileNavigation
+        ) {
+
+            menuButton.addEventListener(
+                "click",
+                function () {
+
+                    const opened =
+                        mobileNavigation.classList.toggle(
+                            "open"
                         );
 
-                        menuToggle.textContent = "☰";
 
-                        menuToggle.setAttribute(
-                            "aria-label",
-                            "Open menu"
+                    menuButton.classList.toggle(
+                        "open",
+                        opened
+                    );
+
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        opened
+                    );
+
+                }
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".mobile-nav-item"
+                )
+                .forEach(
+                    function (item) {
+
+                        item.addEventListener(
+                            "click",
+                            function () {
+
+                                mobileNavigation.classList.remove(
+                                    "open"
+                                );
+
+
+                                menuButton.classList.remove(
+                                    "open"
+                                );
+
+
+                                menuButton.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
                         );
 
                     }
                 );
 
-            });
+        }
 
 
-        /* Officer Login Panel */
 
-        const openOfficerLogin =
+        /* =====================================================
+           ELEMENTS
+        ====================================================== */
+
+        const dutyGrid =
             document.getElementById(
-                "openOfficerLogin"
-            );
-
-        const closeOfficerLogin =
-            document.getElementById(
-                "closeOfficerLogin"
-            );
-
-        const officerLoginPanel =
-            document.getElementById(
-                "officerLoginPanel"
+                "dutyGrid"
             );
 
 
-        openOfficerLogin.addEventListener(
-            "click",
-            function () {
+        const transparencyGrid =
+            document.getElementById(
+                "transparencyGrid"
+            );
 
-                officerLoginPanel.classList.add(
-                    "show"
+
+        const totalOfficers =
+            document.getElementById(
+                "totalOfficers"
+            );
+
+
+        const onDutyCount =
+            document.getElementById(
+                "onDutyCount"
+            );
+
+
+        const offDutyCount =
+            document.getElementById(
+                "offDutyCount"
+            );
+
+
+        const lastUpdated =
+            document.getElementById(
+                "lastUpdated"
+            );
+
+
+        const dutyToast =
+            document.getElementById(
+                "dutyToast"
+            );
+
+
+
+        /* =====================================================
+           SESSION
+        ====================================================== */
+
+        const SESSION_KEY =
+            "sasDutyOfficerSession";
+
+
+        let officerSession = null;
+
+        let dutyTimerInterval = null;
+
+
+        function loadSession() {
+
+            try {
+
+                const saved =
+                    sessionStorage.getItem(
+                        SESSION_KEY
+                    );
+
+
+                if (!saved) {
+
+                    return null;
+
+                }
+
+
+                return JSON.parse(
+                    saved
                 );
 
-            }
-        );
+            } catch (error) {
 
-
-        closeOfficerLogin.addEventListener(
-            "click",
-            function () {
-
-                officerLoginPanel.classList.remove(
-                    "show"
-                );
+                return null;
 
             }
-        );
+
+        }
 
 
-        /* Custom Location */
+        function saveSession(
+            session
+        ) {
 
-        const dutyLocation =
-            document.getElementById(
-                "dutyLocation"
+            officerSession =
+                session;
+
+
+            sessionStorage.setItem(
+                SESSION_KEY,
+                JSON.stringify(
+                    session
+                )
             );
 
-        const customLocationGroup =
-            document.getElementById(
-                "customLocationGroup"
+        }
+
+
+        function clearSession() {
+
+            officerSession =
+                null;
+
+
+            sessionStorage.removeItem(
+                SESSION_KEY
             );
 
+        }
 
-        dutyLocation.addEventListener(
-            "change",
-            function () {
 
-                if (
-                    dutyLocation.value === "custom"
+        officerSession =
+            loadSession();
+
+
+
+        /* =====================================================
+           JSONP
+        ====================================================== */
+
+        let jsonpCounter = 0;
+
+
+        function jsonp(
+            action,
+            params = {}
+        ) {
+
+            return new Promise(
+                function (
+                    resolve,
+                    reject
                 ) {
 
-                    customLocationGroup.style.display =
-                        "flex";
+                    const callbackName =
+                        "dutyCallback_" +
+                        Date.now() +
+                        "_" +
+                        (++jsonpCounter);
 
-                } else {
 
-                    customLocationGroup.style.display =
-                        "none";
+                    const query =
+                        new URLSearchParams();
+
+
+                    query.set(
+                        "action",
+                        action
+                    );
+
+
+                    query.set(
+                        "callback",
+                        callbackName
+                    );
+
+
+                    Object.keys(
+                        params
+                    ).forEach(
+                        function (key) {
+
+                            if (
+                                params[key] !==
+                                    undefined &&
+                                params[key] !==
+                                    null
+                            ) {
+
+                                query.set(
+                                    key,
+                                    params[key]
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                    const script =
+                        document.createElement(
+                            "script"
+                        );
+
+
+                    const timeout =
+                        setTimeout(
+                            function () {
+
+                                cleanup();
+
+
+                                reject(
+                                    new Error(
+                                        "Request timed out."
+                                    )
+                                );
+
+                            },
+                            15000
+                        );
+
+
+                    function cleanup() {
+
+                        clearTimeout(
+                            timeout
+                        );
+
+
+                        if (
+                            script.parentNode
+                        ) {
+
+                            script.parentNode.removeChild(
+                                script
+                            );
+
+                        }
+
+
+                        try {
+
+                            delete window[
+                                callbackName
+                            ];
+
+                        } catch (
+                            error
+                        ) {
+
+                            window[
+                                callbackName
+                            ] = undefined;
+
+                        }
+
+                    }
+
+
+                    window[
+                        callbackName
+                    ] =
+                        function (data) {
+
+                            cleanup();
+
+                            resolve(
+                                data
+                            );
+
+                        };
+
+
+                    script.onerror =
+                        function () {
+
+                            cleanup();
+
+
+                            reject(
+                                new Error(
+                                    "Unable to connect to the duty server."
+                                )
+                            );
+
+                        };
+
+
+                    script.src =
+                        DUTY_API_URL +
+                        "?" +
+                        query.toString();
+
+
+                    document.body.appendChild(
+                        script
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           TOAST
+        ====================================================== */
+
+        let toastTimer = null;
+
+
+        function showToast(
+            message,
+            type = ""
+        ) {
+
+            if (!dutyToast) {
+
+                return;
+
+            }
+
+
+            dutyToast.textContent =
+                message;
+
+
+            dutyToast.className =
+                "duty-toast show";
+
+
+            if (type) {
+
+                dutyToast.classList.add(
+                    type
+                );
+
+            }
+
+
+            clearTimeout(
+                toastTimer
+            );
+
+
+            toastTimer =
+                setTimeout(
+                    function () {
+
+                        dutyToast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    3500
+                );
+
+        }
+
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHtml(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           DRIVE IMAGE
+        ====================================================== */
+
+        function getDriveImageUrl(
+            url
+        ) {
+
+            if (!url) {
+
+                return "";
+
+            }
+
+
+            const match =
+                String(url).match(
+                    /\/d\/([a-zA-Z0-9_-]+)/
+                );
+
+
+            if (
+                match &&
+                match[1]
+            ) {
+
+                return (
+                    "https://drive.google.com/thumbnail?id=" +
+                    match[1] +
+                    "&sz=w500"
+                );
+
+            }
+
+
+            if (
+                String(url).includes(
+                    "drive.google.com"
+                )
+            ) {
+
+                const idMatch =
+                    String(url).match(
+                        /[?&]id=([^&]+)/
+                    );
+
+
+                if (
+                    idMatch &&
+                    idMatch[1]
+                ) {
+
+                    return (
+                        "https://drive.google.com/thumbnail?id=" +
+                        idMatch[1] +
+                        "&sz=w500"
+                    );
 
                 }
 
             }
+
+
+            return String(url);
+
+        }
+
+
+
+        /* =====================================================
+           DATE
+        ====================================================== */
+
+        function parseDate(
+            value
+        ) {
+
+            if (!value) {
+
+                return null;
+
+            }
+
+
+            const date =
+                new Date(
+                    value
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return null;
+
+            }
+
+
+            return date;
+
+        }
+
+
+
+        /* =====================================================
+           DURATION
+        ====================================================== */
+
+        function formatDuration(
+            totalSeconds
+        ) {
+
+            totalSeconds =
+                Math.max(
+                    0,
+                    Math.floor(
+                        Number(
+                            totalSeconds
+                        ) || 0
+                    )
+                );
+
+
+            const hours =
+                Math.floor(
+                    totalSeconds /
+                    3600
+                );
+
+
+            const minutes =
+                Math.floor(
+                    (
+                        totalSeconds %
+                        3600
+                    ) / 60
+                );
+
+
+            const seconds =
+                totalSeconds %
+                60;
+
+
+            return [
+
+                String(
+                    hours
+                ).padStart(
+                    2,
+                    "0"
+                ),
+
+                String(
+                    minutes
+                ).padStart(
+                    2,
+                    "0"
+                ),
+
+                String(
+                    seconds
+                ).padStart(
+                    2,
+                    "0"
+                )
+
+            ].join(":");
+
+        }
+
+
+
+        /* =====================================================
+           LOAD DUTY BOARD
+        ====================================================== */
+
+        async function loadDutyBoard() {
+
+            try {
+
+                const response =
+                    await jsonp(
+                        "getDutyBoard"
+                    );
+
+
+                if (
+                    !response ||
+                    !response.success
+                ) {
+
+                    throw new Error(
+                        response?.message ||
+                        "Unable to load duty board."
+                    );
+
+                }
+
+
+                renderDutyBoard(
+                    response.officers ||
+                    []
+                );
+
+
+                totalOfficers.textContent =
+                    response.count ??
+                    (
+                        response.officers ||
+                        []
+                    ).length;
+
+
+                onDutyCount.textContent =
+                    response.onDuty ??
+                    (
+                        response.officers ||
+                        []
+                    ).filter(
+                        officer =>
+                            String(
+                                officer.status
+                            ).toUpperCase() ===
+                            "ON DUTY"
+                    ).length;
+
+
+                offDutyCount.textContent =
+                    response.offDuty ??
+                    (
+                        response.officers ||
+                        []
+                    ).filter(
+                        officer =>
+                            String(
+                                officer.status
+                            ).toUpperCase() !==
+                            "ON DUTY"
+                    ).length;
+
+
+                lastUpdated.textContent =
+                    "Last updated: " +
+                    new Date()
+                        .toLocaleTimeString(
+                            "en-PH",
+                            {
+                                hour:
+                                    "numeric",
+
+                                minute:
+                                    "2-digit",
+
+                                second:
+                                    "2-digit"
+                            }
+                        );
+
+            } catch (
+                error
+            ) {
+
+                console.error(
+                    error
+                );
+
+
+                dutyGrid.innerHTML = `
+
+                    <div
+                        class="duty-message"
+                    >
+
+                        <strong>
+                            Unable to load duty board
+                        </strong>
+
+                        Please try refreshing the page.
+
+                    </div>
+
+                `;
+
+
+                lastUpdated.textContent =
+                    "Unable to update duty information.";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           RENDER DUTY BOARD
+        ====================================================== */
+
+        function renderDutyBoard(
+            officers
+        ) {
+
+            if (
+                !officers.length
+            ) {
+
+                dutyGrid.innerHTML = `
+
+                    <div
+                        class="duty-message"
+                    >
+
+                        <strong>
+                            No officer records available
+                        </strong>
+
+                        Please check the Officers sheet.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const sorted =
+                [
+                    ...officers
+                ].sort(
+                    function (
+                        a,
+                        b
+                    ) {
+
+                        const aOn =
+                            String(
+                                a.status
+                            ).toUpperCase() ===
+                            "ON DUTY";
+
+
+                        const bOn =
+                            String(
+                                b.status
+                            ).toUpperCase() ===
+                            "ON DUTY";
+
+
+                        if (
+                            aOn !==
+                            bOn
+                        ) {
+
+                            return aOn
+                                ? -1
+                                : 1;
+
+                        }
+
+
+                        return String(
+                            a.name ||
+                            ""
+                        ).localeCompare(
+                            String(
+                                b.name ||
+                                ""
+                            )
+                        );
+
+                    }
+                );
+
+
+            dutyGrid.innerHTML =
+                sorted.map(
+                    createOfficerCard
+                ).join("");
+
+        }
+
+
+
+        /* =====================================================
+           OFFICER CARD
+        ====================================================== */
+
+        function createOfficerCard(
+            officer
+        ) {
+
+            const isOnDuty =
+                String(
+                    officer.status ||
+                    ""
+                ).toUpperCase() ===
+                "ON DUTY";
+
+
+            const imageUrl =
+                getDriveImageUrl(
+                    officer.photoUrl
+                );
+
+
+            const startDate =
+                parseDate(
+                    officer.startTime
+                );
+
+
+            let timerHtml =
+                "";
+
+
+            if (
+                isOnDuty &&
+                startDate
+            ) {
+
+                const seconds =
+                    Math.max(
+                        0,
+                        (
+                            Date.now() -
+                            startDate.getTime()
+                        ) / 1000
+                    );
+
+
+                timerHtml = `
+
+                    <div>
+
+                        <strong>
+                            Duration:
+                        </strong>
+
+                        <span
+                            class="live-duration"
+                            data-start="${startDate.toISOString()}"
+                        >
+                            ${formatDuration(
+                                seconds
+                            )}
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            const locationHtml =
+                isOnDuty &&
+                officer.location
+                    ? `
+
+                        <div>
+
+                            <strong>
+                                Location:
+                            </strong>
+
+                            ${escapeHtml(
+                                officer.location
+                            )}
+
+                        </div>
+
+                    `
+                    : "";
+
+
+            const photo =
+                imageUrl
+
+                    ? `
+
+                        <img
+                            src="${escapeHtml(
+                                imageUrl
+                            )}"
+                            alt="${escapeHtml(
+                                officer.name
+                            )}"
+                            class="officer-photo"
+                            loading="lazy"
+                            onerror="
+                                this.style.display='none';
+                                this.nextElementSibling.style.display='flex';
+                            "
+                        >
+
+                        <div
+                            class="officer-photo-fallback"
+                            style="display:none;"
+                        >
+                            ${escapeHtml(
+                                String(
+                                    officer.name ||
+                                    "?"
+                                ).charAt(0)
+                            )}
+                        </div>
+
+                    `
+
+                    : `
+
+                        <div
+                            class="officer-photo-fallback"
+                        >
+                            ${escapeHtml(
+                                String(
+                                    officer.name ||
+                                    "?"
+                                ).charAt(0)
+                            )}
+                        </div>
+
+                    `;
+
+
+            return `
+
+                <article
+                    class="officer-card ${
+                        isOnDuty
+                            ? "on-duty"
+                            : "off-duty"
+                    }"
+                >
+
+                    <div
+                        class="officer-photo-wrap"
+                    >
+                        ${photo}
+                    </div>
+
+
+                    <div
+                        class="officer-info"
+                    >
+
+                        <h3
+                            class="officer-name"
+                        >
+                            ${escapeHtml(
+                                officer.name ||
+                                "Unnamed Officer"
+                            )}
+                        </h3>
+
+
+                        <div
+                            class="officer-position"
+                        >
+                            ${escapeHtml(
+                                officer.position ||
+                                "Department Officer"
+                            )}
+                        </div>
+
+
+                        <div
+                            class="officer-status ${
+                                isOnDuty
+                                    ? "status-on"
+                                    : "status-off"
+                            }"
+                        >
+                            ${
+                                isOnDuty
+                                    ? "ON DUTY"
+                                    : "OFF DUTY"
+                            }
+                        </div>
+
+
+                        ${
+                            isOnDuty
+
+                                ? `
+
+                                    <div
+                                        class="officer-duty-meta"
+                                    >
+
+                                        ${locationHtml}
+
+                                        ${timerHtml}
+
+                                    </div>
+
+                                `
+
+                                : ""
+                        }
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+
+
+        /* =====================================================
+           LIVE BOARD TIMER
+        ====================================================== */
+
+        function updateBoardTimers() {
+
+            document
+                .querySelectorAll(
+                    ".live-duration"
+                )
+                .forEach(
+                    function (
+                        element
+                    ) {
+
+                        const start =
+                            parseDate(
+                                element.dataset.start
+                            );
+
+
+                        if (!start) {
+
+                            return;
+
+                        }
+
+
+                        const seconds =
+                            Math.max(
+                                0,
+                                (
+                                    Date.now() -
+                                    start.getTime()
+                                ) / 1000
+                            );
+
+
+                        element.textContent =
+                            formatDuration(
+                                seconds
+                            );
+
+                    }
+                );
+
+        }
+
+
+        setInterval(
+            updateBoardTimers,
+            1000
+        );
+
+
+
+        /* =====================================================
+           TRANSPARENCY
+        ====================================================== */
+
+        async function loadTransparency() {
+
+            transparencyGrid.innerHTML = `
+
+                <div
+                    class="duty-message"
+                >
+
+                    <strong>
+                        Loading officer records
+                    </strong>
+
+                    Retrieving duty hours...
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const response =
+                    await jsonp(
+                        "getOfficerDutySummary"
+                    );
+
+
+                if (
+                    !response ||
+                    !response.success
+                ) {
+
+                    throw new Error(
+                        response?.message ||
+                        "Unable to load transparency."
+                    );
+
+                }
+
+
+                renderTransparency(
+                    response.officers ||
+                    []
+                );
+
+
+            } catch (
+                error
+            ) {
+
+                console.error(
+                    error
+                );
+
+
+                transparencyGrid.innerHTML = `
+
+                    <div
+                        class="duty-message"
+                    >
+
+                        <strong>
+                            Unable to load transparency
+                        </strong>
+
+                        Please try again.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           RENDER TRANSPARENCY
+        ====================================================== */
+
+        function renderTransparency(
+            officers
+        ) {
+
+            if (
+                !officers.length
+            ) {
+
+                transparencyGrid.innerHTML = `
+
+                    <div
+                        class="duty-message"
+                    >
+
+                        <strong>
+                            No officer records available
+                        </strong>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            transparencyGrid.innerHTML =
+                officers.map(
+                    function (
+                        officer
+                    ) {
+
+                        const imageUrl =
+                            getDriveImageUrl(
+                                officer.photoUrl
+                            );
+
+
+                        const initial =
+                            String(
+                                officer.name ||
+                                "?"
+                            ).charAt(0);
+
+
+                        const photo =
+                            imageUrl
+
+                                ? `
+
+                                    <img
+                                        src="${escapeHtml(
+                                            imageUrl
+                                        )}"
+                                        alt="${escapeHtml(
+                                            officer.name
+                                        )}"
+                                        loading="lazy"
+                                        onerror="
+                                            this.style.display='none';
+                                            this.nextElementSibling.style.display='flex';
+                                        "
+                                    >
+
+                                    <div
+                                        class="transparency-officer-photo-fallback"
+                                        style="display:none;"
+                                    >
+                                        ${escapeHtml(
+                                            initial
+                                        )}
+                                    </div>
+
+                                `
+
+                                : `
+
+                                    <div
+                                        class="transparency-officer-photo-fallback"
+                                    >
+                                        ${escapeHtml(
+                                            initial
+                                        )}
+                                    </div>
+
+                                `;
+
+
+                        return `
+
+                            <div
+                                class="transparency-officer-card"
+                            >
+
+                                <div
+                                    class="transparency-officer-photo"
+                                >
+                                    ${photo}
+                                </div>
+
+
+                                <div
+                                    class="transparency-officer-info"
+                                >
+
+                                    <h4
+                                        class="transparency-officer-name"
+                                    >
+                                        ${escapeHtml(
+                                            officer.name
+                                        )}
+                                    </h4>
+
+
+                                    <div
+                                        class="transparency-officer-position"
+                                    >
+                                        ${escapeHtml(
+                                            officer.position ||
+                                            "Department Officer"
+                                        )}
+                                    </div>
+
+
+                                    <div
+                                        class="transparency-hours"
+                                    >
+
+                                        <div
+                                            class="transparency-hour-item"
+                                        >
+
+                                            <span>
+                                                Overall
+                                            </span>
+
+                                            <strong>
+                                                ${Number(
+                                                    officer.overallHours ||
+                                                    0
+                                                ).toFixed(2)}
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div
+                                            class="transparency-hour-item"
+                                        >
+
+                                            <span>
+                                                This Month
+                                            </span>
+
+                                            <strong>
+                                                ${Number(
+                                                    officer.monthlyHours ||
+                                                    0
+                                                ).toFixed(2)}
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
+
+
+
+        /* =====================================================
+           LOGIN
+        ====================================================== */
+
+        async function loginOfficer() {
+
+            const username =
+                document
+                    .getElementById(
+                        "username"
+                    )
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById(
+                        "password"
+                    )
+                    .value;
+
+
+            const error =
+                document.getElementById(
+                    "loginError"
+                );
+
+
+            const button =
+                document.getElementById(
+                    "loginButton"
+                );
+
+
+            error.classList.remove(
+                "show"
+            );
+
+
+            if (
+                !username ||
+                !password
+            ) {
+
+                error.textContent =
+                    "Please enter your ID number and password.";
+
+
+                error.classList.add(
+                    "show"
+                );
+
+
+                return;
+
+            }
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "SIGNING IN...";
+
+
+            try {
+
+                const response =
+                    await jsonp(
+                        "login",
+                        {
+                            username,
+                            password
+                        }
+                    );
+
+
+                if (
+                    !response ||
+                    !response.success
+                ) {
+
+                    throw new Error(
+                        response?.message ||
+                        "Invalid ID number or password."
+                    );
+
+                }
+
+
+                saveSession(
+                    response.officer
+                );
+
+
+                closeModal(
+                    "loginModal"
+                );
+
+
+                document
+                    .getElementById(
+                        "username"
+                    )
+                    .value = "";
+
+
+                document
+                    .getElementById(
+                        "password"
+                    )
+                    .value = "";
+
+
+                showOfficerPanel();
+
+
+                showToast(
+                    "Officer login successful.",
+                    "success"
+                );
+
+
+            } catch (
+                loginError
+            ) {
+
+                console.error(
+                    loginError
+                );
+
+
+                error.textContent =
+                    loginError.message ||
+                    "Login failed.";
+
+
+                error.classList.add(
+                    "show"
+                );
+
+
+            } finally {
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "SIGN IN";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MODAL
+        ====================================================== */
+
+        function openLogin() {
+
+            document
+                .getElementById(
+                    "loginModal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+
+            setTimeout(
+                function () {
+
+                    document
+                        .getElementById(
+                            "username"
+                        )
+                        .focus();
+
+                },
+                100
+            );
+
+        }
+
+
+        function closeModal(
+            id
+        ) {
+
+            const modal =
+                document.getElementById(
+                    id
+                );
+
+
+            if (modal) {
+
+                modal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           OFFICER PANEL
+        ====================================================== */
+
+        function showOfficerPanel() {
+
+            if (
+                !officerSession
+            ) {
+
+                openLogin();
+
+                return;
+
+            }
+
+
+            document
+                .getElementById(
+                    "sessionName"
+                )
+                .textContent =
+                officerSession.name ||
+                "Officer";
+
+
+            document
+                .getElementById(
+                    "sessionPosition"
+                )
+                .textContent =
+                officerSession.position ||
+                "Department Officer";
+
+
+            updateOfficerPanel();
+
+
+            document
+                .getElementById(
+                    "officerModal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+        }
+
+
+
+        async function updateOfficerPanel() {
+
+            if (
+                !officerSession
+            ) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await jsonp(
+                        "getDutyBoard"
+                    );
+
+
+                if (
+                    !response ||
+                    !response.success
+                ) {
+
+                    return;
+
+                }
+
+
+                const officer =
+                    (
+                        response.officers ||
+                        []
+                    ).find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(
+                                officerSession.id
+                            )
+                    );
+
+
+                if (!officer) {
+
+                    return;
+
+                }
+
+
+                const isOnDuty =
+                    String(
+                        officer.status
+                    ).toUpperCase() ===
+                    "ON DUTY";
+
+
+                const sessionStatus =
+                    document.getElementById(
+                        "sessionStatus"
+                    );
+
+
+                const activeBox =
+                    document.getElementById(
+                        "activeDutyBox"
+                    );
+
+
+                const startSection =
+                    document.getElementById(
+                        "startDutySection"
+                    );
+
+
+                const endSection =
+                    document.getElementById(
+                        "endDutySection"
+                    );
+
+
+                if (isOnDuty) {
+
+                    sessionStatus.textContent =
+                        "ON DUTY";
+
+
+                    sessionStatus.classList.add(
+                        "active"
+                    );
+
+
+                    activeBox.classList.add(
+                        "show"
+                    );
+
+
+                    startSection.style.display =
+                        "none";
+
+
+                    endSection.style.display =
+                        "block";
+
+
+                    document
+                        .getElementById(
+                            "activeDutyLocation"
+                        )
+                        .textContent =
+                        "Location: " +
+                        (
+                            officer.location ||
+                            "Not specified"
+                        );
+
+
+                    if (
+                        officer.startTime
+                    ) {
+
+                        startDutyTimer(
+                            officer.startTime
+                        );
+
+                    }
+
+                } else {
+
+                    sessionStatus.textContent =
+                        "OFF DUTY";
+
+
+                    sessionStatus.classList.remove(
+                        "active"
+                    );
+
+
+                    activeBox.classList.remove(
+                        "show"
+                    );
+
+
+                    startSection.style.display =
+                        "block";
+
+
+                    endSection.style.display =
+                        "none";
+
+
+                    stopDutyTimer();
+
+                }
+
+            } catch (
+                error
+            ) {
+
+                console.error(
+                    error
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           START DUTY
+        ====================================================== */
+
+        async function startOfficerDuty() {
+
+            if (
+                !officerSession
+            ) {
+
+                return;
+
+            }
+
+
+            const locationSelect =
+                document.getElementById(
+                    "locationSelect"
+                );
+
+
+            const customInput =
+                document.getElementById(
+                    "customLocationInput"
+                );
+
+
+            let location =
+                locationSelect.value;
+
+
+            if (
+                location ===
+                "custom"
+            ) {
+
+                location =
+                    customInput.value.trim();
+
+            }
+
+
+            if (!location) {
+
+                showToast(
+                    "Please select or enter your duty location.",
+                    "error"
+                );
+
+
+                return;
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    "startDutyButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "STARTING...";
+
+
+            try {
+
+                const response =
+                    await jsonp(
+                        "startDuty",
+                        {
+                            officerId:
+                                officerSession.id,
+
+                            location
+                        }
+                    );
+
+
+                if (
+                    !response ||
+                    !response.success
+                ) {
+
+                    throw new Error(
+                        response?.message ||
+                        "Unable to start duty."
+                    );
+
+                }
+
+
+                showToast(
+                    "Duty started successfully.",
+                    "success"
+                );
+
+
+                await loadDutyBoard();
+
+
+                await updateOfficerPanel();
+
+
+            } catch (
+                error
+            ) {
+
+                console.error(
+                    error
+                );
+
+
+                showToast(
+                    error.message ||
+                    "Unable to start duty.",
+                    "error"
+                );
+
+
+            } finally {
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "START DUTY";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           END DUTY
+        ====================================================== */
+
+        async function endOfficerDuty(
+            automatic = false
+        ) {
+
+            if (
+                !officerSession
+            ) {
+
+                return;
+
+            }
+
+
+            let reason =
+                "Completed Duty";
+
+
+            const selected =
+                document.querySelector(
+                    'input[name="endReason"]:checked'
+                );
+
+
+            if (selected) {
+
+                reason =
+                    selected.value;
+
+            }
+
+
+            if (automatic) {
+
+                reason =
+                    "Automatic End - 5 Hour Limit";
+
+            }
+
+
+            if (!automatic) {
+
+                const confirmed =
+                    window.confirm(
+                        "Are you sure you want to end your duty session?"
+                    );
+
+
+                if (!confirmed) {
+
+                    return;
+
+                }
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    "endDutyButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "ENDING...";
+
+
+            try {
+
+                const response =
+                    await jsonp(
+                        "endDuty",
+                        {
+                            officerId:
+                                officerSession.id,
+
+                            reason
+                        }
+                    );
+
+
+                if (
+                    !response ||
+                    !response.success
+                ) {
+
+                    throw new Error(
+                        response?.message ||
+                        "Unable to end duty."
+                    );
+
+                }
+
+
+                showToast(
+                    automatic
+
+                        ? "Your 5-hour duty limit has been reached. Duty was automatically ended."
+
+                        : "Duty ended successfully.",
+
+                    "success"
+                );
+
+
+                await loadDutyBoard();
+
+
+                await updateOfficerPanel();
+
+
+            } catch (
+                error
+            ) {
+
+                console.error(
+                    error
+                );
+
+
+                showToast(
+                    error.message ||
+                    "Unable to end duty.",
+                    "error"
+                );
+
+
+            } finally {
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "END DUTY";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           DUTY TIMER
+        ====================================================== */
+
+        function startDutyTimer(
+            startTime
+        ) {
+
+            stopDutyTimer();
+
+
+            const start =
+                parseDate(
+                    startTime
+                );
+
+
+            if (!start) {
+
+                return;
+
+            }
+
+
+            const timer =
+                document.getElementById(
+                    "activeDutyTimer"
+                );
+
+
+            function update() {
+
+                const elapsed =
+                    Math.max(
+                        0,
+                        Date.now() -
+                        start.getTime()
+                    );
+
+
+                const totalSeconds =
+                    Math.floor(
+                        elapsed / 1000
+                    );
+
+
+                timer.textContent =
+                    formatDuration(
+                        totalSeconds
+                    );
+
+
+                const maxSeconds =
+                    MAX_DUTY_HOURS *
+                    60 *
+                    60;
+
+
+                if (
+                    totalSeconds >=
+                    maxSeconds
+                ) {
+
+                    stopDutyTimer();
+
+
+                    endOfficerDuty(
+                        true
+                    );
+
+                }
+
+            }
+
+
+            update();
+
+
+            dutyTimerInterval =
+                setInterval(
+                    update,
+                    1000
+                );
+
+        }
+
+
+        function stopDutyTimer() {
+
+            if (
+                dutyTimerInterval
+            ) {
+
+                clearInterval(
+                    dutyTimerInterval
+                );
+
+
+                dutyTimerInterval =
+                    null;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           LOGOUT
+        ====================================================== */
+
+        function logoutOfficer() {
+
+            const confirmed =
+                window.confirm(
+                    "Log out from officer access?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            clearSession();
+
+
+            stopDutyTimer();
+
+
+            closeModal(
+                "officerModal"
+            );
+
+
+            showToast(
+                "You have been logged out.",
+                "success"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           LOCATION
+        ====================================================== */
+
+        document
+            .getElementById(
+                "locationSelect"
+            )
+            .addEventListener(
+                "change",
+                function () {
+
+                    const custom =
+                        document.getElementById(
+                            "customLocation"
+                        );
+
+
+                    if (
+                        this.value ===
+                        "custom"
+                    ) {
+
+                        custom.classList.add(
+                            "show"
+                        );
+
+                    } else {
+
+                        custom.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           PASSWORD
+        ====================================================== */
+
+        document
+            .getElementById(
+                "passwordToggle"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    const password =
+                        document.getElementById(
+                            "password"
+                        );
+
+
+                    if (
+                        password.type ===
+                        "password"
+                    ) {
+
+                        password.type =
+                            "text";
+
+
+                        this.textContent =
+                            "HIDE";
+
+                    } else {
+
+                        password.type =
+                            "password";
+
+
+                        this.textContent =
+                            "SHOW";
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           MODAL CLOSE BUTTONS
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-close]"
+            )
+            .forEach(
+                function (
+                    button
+                ) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            closeModal(
+                                this.dataset.close
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CLOSE MODAL OUTSIDE
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                ".duty-modal"
+            )
+            .forEach(
+                function (
+                    modal
+                ) {
+
+                    modal.addEventListener(
+                        "click",
+                        function (
+                            event
+                        ) {
+
+                            if (
+                                event.target ===
+                                modal
+                            ) {
+
+                                modal.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           ESCAPE
+        ====================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (
+                event
+            ) {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    document
+                        .querySelectorAll(
+                            ".duty-modal.show"
+                        )
+                        .forEach(
+                            function (
+                                modal
+                            ) {
+
+                                modal.classList.remove(
+                                    "show"
+                                );
+
+                            }
+                        );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           REFRESH
+        ====================================================== */
+
+        document
+            .getElementById(
+                "refreshBoard"
+            )
+            .addEventListener(
+                "click",
+                async function () {
+
+                    this.disabled =
+                        true;
+
+
+                    this.textContent =
+                        "Refreshing...";
+
+
+                    await loadDutyBoard();
+
+
+                    this.disabled =
+                        false;
+
+
+                    this.textContent =
+                        "Refresh";
+
+                }
+            );
+
+
+
+        /* =====================================================
+           TRANSPARENCY BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "openTransparency"
+            )
+            .addEventListener(
+                "click",
+                async function () {
+
+                    document
+                        .getElementById(
+                            "transparencyModal"
+                        )
+                        .classList.add(
+                            "show"
+                        );
+
+
+                    await loadTransparency();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "loginButton"
+            )
+            .addEventListener(
+                "click",
+                loginOfficer
+            );
+
+
+
+        /* =====================================================
+           START DUTY
+        ====================================================== */
+
+        document
+            .getElementById(
+                "startDutyButton"
+            )
+            .addEventListener(
+                "click",
+                startOfficerDuty
+            );
+
+
+
+        /* =====================================================
+           END DUTY
+        ====================================================== */
+
+        document
+            .getElementById(
+                "endDutyButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    endOfficerDuty(
+                        false
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           LOGOUT
+        ====================================================== */
+
+        document
+            .getElementById(
+                "logoutButton"
+            )
+            .addEventListener(
+                "click",
+                logoutOfficer
+            );
+
+
+
+        /* =====================================================
+           ENTER LOGIN
+        ====================================================== */
+
+        document
+            .getElementById(
+                "username"
+            )
+            .addEventListener(
+                "keydown",
+                function (
+                    event
+                ) {
+
+                    if (
+                        event.key ===
+                        "Enter"
+                    ) {
+
+                        loginOfficer();
+
+                    }
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "password"
+            )
+            .addEventListener(
+                "keydown",
+                function (
+                    event
+                ) {
+
+                    if (
+                        event.key ===
+                        "Enter"
+                    ) {
+
+                        loginOfficer();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           QR OFFICER ACCESS
+        ====================================================== */
+
+        function checkOfficerAccess() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            if (
+                params.get(
+                    "access"
+                ) ===
+                "officer"
+            ) {
+
+                if (
+                    officerSession
+                ) {
+
+                    showOfficerPanel();
+
+                } else {
+
+                    openLogin();
+
+                }
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           INITIALIZE
+        ====================================================== */
+
+        async function initializeDutyPage() {
+
+            await loadDutyBoard();
+
+
+            checkOfficerAccess();
+
+
+            if (
+                officerSession
+            ) {
+
+                updateOfficerPanel();
+
+            }
+
+        }
+
+
+        initializeDutyPage();
+
+
+
+        /* =====================================================
+           AUTO REFRESH
+        ====================================================== */
+
+        setInterval(
+            async function () {
+
+                await loadDutyBoard();
+
+
+                if (
+                    officerSession &&
+                    document
+                        .getElementById(
+                            "officerModal"
+                        )
+                        .classList.contains(
+                            "show"
+                        )
+                ) {
+
+                    await updateOfficerPanel();
+
+                }
+
+            },
+            30000
         );
 
     </script>
