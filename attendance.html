@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Portal | SAS Student Portal</title>
+
+    <meta
+        name="description"
+        content="Attendance Portal of the School of Arts and Sciences, Divine Word College of Calapan."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header" id="siteHeader">
+
+    <div class="header-container">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-logos">
+
+                <img
+                    src="assets/divine-logo.png"
+                    alt="Divine Word College of Calapan"
+                    class="divine-logo"
+                >
+
+                <span class="logo-divider"></span>
+
+                <img
+                    src="assets/sas-logo.png"
+                    alt="School of Arts and Sciences"
+                    class="sas-logo"
+                >
+
+            </div>
+
+            <div class="brand-info">
+
+                <span class="brand-institution">
+                    DIVINE WORD COLLEGE OF CALAPAN
+                </span>
+
+                <span class="brand-title">
+                    SAS STUDENT PORTAL
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="desktop-navigation">
+
+            <a href="index.html" class="nav-item">
+                Home
+            </a>
+
+            <a href="announcements.html" class="nav-item">
+                Announcements
+            </a>
+
+            <a href="duty.html" class="nav-item">
+                Duty
+            </a>
+
+            <a href="attendance.html" class="nav-item active">
+                Attendance
+            </a>
+
+            <a href="about.html" class="nav-item">
+                About
+            </a>
+
+        </nav>
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+
+    <nav
+        class="mobile-navigation"
+        id="mobileNavigation"
+    >
+
+        <a href="index.html" class="mobile-nav-item">
+            Home
+        </a>
+
+        <a href="announcements.html" class="mobile-nav-item">
+            Announcements
+        </a>
+
+        <a href="duty.html" class="mobile-nav-item">
+            Duty
+        </a>
+
+        <a href="attendance.html" class="mobile-nav-item active">
+            Attendance
+        </a>
+
+        <a href="about.html" class="mobile-nav-item">
+            About
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="attendance-page">
+
+    <section class="attendance-section">
+
+        <div class="attendance-container">
+
+
+            <!-- =================================================
+                 PAGE HEADER
+            ================================================= -->
+
+            <div class="attendance-page-header">
+
+                <div class="attendance-heading-accent"></div>
+
+                <div>
+
+                    <span class="attendance-kicker">
+                        SCHOOL OF ARTS AND SCIENCES
+                    </span>
+
+                    <h1>
+                        Attendance Portal
+                    </h1>
+
+                    <p>
+                        View your official attendance records and
+                        participation status in SAS activities and events.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SEARCH PANEL
+            ================================================= -->
+
+            <section class="search-card">
+
+                <div class="search-card-top">
+
+                    <div class="search-icon-box">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <circle
+                                cx="11"
+                                cy="11"
+                                r="7"
+                            ></circle>
+
+                            <path
+                                d="M16.5 16.5L21 21"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Search Attendance Record
+                        </h2>
+
+                        <p>
+                            Enter your Student ID Number to continue.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="attendance-search-form"
+                    id="attendanceForm"
+                >
+
+                    <div class="input-group">
+
+                        <label
+                            for="studentId"
+                            class="input-label"
+                        >
+                            STUDENT ID NUMBER
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentId"
+                            class="search-input"
+                            placeholder="Enter your Student ID Number"
+                            autocomplete="off"
+                            inputmode="numeric"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="searchButton"
+                        class="search-btn"
+                    >
+
+                        <span class="search-btn-content">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <circle
+                                    cx="11"
+                                    cy="11"
+                                    r="7"
+                                ></circle>
+
+                                <path
+                                    d="M16.5 16.5L21 21"
+                                ></path>
+
+                            </svg>
+
+                            <span>
+                                Search Record
+                            </span>
+
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <div class="search-note">
+
+                    <span class="note-line"></span>
+
+                    <span>
+                        Your Student ID Number is used only to retrieve
+                        your attendance record.
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MESSAGE
+            ================================================= -->
+
+            <div
+                id="message"
+                class="attendance-message"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- =================================================
+                 LOADING
+            ================================================= -->
+
+            <div
+                id="loading"
+                class="attendance-loading"
+                aria-live="polite"
+                aria-hidden="true"
+            >
+
+                <div class="loading-panel">
+
+                    <div class="loading-spinner">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <div class="loading-text">
+
+                        <strong>
+                            Retrieving Attendance Record
+                        </strong>
+
+                        <span>
+                            Please wait while we retrieve your information
+                        </span>
+
+                    </div>
+
+                    <div class="loading-dots">
+
+                        <i></i>
+                        <i></i>
+                        <i></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESULT
+            ================================================= -->
+
+            <section
+                id="result"
+                class="attendance-result"
+                style="display:none;"
+            >
+
+
+                <!-- =================================================
+                     STUDENT PROFILE
+                ================================================= -->
+
+                <div class="profile-card">
+
+                    <div class="profile-layout">
+
+                        <div class="profile-left">
+
+                            <div
+                                class="student-avatar"
+                                id="avatar"
+                            >
+                                <span>
+                                    SAS
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-info">
+
+                            <span class="profile-kicker">
+                                STUDENT ATTENDANCE RECORD
+                            </span>
+
+                            <div
+                                class="student-label"
+                                id="studentIdDisplay"
+                            >
+                                —
+                            </div>
+
+
+                            <div class="student-details">
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        YEAR LEVEL
+                                    </span>
+
+                                    <strong id="yearDisplay">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        PROGRAM
+                                    </span>
+
+                                    <strong id="programDisplay">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="profile-status">
+
+                                <div class="status-row">
+
+                                    <span class="status-label">
+                                        STUDENT CATEGORY
+                                    </span>
+
+                                    <span
+                                        id="officerDisplay"
+                                        class="status-badge"
+                                    >
+                                        —
+                                    </span>
+
+                                </div>
+
+
+                                <div class="status-row">
+
+                                    <span class="status-label">
+                                        ATTENDANCE STATUS
+                                    </span>
+
+                                    <span
+                                        id="statusDisplay"
+                                        class="status-badge"
+                                    >
+                                        —
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ATTENDANCE SCORE
+                ================================================= -->
+
+                <div class="score-card">
+
+                    <div class="score-card-header">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                OVERALL ATTENDANCE
+                            </span>
+
+                            <h2>
+                                Attendance Performance
+                            </h2>
+
+                        </div>
+
+                        <div class="score-accent"></div>
+
+                    </div>
+
+
+                    <div class="score-layout">
+
+                        <div class="score">
+
+                            <svg
+                                viewBox="0 0 120 120"
+                                class="score-ring"
+                            >
+
+                                <circle
+                                    class="score-bg"
+                                    cx="60"
+                                    cy="60"
+                                    r="50"
+                                ></circle>
+
+                                <circle
+                                    id="scoreProgress"
+                                    class="score-progress"
+                                    cx="60"
+                                    cy="60"
+                                    r="50"
+                                ></circle>
+
+                            </svg>
+
+
+                            <div class="score-center">
+
+                                <strong id="percentageDisplay">
+                                    0%
+                                </strong>
+
+                                <span>
+                                    ATTENDANCE
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="score-description">
+
+                            <span class="score-description-kicker">
+                                ATTENDANCE SUMMARY
+                            </span>
+
+                            <h3>
+                                Your attendance at a glance
+                            </h3>
+
+                            <p>
+                                This percentage reflects the attendance
+                                records currently available in the SAS
+                                Attendance Portal.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     SUMMARY
+                ================================================= -->
+
+                <div class="summary-section">
+
+                    <div class="summary-heading">
+
+                        <span class="section-kicker">
+                            RECORD SUMMARY
+                        </span>
+
+                        <h2>
+                            Attendance Overview
+                        </h2>
+
+                    </div>
+
+
+                    <div class="summary-grid">
+
+                        <div class="summary-item">
+
+                            <span class="summary-number">
+                                <span id="requiredDisplay">
+                                    0
+                                </span>
+                            </span>
+
+                            <span class="summary-label">
+                                REQUIRED EVENTS
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span class="summary-number">
+                                <span id="attendedDisplay">
+                                    0
+                                </span>
+                            </span>
+
+                            <span class="summary-label">
+                                ATTENDED
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span class="summary-number">
+                                <span id="missedDisplay">
+                                    0
+                                </span>
+                            </span>
+
+                            <span class="summary-label">
+                                MISSED
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     EVENTS
+                ================================================= -->
+
+                <div class="events-card">
+
+                    <div class="events-header">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                ATTENDANCE HISTORY
+                            </span>
+
+                            <h2>
+                                Event Records
+                            </h2>
+
+                        </div>
+
+
+                        <span
+                            id="eventCount"
+                            class="event-count"
+                        >
+                            0 EVENTS
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="eventList"
+                        class="event-list"
+                    ></div>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-contact">
+
+            <a
+                href="https://www.facebook.com/DWCCSASOfficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-item"
+            >
+
+                <span class="contact-icon facebook-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.7.3-1 1-1z"/>
+
+                    </svg>
+
+                </span>
+
+                <span class="contact-text">
+                    @DWCCSASOfficial
+                </span>
+
+            </a>
+
+
+            <a
+                href="mailto:polpsychsas@gmail.com"
+                class="contact-item"
+            >
+
+                <span class="contact-icon gmail-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M3 6.5 L12 13 L21 6.5"/>
+
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                        />
+
+                    </svg>
+
+                </span>
+
+                <span class="contact-text">
+                    @polpsychsas@gmail.com
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="footer-developer">
+
+            <span class="developer-label">
+                DEVELOPER
+            </span>
+
+            <span class="developer-name">
+                Harvey Keann Laudencia
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 School of Arts and Sciences
+        </span>
+
+        <span class="footer-separator">
+            |
+        </span>
+
+        <span>
+            Divine Word College of Calapan
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   API URL
+========================================================= */
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbxMun7q1YgNx6AvJE5vrzePobwAMIfvl3SBztj8mPN0ArFZd579EOpdCetQCzEmpnSX/exec";
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+const header =
+    document.getElementById("siteHeader");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileNavigation =
+    document.getElementById("mobileNavigation");
+
+
+function updateHeader() {
+
+    if (window.scrollY > 30) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateHeader
+);
+
+updateHeader();
+
+
+menuButton.addEventListener(
+    "click",
+    function () {
+
+        const opened =
+            mobileNavigation.classList.toggle("open");
+
+        menuButton.classList.toggle(
+            "open",
+            opened
+        );
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            opened
+        );
+
+    }
+);
+
+
+document
+    .querySelectorAll(".mobile-nav-item")
+    .forEach(function (item) {
+
+        item.addEventListener(
+            "click",
+            function () {
+
+                mobileNavigation.classList.remove(
+                    "open"
+                );
+
+                menuButton.classList.remove(
+                    "open"
+                );
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const studentIdInput =
+    document.getElementById("studentId");
+
+const searchButton =
+    document.getElementById("searchButton");
+
+const attendanceForm =
+    document.getElementById("attendanceForm");
+
+const result =
+    document.getElementById("result");
+
+const loading =
+    document.getElementById("loading");
+
+const message =
+    document.getElementById("message");
+
+
+/* =========================================================
+   FORM SUBMIT
+========================================================= */
+
+attendanceForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+        searchAttendance();
+
+    }
+);
+
+
+/* =========================================================
+   SEARCH ATTENDANCE
+========================================================= */
+
+function searchAttendance() {
+
+    const studentId =
+        studentIdInput.value.trim();
+
+
+    if (!studentId) {
+
+        showMessage(
+            "Please enter your Student ID Number.",
+            "error"
+        );
+
+        studentIdInput.focus();
+
+        return;
+
+    }
+
+
+    hideMessage();
+
+    result.style.display = "none";
+
+    result.classList.remove(
+        "result-visible"
+    );
+
+    startLoading();
+
+
+    callAttendanceAPI(
+
+        studentId,
+
+        function (response) {
+
+            stopLoading();
+
+
+            /* =================================================
+               API ERROR
+            ================================================= */
+
+            if (!response) {
+
+                showMessage(
+                    "Unable to retrieve attendance information.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               API SUCCESS / FOUND CHECK
+            ================================================= */
+
+            if (
+                response.success === false
+            ) {
+
+                showMessage(
+                    response.error ||
+                    response.message ||
+                    "Unable to retrieve attendance information.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                response.found === false
+            ) {
+
+                showMessage(
+                    response.message ||
+                    "No attendance record was found for this Student ID Number.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               IMPORTANT FIX
+               
+               Apps Script returns:
+               
+               {
+                   success: true,
+                   found: true,
+                   data: {
+                       id: "...",
+                       yearLevel: "...",
+                       program: "...",
+                       events: [...]
+                   }
+               }
+               
+               Therefore we use response.data.
+            ================================================= */
+
+            const studentRecord =
+                response.data ||
+                response;
+
+
+            if (
+                !studentRecord ||
+                typeof studentRecord !== "object"
+            ) {
+
+                showMessage(
+                    "The attendance record returned an invalid response.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               DISPLAY RESULT
+            ================================================= */
+
+            displayStudent(
+                studentRecord
+            );
+
+
+            result.style.display =
+                "block";
+
+
+            setTimeout(
+                function () {
+
+                    result.classList.add(
+                        "result-visible"
+                    );
+
+                },
+                40
+            );
+
+
+            setTimeout(
+                function () {
+
+                    result.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                },
+                80
+            );
+
+        },
+
+        function () {
+
+            stopLoading();
+
+            showMessage(
+                "Something went wrong while retrieving the attendance record. Please try again.",
+                "error"
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+function startLoading() {
+
+    loading.classList.add(
+        "active"
+    );
+
+    loading.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    searchButton.classList.add(
+        "loading"
+    );
+
+
+    searchButton.disabled =
+        true;
+
+
+    searchButton.innerHTML = `
+
+        <span class="search-btn-content">
+
+            <span class="button-spinner"></span>
+
+            <span>
+                Searching...
+            </span>
+
+        </span>
+
+    `;
+
+}
+
+
+function stopLoading() {
+
+    loading.classList.remove(
+        "active"
+    );
+
+
+    loading.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    searchButton.classList.remove(
+        "loading"
+    );
+
+
+    searchButton.disabled =
+        false;
+
+
+    searchButton.innerHTML = `
+
+        <span class="search-btn-content">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="7"
+                ></circle>
+
+                <path
+                    d="M16.5 16.5L21 21"
+                ></path>
+
+            </svg>
+
+            <span>
+                Search Record
+            </span>
+
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   API CALL
+========================================================= */
+
+function callAttendanceAPI(
+    studentId,
+    successCallback,
+    errorCallback
+) {
+
+    const callbackName =
+        "attendanceCallback_" +
+        Date.now() +
+        "_" +
+        Math.floor(
+            Math.random() * 100000
+        );
+
+
+    const script =
+        document.createElement(
+            "script"
+        );
+
+
+    let finished =
+        false;
+
+
+    const timeout =
+        setTimeout(
+            function () {
+
+                if (finished) return;
+
+                finished =
+                    true;
+
+                cleanup();
+
+                errorCallback();
+
+            },
+            15000
+        );
+
+
+    window[callbackName] =
+        function (data) {
+
+            if (finished) return;
+
+            finished =
+                true;
+
+            clearTimeout(
+                timeout
+            );
+
+            cleanup();
+
+            successCallback(
+                data
+            );
+
+        };
+
+
+    function cleanup() {
+
+        if (
+            script.parentNode
+        ) {
+
+            script.parentNode.removeChild(
+                script
+            );
+
+        }
+
+
+        try {
+
+            delete window[
+                callbackName
+            ];
+
+        }
+
+        catch (error) {
+
+            window[
+                callbackName
+            ] = undefined;
+
+        }
+
+    }
+
+
+    script.onerror =
+        function () {
+
+            if (finished) return;
+
+            finished =
+                true;
+
+            clearTimeout(
+                timeout
+            );
+
+            cleanup();
+
+            errorCallback();
+
+        };
+
+
+    script.src =
+        API_URL +
+        "?id=" +
+        encodeURIComponent(
+            studentId
+        ) +
+        "&callback=" +
+        encodeURIComponent(
+            callbackName
+        ) +
+        "&_=" +
+        Date.now();
+
+
+    document.body.appendChild(
+        script
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY STUDENT
+========================================================= */
+
+function displayStudent(
+    data
+) {
+
+    result.classList.remove(
+        "result-visible"
+    );
+
+
+    /* =====================================================
+       STUDENT ID
+    ===================================================== */
+
+    document.getElementById(
+        "studentIdDisplay"
+    ).textContent =
+
+        data.studentId ||
+        data.id ||
+        "—";
+
+
+    /* =====================================================
+       YEAR LEVEL
+    ===================================================== */
+
+    document.getElementById(
+        "yearDisplay"
+    ).textContent =
+
+        data.year ||
+        data.yearLevel ||
+        "—";
+
+
+    /* =====================================================
+       PROGRAM
+    ===================================================== */
+
+    document.getElementById(
+        "programDisplay"
+    ).textContent =
+
+        data.program ||
+        "—";
+
+
+    /* =====================================================
+       STUDENT CATEGORY
+    ===================================================== */
+
+    const officerElement =
+        document.getElementById(
+            "officerDisplay"
+        );
+
+
+    if (
+        data.isOfficer &&
+        data.position
+    ) {
+
+        officerElement.textContent =
+            data.position;
+
+    }
+
+    else if (
+        data.isOfficer
+    ) {
+
+        officerElement.textContent =
+            "Department Officer";
+
+    }
+
+    else {
+
+        officerElement.textContent =
+            "Regular Student";
+
+    }
+
+
+    /* =====================================================
+       ATTENDANCE STATUS
+    ===================================================== */
+
+    displayStatus(
+        data
+    );
+
+
+    /* =====================================================
+       REQUIRED EVENTS
+    ===================================================== */
+
+    const required =
+        Number(
+            data.required ||
+            data.requiredEvents ||
+            0
+        );
+
+
+    /* =====================================================
+       ATTENDED EVENTS
+    ===================================================== */
+
+    const attended =
+        Number(
+            data.attended ||
+            data.attendedEvents ||
+            0
+        );
+
+
+    /* =====================================================
+       MISSED EVENTS
+    ===================================================== */
+
+    let missed;
+
+
+    if (
+        data.missed !== undefined &&
+        data.missed !== null &&
+        data.missed !== ""
+    ) {
+
+        missed =
+            Number(
+                data.missed
+            );
+
+    }
+
+    else if (
+        data.missedEvents !== undefined &&
+        data.missedEvents !== null &&
+        data.missedEvents !== ""
+    ) {
+
+        missed =
+            Number(
+                data.missedEvents
+            );
+
+    }
+
+    else {
+
+        missed =
+            Math.max(
+                0,
+                required - attended
+            );
+
+    }
+
+
+    /* =====================================================
+       DISPLAY COUNTS
+    ===================================================== */
+
+    document.getElementById(
+        "requiredDisplay"
+    ).textContent =
+        required;
+
+
+    document.getElementById(
+        "attendedDisplay"
+    ).textContent =
+        attended;
+
+
+    document.getElementById(
+        "missedDisplay"
+    ).textContent =
+        Math.max(
+            0,
+            missed
+        );
+
+
+    /* =====================================================
+       PERCENTAGE
+    ===================================================== */
+
+    let percentage =
+        Number(
+            data.percentage ||
+            data.attendancePercentage ||
+            0
+        );
+
+
+    if (
+        percentage > 0 &&
+        percentage <= 1
+    ) {
+
+        percentage *=
+            100;
+
+    }
+
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
+
+
+    animateScore(
+        percentage
+    );
+
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
+    displayEvents(
+
+        Array.isArray(
+            data.events
+        )
+
+            ? data.events
+
+            : (
+                Array.isArray(
+                    data.eventRecords
+                )
+                    ? data.eventRecords
+                    : []
+              )
+
+    );
+
+}
+
+
+/* =========================================================
+   SCORE ANIMATION
+========================================================= */
+
+function animateScore(
+    target
+) {
+
+    const percentageElement =
+        document.getElementById(
+            "percentageDisplay"
+        );
+
+
+    const progress =
+        document.getElementById(
+            "scoreProgress"
+        );
+
+
+    const radius =
+        50;
+
+
+    const circumference =
+        2 *
+        Math.PI *
+        radius;
+
+
+    progress.style.strokeDasharray =
+        circumference;
+
+
+    progress.style.strokeDashoffset =
+        circumference;
+
+
+    let current =
+        0;
+
+
+    const duration =
+        1100;
+
+
+    const start =
+        performance.now();
+
+
+    function animate(
+        timestamp
+    ) {
+
+        const elapsed =
+            timestamp -
+            start;
+
+
+        const progressTime =
+            Math.min(
+                elapsed / duration,
+                1
+            );
+
+
+        const eased =
+            1 -
+            Math.pow(
+                1 - progressTime,
+                3
+            );
+
+
+        current =
+            target *
+            eased;
+
+
+        percentageElement.textContent =
+            Math.round(
+                current
+            ) +
+            "%";
+
+
+        progress.style.strokeDashoffset =
+
+            circumference -
+            (
+                circumference *
+                current /
+                100
+            );
+
+
+        if (
+            progressTime < 1
+        ) {
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+        else {
+
+            percentageElement.textContent =
+                Math.round(
+                    target
+                ) +
+                "%";
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function displayStatus(
+    data
+) {
+
+    const element =
+        document.getElementById(
+            "statusDisplay"
+        );
+
+
+    let status =
+        data.status ||
+        data.attendanceStatus ||
+        "No Attendance Record";
+
+
+    element.textContent =
+        status;
+
+
+    element.className =
+        "status-badge";
+
+
+    const normalized =
+        String(
+            status
+        )
+        .toLowerCase()
+        .trim();
+
+
+    if (
+        normalized.includes(
+            "excellent"
+        )
+    ) {
+
+        element.classList.add(
+            "status-excellent"
+        );
+
+    }
+
+    else if (
+        normalized.includes(
+            "good"
+        )
+    ) {
+
+        element.classList.add(
+            "status-good"
+        );
+
+    }
+
+    else if (
+        normalized.includes(
+            "improvement"
+        ) ||
+        normalized.includes(
+            "needs"
+        )
+    ) {
+
+        element.classList.add(
+            "status-warning"
+        );
+
+    }
+
+    else if (
+        normalized.includes(
+            "poor"
+        )
+    ) {
+
+        element.classList.add(
+            "status-poor"
+        );
+
+    }
+
+    else if (
+        normalized.includes(
+            "exempt"
+        )
+    ) {
+
+        element.classList.add(
+            "status-exempted"
+        );
+
+    }
+
+    else {
+
+        element.classList.add(
+            "status-neutral"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+function displayEvents(
+    events
+) {
+
+    const list =
+        document.getElementById(
+            "eventList"
+        );
+
+
+    const count =
+        document.getElementById(
+            "eventCount"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    /* =====================================================
+       NO EVENTS
+    ===================================================== */
+
+    if (
+        !Array.isArray(events) ||
+        events.length === 0
+    ) {
+
+        count.textContent =
+            "0 EVENTS";
+
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    —
+                </div>
+
+                <strong>
+                    No attendance records
+                </strong>
+
+                <span>
+                    There are currently no event records to display.
+                </span>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       EVENT COUNT
+    ===================================================== */
+
+    count.textContent =
+
+        events.length +
+
+        (
+            events.length === 1
+                ? " EVENT"
+                : " EVENTS"
+        );
+
+
+    /* =====================================================
+       LOOP EVENTS
+    ===================================================== */
+
+    events.forEach(
+        function (event) {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "event-item";
+
+
+            /* =================================================
+               EVENT NAME
+            ================================================= */
+
+            const eventName =
+                escapeHTML(
+
+                    event.name ||
+                    event.eventName ||
+                    "Unnamed Event"
+
+                );
+
+
+            /* =================================================
+               EVENT DATE
+            ================================================= */
+
+            const eventDate =
+                escapeHTML(
+
+                    event.date ||
+                    event.eventDate ||
+                    "Date unavailable"
+
+                );
+
+
+            /* =================================================
+               EVENT STATUS
+
+               Apps Script provides:
+               attended
+               exempted
+               notRequired
+
+               rather than only event.status.
+            ================================================= */
+
+            let status =
+
+                event.status ||
+
+                (
+                    event.exempted
+
+                        ? "EXEMPTED"
+
+                        : event.notRequired
+
+                            ? "NOT REQUIRED"
+
+                            : event.attended
+
+                                ? "ATTENDED"
+
+                                : "NOT ATTENDED"
+                );
+
+
+            const normalized =
+                String(
+                    status
+                )
+                .toLowerCase()
+                .trim();
+
+
+            /* =================================================
+               STATUS CLASS
+            ================================================= */
+
+            let statusClass =
+                "no-record";
+
+
+            if (
+                normalized.includes(
+                    "attended"
+                ) ||
+                normalized.includes(
+                    "present"
+                )
+            ) {
+
+                statusClass =
+                    "attended";
+
+            }
+
+            else if (
+                normalized.includes(
+                    "exempt"
+                )
+            ) {
+
+                statusClass =
+                    "exempted";
+
+            }
+
+            else if (
+                normalized.includes(
+                    "not required"
+                )
+            ) {
+
+                statusClass =
+                    "not-required";
+
+            }
+
+            else if (
+                normalized.includes(
+                    "no attendance"
+                )
+            ) {
+
+                statusClass =
+                    "no-attendance";
+
+            }
+
+            else if (
+                normalized.includes(
+                    "miss"
+                ) ||
+                normalized.includes(
+                    "not attended"
+                ) ||
+                normalized.includes(
+                    "no record"
+                )
+            ) {
+
+                statusClass =
+                    "not-attended";
+
+            }
+
+
+            /* =================================================
+               TIME IN
+
+               Supports:
+               event.timeIn
+               event.inTime
+               event.in
+            ================================================= */
+
+            const timeIn =
+
+                event.timeIn ||
+                event.inTime ||
+                event.in ||
+                "";
+
+
+            /* =================================================
+               TIME OUT
+
+               Supports:
+               event.timeOut
+               event.outTime
+               event.out
+            ================================================= */
+
+            const timeOut =
+
+                event.timeOut ||
+                event.outTime ||
+                event.out ||
+                "";
+
+
+            /* =================================================
+               EVENT TIMES
+            ================================================= */
+
+            let times =
+                "";
+
+
+            if (
+                timeIn ||
+                timeOut
+            ) {
+
+                times = `
+
+                    <div class="event-times">
+
+                        ${
+                            timeIn
+                                ? `
+
+                                    <span class="time time-in">
+                                        IN&nbsp;
+                                        ${escapeHTML(timeIn)}
+                                    </span>
+
+                                  `
+                                : ""
+                        }
+
+
+                        ${
+                            timeOut
+                                ? `
+
+                                    <span class="time time-out">
+                                        OUT&nbsp;
+                                        ${escapeHTML(timeOut)}
+                                    </span>
+
+                                  `
+                                : ""
+                        }
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               EXEMPTION REASON
+            ================================================= */
+
+            let exemptionNote =
+                "";
+
+
+            if (
+                event.exempted &&
+                event.exemptionReason
+            ) {
+
+                exemptionNote = `
+
+                    <span class="event-exemption-reason">
+                        ${escapeHTML(
+                            event.exemptionReason
+                        )}
+                    </span>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               EVENT HTML
+            ================================================= */
+
+            item.innerHTML = `
+
+                <div class="event-main">
+
+                    <div class="event-marker"></div>
+
+                    <div>
+
+                        <strong class="event-name">
+                            ${eventName}
+                        </strong>
+
+                        <span class="event-date">
+                            ${eventDate}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-result">
+
+                    <span
+                        class="attendance-status ${statusClass}"
+                    >
+                        ${escapeHTML(status)}
+                    </span>
+
+                    ${exemptionNote}
+
+                    ${times}
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "attendance-message " +
+        (
+            type ||
+            "error"
+        );
+
+
+    message.style.display =
+        "flex";
+
+}
+
+
+function hideMessage() {
+
+    message.style.display =
+        "none";
+
+
+    message.textContent =
+        "";
+
+
+    message.className =
+        "attendance-message";
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+studentIdInput.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            searchAttendance();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
