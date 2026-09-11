@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,53 +13,1173 @@
 
     <title>Announcements | SAS Student Portal</title>
 
-    <link
-        rel="icon"
-        type="image/png"
-        href="./assets/sas-logo.png"
+    <meta
+        name="description"
+        content="Official announcements of the School of Arts and Sciences, Divine Word College of Calapan."
     >
+
+    <!-- =====================================================
+         MAIN STYLESHEET
+    ====================================================== -->
 
     <link
         rel="stylesheet"
         href="style.css"
     >
 
+
+    <!-- =====================================================
+         PAGE-SPECIFIC ANNOUNCEMENT STYLES ONLY
+         
+         NOTE:
+         Header and footer are NOT styled here.
+         They use style.css exactly as provided.
+    ====================================================== -->
+
+    <style>
+
+        /* =================================================
+           ANNOUNCEMENTS MAIN
+        ================================================= */
+
+        body.announcement-body {
+
+            margin: 0;
+
+            background:
+                var(--blue-deep);
+
+        }
+
+
+        main.announcement-page {
+
+            position: relative;
+
+            width: 100%;
+
+            min-height:
+                calc(100vh - 92px);
+
+            box-sizing: border-box;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            padding:
+                55px 20px;
+
+            background-color:
+                var(--blue-deep);
+
+            background-image:
+                linear-gradient(
+                    rgba(0,43,85,0.74),
+                    rgba(0,59,115,0.82)
+                ),
+                url("assets/background.png");
+
+            background-size:
+                cover;
+
+            background-position:
+                center center;
+
+            background-repeat:
+                no-repeat;
+
+            background-attachment:
+                fixed;
+
+        }
+
+
+        /* =================================================
+           ANNOUNCEMENT CARD
+        ================================================= */
+
+        .announcement-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: fit-content;
+
+            max-width:
+                calc(100% - 10px);
+
+            margin: 0 auto;
+
+            padding:
+                35px 38px 27px;
+
+            box-sizing: border-box;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            background:
+                rgba(255,255,255,0.075);
+
+            border:
+                1px solid rgba(255,255,255,0.23);
+
+            box-shadow:
+                0 14px 38px rgba(0,0,0,0.18);
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+
+        }
+
+
+        .announcement-content:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border-color:
+                rgba(255,255,255,0.34);
+
+        }
+
+
+        .announcement-content:focus-visible {
+
+            outline:
+                2px solid var(--yellow);
+
+            outline-offset:
+                5px;
+
+        }
+
+
+        /* =================================================
+           INSTITUTION
+        ================================================= */
+
+        .announcement-institution {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 13px;
+
+            margin-bottom:
+                19px;
+
+            color:
+                rgba(255,255,255,0.72);
+
+            font-size:
+                0.64rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.17em;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .announcement-institution::before,
+        .announcement-institution::after {
+
+            content: "";
+
+            width:
+                48px;
+
+            height:
+                1px;
+
+            background:
+                rgba(255,255,255,0.30);
+
+        }
+
+
+        /* =================================================
+           CONSTRUCTION ICON
+        ================================================= */
+
+        .announcement-icon {
+
+            width:
+                64px;
+
+            height:
+                64px;
+
+            margin:
+                0 auto 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid rgba(255,255,255,0.25);
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,0.07);
+
+        }
+
+
+        .announcement-icon svg {
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            fill:
+                none;
+
+            stroke:
+                var(--yellow);
+
+            stroke-width:
+                1.45;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+        /* =================================================
+           LABEL
+        ================================================= */
+
+        .announcement-label {
+
+            margin-bottom:
+                8px;
+
+            color:
+                var(--yellow);
+
+            font-size:
+                0.62rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.22em;
+
+        }
+
+
+        /* =================================================
+           CLICKABLE CONTENT
+        ================================================= */
+
+        .announcement-trigger {
+
+            background:
+                transparent;
+
+        }
+
+
+        .announcement-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                5px 10px;
+
+            margin-bottom:
+                12px;
+
+            color:
+                var(--blue-deep);
+
+            background:
+                var(--yellow);
+
+            font-size:
+                0.56rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.14em;
+
+        }
+
+
+        .announcement-heading {
+
+            margin:
+                0;
+
+            color:
+                var(--white);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                clamp(
+                    1.55rem,
+                    4vw,
+                    2.25rem
+                );
+
+            font-weight:
+                700;
+
+            line-height:
+                1.1;
+
+            letter-spacing:
+                0.01em;
+
+        }
+
+
+        .announcement-description {
+
+            max-width:
+                520px;
+
+            margin:
+                12px auto 0;
+
+            color:
+                rgba(255,255,255,0.69);
+
+            font-size:
+                0.80rem;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        .announcement-arrow {
+
+            margin-top:
+                17px;
+
+            color:
+                rgba(255,255,255,0.65);
+
+            font-size:
+                1rem;
+
+            transition:
+                transform 0.25s ease;
+
+        }
+
+
+        .announcement-content:hover
+        .announcement-arrow {
+
+            transform:
+                translateY(4px);
+
+        }
+
+
+        /* =================================================
+           BOTTOM TEXT
+        ================================================= */
+
+        .announcement-bottom {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap:
+                12px;
+
+            margin-top:
+                23px;
+
+            color:
+                rgba(255,255,255,0.55);
+
+            font-size:
+                0.55rem;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                0.17em;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .announcement-bottom::before,
+        .announcement-bottom::after {
+
+            content: "";
+
+            width:
+                40px;
+
+            height:
+                1px;
+
+            background:
+                rgba(255,255,255,0.22);
+
+        }
+
+
+        /* =================================================
+           MODAL
+        ================================================= */
+
+        .announcement-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                20px;
+
+            box-sizing: border-box;
+
+            visibility: hidden;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+
+        }
+
+
+        .announcement-modal.open {
+
+            visibility:
+                visible;
+
+            opacity:
+                1;
+
+        }
+
+
+        .announcement-modal-backdrop {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                rgba(0,18,38,0.78);
+
+            backdrop-filter:
+                blur(3px);
+
+            -webkit-backdrop-filter:
+                blur(3px);
+
+        }
+
+
+        /* =================================================
+           MODAL BOX
+        ================================================= */
+
+        .announcement-modal-box {
+
+            position: relative;
+
+            z-index: 2;
+
+            width:
+                min(
+                    560px,
+                    calc(100% - 20px)
+                );
+
+            padding:
+                42px 38px 34px;
+
+            box-sizing: border-box;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--blue-dark),
+                    var(--blue-deep)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.20);
+
+            box-shadow:
+                0 25px 65px rgba(0,0,0,0.38);
+
+            transform:
+                translateY(12px);
+
+            transition:
+                transform 0.25s ease;
+
+        }
+
+
+        .announcement-modal.open
+        .announcement-modal-box {
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        /* =================================================
+           CLOSE BUTTON
+        ================================================= */
+
+        .announcement-modal-close {
+
+            position: absolute;
+
+            top:
+                13px;
+
+            right:
+                14px;
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 0;
+
+            border:
+                1px solid rgba(255,255,255,0.18);
+
+            background:
+                rgba(255,255,255,0.07);
+
+            color:
+                var(--white);
+
+            font-size:
+                1.25rem;
+
+            line-height:
+                1;
+
+            cursor:
+                pointer;
+
+            transition:
+                background 0.2s ease;
+
+        }
+
+
+        .announcement-modal-close:hover {
+
+            background:
+                rgba(255,255,255,0.15);
+
+        }
+
+
+        .announcement-modal-close:focus-visible {
+
+            outline:
+                2px solid var(--yellow);
+
+            outline-offset:
+                2px;
+
+        }
+
+
+        /* =================================================
+           MODAL ICON
+        ================================================= */
+
+        .modal-icon {
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            margin:
+                0 auto 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid rgba(255,255,255,0.22);
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,0.06);
+
+        }
+
+
+        .modal-icon svg {
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            fill:
+                none;
+
+            stroke:
+                var(--yellow);
+
+            stroke-width:
+                1.5;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+
+        }
+
+
+        /* =================================================
+           MODAL TEXT
+        ================================================= */
+
+        .modal-currently {
+
+            color:
+                var(--yellow);
+
+            font-size:
+                0.60rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.23em;
+
+        }
+
+
+        .modal-title {
+
+            margin:
+                7px 0 0;
+
+            color:
+                var(--white);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                clamp(
+                    1.75rem,
+                    5vw,
+                    2.6rem
+                );
+
+            line-height:
+                1.05;
+
+        }
+
+
+        .modal-accent {
+
+            width:
+                80px;
+
+            height:
+                3px;
+
+            margin:
+                17px auto;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    var(--yellow),
+                    var(--red)
+                );
+
+        }
+
+
+        .modal-message {
+
+            margin:
+                0;
+
+            color:
+                var(--white);
+
+            font-size:
+                0.93rem;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .modal-description {
+
+            max-width:
+                430px;
+
+            margin:
+                11px auto 0;
+
+            color:
+                rgba(255,255,255,0.65);
+
+            font-size:
+                0.76rem;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =================================================
+           MODAL STATUS
+        ================================================= */
+
+        .modal-status {
+
+            margin-top:
+                25px;
+
+            padding-top:
+                18px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.10);
+
+        }
+
+
+        .modal-status-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap:
+                10px;
+
+            color:
+                rgba(255,255,255,0.56);
+
+            font-size:
+                0.56rem;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                0.11em;
+
+        }
+
+
+        .modal-live {
+
+            color:
+                var(--yellow);
+
+        }
+
+
+        .modal-loading {
+
+            width:
+                100%;
+
+            height:
+                4px;
+
+            margin-top:
+                10px;
+
+            overflow:
+                hidden;
+
+            background:
+                rgba(255,255,255,0.10);
+
+        }
+
+
+        .modal-loading-bar {
+
+            width:
+                35%;
+
+            height:
+                100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    var(--yellow),
+                    var(--red)
+                );
+
+            animation:
+                announcementLoading
+                2.2s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes announcementLoading {
+
+            0% {
+                transform:
+                    translateX(-130%);
+            }
+
+            50% {
+                transform:
+                    translateX(120%);
+            }
+
+            100% {
+                transform:
+                    translateX(280%);
+            }
+
+        }
+
+
+        .modal-bottom {
+
+            margin-top:
+                21px;
+
+            color:
+                rgba(255,255,255,0.44);
+
+            font-size:
+                0.55rem;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                0.17em;
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
+        @media (max-width: 600px) {
+
+            main.announcement-page {
+
+                min-height:
+                    calc(100vh - 76px);
+
+                padding:
+                    42px 12px;
+
+                background-attachment:
+                    scroll;
+
+            }
+
+
+            .announcement-content {
+
+                max-width:
+                    calc(100% - 4px);
+
+                padding:
+                    30px 21px 24px;
+
+            }
+
+
+            .announcement-institution {
+
+                gap:
+                    8px;
+
+                font-size:
+                    0.52rem;
+
+                letter-spacing:
+                    0.11em;
+
+            }
+
+
+            .announcement-institution::before,
+            .announcement-institution::after {
+
+                width:
+                    23px;
+
+            }
+
+
+            .announcement-icon {
+
+                width:
+                    58px;
+
+                height:
+                    58px;
+
+            }
+
+
+            .announcement-heading {
+
+                font-size:
+                    1.48rem;
+
+            }
+
+
+            .announcement-description {
+
+                font-size:
+                    0.74rem;
+
+                line-height:
+                    1.65;
+
+            }
+
+
+            .announcement-bottom {
+
+                gap:
+                    8px;
+
+                font-size:
+                    0.49rem;
+
+                letter-spacing:
+                    0.12em;
+
+            }
+
+
+            .announcement-bottom::before,
+            .announcement-bottom::after {
+
+                width:
+                    20px;
+
+            }
+
+
+            .announcement-modal-box {
+
+                padding:
+                    39px 22px 29px;
+
+            }
+
+
+            .modal-status-top {
+
+                font-size:
+                    0.50rem;
+
+            }
+
+        }
+
+
+        /* =================================================
+           REDUCED MOTION
+        ================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .announcement-content,
+            .announcement-arrow,
+            .announcement-modal,
+            .announcement-modal-box,
+            .announcement-modal-close {
+
+                transition:
+                    none;
+
+            }
+
+
+            .modal-loading-bar {
+
+                animation:
+                    none;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
-<body>
+<body class="announcement-body">
 
 
     <!-- =====================================================
          HEADER
+         Uses style.css
     ====================================================== -->
 
-    <header class="main-header">
+    <header
+        class="site-header"
+        id="siteHeader"
+    >
 
         <div class="header-container">
-
-
-            <!-- BRAND -->
 
             <a
                 href="index.html"
                 class="brand"
             >
 
-                <img
-                    src="./assets/sas-logo.png"
-                    alt="SAS Logo"
-                    class="brand-logo"
-                >
+                <div class="brand-logos">
 
-                <div class="brand-name">
+                    <img
+                        src="assets/divine-logo.png"
+                        alt="Divine Word College of Calapan"
+                        class="divine-logo"
+                    >
 
-                    <strong>
+                    <span class="logo-divider"></span>
+
+                    <img
+                        src="assets/sas-logo.png"
+                        alt="School of Arts and Sciences"
+                        class="sas-logo"
+                    >
+
+                </div>
+
+
+                <div class="brand-info">
+
+                    <span class="brand-institution">
+                        DIVINE WORD COLLEGE OF CALAPAN
+                    </span>
+
+                    <span class="brand-title">
                         SAS STUDENT PORTAL
-                    </strong>
-
-                    <span>
-                        School of Arts and Sciences
                     </span>
 
                 </div>
@@ -66,115 +1187,54 @@
             </a>
 
 
-            <!-- =================================================
-                 DESKTOP / MOBILE NAVIGATION
-            ================================================== -->
+            <!-- DESKTOP NAVIGATION -->
 
-            <nav class="navigation">
+            <nav class="desktop-navigation">
 
                 <a
                     href="index.html"
-                    class="nav-link"
+                    class="nav-item"
                 >
                     Home
                 </a>
 
-
                 <a
                     href="announcements.html"
-                    class="nav-link active"
+                    class="nav-item active"
                 >
                     Announcements
                 </a>
 
-
                 <a
                     href="duty.html"
-                    class="nav-link"
+                    class="nav-item"
                 >
                     Duty
                 </a>
 
-
                 <a
                     href="attendance.html"
-                    class="nav-link"
+                    class="nav-item"
                 >
                     Attendance
                 </a>
 
-
-                <!-- ABOUT + CUSTOMER SERVICE -->
-
-                <div class="about-nav-item">
-
-                    <a
-                        href="about.html"
-                        class="nav-link"
-                    >
-                        About
-                    </a>
-
-
-                    <a
-                        href="https://m.me/hrvy.knn.18"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="customer-service"
-                        aria-label="Customer Service"
-                        title="Customer Service"
-                    >
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-
-                            <path
-                                d="M20 11.5C20 15.09 16.42 18 12 18C10.86 18 9.77 17.8 8.8 17.44L5 19L6.15 15.7C5.42 14.55 5 13.2 5 11.5C5 7.91 8.58 5 12 5C16.42 5 20 7.91 20 11.5Z"
-                                fill="currentColor"
-                            />
-
-                            <circle
-                                cx="9"
-                                cy="11.5"
-                                r="1"
-                                fill="white"
-                            />
-
-                            <circle
-                                cx="12"
-                                cy="11.5"
-                                r="1"
-                                fill="white"
-                            />
-
-                            <circle
-                                cx="15"
-                                cy="11.5"
-                                r="1"
-                                fill="white"
-                            />
-
-                        </svg>
-
-                    </a>
-
-                </div>
+                <a
+                    href="about.html"
+                    class="nav-item"
+                >
+                    About
+                </a>
 
             </nav>
 
 
-            <!-- =================================================
-                 MOBILE HAMBURGER
-            ================================================== -->
+            <!-- MOBILE MENU BUTTON -->
 
             <button
-                class="mobile-menu-toggle"
-                id="mobileMenuToggle"
-                type="button"
-                aria-label="Open navigation menu"
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation"
                 aria-expanded="false"
             >
 
@@ -184,272 +1244,318 @@
 
             </button>
 
-
         </div>
+
+
+        <!-- MOBILE NAVIGATION -->
+
+        <nav
+            class="mobile-navigation"
+            id="mobileNavigation"
+        >
+
+            <a
+                href="index.html"
+                class="mobile-nav-item"
+            >
+                Home
+            </a>
+
+            <a
+                href="announcements.html"
+                class="mobile-nav-item active"
+            >
+                Announcements
+            </a>
+
+            <a
+                href="duty.html"
+                class="mobile-nav-item"
+            >
+                Duty
+            </a>
+
+            <a
+                href="attendance.html"
+                class="mobile-nav-item"
+            >
+                Attendance
+            </a>
+
+            <a
+                href="about.html"
+                class="mobile-nav-item"
+            >
+                About
+            </a>
+
+        </nav>
 
     </header>
 
 
 
     <!-- =====================================================
-         ANNOUNCEMENTS — WORK IN PROGRESS
+         ANNOUNCEMENTS
     ====================================================== -->
 
-    <section class="construction-section">
+    <main class="announcement-page">
 
 
-        <!-- =================================================
-             MAIN CONTENT
-        ================================================== -->
+        <section
+            class="announcement-content"
+            id="announcementTrigger"
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+            aria-controls="announcementModal"
+        >
 
-        <div class="construction-content">
+
+            <!-- INSTITUTION -->
+
+            <div class="announcement-institution">
+
+                <span>
+                    DIVINE WORD COLLEGE OF CALAPAN
+                </span>
+
+            </div>
 
 
-            <!-- =================================================
-                 LEFT VISUAL
-            ================================================== -->
+            <!-- CONSTRUCTION ICON -->
 
-            <div class="construction-visual">
+            <div class="announcement-icon">
 
-                <div class="sas-construction-logo">
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
 
-                    <img
-                        src="./assets/sas-logo.png"
-                        alt="School of Arts and Sciences Logo"
-                        loading="eager"
-                    >
+                    <path
+                        d="M3 21h18"
+                    />
+
+                    <path
+                        d="M5 21V10l7-5 7 5v11"
+                    />
+
+                    <path
+                        d="M9 21v-6h6v6"
+                    />
+
+                    <path
+                        d="M4 10h16"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <!-- LABEL -->
+
+            <div class="announcement-label">
+                ANNOUNCEMENTS
+            </div>
+
+
+            <!-- CLICKABLE CONTENT -->
+
+            <div class="announcement-trigger">
+
+                <div class="announcement-badge">
+                    NEW
+                </div>
+
+
+                <h1 class="announcement-heading">
+                    ANNOUNCEMENT SECTION
+                </h1>
+
+
+                <p class="announcement-description">
+
+                    Click to view the latest SAS announcements,
+                    updates, activities, and important student
+                    information.
+
+                </p>
+
+
+                <div
+                    class="announcement-arrow"
+                    aria-hidden="true"
+                >
+                    ↓
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM -->
+
+            <div class="announcement-bottom">
+
+                <span>
+                    PLEASE CHECK BACK SOON
+                </span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         ANNOUNCEMENT MODAL
+    ====================================================== -->
+
+    <div
+        class="announcement-modal"
+        id="announcementModal"
+        aria-hidden="true"
+    >
+
+
+        <div
+            class="announcement-modal-backdrop"
+            id="announcementModalBackdrop"
+        ></div>
+
+
+        <div
+            class="announcement-modal-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="announcementModalTitle"
+        >
+
+
+            <!-- CLOSE -->
+
+            <button
+                type="button"
+                class="announcement-modal-close"
+                id="announcementModalClose"
+                aria-label="Close announcement"
+            >
+                ×
+            </button>
+
+
+            <!-- ICON -->
+
+            <div class="modal-icon">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path
+                        d="M3 21h18"
+                    />
+
+                    <path
+                        d="M5 21V10l7-5 7 5v11"
+                    />
+
+                    <path
+                        d="M9 21v-6h6v6"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="modal-currently">
+                CURRENTLY
+            </div>
+
+
+            <h2
+                class="modal-title"
+                id="announcementModalTitle"
+            >
+                WORK IN PROGRESS
+            </h2>
+
+
+            <div class="modal-accent"></div>
+
+
+            <p class="modal-message">
+                We are working for something better.
+            </p>
+
+
+            <p class="modal-description">
+
+                The SAS Announcement Section is currently
+                being prepared to provide students with
+                official announcements, activities,
+                updates, and important information.
+
+            </p>
+
+
+            <!-- LOADING STATUS -->
+
+            <div class="modal-status">
+
+                <div class="modal-status-top">
+
+                    <span>
+                        PREPARING ANNOUNCEMENT SERVICES
+                    </span>
+
+                    <span class="modal-live">
+                        LIVE
+                    </span>
+
+                </div>
+
+
+                <div class="modal-loading">
+
+                    <div
+                        class="modal-loading-bar"
+                    ></div>
 
                 </div>
 
             </div>
 
 
-
-            <!-- =================================================
-                 RIGHT CONTENT
-            ================================================== -->
-
-            <div class="construction-text">
-
-
-                <!-- STATUS -->
-
-                <div class="status-badge">
-
-                    <span class="status-dot"></span>
-
-                    <span>
-                        PORTAL DEVELOPMENT
-                    </span>
-
-                </div>
-
-
-
-                <!-- SECTION LABEL -->
-
-                <p class="construction-label">
-                    ANNOUNCEMENTS
-                </p>
-
-
-
-                <!-- TITLE -->
-
-                <h1>
-
-                    Work in
-
-                    <span>
-                        Progress.
-                    </span>
-
-                </h1>
-
-
-
-                <!-- DESCRIPTION -->
-
-                <p class="construction-description">
-
-                    We are currently developing this section
-                    to provide a more organized, reliable, and
-                    convenient way for SAS students to stay
-                    informed about important announcements
-                    and updates.
-
-                </p>
-
-
-
-                <!-- DIVIDER -->
-
-                <div class="construction-divider"></div>
-
-
-
-                <!-- MESSAGE -->
-
-                <div class="construction-message">
-
-
-                    <div class="message-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-
-                            <path
-                                d="M12 3L21 19H3L12 3Z"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                                stroke-linejoin="round"
-                            />
-
-                            <path
-                                d="M12 9V13"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                                stroke-linecap="round"
-                            />
-
-                            <circle
-                                cx="12"
-                                cy="16"
-                                r="0.8"
-                                fill="currentColor"
-                            />
-
-                        </svg>
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            We're building something better.
-                        </strong>
-
-                        <span>
-                            Thank you for your patience as we improve
-                            the SAS Student Portal.
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     DEVELOPMENT STATUS
-                ================================================== -->
-
-                <div class="development-status">
-
-
-                    <div class="development-header">
-
-                        <span>
-                            DEVELOPMENT STATUS
-                        </span>
-
-                        <strong>
-                            IN PROGRESS
-                        </strong>
-
-                    </div>
-
-
-                    <div class="development-track">
-
-                        <div class="development-fill"></div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     RETURN HOME
-                ================================================== -->
-
-                <a
-                    href="index.html"
-                    class="back-home-button"
-                >
-
-                    <span>
-                        Return to Home
-                    </span>
-
-                    <span class="back-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
+            <div class="modal-bottom">
+                PLEASE CHECK BACK SOON
             </div>
 
         </div>
 
-
-
-        <!-- =====================================================
-             CONSTRUCTION STRIPE
-        ====================================================== -->
-
-        <div class="construction-warning"></div>
-
-
-    </section>
+    </div>
 
 
 
     <!-- =====================================================
          FOOTER
+         EXACTLY USING style.css
     ====================================================== -->
 
     <footer class="site-footer">
 
-
         <div class="footer-container">
 
 
-            <!-- FOOTER BRAND -->
+            <!-- CONTACT -->
 
-            <div class="footer-brand">
-
-                <img
-                    src="./assets/sas-logo.png"
-                    alt="SAS Logo"
-                    class="footer-logo"
-                >
-
-                <div>
-
-                    <h3>
-                        SAS STUDENT PORTAL
-                    </h3>
-
-                    <p>
-                        School of Arts and Sciences
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- FOOTER LINKS -->
-
-            <div class="footer-links">
+            <div class="footer-contact">
 
 
                 <!-- FACEBOOK -->
@@ -458,164 +1564,395 @@
                     href="https://www.facebook.com/DWCCSASOfficial"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="footer-link"
+                    class="contact-item"
                 >
 
-                    <span
-                        class="footer-link-icon facebook-icon"
-                    >
-                        f
+                    <span class="contact-icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.7.3-1 1-1z"
+                            />
+
+                        </svg>
+
                     </span>
 
-                    <span>
+
+                    <span class="contact-text">
                         @DWCCSASOfficial
                     </span>
 
                 </a>
 
 
-
-                <!-- EMAIL -->
+                <!-- GMAIL -->
 
                 <a
                     href="mailto:polpsychsas@gmail.com"
-                    class="footer-link"
+                    class="contact-item"
                 >
 
                     <span
-                        class="footer-link-icon email-icon"
+                        class="contact-icon gmail-icon"
                     >
-                        @
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M3 6.5L12 13l9-6.5"
+                            />
+
+                            <rect
+                                x="3"
+                                y="5"
+                                width="18"
+                                height="14"
+                                rx="2"
+                            />
+
+                        </svg>
+
                     </span>
 
-                    <span>
-                        polpsychsas@gmail.com
+
+                    <span class="contact-text">
+                        @polpsychsas@gmail.com
                     </span>
 
                 </a>
 
-
             </div>
-
 
 
             <!-- DEVELOPER -->
 
             <div class="footer-developer">
 
-                <span>
-                    DEVELOPED BY
+                <span class="developer-label">
+                    DEVELOPER
                 </span>
 
-                <strong>
-                    PRO HARVEY KEANN L. LAUDENCIA
-                </strong>
+                <span class="developer-name">
+                    Harvey Keann Laudencia
+                </span>
 
             </div>
 
-
         </div>
-
 
 
         <!-- FOOTER BOTTOM -->
 
         <div class="footer-bottom">
 
-            <p>
-                © 2026 SAS Student Portal.
-                All Rights Reserved.
-            </p>
+            <span>
+                © 2026 School of Arts and Sciences
+            </span>
+
+            <span class="footer-separator">
+                •
+            </span>
 
             <span>
-                School of Arts and Sciences
+                Divine Word College of Calapan
             </span>
 
         </div>
-
 
     </footer>
 
 
 
     <!-- =====================================================
-         MOBILE MENU SCRIPT
+         JAVASCRIPT
     ====================================================== -->
 
     <script>
 
+        /* =================================================
+           HEADER
+        ================================================= */
+
+        const header =
+            document.getElementById(
+                "siteHeader"
+            );
+
         const menuButton =
-            document.getElementById("mobileMenuToggle");
+            document.getElementById(
+                "menuButton"
+            );
 
-        const navigation =
-            document.querySelector(".navigation");
+        const mobileNavigation =
+            document.getElementById(
+                "mobileNavigation"
+            );
 
 
-        if (menuButton && navigation) {
+        function updateHeader() {
+
+            if (window.scrollY > 30) {
+
+                header.classList.add(
+                    "scrolled"
+                );
+
+            } else {
+
+                header.classList.remove(
+                    "scrolled"
+                );
+
+            }
+
+        }
 
 
-            /* OPEN / CLOSE MENU */
+        window.addEventListener(
+            "scroll",
+            updateHeader,
+            {
+                passive: true
+            }
+        );
 
-            menuButton.addEventListener("click", function () {
 
-                const isOpen =
-                    navigation.classList.toggle("mobile-open");
+        updateHeader();
+
+
+        /* =================================================
+           MOBILE NAVIGATION
+        ================================================= */
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+                const opened =
+                    mobileNavigation.classList.toggle(
+                        "open"
+                    );
+
+
+                menuButton.classList.toggle(
+                    "open",
+                    opened
+                );
 
 
                 menuButton.setAttribute(
                     "aria-expanded",
-                    isOpen ? "true" : "false"
+                    String(opened)
                 );
 
-
-                menuButton.setAttribute(
-                    "aria-label",
-                    isOpen
-                        ? "Close navigation menu"
-                        : "Open navigation menu"
-                );
-
-            });
+            }
+        );
 
 
+        document
+            .querySelectorAll(
+                ".mobile-nav-item"
+            )
+            .forEach(
+                function (item) {
 
-            /* CLOSE AFTER CLICKING A LINK */
-
-            navigation
-                .querySelectorAll("a")
-                .forEach(function (link) {
-
-                    link.addEventListener(
+                    item.addEventListener(
                         "click",
                         function () {
 
-                            navigation.classList.remove(
-                                "mobile-open"
+                            mobileNavigation.classList.remove(
+                                "open"
                             );
 
+                            menuButton.classList.remove(
+                                "open"
+                            );
 
                             menuButton.setAttribute(
                                 "aria-expanded",
                                 "false"
                             );
 
-
-                            menuButton.setAttribute(
-                                "aria-label",
-                                "Open navigation menu"
-                            );
-
                         }
                     );
 
-                });
+                }
+            );
 
+
+        /* =================================================
+           ANNOUNCEMENT MODAL
+        ================================================= */
+
+        const announcementTrigger =
+            document.getElementById(
+                "announcementTrigger"
+            );
+
+        const announcementModal =
+            document.getElementById(
+                "announcementModal"
+            );
+
+        const announcementModalClose =
+            document.getElementById(
+                "announcementModalClose"
+            );
+
+        const announcementModalBackdrop =
+            document.getElementById(
+                "announcementModalBackdrop"
+            );
+
+
+        /* =================================================
+           OPEN
+        ================================================= */
+
+        function openAnnouncementModal() {
+
+            announcementModal.classList.add(
+                "open"
+            );
+
+            announcementModal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow =
+                "hidden";
 
         }
 
-    </script>
 
+        /* =================================================
+           CLOSE
+        ================================================= */
+
+        function closeAnnouncementModal() {
+
+            announcementModal.classList.remove(
+                "open"
+            );
+
+            announcementModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        /* =================================================
+           CARD CLICK
+        ================================================= */
+
+        announcementTrigger.addEventListener(
+            "click",
+            openAnnouncementModal
+        );
+
+
+        /* =================================================
+           CARD KEYBOARD
+        ================================================= */
+
+        announcementTrigger.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    openAnnouncementModal();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           CLOSE BUTTON
+        ================================================= */
+
+        announcementModalClose.addEventListener(
+            "click",
+            closeAnnouncementModal
+        );
+
+
+        /* =================================================
+           BACKDROP
+        ================================================= */
+
+        announcementModalBackdrop.addEventListener(
+            "click",
+            closeAnnouncementModal
+        );
+
+
+        /* =================================================
+           ESCAPE
+        ================================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    announcementModal.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeAnnouncementModal();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           PREVENT MODAL BOX CLICK FROM CLOSING
+        ================================================= */
+
+        const modalBox =
+            document.querySelector(
+                ".announcement-modal-box"
+            );
+
+
+        modalBox.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+            }
+        );
+
+    </script>
 
 </body>
 
 </html>
+
