@@ -20,9 +20,700 @@
     >
 
     <link rel="stylesheet" href="style.css">
+
+
+    <!-- =========================================================
+         MODERN FINE NOTICE POPUP
+    ========================================================== -->
+
+    <style>
+
+        /* =====================================================
+           FINES DISPLAY
+        ===================================================== */
+
+        .fines-display {
+            color: #6b7280;
+            font-weight: 800;
+        }
+
+        .fines-display.fines-settled {
+            color: #16834a;
+        }
+
+        .fines-display.fines-unsettled {
+            color: #d71920;
+        }
+
+        .fines-display.fines-pending {
+            color: #6b7280;
+        }
+
+
+        /* =====================================================
+           THREE-COLUMN STUDENT DETAILS
+        ===================================================== */
+
+        .student-details {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+
+        /* =====================================================
+           OVERLAY
+        ===================================================== */
+
+        .fine-notice-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0, 28, 58, 0.64);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .fine-notice-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+
+        /* =====================================================
+           POPUP CARD
+        ===================================================== */
+
+        .fine-notice {
+            position: relative;
+
+            width: min(450px, 100%);
+
+            overflow: hidden;
+
+            background: #ffffff;
+
+            border: 1px solid rgba(0, 59, 115, 0.08);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 35px 90px rgba(0, 24, 52, 0.30),
+                0 10px 30px rgba(0, 59, 115, 0.14);
+
+            transform:
+                translateY(22px)
+                scale(0.95);
+
+            opacity: 0;
+
+            transition:
+                transform 0.34s cubic-bezier(.22,1,.36,1),
+                opacity 0.25s ease;
+        }
+
+        .fine-notice-overlay.show .fine-notice {
+            transform:
+                translateY(0)
+                scale(1);
+
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           TOP RED ACCENT
+        ===================================================== */
+
+        .fine-notice-top {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d71920,
+                    #ff6268,
+                    #d71920
+                );
+        }
+
+
+        /* =====================================================
+           CLOSE BUTTON
+        ===================================================== */
+
+        .fine-notice-close {
+            position: absolute;
+
+            top: 18px;
+            right: 18px;
+
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #f3f6f9;
+
+            color: #687786;
+
+            font-family: inherit;
+            font-size: 20px;
+            line-height: 1;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .fine-notice-close:hover {
+            background: #d71920;
+            color: #ffffff;
+
+            transform: rotate(90deg);
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .fine-notice-content {
+            padding:
+                38px
+                34px
+                30px;
+        }
+
+
+        /* =====================================================
+           ICON
+        ===================================================== */
+
+        .fine-notice-icon-wrap {
+            position: relative;
+
+            width: 66px;
+            height: 66px;
+
+            margin-bottom: 20px;
+        }
+
+        .fine-notice-icon {
+            position: relative;
+
+            width: 66px;
+            height: 66px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff6f6,
+                    #ffe6e7
+                );
+
+            border:
+                1px solid
+                rgba(215, 25, 32, 0.14);
+
+            border-radius: 18px;
+
+            color: #d71920;
+
+            font-size: 30px;
+            font-weight: 800;
+
+            box-shadow:
+                0 9px 25px
+                rgba(215, 25, 32, 0.11);
+
+            animation:
+                fineNoticeIconPulse
+                1.8s
+                ease-in-out
+                infinite;
+        }
+
+
+        .fine-notice-icon::before {
+            content: "";
+
+            position: absolute;
+
+            inset: -5px;
+
+            border:
+                2px solid
+                rgba(215, 25, 32, 0.18);
+
+            border-radius: 22px;
+
+            opacity: 0;
+
+            animation:
+                fineNoticeIconRing
+                1.8s
+                ease-out
+                infinite;
+        }
+
+
+        .fine-notice-icon::after {
+            content: "";
+
+            position: absolute;
+
+            top: 9px;
+            left: 11px;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.9);
+        }
+
+
+        @keyframes fineNoticeIconPulse {
+
+            0% {
+                transform: scale(1);
+
+                box-shadow:
+                    0 9px 25px
+                    rgba(215, 25, 32, 0.11);
+            }
+
+            45% {
+                transform: scale(1.055);
+
+                box-shadow:
+                    0 12px 30px
+                    rgba(215, 25, 32, 0.22);
+            }
+
+            70% {
+                transform: scale(1);
+
+                box-shadow:
+                    0 9px 25px
+                    rgba(215, 25, 32, 0.11);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        @keyframes fineNoticeIconRing {
+
+            0% {
+                transform: scale(0.85);
+                opacity: 0.55;
+            }
+
+            70% {
+                transform: scale(1.18);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.18);
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           KICKER
+        ===================================================== */
+
+        .fine-notice-kicker {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #d71920;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 0.16em;
+        }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .fine-notice-title {
+            margin:
+                0
+                42px
+                10px
+                0;
+
+            color: #003b73;
+
+            font-size: 23px;
+            font-weight: 800;
+
+            line-height: 1.25;
+
+            letter-spacing: -0.025em;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .fine-notice-message {
+            margin: 0;
+
+            max-width: 380px;
+
+            color: #62707e;
+
+            font-size: 13.5px;
+
+            line-height: 1.65;
+        }
+
+
+        /* =====================================================
+           INFORMATION BOXES
+        ===================================================== */
+
+        .fine-notice-details {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+            margin-top: 22px;
+        }
+
+
+        .fine-notice-detail {
+            min-height: 82px;
+
+            display: flex;
+
+            flex-direction: column;
+            justify-content: center;
+
+            padding:
+                15px
+                16px;
+
+            background: #f7faff;
+
+            border:
+                1px solid
+                #e1ebf5;
+
+            border-radius: 14px;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+
+        .fine-notice-detail:hover {
+            transform: translateY(-2px);
+
+            border-color:
+                #cbdceb;
+        }
+
+
+        .fine-notice-detail-label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #7a8794;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 0.12em;
+        }
+
+
+        /* =====================================================
+           FINE AMOUNT
+        ===================================================== */
+
+        .fine-notice-amount {
+            display: block;
+
+            color: #d71920;
+
+            font-size: 22px;
+            font-weight: 800;
+
+            line-height: 1.15;
+        }
+
+
+        /* =====================================================
+           DEADLINE
+        ===================================================== */
+
+        .fine-notice-deadline-value {
+            display: block;
+
+            color: #003b73;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            line-height: 1.4;
+        }
+
+
+        /* =====================================================
+           ACTION AREA
+        ===================================================== */
+
+        .fine-notice-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            margin-top: 23px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid
+                #edf1f5;
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .fine-notice-button {
+            min-width: 132px;
+
+            padding:
+                12px
+                20px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0057a8,
+                    #003b73
+                );
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 7px 18px
+                rgba(0, 59, 115, 0.18);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .fine-notice-button:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 59, 115, 0.25);
+        }
+
+
+        .fine-notice-button:active {
+            transform:
+                translateY(0);
+        }
+
+
+        /* =====================================================
+           BODY LOCK
+        ===================================================== */
+
+        body.fine-notice-open {
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .student-details {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .student-details {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .fine-notice-overlay {
+                padding: 15px;
+            }
+
+
+            .fine-notice {
+                border-radius: 21px;
+            }
+
+
+            .fine-notice-content {
+                padding:
+                    32px
+                    23px
+                    24px;
+            }
+
+
+            .fine-notice-icon-wrap,
+            .fine-notice-icon {
+                width: 58px;
+                height: 58px;
+            }
+
+
+            .fine-notice-icon {
+                font-size: 27px;
+                border-radius: 16px;
+            }
+
+
+            .fine-notice-icon::before {
+                border-radius: 20px;
+            }
+
+
+            .fine-notice-title {
+                margin-right: 30px;
+                font-size: 20px;
+            }
+
+
+            .fine-notice-message {
+                font-size: 13px;
+            }
+
+
+            .fine-notice-details {
+                grid-template-columns: 1fr;
+            }
+
+
+            .fine-notice-actions {
+                margin-top: 19px;
+            }
+
+
+            .fine-notice-button {
+                width: 100%;
+            }
+
+        }
+
+
+        /* =====================================================
+           ACCESSIBILITY
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .fine-notice,
+            .fine-notice-overlay,
+            .fine-notice-icon,
+            .fine-notice-icon::before,
+            .fine-notice-close,
+            .fine-notice-button,
+            .fine-notice-detail {
+                animation: none !important;
+
+                transition: none !important;
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
 
 <!-- =========================================================
      HEADER
@@ -51,6 +742,7 @@
                 >
 
             </div>
+
 
             <div class="brand-info">
 
@@ -98,9 +790,11 @@
             aria-label="Open navigation"
             aria-expanded="false"
         >
+
             <span></span>
             <span></span>
             <span></span>
+
         </button>
 
     </div>
@@ -204,6 +898,7 @@
 
                     </div>
 
+
                     <div>
 
                         <h2>
@@ -232,6 +927,7 @@
                         >
                             STUDENT ID NUMBER
                         </label>
+
 
                         <input
                             type="text"
@@ -327,6 +1023,7 @@
 
                     </div>
 
+
                     <div class="loading-text">
 
                         <strong>
@@ -338,6 +1035,7 @@
                         </span>
 
                     </div>
+
 
                     <div class="loading-dots">
 
@@ -377,9 +1075,11 @@
                                 class="student-avatar"
                                 id="avatar"
                             >
+
                                 <span>
                                     SAS
                                 </span>
+
                             </div>
 
                         </div>
@@ -390,6 +1090,7 @@
                             <span class="profile-kicker">
                                 STUDENT ATTENDANCE RECORD
                             </span>
+
 
                             <div
                                 class="student-label"
@@ -422,6 +1123,22 @@
 
                                     <strong id="programDisplay">
                                         —
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        FINES
+                                    </span>
+
+                                    <strong
+                                        id="finesDisplay"
+                                        class="fines-display fines-pending"
+                                    >
+                                        NOT YET COMPUTED
                                     </strong>
 
                                 </div>
@@ -585,9 +1302,11 @@
                         <div class="summary-item">
 
                             <span class="summary-number">
+
                                 <span id="requiredDisplay">
                                     0
                                 </span>
+
                             </span>
 
                             <span class="summary-label">
@@ -600,9 +1319,11 @@
                         <div class="summary-item">
 
                             <span class="summary-number">
+
                                 <span id="attendedDisplay">
                                     0
                                 </span>
+
                             </span>
 
                             <span class="summary-label">
@@ -615,9 +1336,11 @@
                         <div class="summary-item">
 
                             <span class="summary-number">
+
                                 <span id="missedDisplay">
                                     0
                                 </span>
+
                             </span>
 
                             <span class="summary-label">
@@ -680,6 +1403,127 @@
 
 
 <!-- =========================================================
+     MODERN FINE NOTICE POPUP
+========================================================= -->
+
+<div
+    id="fineNotice"
+    class="fine-notice-overlay"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="fineNoticeTitle"
+>
+
+    <div class="fine-notice">
+
+        <div class="fine-notice-top"></div>
+
+
+        <button
+            type="button"
+            id="fineNoticeClose"
+            class="fine-notice-close"
+            aria-label="Close fine notice"
+        >
+            ×
+        </button>
+
+
+        <div class="fine-notice-content">
+
+
+            <div class="fine-notice-icon-wrap">
+
+                <div
+                    class="fine-notice-icon"
+                    aria-hidden="true"
+                >
+                    !
+                </div>
+
+            </div>
+
+
+            <span class="fine-notice-kicker">
+                STUDENT ACCOUNT NOTICE
+            </span>
+
+
+            <h2
+                id="fineNoticeTitle"
+                class="fine-notice-title"
+            >
+                You Need to Settle Your Fines
+            </h2>
+
+
+            <p class="fine-notice-message">
+                Please settle your fines to have your
+                clearance signed.
+            </p>
+
+
+            <div class="fine-notice-details">
+
+
+                <div class="fine-notice-detail">
+
+                    <span class="fine-notice-detail-label">
+                        OUTSTANDING FINE
+                    </span>
+
+                    <strong
+                        id="fineNoticeAmount"
+                        class="fine-notice-amount"
+                    >
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+
+                <div
+                    id="fineNoticeDeadlineBox"
+                    class="fine-notice-detail"
+                >
+
+                    <span class="fine-notice-detail-label">
+                        SETTLEMENT DEADLINE
+                    </span>
+
+                    <strong
+                        id="fineNoticeDeadline"
+                        class="fine-notice-deadline-value"
+                    >
+                        Not specified
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="fine-notice-actions">
+
+                <button
+                    type="button"
+                    id="fineNoticeOkay"
+                    class="fine-notice-button"
+                >
+                    I Understand
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
      FOOTER
 ========================================================= -->
 
@@ -703,7 +1547,9 @@
                         aria-hidden="true"
                     >
 
-                        <path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.7.3-1 1-1z"/>
+                        <path
+                            d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.7.3-1 1-1z"
+                        />
 
                     </svg>
 
@@ -728,7 +1574,9 @@
                         aria-hidden="true"
                     >
 
-                        <path d="M3 6.5 L12 13 L21 6.5"/>
+                        <path
+                            d="M3 6.5 L12 13 L21 6.5"
+                        />
 
                         <rect
                             x="3"
@@ -843,10 +1691,12 @@ menuButton.addEventListener(
         const opened =
             mobileNavigation.classList.toggle("open");
 
+
         menuButton.classList.toggle(
             "open",
             opened
         );
+
 
         menuButton.setAttribute(
             "aria-expanded",
@@ -908,6 +1758,33 @@ const message =
 
 
 /* =========================================================
+   FINE NOTICE
+========================================================= */
+
+const fineNotice =
+    document.getElementById("fineNotice");
+
+const fineNoticeClose =
+    document.getElementById("fineNoticeClose");
+
+const fineNoticeOkay =
+    document.getElementById("fineNoticeOkay");
+
+const fineNoticeAmount =
+    document.getElementById("fineNoticeAmount");
+
+const fineNoticeDeadline =
+    document.getElementById("fineNoticeDeadline");
+
+
+/* =========================================================
+   FINE NOTICE TIMER
+========================================================= */
+
+let fineNoticeTimer = null;
+
+
+/* =========================================================
    FORM SUBMIT
 ========================================================= */
 
@@ -933,6 +1810,9 @@ function searchAttendance() {
         studentIdInput.value.trim();
 
 
+    hideFineNotice();
+
+
     if (!studentId) {
 
         showMessage(
@@ -949,11 +1829,15 @@ function searchAttendance() {
 
     hideMessage();
 
-    result.style.display = "none";
+
+    result.style.display =
+        "none";
+
 
     result.classList.remove(
         "result-visible"
     );
+
 
     startLoading();
 
@@ -1019,22 +1903,7 @@ function searchAttendance() {
 
 
             /* =================================================
-               IMPORTANT FIX
-               
-               Apps Script returns:
-               
-               {
-                   success: true,
-                   found: true,
-                   data: {
-                       id: "...",
-                       yearLevel: "...",
-                       program: "...",
-                       events: [...]
-                   }
-               }
-               
-               Therefore we use response.data.
+               GET STUDENT RECORD
             ================================================= */
 
             const studentRecord =
@@ -1094,6 +1963,41 @@ function searchAttendance() {
                 80
             );
 
+
+            /* =================================================
+               FINE NOTICE TRIGGER
+            ================================================= */
+
+            const needsFineSettlement =
+
+                studentRecord.needsFineSettlement === true ||
+
+                String(
+                    studentRecord.needsFineSettlement || ""
+                ).toLowerCase() === "true";
+
+
+            if (
+                needsFineSettlement
+            ) {
+
+                fineNoticeTimer =
+                    setTimeout(
+                        function () {
+
+                            showFineNotice(
+                                studentRecord
+                            );
+
+                            fineNoticeTimer =
+                                null;
+
+                        },
+                        500
+                    );
+
+            }
+
         },
 
         function () {
@@ -1121,6 +2025,7 @@ function startLoading() {
     loading.classList.add(
         "active"
     );
+
 
     loading.setAttribute(
         "aria-hidden",
@@ -1400,6 +2305,102 @@ function displayStudent(
 
 
     /* =====================================================
+       FINES
+    ===================================================== */
+
+    const finesElement =
+        document.getElementById(
+            "finesDisplay"
+        );
+
+
+    if (finesElement) {
+
+        /*
+         * Read the status directly from the backend.
+         */
+
+        const finesStatus =
+            String(
+                data.finesStatus ||
+                ""
+            )
+            .toUpperCase()
+            .trim();
+
+
+        /*
+         * Remove previous fine classes.
+         */
+
+        finesElement.classList.remove(
+            "fines-settled",
+            "fines-unsettled",
+            "fines-pending"
+        );
+
+
+        /* =================================================
+           SETTLED
+        ================================================= */
+
+        if (
+            finesStatus === "SETTLED"
+        ) {
+
+            finesElement.textContent =
+                "SETTLED";
+
+
+            finesElement.classList.add(
+                "fines-settled"
+            );
+
+        }
+
+
+        /* =================================================
+           UNSETTLED
+        ================================================= */
+
+        else if (
+            finesStatus === "UNSETTLED"
+        ) {
+
+            finesElement.textContent =
+
+                data.finesDisplay ||
+                data.fines ||
+                "₱0.00";
+
+
+            finesElement.classList.add(
+                "fines-unsettled"
+            );
+
+        }
+
+
+        /* =================================================
+           NOT YET COMPUTED / PENDING
+        ================================================= */
+
+        else {
+
+            finesElement.textContent =
+                "NOT YET COMPUTED";
+
+
+            finesElement.classList.add(
+                "fines-pending"
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
        STUDENT CATEGORY
     ===================================================== */
 
@@ -1639,10 +2640,6 @@ function animateScore(
         circumference;
 
 
-    let current =
-        0;
-
-
     const duration =
         1100;
 
@@ -1675,7 +2672,7 @@ function animateScore(
             );
 
 
-        current =
+        const current =
             target *
             eased;
 
@@ -1961,13 +2958,6 @@ function displayEvents(
 
             /* =================================================
                EVENT STATUS
-
-               Apps Script provides:
-               attended
-               exempted
-               notRequired
-
-               rather than only event.status.
             ================================================= */
 
             let status =
@@ -2074,11 +3064,6 @@ function displayEvents(
 
             /* =================================================
                TIME IN
-
-               Supports:
-               event.timeIn
-               event.inTime
-               event.in
             ================================================= */
 
             const timeIn =
@@ -2091,11 +3076,6 @@ function displayEvents(
 
             /* =================================================
                TIME OUT
-
-               Supports:
-               event.timeOut
-               event.outTime
-               event.out
             ================================================= */
 
             const timeOut =
@@ -2233,6 +3213,248 @@ function displayEvents(
     );
 
 }
+
+
+/* =========================================================
+   FINE NOTICE
+========================================================= */
+
+function showFineNotice(
+    data
+) {
+
+    if (!fineNotice) {
+        return;
+    }
+
+
+    /* =====================================================
+       FINE AMOUNT
+    ===================================================== */
+
+    if (fineNoticeAmount) {
+
+        fineNoticeAmount.textContent =
+            data.finesDisplay ||
+            data.fines ||
+            "₱0.00";
+
+    }
+
+
+    /* =====================================================
+       DEADLINE
+    ===================================================== */
+
+    const rawDeadline =
+        String(
+            data.fineSettlementDeadline ||
+            data.fineSettlementDeadlineRaw ||
+            ""
+        ).trim();
+
+
+    if (fineNoticeDeadline) {
+
+        if (
+            rawDeadline &&
+            rawDeadline !== "Date not specified"
+        ) {
+
+            fineNoticeDeadline.textContent =
+                formatFineDeadline(
+                    rawDeadline
+                );
+
+        }
+
+        else {
+
+            fineNoticeDeadline.textContent =
+                "Not specified";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SHOW
+    ===================================================== */
+
+    fineNotice.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.classList.add(
+        "fine-notice-open"
+    );
+
+
+    requestAnimationFrame(
+        function () {
+
+            fineNotice.classList.add(
+                "show"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HIDE FINE NOTICE
+========================================================= */
+
+function hideFineNotice() {
+
+    if (fineNoticeTimer) {
+
+        clearTimeout(
+            fineNoticeTimer
+        );
+
+        fineNoticeTimer =
+            null;
+
+    }
+
+
+    if (!fineNotice) {
+        return;
+    }
+
+
+    fineNotice.classList.remove(
+        "show"
+    );
+
+
+    fineNotice.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.classList.remove(
+        "fine-notice-open"
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT FINE DEADLINE
+========================================================= */
+
+function formatFineDeadline(
+    value
+) {
+
+    if (!value) {
+
+        return "Not specified";
+
+    }
+
+
+    const parsed =
+        new Date(
+            value
+        );
+
+
+    if (
+        isNaN(
+            parsed.getTime()
+        )
+    ) {
+
+        return String(
+            value
+        );
+
+    }
+
+
+    return parsed.toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FINE NOTICE CLOSE
+========================================================= */
+
+fineNoticeClose.addEventListener(
+    "click",
+    function () {
+
+        hideFineNotice();
+
+    }
+);
+
+
+fineNoticeOkay.addEventListener(
+    "click",
+    function () {
+
+        hideFineNotice();
+
+    }
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE POPUP
+========================================================= */
+
+fineNotice.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === fineNotice
+        ) {
+
+            hideFineNotice();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            hideFineNotice();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
