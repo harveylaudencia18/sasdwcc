@@ -5779,18 +5779,19 @@
 
         async function initializeDutyPage() {
 
-            await loadDutyBoard();
-
-
+            // QR officer access is checked immediately so the login
+            // screen does not depend on the public duty board loading.
             checkOfficerAccess();
 
+            // Load the public duty board independently.
+            try {
+                await loadDutyBoard();
+            } catch (error) {
+                console.error("Duty board initialization failed:", error);
+            }
 
-            if (
-                officerSession
-            ) {
-
+            if (officerSession) {
                 updateOfficerPanel();
-
             }
 
         }
