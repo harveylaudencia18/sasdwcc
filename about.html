@@ -4820,7 +4820,7 @@
     box-shadow:
         0 8px 24px rgba(0, 59, 115, 0.08);
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .calendar-semester-header::before {
@@ -4998,7 +4998,7 @@
     border: 1px solid #d9e3ed;
     border-radius: 13px;
 
-    overflow: hidden;
+    overflow: visible;
 
     cursor: pointer;
 
@@ -5219,7 +5219,7 @@
     border-right: 1px solid #edf1f5;
     border-bottom: 1px solid #edf1f5;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .calendar-day:nth-child(7n) {
@@ -5312,7 +5312,7 @@
 
     line-height: 1.25;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 
@@ -5357,7 +5357,7 @@
     font-size: 0;
     line-height: 0;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .calendar-month:not(.expanded)
@@ -10242,37 +10242,6 @@ function loadCalendar() {
         </div>
 
     `;
-
-    /* =========================================================
-   MOBILE / DESKTOP POINTER EVENT
-========================================================= */
-
-calendarContent.addEventListener(
-    "pointerup",
-    function (e) {
-
-        const header =
-            e.target.closest(
-                ".calendar-month-header"
-            );
-
-        if (!header) return;
-
-        /*
-         * Prevent the same interaction from
-         * being processed multiple times.
-         */
-        if (
-            e.pointerType === "mouse" &&
-            e.button !== 0
-        ) {
-            return;
-        }
-
-        toggleCalendarMonth(header);
-
-    }
-);
 
     /* =====================================================
        KEYBOARD ACCESS
