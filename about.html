@@ -1422,685 +1422,6 @@
 
         }
 
-
-        /* =========================================================
-           CALENDAR
-        ========================================================= */
-
-  /* =========================================================
-   MODERN ACADEMIC CALENDAR
-========================================================= */
-
-.calendar-wrapper {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   SEMESTER HEADER
-========================================================= */
-
-.calendar-semester-header {
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
-
-    margin-bottom: 22px;
-    padding: 20px 24px;
-
-    border: 1px solid #dce7f0;
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff 0%,
-            #f7fbff 100%
-        );
-
-    box-shadow:
-        0 8px 22px rgba(0, 59, 115, 0.06);
-
-    overflow: hidden;
-}
-
-.calendar-semester-header::before {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 5px;
-
-    background: #0057a8;
-}
-
-.calendar-semester-header::after {
-    content: "";
-
-    position: absolute;
-
-    width: 100px;
-    height: 100px;
-
-    right: -45px;
-    top: -45px;
-
-    border: 1px solid #dce7f0;
-    border-radius: 50%;
-
-    opacity: 0.7;
-}
-
-.calendar-semester-kicker {
-    position: relative;
-    z-index: 1;
-
-    margin-bottom: 5px;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    color: #0057a8;
-}
-
-.calendar-semester-title {
-    position: relative;
-    z-index: 1;
-
-    margin: 0;
-
-    font-size: 25px;
-    font-weight: 800;
-
-    letter-spacing: -0.5px;
-
-    color: #003b73;
-}
-
-.calendar-semester-note {
-    position: relative;
-    z-index: 1;
-
-    margin: 6px 0 0;
-
-    font-size: 11px;
-    line-height: 1.5;
-
-    color: #68788a;
-}
-
-
-/* =========================================================
-   MONTH CONTAINER
-========================================================= */
-
-.calendar-months {
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, minmax(0, 1fr));
-
-    gap: 12px;
-
-    width: 100%;
-    align-items: start;
-}
-
-
-/* =========================================================
-   MONTH CARD
-========================================================= */
-
-.calendar-month {
-    position: relative;
-
-    width: 100%;
-    min-width: 0;
-
-    box-sizing: border-box;
-
-    background: #ffffff;
-
-    border: 1px solid #dce7f0;
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 15px rgba(0, 59, 115, 0.05);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.calendar-month:hover {
-    transform: translateY(-2px);
-
-    border-color: #b9cfe2;
-
-    box-shadow:
-        0 9px 22px rgba(0, 59, 115, 0.09);
-}
-
-
-/* =========================================================
-   EXPANDED MONTH
-========================================================= */
-
-.calendar-month.expanded {
-    grid-column: 1 / -1;
-
-    cursor: default;
-
-    transform: none;
-
-    border-color: #b9cfe2;
-
-    box-shadow:
-        0 12px 30px rgba(0, 59, 115, 0.09);
-
-    animation:
-        calendarExpand 0.3s ease;
-}
-
-@keyframes calendarExpand {
-
-    from {
-        opacity: 0.75;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================================================
-   MONTH HEADER
-========================================================= */
-
-.calendar-month-header {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    min-height: 48px;
-
-    padding: 10px 12px;
-
-    box-sizing: border-box;
-
-    border-bottom: 1px solid #e5edf4;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fbfe 0%,
-            #ffffff 100%
-        );
-
-    transition:
-        background 0.25s ease;
-}
-
-.calendar-month.expanded .calendar-month-header {
-    padding: 14px 17px;
-
-    min-height: 58px;
-
-    border-bottom-color: #d8e4ee;
-}
-
-.calendar-month-header::before {
-    content: "";
-
-    width: 3px;
-    height: 25px;
-
-    margin-right: 8px;
-
-    flex-shrink: 0;
-
-    border-radius: 3px;
-
-    background: #0057a8;
-}
-
-.calendar-month.expanded .calendar-month-header::before {
-    height: 30px;
-}
-
-.calendar-month-name {
-    margin: 0;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    letter-spacing: 0.7px;
-
-    color: #003b73;
-}
-
-.calendar-month.expanded .calendar-month-name {
-    font-size: 16px;
-}
-
-
-/* =========================================================
-   CLICK INDICATOR
-========================================================= */
-
-.calendar-month-header::after {
-    content: "+";
-
-    margin-left: auto;
-
-    font-size: 17px;
-    font-weight: 500;
-
-    line-height: 1;
-
-    color: #8a9aaa;
-
-    transition:
-        transform 0.25s ease,
-        color 0.25s ease;
-}
-
-.calendar-month.expanded .calendar-month-header::after {
-    content: "−";
-
-    color: #0057a8;
-}
-
-
-/* =========================================================
-   CALENDAR GRID
-========================================================= */
-
-.calendar-month-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(7, minmax(0, 1fr));
-
-    width: 100%;
-
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   WEEKDAY
-========================================================= */
-
-.calendar-weekday {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-height: 25px;
-
-    padding: 3px;
-
-    box-sizing: border-box;
-
-    border-bottom: 1px solid #e5edf4;
-
-    background: #f8fbfe;
-
-    font-size: 7px;
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-    color: #7b8b9b;
-}
-
-.calendar-month.expanded .calendar-weekday {
-    min-height: 31px;
-
-    font-size: 9px;
-}
-
-
-/* =========================================================
-   DAY
-========================================================= */
-
-.calendar-day {
-    position: relative;
-
-    min-width: 0;
-
-    min-height: 43px;
-
-    padding: 5px;
-
-    box-sizing: border-box;
-
-    border-right: 1px solid #edf2f6;
-    border-bottom: 1px solid #edf2f6;
-
-    background: #ffffff;
-
-    overflow: hidden;
-}
-
-.calendar-day:nth-child(7n) {
-    border-right: none;
-}
-
-.calendar-month.expanded .calendar-day {
-    min-height: 88px;
-
-    padding: 8px;
-}
-
-.calendar-day-empty {
-    background: #fbfcfd;
-}
-
-.calendar-day-number {
-    display: block;
-
-    margin-bottom: 2px;
-
-    font-size: 9px;
-    font-weight: 700;
-
-    color: #536477;
-}
-
-.calendar-month.expanded .calendar-day-number {
-    margin-bottom: 5px;
-
-    font-size: 11px;
-}
-
-
-/* =========================================================
-   WEEKEND
-========================================================= */
-
-.calendar-day:nth-child(7n + 1),
-.calendar-day:nth-child(7n) {
-    background: #fcfdfe;
-}
-
-
-/* =========================================================
-   EVENTS
-========================================================= */
-
-.calendar-event.important {
-    font-weight: 800;
-
-    color: #003b73;
-}
-
-.calendar-month.expanded .calendar-event {
-    margin-top: 3px;
-    padding: 5px 6px;
-
-    font-size: 9px;
-
-    line-height: 1.35;
-}
-
-
-/* =========================================================
-   MINI CALENDAR EVENT MARKER
-========================================================= */
-
-.calendar-month:not(.expanded) .calendar-event {
-    display: block;
-
-    height: 3px;
-
-    padding: 0;
-    margin-top: 3px;
-
-    border-left: none;
-
-    border-radius: 2px;
-
-    background: #8fb1cf;
-
-    font-size: 0;
-
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   SUMMARY
-========================================================= */
-
-.calendar-summary {
-    margin-top: 20px;
-
-    padding: 17px;
-
-    border: 1px solid #dce7f0;
-    border-radius: 12px;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 5px 16px rgba(0, 59, 115, 0.04);
-}
-
-.calendar-summary-title {
-    margin: 0 0 12px;
-
-    font-size: 14px;
-    font-weight: 800;
-
-    color: #003b73;
-}
-
-.calendar-summary-item {
-    display: grid;
-
-    grid-template-columns: 65px minmax(0, 1fr);
-
-    gap: 10px;
-
-    padding: 8px 0;
-
-    border-bottom: 1px solid #edf2f6;
-}
-
-.calendar-summary-item:last-child {
-    border-bottom: none;
-}
-
-.calendar-summary-date {
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-    color: #0057a8;
-}
-
-.calendar-summary-event {
-    font-size: 10px;
-    line-height: 1.4;
-
-    color: #536477;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 950px) {
-
-    .calendar-months {
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-    }
-
-    .calendar-month.expanded {
-        grid-column: 1 / -1;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .calendar-semester-header {
-        padding: 17px 18px;
-        margin-bottom: 16px;
-    }
-
-    .calendar-semester-title {
-        font-size: 21px;
-    }
-
-    .calendar-semester-note {
-        font-size: 10px;
-    }
-
-    .calendar-months {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 9px;
-    }
-
-    .calendar-month.expanded {
-        grid-column: 1 / -1;
-    }
-
-    .calendar-month-header {
-        min-height: 45px;
-        padding: 9px 10px;
-    }
-
-    .calendar-month-name {
-        font-size: 10px;
-    }
-
-    .calendar-month.expanded .calendar-month-name {
-        font-size: 14px;
-    }
-
-    .calendar-day {
-        min-height: 38px;
-        padding: 4px;
-    }
-
-    .calendar-month.expanded .calendar-day {
-        min-height: 72px;
-        padding: 6px;
-    }
-
-    .calendar-weekday {
-        min-height: 23px;
-        font-size: 6.5px;
-    }
-
-    .calendar-month.expanded .calendar-weekday {
-        min-height: 27px;
-        font-size: 8px;
-    }
-
-    .calendar-month.expanded .calendar-event {
-        font-size: 8px;
-    }
-
-    .calendar-summary {
-        margin-top: 15px;
-        padding: 14px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .calendar-months {
-        grid-template-columns: 1fr;
-    }
-
-    .calendar-month.expanded {
-        grid-column: 1;
-    }
-
-    .calendar-day {
-        min-height: 42px;
-    }
-
-}
-        /* =========================================================
-           ERROR / LOADING
-        ========================================================= */
-
-        .hub-loading {
-
-            padding: 35px;
-
-            text-align: center;
-
-            color:
-                #718096;
-
-            font-size: 12px;
-
-        }
-
-
-        .hub-error {
-
-            padding: 18px;
-
-            border:
-                1px solid #efc8ca;
-
-            border-radius: 5px;
-
-            background:
-                #fff8f8;
-
-            color:
-                #9f252b;
-
-            font-size: 12px;
-
-            line-height: 1.6;
-
-        }
-
-
         /* =========================================================
            SAS OFFICER PRESENTATION
         ========================================================= */
@@ -4788,10 +4109,15 @@
 
         }
 
-/* =========================================================
+        /* =========================================================
    SAS SCHOOL CALENDAR
    ACADEMIC YEAR 2026–2027
-   MODERN RED / BLUE / YELLOW / WHITE DESIGN
+   FINAL CALENDAR DESIGN
+========================================================= */
+
+
+/* =========================================================
+   CALENDAR WRAPPER
 ========================================================= */
 
 .calendar-wrapper {
@@ -4807,10 +4133,13 @@
 
 .calendar-semester-header {
     position: relative;
+
     width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 20px;
+
+    margin-bottom: 22px;
     padding: 20px 22px;
+
+    box-sizing: border-box;
 
     background: #ffffff;
 
@@ -4820,29 +4149,35 @@
     box-shadow:
         0 8px 24px rgba(0, 59, 115, 0.08);
 
-    overflow: visible;
+    overflow: hidden;
 }
 
 .calendar-semester-header::before {
     content: "";
+
     position: absolute;
-    top: 0;
+
     left: 0;
+    top: 0;
+
     width: 6px;
     height: 100%;
 
-    background: linear-gradient(
-        to bottom,
-        #0057a8 0%,
-        #0057a8 55%,
-        #d71920 55%,
-        #d71920 100%
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            #0057a8 0%,
+            #0057a8 55%,
+            #d71920 55%,
+            #d71920 100%
+        );
 }
 
 .calendar-semester-header::after {
     content: "";
+
     position: absolute;
+
     right: -45px;
     top: -45px;
 
@@ -4868,6 +4203,7 @@
     font-weight: 800;
 
     letter-spacing: 1.4px;
+
     text-transform: uppercase;
 }
 
@@ -4896,16 +4232,18 @@
     color: #647587;
 
     font-size: 12px;
+
     line-height: 1.6;
 }
 
 
 /* =========================================================
-   SEMESTER SECTION
+   SEMESTER
 ========================================================= */
 
 .calendar-semester {
     width: 100%;
+
     margin-bottom: 30px;
 }
 
@@ -4915,7 +4253,9 @@
 
 .calendar-semester-label {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     margin: 0 0 13px;
@@ -4930,6 +4270,8 @@
     border-radius: 4px;
 
     background: #0057a8;
+
+    flex-shrink: 0;
 }
 
 .calendar-semester-label.second-semester::before {
@@ -4938,7 +4280,9 @@
 
 .calendar-semester-label-text {
     display: flex;
+
     flex-direction: column;
+
     gap: 2px;
 }
 
@@ -4964,7 +4308,7 @@
 
 
 /* =========================================================
-   MONTH GRID
+   MONTH CONTAINER
 ========================================================= */
 
 .calendar-months {
@@ -4998,7 +4342,7 @@
     border: 1px solid #d9e3ed;
     border-radius: 13px;
 
-    overflow: visible;
+    overflow: hidden;
 
     cursor: pointer;
 
@@ -5033,7 +4377,6 @@
     align-items: center;
 
     width: 100%;
-
     min-height: 50px;
 
     padding: 10px 12px;
@@ -5064,23 +4407,29 @@
     flex-shrink: 0;
 }
 
-.calendar-month:nth-child(5n + 2) .calendar-month-header::before {
+.calendar-month:nth-child(5n + 2)
+.calendar-month-header::before {
     background: #d71920;
 }
 
-.calendar-month:nth-child(5n + 3) .calendar-month-header::before {
+.calendar-month:nth-child(5n + 3)
+.calendar-month-header::before {
     background: #ffd200;
 }
 
-.calendar-month:nth-child(5n + 4) .calendar-month-header::before {
+.calendar-month:nth-child(5n + 4)
+.calendar-month-header::before {
     background: #0057a8;
 }
 
-.calendar-month:nth-child(5n + 5) .calendar-month-header::before {
+.calendar-month:nth-child(5n + 5)
+.calendar-month-header::before {
     background: #d71920;
 }
 
 .calendar-month-name {
+    min-width: 0;
+
     margin: 0;
 
     color: #003b73;
@@ -5128,20 +4477,21 @@
 
     transition:
         background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+        color 0.2s ease;
 }
 
-.calendar-month:hover .calendar-month-toggle {
+.calendar-month:hover
+.calendar-month-toggle {
     background: #0057a8;
+
     color: #ffffff;
 }
 
-.calendar-month.expanded .calendar-month-toggle {
+.calendar-month.expanded
+.calendar-month-toggle {
     background: #d71920;
-    color: #ffffff;
 
-    transform: rotate(0deg);
+    color: #ffffff;
 }
 
 
@@ -5156,6 +4506,8 @@
         repeat(7, minmax(0, 1fr));
 
     width: 100%;
+
+    box-sizing: border-box;
 }
 
 
@@ -5208,6 +4560,7 @@
     position: relative;
 
     min-width: 0;
+
     min-height: 31px;
 
     padding: 4px;
@@ -5219,7 +4572,7 @@
     border-right: 1px solid #edf1f5;
     border-bottom: 1px solid #edf1f5;
 
-    overflow: visible;
+    overflow: hidden;
 }
 
 .calendar-day:nth-child(7n) {
@@ -5230,43 +4583,17 @@
     background: #fafbfc;
 }
 
-.calendar-day-number {
-    display: block;
-
-    color: #526476;
-
-    font-size: 8px;
-    font-weight: 700;
-
-    line-height: 1;
-}
-
-.calendar-day:nth-child(7n + 1) .calendar-day-number {
-    color: #d71920;
-}
-
-.calendar-day:nth-child(7n) .calendar-day-number {
-    color: #0057a8;
-}
-
 
 /* =========================================================
-   EVENT DAY
+   DAY NUMBER
 ========================================================= */
 
-.calendar-day.has-event {
-    background: #fffdf4;
-}
-
-.calendar-day.has-event .calendar-day-number {
-    position: relative;
-
-    z-index: 2;
-
-    display: inline-flex;
+.calendar-day-number {
+    display: flex;
 
     align-items: center;
-    justify-content: center;
+
+    width: fit-content;
 
     min-width: 16px;
     height: 16px;
@@ -5275,14 +4602,58 @@
 
     box-sizing: border-box;
 
-    border-radius: 5px;
+    color: #526476;
 
+    font-size: 8px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    border-radius: 5px;
+}
+
+.calendar-day:nth-child(7n + 1)
+.calendar-day-number {
+    color: #d71920;
+}
+
+.calendar-day:nth-child(7n)
+.calendar-day-number {
+    color: #0057a8;
+}
+
+.calendar-day.has-event {
+    background: #fffdf4;
+}
+
+.calendar-day.has-event
+.calendar-day-number {
     background: #ffd200;
 
     color: #003b73;
 
-    font-size: 8px;
     font-weight: 800;
+}
+
+
+/* =========================================================
+   EVENT AREA
+========================================================= */
+
+.calendar-events {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    margin-top: 4px;
+
+    overflow: hidden;
 }
 
 
@@ -5294,58 +4665,76 @@
     display: block;
 
     width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
 
     box-sizing: border-box;
 
-    margin-top: 3px;
-    padding: 3px 4px;
+    margin: 0;
 
-    border-left: 2px solid #0057a8;
-    border-radius: 3px;
+    padding: 4px 5px;
+
+    border-left: 3px solid #0057a8;
+    border-radius: 4px;
 
     background: #eef5fb;
 
-    color: #405466;
+    color: #34495a;
 
-    font-size: 6.5px;
+    font-size: 9px;
     font-weight: 600;
 
-    line-height: 1.25;
+    line-height: 1.2;
 
-    overflow: visible;
+    white-space: normal;
+
+    word-break: normal;
+
+    overflow-wrap: break-word;
+
+    hyphens: none;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
 }
 
-
-/* Multiple events */
 .calendar-event + .calendar-event {
     border-left-color: #d71920;
 
-    background: #fff1f1;
+    background: #fff0f0;
 }
 
-
-/* Important event */
 .calendar-event.important {
     border-left-color: #d71920;
 
-    background: #fff1f1;
+    background: #fff0f0;
 
     color: #8d151b;
 }
 
 
 /* =========================================================
-   MINI CALENDAR EVENT STYLE
+   MINI MONTH EVENTS
 ========================================================= */
 
-.calendar-month:not(.expanded) .calendar-event {
-    display: block;
+.calendar-month:not(.expanded)
+.calendar-events {
+    display: flex;
 
+    gap: 2px;
+
+    margin-top: 3px;
+}
+
+.calendar-month:not(.expanded)
+.calendar-event {
     width: 100%;
     height: 3px;
     min-height: 3px;
 
-    margin-top: 3px;
+    margin: 0;
     padding: 0;
 
     border: none;
@@ -5357,13 +4746,11 @@
     font-size: 0;
     line-height: 0;
 
-    overflow: visible;
+    overflow: hidden;
 }
 
 .calendar-month:not(.expanded)
 .calendar-event + .calendar-event {
-    margin-top: 2px;
-
     background: #d71920;
 }
 
@@ -5389,6 +4776,7 @@
 }
 
 @keyframes calendarMonthExpand {
+
     from {
         opacity: 0.75;
         transform: translateY(5px);
@@ -5398,9 +4786,11 @@
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
-.calendar-month.expanded .calendar-month-header {
+.calendar-month.expanded
+.calendar-month-header {
     min-height: 60px;
 
     padding: 13px 16px;
@@ -5414,22 +4804,26 @@
         );
 }
 
-.calendar-month.expanded .calendar-month-header::before {
+.calendar-month.expanded
+.calendar-month-header::before {
     width: 5px;
     height: 32px;
 
     background: #0057a8;
 }
 
-.calendar-month.expanded .calendar-month-name {
+.calendar-month.expanded
+.calendar-month-name {
     font-size: 17px;
 }
 
-.calendar-month.expanded .calendar-month-year {
+.calendar-month.expanded
+.calendar-month-year {
     font-size: 11px;
 }
 
-.calendar-month.expanded .calendar-month-toggle {
+.calendar-month.expanded
+.calendar-month-toggle {
     width: 27px;
     height: 27px;
 
@@ -5441,7 +4835,8 @@
    EXPANDED WEEKDAYS
 ========================================================= */
 
-.calendar-month.expanded .calendar-weekday {
+.calendar-month.expanded
+.calendar-weekday {
     min-height: 34px;
 
     font-size: 9px;
@@ -5453,32 +4848,61 @@
 
 
 /* =========================================================
-   EXPANDED DAYS
+   EXPANDED DATE CELLS
 ========================================================= */
 
-.calendar-month.expanded .calendar-day {
-    min-height: 92px;
+.calendar-month.expanded
+.calendar-day {
+    height: 122px;
+    min-height: 122px;
 
-    padding: 8px;
+    padding: 7px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
 
     background: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
 }
 
-.calendar-month.expanded .calendar-day-number {
-    font-size: 11px;
+.calendar-month.expanded
+.calendar-day-number {
+    flex: 0 0 auto;
 
-    margin-bottom: 5px;
-}
-
-.calendar-month.expanded .calendar-day.has-event {
-    background: #fffdf5;
-}
-
-.calendar-month.expanded .calendar-day.has-event .calendar-day-number {
     min-width: 23px;
     height: 23px;
 
+    margin: 0;
+
     font-size: 11px;
+}
+
+.calendar-month.expanded
+.calendar-day.has-event {
+    background: #fffdf5;
+}
+
+
+/* =========================================================
+   EXPANDED EVENT AREA
+========================================================= */
+
+.calendar-month.expanded
+.calendar-events {
+    flex: 1 1 auto;
+
+    min-width: 0;
+    min-height: 0;
+
+    margin-top: 5px;
+
+    gap: 3px;
+
+    overflow: hidden;
 }
 
 
@@ -5486,13 +4910,20 @@
    EXPANDED EVENTS
 ========================================================= */
 
-.calendar-month.expanded .calendar-event {
+.calendar-month.expanded
+.calendar-event {
+    flex: 0 0 auto;
+
+    width: 100%;
+    max-width: 100%;
+
     height: auto;
+
     min-height: 0;
 
-    margin-top: 4px;
+    margin: 0;
 
-    padding: 5px 6px;
+    padding: 4px 5px;
 
     border-left: 3px solid #0057a8;
 
@@ -5503,11 +4934,22 @@
     color: #34495a;
 
     font-size: 9px;
+
     font-weight: 600;
 
-    line-height: 1.35;
+    line-height: 1.18;
 
-    overflow: visible;
+    white-space: normal;
+
+    word-break: normal;
+
+    overflow-wrap: break-word;
+
+    hyphens: none;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
 }
 
 .calendar-month.expanded
@@ -5519,7 +4961,7 @@
 
 
 /* =========================================================
-   EVENT DOT / INDICATOR
+   EVENT INDICATOR
 ========================================================= */
 
 .calendar-day.has-event::after {
@@ -5649,7 +5091,7 @@
 
 
 /* =========================================================
-   SECOND SEMESTER COLOR VARIATION
+   SECOND SEMESTER COLORS
 ========================================================= */
 
 .calendar-semester.second-semester
@@ -5740,7 +5182,8 @@
         font-size: 6px;
     }
 
-    .calendar-month:not(.expanded) .calendar-day {
+    .calendar-month:not(.expanded)
+    .calendar-day {
         min-height: 27px;
 
         padding: 3px;
@@ -5751,22 +5194,38 @@
         font-size: 7px;
     }
 
-    .calendar-month.expanded .calendar-day {
-        min-height: 75px;
+    /* EXPANDED MOBILE DATE BOX */
+
+    .calendar-month.expanded
+    .calendar-day {
+        height: 104px;
+        min-height: 104px;
 
         padding: 6px;
     }
 
     .calendar-month.expanded
     .calendar-day-number {
+        min-width: 20px;
+        height: 20px;
+
         font-size: 9px;
     }
 
     .calendar-month.expanded
-    .calendar-event {
-        padding: 4px 5px;
+    .calendar-events {
+        margin-top: 4px;
 
-        font-size: 7px;
+        gap: 2px;
+    }
+
+    .calendar-month.expanded
+    .calendar-event {
+        padding: 3px 4px;
+
+        font-size: 7.5px;
+
+        line-height: 1.15;
     }
 
     .calendar-summary {
@@ -5797,23 +5256,25 @@
     }
 
     .calendar-month:not(.expanded)
-    .calendar-month-grid {
-        max-height: none;
-    }
-
-    .calendar-month:not(.expanded)
     .calendar-day {
         min-height: 30px;
     }
 
     .calendar-month.expanded
     .calendar-day {
-        min-height: 70px;
+        height: 100px;
+        min-height: 100px;
+
+        padding: 5px;
     }
 
     .calendar-month.expanded
     .calendar-event {
+        padding: 3px 4px;
+
         font-size: 7px;
+
+        line-height: 1.12;
     }
 
 }
@@ -5836,12 +5297,8 @@
 
 
 /* =========================================================
-   NO JAVASCRIPT FALLBACK / LOADING
+   EMPTY / LOADING
 ========================================================= */
-
-.calendar-wrapper * {
-    box-sizing: border-box;
-}
 
 .calendar-empty-message {
     padding: 30px;
@@ -5853,30 +5310,15 @@
     font-size: 12px;
 }
 
+
 /* =========================================================
-   CALENDAR EXPANDED STATE FIX
+   UNIVERSAL CALENDAR BOX SIZING
 ========================================================= */
 
-.calendar-month.expanded .calendar-month-grid {
-    display: grid !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    max-height: none !important;
-    height: auto !important;
-    overflow: visible !important;
-}
-
-.calendar-month.expanded .calendar-weekday,
-.calendar-month.expanded .calendar-day {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-.calendar-month.expanded .calendar-event {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+.calendar-wrapper *,
+.calendar-wrapper *::before,
+.calendar-wrapper *::after {
+    box-sizing: border-box;
 }
 
     </style>
@@ -10005,43 +9447,56 @@ function loadCalendar() {
             `;
 
 
-            /* =============================================
-               EVENTS ON THIS DAY
-            ============================================= */
+/* =============================================
+   EVENTS ON THIS DAY
+============================================= */
 
-            events.forEach(function(event) {
+if (events.length) {
 
-                const eventClass =
-                    event.title
-                        .toLowerCase()
-                        .includes("exam")
-                        ||
-                    event.title
-                        .toLowerCase()
-                        .includes("seminar")
-                        ||
-                    event.title
-                        .toLowerCase()
-                        .includes("pinning")
-                        ?
-                        "important"
-                        :
-                        "";
+    html += `
+        <div class="calendar-events">
+    `;
 
 
-                html += `
+    events.forEach(function(event) {
 
-                    <div
-                        class="calendar-event ${eventClass}"
-                        title="${escapeCalendarHTML(event.title)}"
-                    >
-                        ${escapeCalendarHTML(event.title)}
-                    </div>
+        const eventClass =
+            event.title
+                .toLowerCase()
+                .includes("exam")
+                ||
+            event.title
+                .toLowerCase()
+                .includes("seminar")
+                ||
+            event.title
+                .toLowerCase()
+                .includes("pinning")
+                ?
+                "important"
+                :
+                "";
 
-                `;
 
-            });
+        html += `
 
+            <div
+                class="calendar-event ${eventClass}"
+                title="${escapeCalendarHTML(event.title)}"
+            >
+                ${escapeCalendarHTML(event.title)}
+            </div>
+
+        `;
+
+    });
+
+
+    html += `
+        </div>
+    `;
+
+}
 
             html += `
 
@@ -10244,55 +9699,41 @@ function loadCalendar() {
     `;
 
     /* =====================================================
-       KEYBOARD ACCESS
-    ===================================================== */
+   KEYBOARD ACCESS
+===================================================== */
 
-    calendarContent.addEventListener(
-        "keydown",
-        function(event) {
+calendarContent.addEventListener(
+    "keydown",
+    function(event) {
 
-            if (
-                event.key !== "Enter" &&
-                event.key !== " "
-            ) {
+        if (event.key !== " ") {
+            return;
+        }
 
-                return;
-
-            }
-
-
-            const header =
-                event.target.closest(
-                    ".calendar-month-header"
-                );
-
-
-            if (!header) {
-                return;
-            }
-
-
-            event.preventDefault();
-
-
-            const month =
-                header.closest(
-                    ".calendar-month"
-                );
-
-
-            if (!month) {
-                return;
-            }
-
-
-            toggleCalendarMonth(
-                month
+        const header =
+            event.target.closest(
+                ".calendar-month-header"
             );
 
+        if (!header) {
+            return;
         }
-    );
 
+        event.preventDefault();
+
+        const month =
+            header.closest(
+                ".calendar-month"
+            );
+
+        if (!month) {
+            return;
+        }
+
+        toggleCalendarMonth(month);
+
+    }
+);
 
     /* =====================================================
        MONTH CLICK HANDLER
@@ -10331,6 +9772,194 @@ function loadCalendar() {
 
         }
     );
+
+    /* =====================================================
+   AUTO-FIT EVENT TEXT
+   FITS ALL EVENTS INSIDE EACH DATE BOX
+===================================================== */
+
+function fitCalendarEvents(scope) {
+
+    if (!scope) {
+        return;
+    }
+
+
+    const days =
+        scope.querySelectorAll(
+            ".calendar-day.has-event"
+        );
+
+
+    days.forEach(function(day) {
+
+        const eventBox =
+            day.querySelector(
+                ".calendar-events"
+            );
+
+
+        if (!eventBox) {
+            return;
+        }
+
+
+        const events =
+            Array.from(
+                eventBox.querySelectorAll(
+                    ".calendar-event"
+                )
+            );
+
+
+        if (!events.length) {
+            return;
+        }
+
+
+        /*
+         * Determine the starting size
+         * based on the current screen.
+         */
+
+        let maxFontSize = 9;
+
+        let minFontSize = 5;
+
+
+        if (window.innerWidth <= 700) {
+
+            maxFontSize = 7.5;
+
+            minFontSize = 5;
+
+        }
+
+
+        if (window.innerWidth <= 430) {
+
+            maxFontSize = 7;
+
+            minFontSize = 4.75;
+
+        }
+
+
+        /*
+         * Reset event sizing.
+         */
+
+        events.forEach(function(event) {
+
+            event.style.fontSize =
+                maxFontSize + "px";
+
+            event.style.lineHeight =
+                "1.15";
+
+        });
+
+
+        /*
+         * Binary search for the largest
+         * font size that still fits.
+         */
+
+        let low =
+            minFontSize;
+
+        let high =
+            maxFontSize;
+
+
+        for (
+            let i = 0;
+            i < 10;
+            i++
+        ) {
+
+            const middle =
+                (low + high) / 2;
+
+
+            events.forEach(function(event) {
+
+                event.style.fontSize =
+                    middle + "px";
+
+            });
+
+
+            if (
+                eventBox.scrollHeight <=
+                eventBox.clientHeight + 1
+            ) {
+
+                low = middle;
+
+            } else {
+
+                high = middle;
+
+            }
+
+        }
+
+
+        /*
+         * Apply the final size.
+         */
+
+        const finalSize =
+            Math.max(
+                minFontSize,
+                Math.floor(
+                    low * 100
+                ) / 100
+            );
+
+
+        events.forEach(function(event) {
+
+            event.style.fontSize =
+                finalSize + "px";
+
+        });
+
+
+        /*
+         * If the text is still slightly too
+         * large because of browser rounding,
+         * reduce it a little more.
+         */
+
+        let safety = 0;
+
+
+        while (
+            eventBox.scrollHeight >
+            eventBox.clientHeight + 1 &&
+            finalSize - safety > minFontSize
+        ) {
+
+            safety += 0.25;
+
+
+            events.forEach(function(event) {
+
+                event.style.fontSize =
+                    (
+                        finalSize -
+                        safety
+                    ) + "px";
+
+            });
+
+        }
+
+    });
+
+}
 
     /* =====================================================
        TOGGLE MONTH
@@ -10458,28 +10087,53 @@ function loadCalendar() {
 
         setTimeout(function() {
 
-            const calendarRect =
-                calendarContent.getBoundingClientRect();
+    fitCalendarEvents(month);
 
-            const monthRect =
-                month.getBoundingClientRect();
+    const calendarRect =
+        calendarContent.getBoundingClientRect();
 
+    const monthRect =
+        month.getBoundingClientRect();
 
-            if (
-                monthRect.top <
-                calendarRect.top
-            ) {
+    if (
+        monthRect.top <
+        calendarRect.top
+    ) {
 
-                month.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        }, 80);
+        month.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
     }
+
+}, 120);
+
+    }
+
+    /* =====================================================
+   REFIT WHEN SCREEN SIZE CHANGES
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        const expandedMonth =
+            calendarContent.querySelector(
+                ".calendar-month.expanded"
+            );
+
+        if (!expandedMonth) {
+            return;
+        }
+
+        fitCalendarEvents(
+            expandedMonth
+        );
+
+    }
+);
 
 }
 
