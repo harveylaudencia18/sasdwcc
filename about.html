@@ -5880,6 +5880,32 @@
     font-size: 12px;
 }
 
+/* =========================================================
+   CALENDAR EXPANDED STATE FIX
+========================================================= */
+
+.calendar-month.expanded .calendar-month-grid {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.calendar-month.expanded .calendar-weekday,
+.calendar-month.expanded .calendar-day {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.calendar-month.expanded .calendar-event {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
     </style>
 
     
