@@ -4689,7 +4689,7 @@
 
     white-space: normal;
 
-    word-break: keep-all;
+    word-break: normal;
 
     overflow-wrap: normal;
 
@@ -10045,9 +10045,9 @@ calendarContent.addEventListener(
         }
     );
 
-    /* =====================================================
+/* =====================================================
    AUTO-FIT EVENT TEXT
-   FITS ALL EVENTS INSIDE EACH DATE BOX
+   WORD-BASED FITTING
 ===================================================== */
 
 function fitCalendarEvents(scope) {
@@ -10056,12 +10056,10 @@ function fitCalendarEvents(scope) {
         return;
     }
 
-
     const days =
         scope.querySelectorAll(
             ".calendar-day.has-event"
         );
-
 
     days.forEach(function(day) {
 
@@ -10070,11 +10068,9 @@ function fitCalendarEvents(scope) {
                 ".calendar-events"
             );
 
-
         if (!eventBox) {
             return;
         }
-
 
         const events =
             Array.from(
@@ -10083,59 +10079,155 @@ function fitCalendarEvents(scope) {
                 )
             );
 
-
         if (!events.length) {
             return;
         }
 
 
-        /*
-         * Determine the starting size
-         * based on the current screen.
-         */
+        /* ---------------------------------------------
+           STARTING FONT SIZE
+        --------------------------------------------- */
 
         let maxFontSize = 9;
-
-        let minFontSize = 5;
+        let minFontSize = 4.5;
 
 
         if (window.innerWidth <= 700) {
-
             maxFontSize = 7.5;
-
-            minFontSize = 5;
-
+            minFontSize = 4.5;
         }
 
 
         if (window.innerWidth <= 430) {
-
             maxFontSize = 7;
-
-            minFontSize = 4.75;
-
+            minFontSize = 4.25;
         }
 
 
-        /*
-         * Reset event sizing.
-         */
+        /* ---------------------------------------------
+           FORCE WORD-BASED WRAPPING
+        --------------------------------------------- */
 
         events.forEach(function(event) {
+
+            event.style.whiteSpace = "normal";
+            event.style.wordBreak = "normal";
+            event.style.overflowWrap = "normal";
+            event.style.hyphens = "none";
 
             event.style.fontSize =
                 maxFontSize + "px";
 
             event.style.lineHeight =
-                "1.15";
+                "1.12";
 
         });
 
 
-        /*
-         * Binary search for the largest
-         * font size that still fits.
-         */
+        /* ---------------------------------------------
+           TEST WHETHER EVERYTHING FITS
+        --------------------------------------------- */
+
+        function fits() {
+
+            /*
+             * First make sure the event container
+             * itself is not overflowing vertically.
+             */
+
+            if (
+                eventBox.scrollHeight >
+                eventBox.clientHeight + 1
+            ) {
+                return false;
+            }
+
+
+            /*
+             * Then make sure no individual word
+             * is being forced beyond the available
+             * width.
+             */
+
+            for (
+                let i = 0;
+                i < events.length;
+                i++
+            ) {
+
+                const event =
+                    events[i];
+
+                const text =
+                    event.textContent
+                        .trim()
+                        .split(/\s+/);
+
+
+                /*
+                 * Temporarily measure each word.
+                 */
+
+                const canvas =
+                    document.createElement(
+                        "canvas"
+                    );
+
+                const context =
+                    canvas.getContext(
+                        "2d"
+                    );
+
+                const computed =
+                    window.getComputedStyle(
+                        event
+                    );
+
+                context.font =
+                    `${computed.fontWeight} ${computed.fontSize} ${computed.fontFamily}`;
+
+
+                const availableWidth =
+                    event.clientWidth -
+                    parseFloat(computed.paddingLeft) -
+                    parseFloat(computed.paddingRight) -
+                    parseFloat(computed.borderLeftWidth) -
+                    parseFloat(computed.borderRightWidth);
+
+
+                for (
+                    let w = 0;
+                    w < text.length;
+                    w++
+                ) {
+
+                    const wordWidth =
+                        context.measureText(
+                            text[w]
+                        ).width;
+
+
+                    if (
+                        wordWidth >
+                        availableWidth
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+            }
+
+            return true;
+
+        }
+
+
+        /* ---------------------------------------------
+           REDUCE FONT UNTIL EVERY WORD FITS
+        --------------------------------------------- */
 
         let low =
             minFontSize;
@@ -10146,7 +10238,7 @@ function fitCalendarEvents(scope) {
 
         for (
             let i = 0;
-            i < 10;
+            i < 12;
             i++
         ) {
 
@@ -10162,10 +10254,7 @@ function fitCalendarEvents(scope) {
             });
 
 
-            if (
-                eventBox.scrollHeight <=
-                eventBox.clientHeight + 1
-            ) {
+            if (fits()) {
 
                 low = middle;
 
@@ -10178,9 +10267,9 @@ function fitCalendarEvents(scope) {
         }
 
 
-        /*
-         * Apply the final size.
-         */
+        /* ---------------------------------------------
+           FINAL FONT SIZE
+        --------------------------------------------- */
 
         const finalSize =
             Math.max(
@@ -10199,31 +10288,26 @@ function fitCalendarEvents(scope) {
         });
 
 
-        /*
-         * If the text is still slightly too
-         * large because of browser rounding,
-         * reduce it a little more.
-         */
+        /* ---------------------------------------------
+           FINAL SAFETY CHECK
+        --------------------------------------------- */
 
-        let safety = 0;
+        let safetySize =
+            finalSize;
 
 
         while (
-            eventBox.scrollHeight >
-            eventBox.clientHeight + 1 &&
-            finalSize - safety > minFontSize
+            !fits() &&
+            safetySize > minFontSize
         ) {
 
-            safety += 0.25;
+            safetySize -= 0.25;
 
 
             events.forEach(function(event) {
 
                 event.style.fontSize =
-                    (
-                        finalSize -
-                        safety
-                    ) + "px";
+                    safetySize + "px";
 
             });
 
