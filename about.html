@@ -10270,45 +10270,36 @@ function loadCalendar() {
 
     `;
 
+    /* =========================================================
+   MOBILE / DESKTOP POINTER EVENT
+========================================================= */
 
-    /* =====================================================
-       MONTH CLICK HANDLER
-       EVENT DELEGATION
-    ===================================================== */
+calendarContent.addEventListener(
+    "pointerup",
+    function (e) {
 
-    calendarContent.addEventListener(
-        "click",
-        function(event) {
-
-            const header =
-                event.target.closest(
-                    ".calendar-month-header"
-                );
-
-
-            if (!header) {
-                return;
-            }
-
-
-            const month =
-                header.closest(
-                    ".calendar-month"
-                );
-
-
-            if (!month) {
-                return;
-            }
-
-
-            toggleCalendarMonth(
-                month
+        const header =
+            e.target.closest(
+                ".calendar-month-header"
             );
 
-        }
-    );
+        if (!header) return;
 
+        /*
+         * Prevent the same interaction from
+         * being processed multiple times.
+         */
+        if (
+            e.pointerType === "mouse" &&
+            e.button !== 0
+        ) {
+            return;
+        }
+
+        toggleCalendarMonth(header);
+
+    }
+);
 
     /* =====================================================
        KEYBOARD ACCESS
@@ -10360,6 +10351,44 @@ function loadCalendar() {
         }
     );
 
+
+    /* =====================================================
+       MONTH CLICK HANDLER
+       EVENT DELEGATION
+    ===================================================== */
+
+    calendarContent.addEventListener(
+        "click",
+        function(event) {
+
+            const header =
+                event.target.closest(
+                    ".calendar-month-header"
+                );
+
+
+            if (!header) {
+                return;
+            }
+
+
+            const month =
+                header.closest(
+                    ".calendar-month"
+                );
+
+
+            if (!month) {
+                return;
+            }
+
+
+            toggleCalendarMonth(
+                month
+            );
+
+        }
+    );
 
     /* =====================================================
        TOGGLE MONTH
