@@ -12,8 +12,6 @@
 
     <title>Duty | SAS Student Portal</title>
 
-    <link rel="icon" type="image/png" href="assets/sas-logo.png">
-
     <meta
         name="description"
         content="SAS Officer Duty Portal of Divine Word College of Calapan."
@@ -31,7 +29,7 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.gstatic.com"
+        href="https://fonts.googleapis.com"
         crossorigin
     >
 
@@ -42,7 +40,7 @@
 
 
     <!-- =====================================================
-         SHARED STYLE
+         SHARED CSS
     ====================================================== -->
 
     <link
@@ -52,18 +50,21 @@
 
 
     <!-- =====================================================
-         DUTY PAGE STYLE
+         DUTY PAGE CSS
     ====================================================== -->
 
     <style>
 
         /* =====================================================
-           DUTY PAGE BACKGROUND
+           PAGE BACKGROUND
         ====================================================== */
 
         .duty-page {
+
             position: relative;
+
             min-height: 100vh;
+
             overflow: hidden;
 
             background:
@@ -75,11 +76,15 @@
                     rgba(234, 244, 255, 0.84) 100%
                 ),
                 url("assets/background.png")
-                center center / cover fixed no-repeat;
+                center center /
+                cover
+                fixed
+                no-repeat;
         }
 
 
         .duty-main {
+
             position: relative;
 
             padding:
@@ -91,6 +96,11 @@
 
 
         .duty-container {
+
+            position: relative;
+
+            z-index: 2;
+
             width:
                 min(
                     1180px,
@@ -99,37 +109,26 @@
 
             margin:
                 0 auto;
-
-            position:
-                relative;
-
-            z-index:
-                2;
         }
 
 
         /* =====================================================
-           AVAILABILITY HEADER
+           AVAILABILITY HEADING
         ====================================================== */
 
         .availability-heading {
-            display:
-                flex;
 
-            align-items:
-                center;
+            display: flex;
 
-            justify-content:
-                space-between;
+            align-items: center;
 
-            gap:
-                25px;
+            justify-content: space-between;
 
-            margin-bottom:
-                17px;
+            gap: 25px;
 
-            padding-bottom:
-                12px;
+            margin-bottom: 17px;
+
+            padding-bottom: 12px;
 
             border-bottom:
                 1px solid
@@ -143,23 +142,21 @@
 
 
         .availability-heading-left {
+
             min-width:
                 0;
         }
 
 
         .duty-section-label {
-            display:
-                flex;
 
-            align-items:
-                center;
+            display: flex;
 
-            gap:
-                7px;
+            align-items: center;
 
-            margin-bottom:
-                5px;
+            gap: 7px;
+
+            margin-bottom: 5px;
 
             color:
                 rgba(
@@ -191,6 +188,7 @@
 
 
         .duty-section-label::before {
+
             content:
                 "";
 
@@ -206,6 +204,7 @@
 
 
         .availability-title {
+
             margin:
                 0;
 
@@ -231,6 +230,7 @@
 
 
         .availability-subtitle {
+
             margin:
                 4px 0 0;
 
@@ -256,32 +256,26 @@
         ====================================================== */
 
         .availability-controls {
-            display:
-                flex;
 
-            align-items:
-                center;
+            display: flex;
 
-            justify-content:
-                flex-end;
+            align-items: center;
 
-            flex-wrap:
-                wrap;
+            justify-content: flex-end;
 
-            gap:
-                6px;
+            flex-wrap: wrap;
+
+            gap: 6px;
         }
 
 
         .duty-button {
-            display:
-                inline-flex;
 
-            align-items:
-                center;
+            display: inline-flex;
 
-            justify-content:
-                center;
+            align-items: center;
+
+            justify-content: center;
 
             min-height:
                 29px;
@@ -333,9 +327,6 @@
             backdrop-filter:
                 blur(8px);
 
-            -webkit-backdrop-filter:
-                blur(8px);
-
             transition:
                 background 0.18s ease,
                 border-color 0.18s ease,
@@ -345,6 +336,7 @@
 
 
         .duty-button:hover {
+
             transform:
                 translateY(-1px);
 
@@ -370,6 +362,7 @@
 
 
         .duty-button.primary {
+
             background:
                 rgba(
                     0,
@@ -392,6 +385,7 @@
 
 
         .duty-button.primary:hover {
+
             background:
                 rgba(
                     0,
@@ -403,6 +397,7 @@
 
 
         .duty-button.accent {
+
             background:
                 rgba(
                     255,
@@ -425,6 +420,7 @@
 
 
         .duty-button.accent:hover {
+
             background:
                 rgba(
                     255,
@@ -435,40 +431,8 @@
         }
 
 
-        .duty-button.off-duty-control {
-            background:
-                rgba(
-                    215,
-                    25,
-                    32,
-                    0.12
-                );
-
-            border-color:
-                rgba(
-                    215,
-                    25,
-                    32,
-                    0.34
-                );
-
-            color:
-                #ff868a;
-        }
-
-
-        .duty-button.off-duty-control:hover {
-            background:
-                rgba(
-                    215,
-                    25,
-                    32,
-                    0.22
-                );
-        }
-
-
         .duty-button:disabled {
+
             cursor:
                 not-allowed;
 
@@ -485,6 +449,7 @@
         ====================================================== */
 
         .duty-summary {
+
             display:
                 grid;
 
@@ -501,19 +466,23 @@
                 8px;
 
             margin-bottom:
-                21px;
+                20px;
         }
 
 
         .summary-card {
+
             position:
                 relative;
 
             min-height:
-                67px;
+                64px;
 
             padding:
-                13px 15px;
+                12px 14px;
+
+            box-sizing:
+                border-box;
 
             background:
                 rgba(
@@ -538,9 +507,6 @@
             backdrop-filter:
                 blur(10px);
 
-            -webkit-backdrop-filter:
-                blur(10px);
-
             box-shadow:
                 0 8px 22px
                 rgba(
@@ -556,16 +522,17 @@
 
 
         .summary-card::before {
+
             content:
                 "";
 
             position:
                 absolute;
 
-            left:
+            top:
                 0;
 
-            top:
+            left:
                 0;
 
             width:
@@ -580,18 +547,21 @@
 
 
         .summary-card:nth-child(2)::before {
+
             background:
                 var(--yellow);
         }
 
 
         .summary-card:nth-child(3)::before {
+
             background:
                 var(--red);
         }
 
 
         .summary-label {
+
             color:
                 rgba(
                     255,
@@ -619,6 +589,7 @@
 
 
         .summary-value {
+
             margin-top:
                 4px;
 
@@ -630,7 +601,7 @@
                 sans-serif;
 
             font-size:
-                1.30rem;
+                1.24rem;
 
             line-height:
                 1;
@@ -645,18 +616,20 @@
         ====================================================== */
 
         .status-group {
-            margin-bottom:
-                24px;
 
             position:
                 relative;
 
             z-index:
                 2;
+
+            margin-bottom:
+                22px;
         }
 
 
         .status-group-header {
+
             display:
                 flex;
 
@@ -670,11 +643,12 @@
                 15px;
 
             margin-bottom:
-                9px;
+                8px;
         }
 
 
         .status-group-title {
+
             margin:
                 0;
 
@@ -697,6 +671,7 @@
 
 
         .on-duty-title {
+
             color:
                 #ffffff;
 
@@ -712,6 +687,7 @@
 
 
         .off-duty-title {
+
             color:
                 rgba(
                     0,
@@ -723,6 +699,7 @@
 
 
         .status-count {
+
             color:
                 rgba(
                     255,
@@ -745,6 +722,7 @@
 
         .off-duty-section
         .status-count {
+
             color:
                 rgba(
                     0,
@@ -756,10 +734,11 @@
 
 
         /* =====================================================
-           OFFICER BOARD
+           OFFICER GRID
         ====================================================== */
 
         .duty-board {
+
             display:
                 grid;
 
@@ -767,13 +746,16 @@
                 repeat(
                     auto-fit,
                     minmax(
-                        250px,
+                        300px,
                         1fr
                     )
                 );
 
             gap:
-                11px;
+                9px;
+
+            align-items:
+                stretch;
         }
 
 
@@ -782,18 +764,40 @@
         ====================================================== */
 
         .duty-card {
+
             position:
                 relative;
 
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            width:
+                100%;
+
+            height:
+                154px;
+
+            min-height:
+                154px;
+
+            max-height:
+                154px;
+
             padding:
-                15px;
+                12px;
+
+            box-sizing:
+                border-box;
 
             background:
                 rgba(
                     255,
                     255,
                     255,
-                    0.38
+                    0.40
                 );
 
             border:
@@ -809,9 +813,6 @@
                 8px;
 
             backdrop-filter:
-                blur(13px);
-
-            -webkit-backdrop-filter:
                 blur(13px);
 
             box-shadow:
@@ -834,39 +835,45 @@
 
 
         .duty-card:hover {
+
             transform:
-                translateY(-3px);
+                translateY(-2px);
 
             background:
                 rgba(
                     255,
                     255,
                     255,
-                    0.55
+                    0.56
                 );
 
             box-shadow:
-                0 15px 32px
+                0 13px 28px
                 rgba(
                     0,
                     43,
                     85,
-                    0.14
+                    0.13
                 );
         }
 
 
+        /* =====================================================
+           LEFT ACCENT
+        ====================================================== */
+
         .duty-card::before {
+
             content:
                 "";
 
             position:
                 absolute;
 
-            left:
+            top:
                 0;
 
-            top:
+            left:
                 0;
 
             bottom:
@@ -885,37 +892,19 @@
         }
 
 
-        .duty-card.off-duty {
-            opacity:
-                0.73;
-        }
-
-
-        .duty-card.on-duty {
-            opacity:
-                1;
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.56
-                );
-        }
-
-
         .duty-card.on-duty::before {
+
             background:
                 #1f9d55;
         }
 
 
         /* =====================================================
-           ON DUTY BLINK
+           ON DUTY INDICATOR
         ====================================================== */
 
         .duty-card.on-duty::after {
+
             content:
                 "";
 
@@ -926,7 +915,7 @@
                 10px;
 
             right:
-                11px;
+                10px;
 
             width:
                 8px;
@@ -951,6 +940,7 @@
 
             0%,
             100% {
+
                 opacity:
                     1;
 
@@ -966,6 +956,7 @@
 
 
             50% {
+
                 opacity:
                     0.30;
 
@@ -987,36 +978,62 @@
         ====================================================== */
 
         .duty-card-top {
+
             display:
                 flex;
 
             align-items:
-                flex-start;
+                center;
 
             gap:
-                12px;
+                11px;
 
-            margin-bottom:
-                10px;
+            width:
+                100%;
+
+            height:
+                78px;
 
             min-height:
-                100px;
+                78px;
+
+            max-height:
+                78px;
+
+            margin-bottom:
+                5px;
+
+            overflow:
+                hidden;
         }
 
 
         /* =====================================================
-           UNIVERSAL OFFICER PHOTO
+           UNIVERSAL PHOTO
         ====================================================== */
 
         .duty-photo {
+
             width:
-                78px;
+                62px;
 
             height:
-                100px;
+                78px;
+
+            min-width:
+                62px;
+
+            max-width:
+                62px;
+
+            min-height:
+                78px;
+
+            max-height:
+                78px;
 
             flex:
-                0 0 78px;
+                0 0 62px;
 
             display:
                 block;
@@ -1028,7 +1045,7 @@
                 center 18%;
 
             border-radius:
-                8px;
+                7px;
 
             background:
                 #edf4fb;
@@ -1043,7 +1060,7 @@
                 );
 
             box-shadow:
-                0 4px 12px
+                0 4px 11px
                 rgba(
                     0,
                     43,
@@ -1055,6 +1072,7 @@
 
         .duty-card.on-duty
         .duty-photo {
+
             border-color:
                 rgba(
                     31,
@@ -1066,22 +1084,39 @@
 
 
         /* =====================================================
-           OFFICER INFORMATION
+           OFFICER INFO
         ====================================================== */
 
         .duty-card-info {
+
             min-width:
                 0;
 
-            padding-top:
-                2px;
+            max-width:
+                100%;
+
+            height:
+                78px;
+
+            min-height:
+                78px;
+
+            max-height:
+                78px;
+
+            overflow:
+                hidden;
 
             padding-right:
-                12px;
+                14px;
+
+            box-sizing:
+                border-box;
         }
 
 
         .duty-name {
+
             margin:
                 0;
 
@@ -1093,10 +1128,10 @@
                 sans-serif;
 
             font-size:
-                0.79rem;
+                0.74rem;
 
             line-height:
-                1.35;
+                1.28;
 
             font-weight:
                 800;
@@ -1104,12 +1139,19 @@
             letter-spacing:
                 -0.01em;
 
-            word-break:
-                break-word;
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+
+            white-space:
+                nowrap;
         }
 
 
         .duty-position {
+
             margin-top:
                 3px;
 
@@ -1121,17 +1163,186 @@
                 sans-serif;
 
             font-size:
-                0.58rem;
+                0.55rem;
 
             line-height:
-                1.4;
+                1.32;
 
             font-weight:
                 600;
 
-            word-break:
-                break-word;
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+
+            white-space:
+                nowrap;
         }
+
+
+        /* =====================================================
+           LOCATION
+        ====================================================== */
+
+   .duty-location {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    width:
+        100%;
+
+    height:
+        19px;
+
+    min-height:
+        19px;
+
+    max-height:
+        19px;
+
+    margin-top:
+        3px;
+
+    margin-bottom:
+        3px;
+
+    color:
+        #526779;
+
+    font-family:
+        "Inter",
+        sans-serif;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.2;
+
+    overflow:
+        hidden;
+}
+
+
+ .location-icon {
+
+    flex:
+        0 0 auto;
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1;
+}
+
+
+        .duty-location
+        span:last-child {
+
+            min-width:
+                0;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+
+            white-space:
+                nowrap;
+        }
+
+
+        /* =====================================================
+           LIVE TIMER
+        ====================================================== */
+
+        .duty-timer {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    width:
+        fit-content;
+
+    height:
+        20px;
+
+    min-height:
+        20px;
+
+    max-height:
+        20px;
+
+    margin-top:
+        1px;
+
+    color:
+        #147a3e;
+
+    font-family:
+        "Inter",
+        sans-serif;
+
+    font-size:
+        0.66rem;
+
+    line-height:
+        1;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.03em;
+}
+
+       .duty-timer-label {
+
+    font-size:
+        0.50rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.05em;
+
+    color:
+        #718096;
+}
+
+
+.duty-timer-value {
+
+    color:
+        #147a3e;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        800;
+}
 
 
         /* =====================================================
@@ -1139,6 +1350,7 @@
         ====================================================== */
 
         .duty-status {
+
             display:
                 inline-flex;
 
@@ -1148,11 +1360,26 @@
             gap:
                 5px;
 
+            width:
+                fit-content;
+
+            height:
+                18px;
+
+            min-height:
+                18px;
+
+            max-height:
+                18px;
+
             margin-bottom:
-                9px;
+                3px;
 
             padding:
-                4px 7px;
+                3px 6px;
+
+            box-sizing:
+                border-box;
 
             border-radius:
                 999px;
@@ -1173,17 +1400,18 @@
                 sans-serif;
 
             font-size:
-                0.49rem;
+                0.46rem;
 
             font-weight:
                 800;
 
             letter-spacing:
-                0.08em;
+                0.07em;
         }
 
 
         .duty-status::before {
+
             content:
                 "";
 
@@ -1191,6 +1419,9 @@
                 5px;
 
             height:
+                5px;
+
+            min-width:
                 5px;
 
             border-radius:
@@ -1203,6 +1434,7 @@
 
         .duty-card.on-duty
         .duty-status {
+
             background:
                 rgba(
                     31,
@@ -1218,24 +1450,23 @@
 
         .duty-card.on-duty
         .duty-status::before {
+
             background:
                 #1f9d55;
         }
 
 
         /* =====================================================
-           META
+           CARD BOTTOM
         ====================================================== */
 
-        .duty-meta {
-            display:
-                grid;
+        .duty-card-bottom {
 
-            gap:
-                5px;
+            margin-top:
+                auto;
 
             padding-top:
-                9px;
+                6px;
 
             border-top:
                 1px solid
@@ -1248,40 +1479,49 @@
         }
 
 
-        .duty-meta-row {
+        .duty-id-row {
+
             display:
                 flex;
 
             justify-content:
                 space-between;
 
+            align-items:
+                center;
+
             gap:
                 10px;
+
+            color:
+                #8a949e;
 
             font-family:
                 "Inter",
                 sans-serif;
 
             font-size:
-                0.57rem;
+                0.47rem;
+
+            line-height:
+                1;
         }
 
 
-        .duty-meta-label {
-            color:
-                #808c97;
+        .duty-id-label {
+
+            font-weight:
+                600;
         }
 
 
-        .duty-meta-value {
+        .duty-id-value {
+
             color:
                 var(--blue-deep);
 
             font-weight:
                 800;
-
-            text-align:
-                right;
         }
 
 
@@ -1291,11 +1531,12 @@
 
         .duty-loading,
         .duty-empty {
+
             grid-column:
                 1 / -1;
 
             padding:
-                40px 20px;
+                30px 20px;
 
             text-align:
                 center;
@@ -1323,9 +1564,6 @@
             backdrop-filter:
                 blur(10px);
 
-            -webkit-backdrop-filter:
-                blur(10px);
-
             color:
                 rgba(
                     0,
@@ -1348,6 +1586,7 @@
         ====================================================== */
 
         .duty-overlay {
+
             position:
                 fixed;
 
@@ -1379,23 +1618,22 @@
 
             backdrop-filter:
                 blur(7px);
-
-            -webkit-backdrop-filter:
-                blur(7px);
         }
 
 
         .duty-overlay.is-open {
+
             display:
                 flex;
         }
 
 
         /* =====================================================
-           MODAL
+           MODAL BOX
         ====================================================== */
 
         .duty-modal-box {
+
             position:
                 relative;
 
@@ -1444,6 +1682,7 @@
 
 
         .duty-modal-box::before {
+
             content:
                 "";
 
@@ -1475,6 +1714,7 @@
         @keyframes dutyModalIn {
 
             from {
+
                 opacity:
                     0;
 
@@ -1485,6 +1725,7 @@
 
 
             to {
+
                 opacity:
                     1;
 
@@ -1497,6 +1738,7 @@
 
 
         .duty-modal-title {
+
             margin:
                 0;
 
@@ -1519,6 +1761,7 @@
 
 
         .duty-modal-subtitle {
+
             margin:
                 6px 0 19px;
 
@@ -1542,12 +1785,14 @@
         ====================================================== */
 
         .duty-form-group {
+
             margin-bottom:
                 13px;
         }
 
 
         .duty-form-label {
+
             display:
                 block;
 
@@ -1574,6 +1819,7 @@
 
         .duty-form-input,
         .duty-form-select {
+
             width:
                 100%;
 
@@ -1610,6 +1856,7 @@
 
         .duty-form-input:focus,
         .duty-form-select:focus {
+
             border-color:
                 var(--blue);
 
@@ -1625,6 +1872,7 @@
 
 
         .duty-modal-actions {
+
             display:
                 flex;
 
@@ -1638,6 +1886,7 @@
 
         .duty-modal-actions
         .duty-button {
+
             flex:
                 1;
 
@@ -1654,6 +1903,7 @@
 
         .duty-modal-actions
         .duty-button:hover {
+
             background:
                 #edf2f7;
 
@@ -1664,6 +1914,7 @@
 
         .duty-modal-actions
         .duty-button.primary {
+
             color:
                 #ffffff;
 
@@ -1677,6 +1928,7 @@
 
         .duty-modal-actions
         .duty-button.primary:hover {
+
             background:
                 var(--blue-dark);
 
@@ -1689,93 +1941,13 @@
 
 
         /* =====================================================
-           MESSAGE
-        ====================================================== */
-
-        .duty-message {
-            position:
-                fixed;
-
-            left:
-                50%;
-
-            bottom:
-                22px;
-
-            z-index:
-                10000;
-
-            max-width:
-                calc(
-                    100% - 30px
-                );
-
-            padding:
-                10px 15px;
-
-            background:
-                var(--blue-deep);
-
-            color:
-                #ffffff;
-
-            border-left:
-                3px solid
-                var(--yellow);
-
-            border-radius:
-                6px;
-
-            font-family:
-                "Inter",
-                sans-serif;
-
-            font-size:
-                0.68rem;
-
-            font-weight:
-                600;
-
-            text-align:
-                center;
-
-            opacity:
-                0;
-
-            transform:
-                translate(
-                    -50%,
-                    25px
-                );
-
-            pointer-events:
-                none;
-
-            transition:
-                opacity 0.22s ease,
-                transform 0.22s ease;
-        }
-
-
-        .duty-message.show {
-            opacity:
-                1;
-
-            transform:
-                translate(
-                    -50%,
-                    0
-                );
-        }
-
-
-        /* =====================================================
            MOBILE
         ====================================================== */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
 
             .availability-heading {
+
                 align-items:
                     flex-start;
 
@@ -1788,14 +1960,22 @@
 
 
             .availability-controls {
+
                 justify-content:
                     flex-start;
             }
 
 
-            .duty-summary {
+            .duty-board {
+
                 grid-template-columns:
-                    1fr;
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
             }
 
         }
@@ -1804,6 +1984,7 @@
         @media (max-width: 650px) {
 
             .duty-container {
+
                 width:
                     calc(
                         100% - 28px
@@ -1812,18 +1993,21 @@
 
 
             .duty-main {
+
                 padding:
                     26px 0 60px;
             }
 
 
             .availability-title {
+
                 font-size:
                     1.35rem;
             }
 
 
             .availability-controls {
+
                 gap:
                     5px;
             }
@@ -1831,6 +2015,7 @@
 
             .availability-controls
             .duty-button {
+
                 min-height:
                     28px;
 
@@ -1842,13 +2027,22 @@
             }
 
 
+            .duty-summary {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
             .duty-board {
+
                 grid-template-columns:
                     1fr;
             }
 
 
             .duty-modal-actions {
+
                 flex-direction:
                     column;
             }
@@ -1859,38 +2053,105 @@
         @media (max-width: 430px) {
 
             .availability-title {
+
                 font-size:
                     1.25rem;
             }
 
 
-            .duty-photo {
-                width:
-                    72px;
+            .duty-card,
+            .duty-card.on-duty {
 
                 height:
-                    94px;
+                    150px;
 
-                flex-basis:
-                    72px;
+                min-height:
+                    150px;
+
+                max-height:
+                    150px;
+
+                padding:
+                    11px;
             }
 
 
             .duty-card-top {
+
+                height:
+                    74px;
+
                 min-height:
-                    94px;
+                    74px;
+
+                max-height:
+                    74px;
+            }
+
+
+            .duty-photo {
+
+                width:
+                    58px;
+
+                height:
+                    74px;
+
+                min-width:
+                    58px;
+
+                max-width:
+                    58px;
+
+                min-height:
+                    74px;
+
+                max-height:
+                    74px;
+
+                flex-basis:
+                    58px;
+            }
+
+
+            .duty-card-info {
+
+                height:
+                    74px;
+
+                min-height:
+                    74px;
+
+                max-height:
+                    74px;
             }
 
 
             .duty-name {
+
                 font-size:
-                    0.75rem;
+                    0.73rem;
             }
 
 
             .duty-position {
+
                 font-size:
-                    0.55rem;
+                    0.54rem;
+            }
+
+
+            .duty-location {
+
+                font-size:
+                    0.49rem;
+            }
+
+
+            .duty-timer {
+
+                font-size:
+                    0.56rem;
             }
 
         }
@@ -2064,7 +2325,7 @@
 
 
     <!-- =====================================================
-         MAIN DUTY
+         MAIN
     ====================================================== -->
 
     <main class="duty-page">
@@ -2074,12 +2335,12 @@
             <div class="duty-container">
 
 
+                <!-- =================================================
+                     AVAILABILITY
+                ================================================== -->
+
                 <section class="availability-section">
 
-
-                    <!-- =================================================
-                         TITLE + CONTROLS
-                    ================================================== -->
 
                     <div class="availability-heading">
 
@@ -2132,16 +2393,6 @@
                                 id="officerLoginButton"
                             >
                                 Officer Log-In
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="duty-button off-duty-control"
-                                id="officerLogoutButton"
-                                style="display:none;"
-                            >
-                                OFF DUTY
                             </button>
 
                         </div>
@@ -2284,7 +2535,6 @@
                         </div>
 
                     </section>
-
 
                 </section>
 
@@ -2599,6 +2849,53 @@
 
 
     <!-- =====================================================
+         END DUTY MODAL
+    ====================================================== -->
+
+    <div
+        class="duty-overlay"
+        id="endDutyModal"
+    >
+
+        <div class="duty-modal-box">
+
+            <h2 class="duty-modal-title">
+                End Duty
+            </h2>
+
+
+            <p class="duty-modal-subtitle">
+                You are currently on duty. Are you sure you want to end your duty?
+            </p>
+
+
+            <div class="duty-modal-actions">
+
+                <button
+                    type="button"
+                    class="duty-button"
+                    id="closeEndDutyButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    class="duty-button primary"
+                    id="confirmEndDutyButton"
+                >
+                    End Duty
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
          TRANSPARENCY MODAL
     ====================================================== -->
 
@@ -2692,6 +2989,9 @@
         let transparencyData =
             [];
 
+        let timerInterval =
+            null;
+
 
         /* =====================================================
            ELEMENTS
@@ -2745,6 +3045,12 @@
             );
 
 
+        const endDutyModal =
+            document.getElementById(
+                "endDutyModal"
+            );
+
+
         const transparencyModal =
             document.getElementById(
                 "transparencyModal"
@@ -2754,12 +3060,6 @@
         const officerLoginButton =
             document.getElementById(
                 "officerLoginButton"
-            );
-
-
-        const officerLogoutButton =
-            document.getElementById(
-                "officerLogoutButton"
             );
 
 
@@ -2936,10 +3236,23 @@
             ).forEach(
                 function (key) {
 
-                    url.searchParams.set(
-                        key,
-                        params[key]
-                    );
+                    const value =
+                        params[key];
+
+
+                    if (
+                        value !==
+                        undefined &&
+                        value !==
+                        null
+                    ) {
+
+                        url.searchParams.set(
+                            key,
+                            String(value)
+                        );
+
+                    }
 
                 }
             );
@@ -2950,7 +3263,10 @@
                     url.toString(),
                     {
                         method:
-                            "GET"
+                            "GET",
+
+                        cache:
+                            "no-store"
                     }
                 );
 
@@ -3078,7 +3394,7 @@
 
 
         /* =====================================================
-           HTML ESCAPE
+           ESCAPE HTML
         ====================================================== */
 
         function escapeHtml(
@@ -3119,6 +3435,384 @@
             return escapeHtml(
                 value
             );
+
+        }
+
+
+        /* =====================================================
+           DUTY STATUS HELPER
+        ====================================================== */
+
+        function isOfficerOnDuty(
+            officer
+        ) {
+
+            const value =
+                officer?.isOnDuty;
+
+
+            return (
+                value === true ||
+                value === 1 ||
+                value === "1" ||
+                String(value).toLowerCase() ===
+                "true"
+            );
+
+        }
+
+
+        /* =====================================================
+           DATE PARSER
+        ====================================================== */
+
+        function parseDutyStartTime(
+            startTime
+        ) {
+
+            if (
+                !startTime
+            ) {
+
+                return null;
+
+            }
+
+
+            if (
+                startTime instanceof Date
+            ) {
+
+                return Number.isNaN(
+                    startTime.getTime()
+                )
+                    ? null
+                    : startTime;
+
+            }
+
+
+            if (
+                typeof startTime ===
+                "number"
+            ) {
+
+                const numericDate =
+                    new Date(
+                        startTime
+                    );
+
+
+                return Number.isNaN(
+                    numericDate.getTime()
+                )
+                    ? null
+                    : numericDate;
+
+            }
+
+
+            const value =
+                String(
+                    startTime
+                ).trim();
+
+
+            if (
+                !value
+            ) {
+
+                return null;
+
+            }
+
+
+            let date =
+                new Date(
+                    value
+                );
+
+
+            if (
+                !Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return date;
+
+            }
+
+
+            const match =
+                value.match(
+                    /^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i
+                );
+
+
+            if (
+                match
+            ) {
+
+                const month =
+                    Number(
+                        match[1]
+                    );
+
+
+                const day =
+                    Number(
+                        match[2]
+                    );
+
+
+                const year =
+                    Number(
+                        match[3]
+                    );
+
+
+                let hour =
+                    Number(
+                        match[4]
+                    );
+
+
+                const minute =
+                    Number(
+                        match[5]
+                    );
+
+
+                const second =
+                    Number(
+                        match[6] ||
+                        0
+                    );
+
+
+                const meridiem =
+                    match[7]
+                        ? match[7].toUpperCase()
+                        : "";
+
+
+                if (
+                    meridiem === "PM" &&
+                    hour < 12
+                ) {
+
+                    hour += 12;
+
+                }
+
+
+                if (
+                    meridiem === "AM" &&
+                    hour === 12
+                ) {
+
+                    hour = 0;
+
+                }
+
+
+                date =
+                    new Date(
+                        year,
+                        month - 1,
+                        day,
+                        hour,
+                        minute,
+                        second
+                    );
+
+
+                return Number.isNaN(
+                    date.getTime()
+                )
+                    ? null
+                    : date;
+
+            }
+
+
+            return null;
+
+        }
+
+
+        /* =====================================================
+           FORMAT DUTY TIMER
+        ====================================================== */
+
+        function formatDutyTime(
+            startTime
+        ) {
+
+            const start =
+                parseDutyStartTime(
+                    startTime
+                );
+
+
+            if (
+                !start
+            ) {
+
+                return "00:00:00";
+
+            }
+
+
+            const now =
+                new Date();
+
+
+            let elapsed =
+                Math.floor(
+                    (
+                        now.getTime() -
+                        start.getTime()
+                    ) / 1000
+                );
+
+
+            if (
+                elapsed < 0
+            ) {
+
+                elapsed = 0;
+
+            }
+
+
+            const hours =
+                Math.floor(
+                    elapsed / 3600
+                );
+
+
+            const minutes =
+                Math.floor(
+                    (
+                        elapsed % 3600
+                    ) / 60
+                );
+
+
+            const seconds =
+                elapsed % 60;
+
+
+            return [
+
+                String(
+                    hours
+                ).padStart(
+                    2,
+                    "0"
+                ),
+
+                String(
+                    minutes
+                ).padStart(
+                    2,
+                    "0"
+                ),
+
+                String(
+                    seconds
+                ).padStart(
+                    2,
+                    "0"
+                )
+
+            ].join(
+                ":"
+            );
+
+        }
+
+
+        /* =====================================================
+           UPDATE ALL TIMERS
+        ====================================================== */
+
+        function updateDutyTimers() {
+
+            document
+                .querySelectorAll(
+                    ".duty-timer[data-start-time]"
+                )
+                .forEach(
+                    function (
+                        timer
+                    ) {
+
+                        const startTime =
+                            timer.getAttribute(
+                                "data-start-time"
+                            );
+
+
+                        if (
+                            !startTime
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const value =
+                            formatDutyTime(
+                                startTime
+                            );
+
+
+                        const valueElement =
+                            timer.querySelector(
+                                ".duty-timer-value"
+                            );
+
+
+                        if (
+                            valueElement
+                        ) {
+
+                            valueElement.textContent =
+                                value;
+
+                        }
+
+                    }
+                );
+
+        }
+
+
+        function startTimerLoop() {
+
+            if (
+                timerInterval
+            ) {
+
+                clearInterval(
+                    timerInterval
+                );
+
+            }
+
+
+            updateDutyTimers();
+
+
+            timerInterval =
+                setInterval(
+                    updateDutyTimers,
+                    1000
+                );
 
         }
 
@@ -3166,6 +3860,9 @@
                 );
 
 
+                startTimerLoop();
+
+
             } catch (error) {
 
                 console.error(
@@ -3203,8 +3900,8 @@
         ) {
 
             const onDuty =
-                Boolean(
-                    officer.isOnDuty
+                isOfficerOnDuty(
+                    officer
                 );
 
 
@@ -3239,22 +3936,80 @@
                 "SAS Officer";
 
 
-            const monthlyHours =
-                Number(
-                    officer.monthlyHours ||
-                    0
-                ).toFixed(
-                    2
-                );
+            const location =
+                onDuty
+                    ? String(
+                        officer.location ||
+                        ""
+                    ).trim()
+                    : "";
 
 
-            const overallHours =
-                Number(
-                    officer.overallHours ||
-                    0
-                ).toFixed(
-                    2
-                );
+            const startTime =
+                onDuty
+                    ? String(
+                        officer.startTime ||
+                        ""
+                    ).trim()
+                    : "";
+
+
+            const officerId =
+                officer.id ||
+                "—";
+
+
+            const locationMarkup =
+                (
+                    onDuty &&
+                    location
+                )
+                    ? `
+                        <div class="duty-location">
+
+                            <span class="location-icon">
+                               📍
+                            </span>
+
+                            <span>
+                                ${escapeHtml(
+                                    location
+                                )}
+                            </span>
+
+                        </div>
+                    `
+                    : "";
+
+
+            const timerMarkup =
+                (
+                    onDuty &&
+                    startTime
+                )
+                    ? `
+                        <div
+                            class="duty-timer"
+                            data-start-time="${escapeAttribute(
+                                startTime
+                            )}"
+                        >
+
+                            <span class="duty-timer-label">
+                                ON DUTY FOR
+                            </span>
+
+                            <span class="duty-timer-value">
+                                ${escapeHtml(
+                                    formatDutyTime(
+                                        startTime
+                                    )
+                                )}
+                            </span>
+
+                        </div>
+                    `
+                    : "";
 
 
             article.innerHTML = `
@@ -3276,6 +4031,7 @@
 
                     <div class="duty-card-info">
 
+
                         <h3 class="duty-name">
                             ${escapeHtml(name)}
                         </h3>
@@ -3284,6 +4040,13 @@
                         <div class="duty-position">
                             ${escapeHtml(position)}
                         </div>
+
+
+                        ${locationMarkup}
+
+
+                        ${timerMarkup}
+
 
                     </div>
 
@@ -3302,31 +4065,19 @@
                 </div>
 
 
-                <div class="duty-meta">
+                <div class="duty-card-bottom">
 
-                    <div class="duty-meta-row">
+                    <div class="duty-id-row">
 
-                        <span class="duty-meta-label">
-                            Monthly Hours
+                        <span class="duty-id-label">
+                            Officer ID
                         </span>
 
 
-                        <span class="duty-meta-value">
-                            ${monthlyHours} hrs
-                        </span>
-
-                    </div>
-
-
-                    <div class="duty-meta-row">
-
-                        <span class="duty-meta-label">
-                            Overall Hours
-                        </span>
-
-
-                        <span class="duty-meta-value">
-                            ${overallHours} hrs
+                        <span class="duty-id-value">
+                            ${escapeHtml(
+                                officerId
+                            )}
                         </span>
 
                     </div>
@@ -3355,8 +4106,8 @@
                         officer
                     ) {
 
-                        return Boolean(
-                            officer.isOnDuty
+                        return isOfficerOnDuty(
+                            officer
                         );
 
                     }
@@ -3369,8 +4120,8 @@
                         officer
                     ) {
 
-                        return !Boolean(
-                            officer.isOnDuty
+                        return !isOfficerOnDuty(
+                            officer
                         );
 
                     }
@@ -3491,8 +4242,8 @@
                         officer
                     ) {
 
-                        return Boolean(
-                            officer.isOnDuty
+                        return isOfficerOnDuty(
+                            officer
                         );
 
                     }
@@ -3506,11 +4257,13 @@
                         officer
                     ) {
 
-                        return sum +
+                        return (
+                            sum +
                             Number(
                                 officer.overallHours ||
                                 0
-                            );
+                            )
+                        );
 
                     },
                     0
@@ -3613,7 +4366,103 @@
 
 
                 currentOfficer =
-                    data.officer;
+                    data.officer ||
+                    data.user ||
+                    data.account ||
+                    null;
+
+
+                if (
+                    !currentOfficer
+                ) {
+
+                    currentOfficer = {
+
+                        id:
+                            data.officerId ||
+                            data.id ||
+                            data.ID ||
+                            username,
+
+                        officerId:
+                            data.officerId ||
+                            data.id ||
+                            data.ID ||
+                            username,
+
+                        username:
+                            data.username ||
+                            username,
+
+                        name:
+                            data.name ||
+                            username,
+
+                        position:
+                            data.position ||
+                            "SAS Officer",
+
+                        photoUrl:
+                            data.photoUrl ||
+                            ""
+
+                    };
+
+                }
+
+
+                /*
+                 * Refresh transparency data after login.
+                 *
+                 * This determines whether the officer
+                 * is currently ON DUTY or OFF DUTY.
+                 */
+
+                const transparency =
+                    await apiRequest(
+                        "getTransparency"
+                    );
+
+
+                if (
+                    !transparency.success
+                ) {
+
+                    throw new Error(
+                        transparency.message ||
+                        "Unable to verify duty status."
+                    );
+
+                }
+
+
+                const officers =
+                    transparency.officers ||
+                    [];
+
+
+                const officerId =
+                    currentOfficer.id ||
+                    currentOfficer.officerId ||
+                    currentOfficer.ID ||
+                    currentOfficer.username;
+
+
+                const matchedOfficer =
+                    officers.find(
+                        function (
+                            officer
+                        ) {
+
+                            return String(
+                                officer.id
+                            ).trim() ===
+                            String(
+                                officerId
+                            ).trim();
+
+                        }
+                    );
 
 
                 loginModal.classList.remove(
@@ -3621,25 +4470,72 @@
                 );
 
 
-                officerLoginButton.style.display =
-                    "none";
+                /*
+                 * ON DUTY
+                 *
+                 * The officer must log in again
+                 * before being allowed to end duty.
+                 */
+
+                if (
+                    matchedOfficer &&
+                    isOfficerOnDuty(
+                        matchedOfficer
+                    )
+                ) {
+
+                    currentOfficer =
+                        matchedOfficer;
 
 
-                officerLogoutButton.style.display =
-                    "inline-flex";
+                    currentDuty = {
+
+                        officerId:
+                            matchedOfficer.id,
+
+                        location:
+                            matchedOfficer.location ||
+                            "",
+
+                        startTime:
+                            matchedOfficer.startTime ||
+                            ""
+
+                    };
 
 
-                resetStartDutyForm();
+                    endDutyModal.classList.add(
+                        "is-open"
+                    );
 
 
-                startDutyModal.classList.add(
-                    "is-open"
-                );
+                    showMessage(
+                        "You are currently on duty."
+                    );
 
 
-                showMessage(
-                    "Login successful."
-                );
+                } else {
+
+                    /*
+                     * OFF DUTY
+                     *
+                     * Normal login proceeds to
+                     * Start Duty.
+                     */
+
+                    resetStartDutyForm();
+
+
+                    startDutyModal.classList.add(
+                        "is-open"
+                    );
+
+
+                    showMessage(
+                        "Login successful."
+                    );
+
+                }
 
 
             } catch (error) {
@@ -3670,26 +4566,38 @@
 
 
         /* =====================================================
-           RESET START DUTY FORM
+           RESET LOCATION
         ====================================================== */
 
         function resetStartDutyForm() {
 
-            document.getElementById(
-                "dutyLocation"
-            ).value =
+            const locationSelect =
+                document.getElementById(
+                    "dutyLocation"
+                );
+
+
+            const customInput =
+                document.getElementById(
+                    "customLocation"
+                );
+
+
+            const customGroup =
+                document.getElementById(
+                    "customLocationGroup"
+                );
+
+
+            locationSelect.value =
                 "";
 
 
-            document.getElementById(
-                "customLocation"
-            ).value =
+            customInput.value =
                 "";
 
 
-            document.getElementById(
-                "customLocationGroup"
-            ).style.display =
+            customGroup.style.display =
                 "none";
 
         }
@@ -3714,10 +4622,20 @@
             }
 
 
-            let location =
+            const locationSelect =
                 document.getElementById(
                     "dutyLocation"
-                ).value;
+                );
+
+
+            const customLocationInput =
+                document.getElementById(
+                    "customLocation"
+                );
+
+
+            let location =
+                locationSelect.value.trim();
 
 
             if (
@@ -3726,9 +4644,7 @@
             ) {
 
                 location =
-                    document.getElementById(
-                        "customLocation"
-                    ).value.trim();
+                    customLocationInput.value.trim();
 
             }
 
@@ -3739,6 +4655,26 @@
 
                 showMessage(
                     "Please select a duty location."
+                );
+
+                return;
+
+            }
+
+
+            const officerId =
+                currentOfficer.id ||
+                currentOfficer.officerId ||
+                currentOfficer.ID ||
+                currentOfficer.username;
+
+
+            if (
+                !officerId
+            ) {
+
+                showMessage(
+                    "Officer ID is missing."
                 );
 
                 return;
@@ -3766,11 +4702,13 @@
                     await apiRequest(
                         "startDuty",
                         {
+
                             officerId:
-                                currentOfficer.id,
+                                officerId,
 
                             location:
                                 location
+
                         }
                     );
 
@@ -3788,7 +4726,19 @@
 
 
                 currentDuty =
-                    data.duty;
+                    data.duty ||
+                    {
+
+                        officerId:
+                            officerId,
+
+                        location:
+                            location,
+
+                        startTime:
+                            new Date().toISOString()
+
+                    };
 
 
                 startDutyModal.classList.remove(
@@ -3796,11 +4746,27 @@
                 );
 
 
+                /*
+                 * Clear local login state after
+                 * successfully starting duty.
+                 *
+                 * The officer must log in again
+                 * to end duty.
+                 */
+
+                currentOfficer =
+                    null;
+
+
+                currentDuty =
+                    null;
+
+
                 await loadDutyBoard();
 
 
                 showMessage(
-                    "You are now on duty."
+                    "You are now on duty. Log in again to end duty."
                 );
 
 
@@ -3841,42 +4807,57 @@
                 !currentOfficer
             ) {
 
+                showMessage(
+                    "Please log in first."
+                );
+
                 return;
 
             }
 
 
-            const confirmed =
-                confirm(
-                    "Are you sure you want to end your duty?"
+            const button =
+                document.getElementById(
+                    "confirmEndDutyButton"
                 );
 
 
-            if (
-                !confirmed
-            ) {
-
-                return;
-
-            }
-
-
-            officerLogoutButton.disabled =
+            button.disabled =
                 true;
 
 
-            officerLogoutButton.textContent =
+            button.textContent =
                 "Ending...";
 
 
             try {
 
+                const officerId =
+                    currentOfficer.id ||
+                    currentOfficer.officerId ||
+                    currentOfficer.ID ||
+                    currentOfficer.username;
+
+
+                if (
+                    !officerId
+                ) {
+
+                    throw new Error(
+                        "Officer ID is missing."
+                    );
+
+                }
+
+
                 const data =
                     await apiRequest(
                         "endDuty",
                         {
+
                             officerId:
-                                currentOfficer.id
+                                officerId
+
                         }
                     );
 
@@ -3893,20 +4874,17 @@
                 }
 
 
+                endDutyModal.classList.remove(
+                    "is-open"
+                );
+
+
                 currentOfficer =
                     null;
 
 
                 currentDuty =
                     null;
-
-
-                officerLogoutButton.style.display =
-                    "none";
-
-
-                officerLoginButton.style.display =
-                    "inline-flex";
 
 
                 await loadDutyBoard();
@@ -3932,12 +4910,12 @@
 
             } finally {
 
-                officerLogoutButton.disabled =
+                button.disabled =
                     false;
 
 
-                officerLogoutButton.textContent =
-                    "OFF DUTY";
+                button.textContent =
+                    "End Duty";
 
             }
 
@@ -4006,12 +4984,60 @@
                 }
 
 
+                const sorted =
+                    [...transparencyData].sort(
+                        function (
+                            a,
+                            b
+                        ) {
+
+                            return (
+                                Number(
+                                    b.overallHours ||
+                                    0
+                                ) -
+                                Number(
+                                    a.overallHours ||
+                                    0
+                                )
+                            );
+
+                        }
+                    );
+
+
                 content.innerHTML =
-                    transparencyData
+                    sorted
                         .map(
                             function (
                                 officer
                             ) {
+
+                                const monthly =
+                                    Number(
+                                        officer.monthlyHours ||
+                                        0
+                                    ).toFixed(
+                                        2
+                                    );
+
+
+                                const overall =
+                                    Number(
+                                        officer.overallHours ||
+                                        0
+                                    ).toFixed(
+                                        2
+                                    );
+
+
+                                const status =
+                                    isOfficerOnDuty(
+                                        officer
+                                    )
+                                        ? "ON DUTY"
+                                        : "OFF DUTY";
+
 
                                 return `
 
@@ -4027,13 +5053,20 @@
                                         "
                                     >
 
-                                        <div>
+                                        <div
+                                            style="
+                                                min-width:0;
+                                            "
+                                        >
 
                                             <div
                                                 style="
                                                     font-weight:800;
                                                     color:#003b73;
                                                     font-size:.76rem;
+                                                    overflow:hidden;
+                                                    text-overflow:ellipsis;
+                                                    white-space:nowrap;
                                                 "
                                             >
                                                 ${escapeHtml(
@@ -4056,37 +5089,84 @@
                                                 )}
                                             </div>
 
+
+                                            <div
+                                                style="
+                                                    margin-top:4px;
+                                                    font-size:.58rem;
+                                                    font-weight:800;
+                                                    color:${
+                                                        isOfficerOnDuty(
+                                                            officer
+                                                        )
+                                                            ? "#147a3e"
+                                                            : "#8a949e"
+                                                    };
+                                                "
+                                            >
+                                                ${status}
+                                            </div>
+
                                         </div>
 
 
                                         <div
                                             style="
+                                                display:grid;
+                                                grid-template-columns:repeat(2,minmax(65px,auto));
+                                                gap:16px;
                                                 text-align:right;
-                                                font-size:.73rem;
+                                                flex-shrink:0;
                                             "
                                         >
 
-                                            <strong
-                                                style="
-                                                    color:#0057a8;
-                                                "
-                                            >
-                                                ${Number(
-                                                    officer.overallHours ||
-                                                    0
-                                                ).toFixed(2)}
-                                                hrs
-                                            </strong>
+                                            <div>
+
+                                                <strong
+                                                    style="
+                                                        color:#0057a8;
+                                                        font-size:.72rem;
+                                                    "
+                                                >
+                                                    ${monthly}
+                                                </strong>
 
 
-                                            <div
-                                                style="
-                                                    color:#718096;
-                                                    margin-top:2px;
-                                                    font-size:.61rem;
-                                                "
-                                            >
-                                                overall
+                                                <div
+                                                    style="
+                                                        color:#718096;
+                                                        margin-top:2px;
+                                                        font-size:.55rem;
+                                                    "
+                                                >
+                                                    monthly
+                                                </div>
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong
+                                                    style="
+                                                        color:#003b73;
+                                                        font-size:.72rem;
+                                                    "
+                                                >
+                                                    ${overall}
+                                                </strong>
+
+
+                                                <div
+                                                    style="
+                                                        color:#718096;
+                                                        margin-top:2px;
+                                                        font-size:.55rem;
+                                                    "
+                                                >
+                                                    overall
+                                                </div>
+
                                             </div>
 
                                         </div>
@@ -4098,7 +5178,6 @@
                             }
                         )
                         .join("");
-
 
             } catch (error) {
 
@@ -4125,7 +5204,7 @@
 
 
         /* =====================================================
-           MODAL CLOSE
+           CLOSE MODAL
         ====================================================== */
 
         function closeModal(
@@ -4146,6 +5225,29 @@
         officerLoginButton.addEventListener(
             "click",
             function () {
+
+                /*
+                 * Always require fresh login.
+                 */
+
+                currentOfficer =
+                    null;
+
+                currentDuty =
+                    null;
+
+
+                document.getElementById(
+                    "loginUsername"
+                ).value =
+                    "";
+
+
+                document.getElementById(
+                    "loginPassword"
+                ).value =
+                    "";
+
 
                 loginModal.classList.add(
                     "is-open"
@@ -4202,7 +5304,7 @@
 
 
         /* =====================================================
-           LOGIN ENTER
+           ENTER LOGIN
         ====================================================== */
 
         document
@@ -4244,12 +5346,19 @@
                         startDutyModal
                     );
 
+
+                    currentOfficer =
+                        null;
+
+                    currentDuty =
+                        null;
+
                 }
             );
 
 
         /* =====================================================
-           START DUTY
+           CONFIRM START DUTY
         ====================================================== */
 
         document
@@ -4263,7 +5372,48 @@
 
 
         /* =====================================================
-           CUSTOM LOCATION
+           CLOSE END DUTY
+        ====================================================== */
+
+        document
+            .getElementById(
+                "closeEndDutyButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    closeModal(
+                        endDutyModal
+                    );
+
+
+                    currentOfficer =
+                        null;
+
+                    currentDuty =
+                        null;
+
+                }
+            );
+
+
+        /* =====================================================
+           CONFIRM END DUTY
+        ====================================================== */
+
+        document
+            .getElementById(
+                "confirmEndDutyButton"
+            )
+            .addEventListener(
+                "click",
+                endDuty
+            );
+
+
+        /* =====================================================
+           LOCATION SELECT
         ====================================================== */
 
         document
@@ -4288,6 +5438,11 @@
                         customGroup.style.display =
                             "block";
 
+
+                        document.getElementById(
+                            "customLocation"
+                        ).focus();
+
                     } else {
 
                         customGroup.style.display =
@@ -4300,22 +5455,37 @@
 
 
         /* =====================================================
-           OFF DUTY
-        ====================================================== */
-
-        officerLogoutButton.addEventListener(
-            "click",
-            endDuty
-        );
-
-
-        /* =====================================================
            REFRESH
         ====================================================== */
 
         refreshDutyButton.addEventListener(
             "click",
-            loadDutyBoard
+            async function () {
+
+                refreshDutyButton.disabled =
+                    true;
+
+
+                refreshDutyButton.textContent =
+                    "Refreshing...";
+
+
+                try {
+
+                    await loadDutyBoard();
+
+                } finally {
+
+                    refreshDutyButton.disabled =
+                        false;
+
+
+                    refreshDutyButton.textContent =
+                        "Refresh";
+
+                }
+
+            }
         );
 
 
@@ -4430,6 +5600,13 @@
 
                         }
                     );
+
+
+                currentOfficer =
+                    null;
+
+                currentDuty =
+                    null;
 
             }
         );
