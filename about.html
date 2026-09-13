@@ -4815,200 +4815,1069 @@
 
         }
 
-    /* =========================================================
-   CALENDAR FIX — MONTH BOXES + EXPAND
+/* =========================================================
+   SAS SCHOOL CALENDAR
+   ACADEMIC YEAR 2026–2027
+   MODERN RED / BLUE / YELLOW / WHITE DESIGN
+========================================================= */
+
+.calendar-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SEMESTER HEADER
+========================================================= */
+
+.calendar-semester-header {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 20px 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe4ee;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 24px rgba(0, 59, 115, 0.08);
+
+    overflow: hidden;
+}
+
+.calendar-semester-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+
+    background: linear-gradient(
+        to bottom,
+        #0057a8 0%,
+        #0057a8 55%,
+        #d71920 55%,
+        #d71920 100%
+    );
+}
+
+.calendar-semester-header::after {
+    content: "";
+    position: absolute;
+    right: -45px;
+    top: -45px;
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 210, 0, 0.16);
+
+    pointer-events: none;
+}
+
+.calendar-semester-kicker {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 4px;
+
+    color: #d71920;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.calendar-semester-title {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    color: #003b73;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+.calendar-semester-note {
+    position: relative;
+    z-index: 1;
+
+    margin: 7px 0 0;
+
+    max-width: 700px;
+
+    color: #647587;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SEMESTER SECTION
+========================================================= */
+
+.calendar-semester {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.calendar-semester:last-child {
+    margin-bottom: 0;
+}
+
+.calendar-semester-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 0 13px;
+}
+
+.calendar-semester-label::before {
+    content: "";
+
+    width: 7px;
+    height: 27px;
+
+    border-radius: 4px;
+
+    background: #0057a8;
+}
+
+.calendar-semester-label.second-semester::before {
+    background: #d71920;
+}
+
+.calendar-semester-label-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.calendar-semester-label-title {
+    margin: 0;
+
+    color: #003b73;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+.calendar-semester-label-note {
+    margin: 0;
+
+    color: #7a8998;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MONTH GRID
 ========================================================= */
 
 .calendar-months {
-    display: grid !important;
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 14px !important;
-    align-items: start !important;
-    width: 100% !important;
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 13px;
+
+    width: 100%;
+
+    align-items: start;
 }
 
+
+/* =========================================================
+   MONTH CARD
+========================================================= */
+
 .calendar-month {
-    display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    background: #ffffff !important;
-    border: 1px solid #d7e3ed !important;
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    cursor: pointer !important;
-    transition: all 0.25s ease !important;
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e3ed;
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 59, 115, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .calendar-month:hover {
-    border-color: #a9c4da !important;
-    box-shadow: 0 8px 20px rgba(0, 59, 115, 0.10) !important;
+    border-color: #8eb3d4;
+
     transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(0, 59, 115, 0.11);
 }
 
+
+/* =========================================================
+   MONTH HEADER
+========================================================= */
+
 .calendar-month-header {
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-    min-height: 52px !important;
-    padding: 10px 13px !important;
-    box-sizing: border-box !important;
-    background: #ffffff !important;
-    border-bottom: 1px solid #e5edf4 !important;
-    cursor: pointer !important;
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 10px 12px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e6edf3;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.calendar-month-header::before {
+    content: "";
+
+    width: 4px;
+    height: 25px;
+
+    margin-right: 9px;
+
+    border-radius: 3px;
+
+    background: #0057a8;
+
+    flex-shrink: 0;
+}
+
+.calendar-month:nth-child(5n + 2) .calendar-month-header::before {
+    background: #d71920;
+}
+
+.calendar-month:nth-child(5n + 3) .calendar-month-header::before {
+    background: #ffd200;
+}
+
+.calendar-month:nth-child(5n + 4) .calendar-month-header::before {
+    background: #0057a8;
+}
+
+.calendar-month:nth-child(5n + 5) .calendar-month-header::before {
+    background: #d71920;
 }
 
 .calendar-month-name {
-    margin: 0 !important;
-    font-size: 12px !important;
-    font-weight: 800 !important;
-    color: #003b73 !important;
+    margin: 0;
+
+    color: #003b73;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    line-height: 1.2;
 }
 
-.calendar-month-header::after {
-    content: "+" !important;
-    margin-left: auto !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    color: #7c8c9b !important;
+.calendar-month-year {
+    margin-left: 4px;
+
+    color: #8492a0;
+
+    font-size: 9px;
+    font-weight: 600;
 }
+
+.calendar-month-toggle {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    margin-left: auto;
+
+    border-radius: 50%;
+
+    background: #f2f6fa;
+
+    color: #0057a8;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    line-height: 1;
+
+    flex-shrink: 0;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.calendar-month:hover .calendar-month-toggle {
+    background: #0057a8;
+    color: #ffffff;
+}
+
+.calendar-month.expanded .calendar-month-toggle {
+    background: #d71920;
+    color: #ffffff;
+
+    transform: rotate(0deg);
+}
+
+
+/* =========================================================
+   CALENDAR GRID
+========================================================= */
 
 .calendar-month-grid {
-    display: grid !important;
-    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-    width: 100% !important;
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    width: 100%;
 }
 
-/* SMALL MONTH */
 
-.calendar-month:not(.expanded) .calendar-month-grid {
-    max-height: 145px !important;
-    overflow: hidden !important;
+/* =========================================================
+   WEEKDAYS
+========================================================= */
+
+.calendar-weekday {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    min-height: 23px;
+
+    box-sizing: border-box;
+
+    background: #f7f9fb;
+
+    border-right: 1px solid #edf1f5;
+    border-bottom: 1px solid #e5ebf1;
+
+    color: #6d7d8c;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
 }
 
-.calendar-month:not(.expanded) .calendar-day {
-    min-height: 30px !important;
-    padding: 4px !important;
+.calendar-weekday:nth-child(7n + 1) {
+    color: #d71920;
 }
 
-.calendar-month:not(.expanded) .calendar-weekday {
-    min-height: 22px !important;
+.calendar-weekday:nth-child(7n) {
+    color: #0057a8;
 }
 
-/* HIDE EVENT TEXT IN MINI VERSION */
+.calendar-weekday:last-child {
+    border-right: none;
+}
+
+
+/* =========================================================
+   DAY CELL
+========================================================= */
+
+.calendar-day {
+    position: relative;
+
+    min-width: 0;
+    min-height: 31px;
+
+    padding: 4px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-right: 1px solid #edf1f5;
+    border-bottom: 1px solid #edf1f5;
+
+    overflow: hidden;
+}
+
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar-day.empty {
+    background: #fafbfc;
+}
+
+.calendar-day-number {
+    display: block;
+
+    color: #526476;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.calendar-day:nth-child(7n + 1) .calendar-day-number {
+    color: #d71920;
+}
+
+.calendar-day:nth-child(7n) .calendar-day-number {
+    color: #0057a8;
+}
+
+
+/* =========================================================
+   EVENT DAY
+========================================================= */
+
+.calendar-day.has-event {
+    background: #fffdf4;
+}
+
+.calendar-day.has-event .calendar-day-number {
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 16px;
+    height: 16px;
+
+    padding: 0 3px;
+
+    box-sizing: border-box;
+
+    border-radius: 5px;
+
+    background: #ffd200;
+
+    color: #003b73;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   EVENT
+========================================================= */
+
+.calendar-event {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 3px;
+    padding: 3px 4px;
+
+    border-left: 2px solid #0057a8;
+    border-radius: 3px;
+
+    background: #eef5fb;
+
+    color: #405466;
+
+    font-size: 6.5px;
+    font-weight: 600;
+
+    line-height: 1.25;
+
+    overflow: hidden;
+}
+
+
+/* Multiple events */
+.calendar-event + .calendar-event {
+    border-left-color: #d71920;
+
+    background: #fff1f1;
+}
+
+
+/* Important event */
+.calendar-event.important {
+    border-left-color: #d71920;
+
+    background: #fff1f1;
+
+    color: #8d151b;
+}
+
+
+/* =========================================================
+   MINI CALENDAR EVENT STYLE
+========================================================= */
 
 .calendar-month:not(.expanded) .calendar-event {
-    height: 3px !important;
-    min-height: 3px !important;
-    padding: 0 !important;
-    margin-top: 2px !important;
-    border: none !important;
-    border-radius: 3px !important;
-    background: #8fb1cf !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
+    display: block;
+
+    width: 100%;
+    height: 3px;
+    min-height: 3px;
+
+    margin-top: 3px;
+    padding: 0;
+
+    border: none;
+
+    border-radius: 3px;
+
+    background: #0057a8;
+
+    font-size: 0;
+    line-height: 0;
+
+    overflow: hidden;
 }
 
-/* EXPANDED MONTH */
+.calendar-month:not(.expanded)
+.calendar-event + .calendar-event {
+    margin-top: 2px;
+
+    background: #d71920;
+}
+
+
+/* =========================================================
+   EXPANDED MONTH
+========================================================= */
 
 .calendar-month.expanded {
-    grid-column: 1 / -1 !important;
-    cursor: default !important;
-    transform: none !important;
-    border-color: #a9c4da !important;
-    box-shadow: 0 12px 30px rgba(0, 59, 115, 0.10) !important;
+    grid-column: 1 / -1;
+
+    cursor: default;
+
+    transform: none;
+
+    border-color: #0057a8;
+
+    box-shadow:
+        0 14px 34px rgba(0, 59, 115, 0.13);
+
+    animation:
+        calendarMonthExpand 0.28s ease;
+}
+
+@keyframes calendarMonthExpand {
+    from {
+        opacity: 0.75;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .calendar-month.expanded .calendar-month-header {
-    min-height: 58px !important;
-    padding: 13px 16px !important;
-    background: #f8fbfe !important;
+    min-height: 60px;
+
+    padding: 13px 16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #f8fbfe 70%,
+            #fffbea 100%
+        );
+}
+
+.calendar-month.expanded .calendar-month-header::before {
+    width: 5px;
+    height: 32px;
+
+    background: #0057a8;
 }
 
 .calendar-month.expanded .calendar-month-name {
-    font-size: 16px !important;
+    font-size: 17px;
 }
 
-.calendar-month.expanded .calendar-month-header::after {
-    content: "−" !important;
-    color: #0057a8 !important;
+.calendar-month.expanded .calendar-month-year {
+    font-size: 11px;
 }
 
-.calendar-month.expanded .calendar-day {
-    min-height: 88px !important;
-    padding: 8px !important;
+.calendar-month.expanded .calendar-month-toggle {
+    width: 27px;
+    height: 27px;
+
+    font-size: 19px;
 }
+
+
+/* =========================================================
+   EXPANDED WEEKDAYS
+========================================================= */
 
 .calendar-month.expanded .calendar-weekday {
-    min-height: 31px !important;
-    font-size: 9px !important;
+    min-height: 34px;
+
+    font-size: 9px;
+
+    background: #f4f7fa;
+
+    border-bottom-color: #dce5ed;
+}
+
+
+/* =========================================================
+   EXPANDED DAYS
+========================================================= */
+
+.calendar-month.expanded .calendar-day {
+    min-height: 92px;
+
+    padding: 8px;
+
+    background: #ffffff;
 }
 
 .calendar-month.expanded .calendar-day-number {
-    font-size: 11px !important;
-    margin-bottom: 5px !important;
+    font-size: 11px;
+
+    margin-bottom: 5px;
 }
+
+.calendar-month.expanded .calendar-day.has-event {
+    background: #fffdf5;
+}
+
+.calendar-month.expanded .calendar-day.has-event .calendar-day-number {
+    min-width: 23px;
+    height: 23px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   EXPANDED EVENTS
+========================================================= */
 
 .calendar-month.expanded .calendar-event {
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 5px 6px !important;
-    margin-top: 3px !important;
-    border-left: 2px solid #0057a8 !important;
-    background: #f2f7fb !important;
-    font-size: 9px !important;
-    line-height: 1.35 !important;
-    color: #405466 !important;
+    height: auto;
+    min-height: 0;
+
+    margin-top: 4px;
+
+    padding: 5px 6px;
+
+    border-left: 3px solid #0057a8;
+
+    border-radius: 4px;
+
+    background: #eef5fb;
+
+    color: #34495a;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    overflow: visible;
+}
+
+.calendar-month.expanded
+.calendar-event + .calendar-event {
+    border-left-color: #d71920;
+
+    background: #fff0f0;
 }
 
 
-/* TABLET */
+/* =========================================================
+   EVENT DOT / INDICATOR
+========================================================= */
 
-@media (max-width: 950px) {
+.calendar-day.has-event::after {
+    content: "";
 
-    .calendar-months {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    }
+    position: absolute;
 
+    right: 5px;
+    top: 5px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #d71920;
+
+    opacity: 0.9;
+}
+
+.calendar-month.expanded
+.calendar-day.has-event::after {
+    width: 6px;
+    height: 6px;
+
+    right: 8px;
+    top: 9px;
 }
 
 
-/* MOBILE */
+/* =========================================================
+   FEATURED EVENTS
+========================================================= */
 
-@media (max-width: 650px) {
+.calendar-summary {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5ed;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 18px rgba(0, 59, 115, 0.05);
+}
+
+.calendar-summary-title {
+    margin: 0 0 13px;
+
+    color: #003b73;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.calendar-summary-title::after {
+    content: "";
+
+    display: block;
+
+    width: 32px;
+    height: 3px;
+
+    margin-top: 6px;
+
+    border-radius: 2px;
+
+    background: #ffd200;
+}
+
+.calendar-summary-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #edf1f4;
+}
+
+.calendar-summary-item:last-child {
+    border-bottom: none;
+}
+
+.calendar-summary-date {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 58px;
+
+    padding: 5px 7px;
+
+    box-sizing: border-box;
+
+    border-radius: 6px;
+
+    background: #0057a8;
+
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.calendar-summary-item:nth-child(even)
+.calendar-summary-date {
+    background: #d71920;
+}
+
+.calendar-summary-event {
+    color: #4b5e70;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SECOND SEMESTER COLOR VARIATION
+========================================================= */
+
+.calendar-semester.second-semester
+.calendar-month-header::before {
+    background: #d71920;
+}
+
+.calendar-semester.second-semester
+.calendar-month:nth-child(2n)
+.calendar-month-header::before {
+    background: #0057a8;
+}
+
+.calendar-semester.second-semester
+.calendar-month:nth-child(3n)
+.calendar-month-header::before {
+    background: #ffd200;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
 
     .calendar-months {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 9px !important;
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
     }
 
     .calendar-month.expanded {
-        grid-column: 1 / -1 !important;
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .calendar-semester-header {
+        padding: 17px 18px;
+    }
+
+    .calendar-semester-title {
+        font-size: 21px;
+    }
+
+    .calendar-semester-note {
+        font-size: 11px;
+    }
+
+    .calendar-months {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 9px;
+    }
+
+    .calendar-month-header {
+        min-height: 46px;
+
+        padding: 8px 9px;
+    }
+
+    .calendar-month-name {
+        font-size: 9px;
+    }
+
+    .calendar-month-year {
+        font-size: 8px;
+    }
+
+    .calendar-month-toggle {
+        width: 19px;
+        height: 19px;
+
+        font-size: 14px;
+    }
+
+    .calendar-weekday {
+        min-height: 21px;
+
+        font-size: 6px;
+    }
+
+    .calendar-month:not(.expanded) .calendar-day {
+        min-height: 27px;
+
+        padding: 3px;
+    }
+
+    .calendar-month:not(.expanded)
+    .calendar-day-number {
+        font-size: 7px;
     }
 
     .calendar-month.expanded .calendar-day {
-        min-height: 72px !important;
+        min-height: 75px;
+
+        padding: 6px;
     }
 
-    .calendar-month.expanded .calendar-event {
-        font-size: 8px !important;
+    .calendar-month.expanded
+    .calendar-day-number {
+        font-size: 9px;
+    }
+
+    .calendar-month.expanded
+    .calendar-event {
+        padding: 4px 5px;
+
+        font-size: 7px;
+    }
+
+    .calendar-summary {
+        padding: 14px;
+    }
+
+    .calendar-summary-item {
+        align-items: flex-start;
     }
 
 }
 
 
-/* VERY SMALL PHONE */
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
 
     .calendar-months {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr;
+
+        gap: 8px;
     }
 
     .calendar-month.expanded {
-        grid-column: 1 !important;
+        grid-column: 1;
     }
 
+    .calendar-month:not(.expanded)
+    .calendar-month-grid {
+        max-height: none;
+    }
+
+    .calendar-month:not(.expanded)
+    .calendar-day {
+        min-height: 30px;
+    }
+
+    .calendar-month.expanded
+    .calendar-day {
+        min-height: 70px;
+    }
+
+    .calendar-month.expanded
+    .calendar-event {
+        font-size: 7px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.calendar-month-header:focus-visible {
+    outline: 3px solid rgba(0, 87, 168, 0.28);
+
+    outline-offset: -3px;
+}
+
+.calendar-month.expanded
+.calendar-month-header:focus-visible {
+    outline-color: rgba(215, 25, 32, 0.28);
+}
+
+
+/* =========================================================
+   NO JAVASCRIPT FALLBACK / LOADING
+========================================================= */
+
+.calendar-wrapper * {
+    box-sizing: border-box;
+}
+
+.calendar-empty-message {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #6d7d8c;
+
+    font-size: 12px;
 }
 
     </style>
@@ -8356,122 +9225,604 @@ async function loadFaculty() {
 
 
 /* =========================================================
-   CALENDAR
+   SAS SCHOOL CALENDAR
+   ACADEMIC YEAR 2026–2027
 ========================================================= */
 
 function loadCalendar() {
 
     const calendarContent =
-        document.getElementById(
-            "calendarContent"
-        );
+        document.getElementById("calendarContent");
+
+    if (!calendarContent) {
+        return;
+    }
 
 
-    const months = [
+    /* =====================================================
+       CALENDAR DATA
+    ===================================================== */
+
+    const firstSemester = [
 
         {
             name: "AUGUST",
             year: 2026,
-            firstDay: 6,
-            days: 31,
 
-            events: {
-                3: "1st Day of Class",
-                15: "SEMINAR: GENERAL PFA",
-                17: "WEEKLY AFFIRMATION QUOTES START",
-                21: "Ninoy Aquino Day — Office Organizing / Half Day",
-                22: "GENERAL ORIENTATION",
-                24: "Launching of We HEAR, WERE HERE.",
-                27: "Cor and Cor (Orientation)",
-                31: "National Heroes Day"
-            }
+            events: [
+                {
+                    start: 3,
+                    end: 3,
+                    title: "1st Day of Class"
+                },
+
+                {
+                    start: 15,
+                    end: 15,
+                    title: "SEMINAR: GENERAL PFA"
+                },
+
+                {
+                    start: 17,
+                    end: 17,
+                    title: "WEEKLY AFFIRMATION QUOTES START"
+                },
+
+                {
+                    start: 21,
+                    end: 21,
+                    title: "Ninoy Aquino Day — Office Organizing / Half Day"
+                },
+
+                {
+                    start: 22,
+                    end: 22,
+                    title: "GENERAL ORIENTATION"
+                },
+
+                {
+                    start: 24,
+                    end: 24,
+                    title: "Launching of We HEAR, WERE HERE."
+                },
+
+                {
+                    start: 27,
+                    end: 27,
+                    title: "Cor and Cor (Orientation)"
+                },
+
+                {
+                    start: 31,
+                    end: 31,
+                    title: "National Heroes Day"
+                }
+            ]
         },
 
 
         {
             name: "SEPTEMBER",
             year: 2026,
-            firstDay: 2,
-            days: 30,
 
-            events: {
-                2: "PINNING CEREMONY",
-                3: "FEAC Recollection",
-                4: "FEAC Recollection",
-                5: "FEAC Recollection",
-                7: "Preliminary Examinations",
-                8: "Preliminary Examinations / SVD Foundation Day",
-                12: "Preliminary Examination for Saturday Class",
-                13: "OFFICERS LEADERSHIP TRAINING",
-                15: "Cognitive Reframing Workshop",
-                17: "FEAC Inter-colors",
-                18: "FEAC Inter-colors",
-                19: "General Psychological First-Aid",
-                25: "OPENING: MENTAL HEALTH HUB",
-                26: "SEMINAR: SUICIDE PREVENTION MONTH"
-            }
+            events: [
+                {
+                    start: 2,
+                    end: 2,
+                    title: "PINNING CEREMONY"
+                },
+
+                {
+                    start: 3,
+                    end: 5,
+                    title: "FEAC Recollection"
+                },
+
+                {
+                    start: 7,
+                    end: 8,
+                    title: "Preliminary Examinations"
+                },
+
+                {
+                    start: 8,
+                    end: 8,
+                    title: "SVD Foundation Day"
+                },
+
+                {
+                    start: 12,
+                    end: 12,
+                    title: "Preliminary Examination for Saturday Class"
+                },
+
+                {
+                    start: 13,
+                    end: 13,
+                    title: "OFFICERS LEADERSHIP TRAINING"
+                },
+
+                {
+                    start: 15,
+                    end: 15,
+                    title: "Cognitive Reframing Workshop"
+                },
+
+                {
+                    start: 17,
+                    end: 18,
+                    title: "FEAC Inter-colors"
+                },
+
+                {
+                    start: 19,
+                    end: 19,
+                    title: "General Psychological First-Aid"
+                },
+
+                {
+                    start: 25,
+                    end: 25,
+                    title: "OPENING: MENTAL HEALTH HUB"
+                },
+
+                {
+                    start: 26,
+                    end: 26,
+                    title: "SEMINAR: SUICIDE PREVENTION MONTH"
+                }
+            ]
         },
 
 
         {
             name: "OCTOBER",
             year: 2026,
-            firstDay: 4,
-            days: 31,
 
-            events: {
-                8: "Midterm Examinations",
-                9: "Midterm Examinations",
-                10: "POSTING: MENTAL HEALTH AWARENESS / MIDTERMS TOPNOTCHER / Midterm Examination for Saturday Class",
-                12: "SEMINAR: MENTAL HEALTH AWARENESS",
-                14: "Intramurals",
-                15: "Intramurals",
-                16: "Intramurals",
-                19: "Frames of Mind — collection of participants.",
-                24: "SAS TEAM BUILDING",
-                25: "Submission — Frames of Mind, Judging",
-                27: "Announcement of Winners and Awarding"
-            }
+            events: [
+                {
+                    start: 8,
+                    end: 9,
+                    title: "Midterm Examinations"
+                },
+
+                {
+                    start: 10,
+                    end: 10,
+                    title: "POSTING: MENTAL HEALTH AWARENESS"
+                },
+
+                {
+                    start: 10,
+                    end: 10,
+                    title: "MIDTERMS TOPNOTCHER"
+                },
+
+                {
+                    start: 10,
+                    end: 10,
+                    title: "Midterm Examination for Saturday Class"
+                },
+
+                {
+                    start: 12,
+                    end: 12,
+                    title: "SEMINAR: MENTAL HEALTH AWARENESS"
+                },
+
+                {
+                    start: 14,
+                    end: 16,
+                    title: "Intramurals"
+                },
+
+                {
+                    start: 19,
+                    end: 19,
+                    title: "Frames of Mind — collection of participants."
+                },
+
+                {
+                    start: 24,
+                    end: 24,
+                    title: "SAS TEAM BUILDING"
+                },
+
+                {
+                    start: 25,
+                    end: 25,
+                    title: "Submission — Frames of Mind, Judging"
+                },
+
+                {
+                    start: 27,
+                    end: 27,
+                    title: "Announcement of Winners and Awarding"
+                }
+            ]
         },
 
 
         {
             name: "NOVEMBER",
             year: 2026,
-            firstDay: 0,
-            days: 30,
 
-            events: {
-                2: "Special Holiday",
-                12: "Pre-Finals Examinations",
-                13: "Pre-Finals Examinations",
-                14: "Pre-Finals Examinations for Saturday Class",
-                15: "Oriental Mindoro Founding Anniversary",
-                19: "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS",
-                30: "Bonifacio Day"
-            }
+            events: [
+                {
+                    start: 2,
+                    end: 2,
+                    title: "Special Holiday"
+                },
+
+                {
+                    start: 12,
+                    end: 13,
+                    title: "Pre-Finals Examinations"
+                },
+
+                {
+                    start: 14,
+                    end: 14,
+                    title: "Pre-Finals Examinations for Saturday Class"
+                },
+
+                {
+                    start: 15,
+                    end: 15,
+                    title: "Oriental Mindoro Founding Anniversary"
+                },
+
+                {
+                    start: 19,
+                    end: 19,
+                    title: "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS"
+                },
+
+                {
+                    start: 30,
+                    end: 30,
+                    title: "Bonifacio Day"
+                }
+            ]
         },
 
 
         {
             name: "DECEMBER",
             year: 2026,
-            firstDay: 2,
-            days: 31,
 
-            events: {
-                1: "POSTING: WORLD'S AIDS DAY / POSTING: FINAL'S TOPNOTCHERS",
-                3: "Finals for Graduating Students",
-                4: "Finals for Graduating Students",
-                6: "CES-Anima et Cevitas (Soul and Community)",
-                8: "Immaculate Conception Day",
-                14: "Finals Examinations",
-                15: "Finals Examinations"
-            }
+            events: [
+                {
+                    start: 1,
+                    end: 1,
+                    title: "POSTING: WORLD'S AIDS DAY"
+                },
+
+                {
+                    start: 1,
+                    end: 1,
+                    title: "POSTING: FINAL'S TOPNOTCHERS"
+                },
+
+                {
+                    start: 3,
+                    end: 4,
+                    title: "Finals for Graduating Students"
+                },
+
+                {
+                    start: 6,
+                    end: 6,
+                    title: "CES-Anima et Cevitas (Soul and Community)"
+                },
+
+                {
+                    start: 8,
+                    end: 8,
+                    title: "Immaculate Conception Day"
+                },
+
+                {
+                    start: 14,
+                    end: 15,
+                    title: "Finals Examinations"
+                }
+            ]
         }
 
     ];
 
+
+    const secondSemester = [
+
+        {
+            name: "JANUARY",
+            year: 2027,
+
+            events: [
+                {
+                    start: 11,
+                    end: 11,
+                    title: "1st Day of Classes"
+                },
+
+                {
+                    start: 15,
+                    end: 15,
+                    title: "St. Arnold Janseen Day"
+                },
+
+                {
+                    start: 16,
+                    end: 16,
+                    title: "General Re-Orientation and Awarding"
+                },
+
+                {
+                    start: 28,
+                    end: 28,
+                    title: "Career Talks"
+                },
+
+                {
+                    start: 29,
+                    end: 29,
+                    title: "St. Joseph Freinademetz Day"
+                },
+
+                {
+                    start: 30,
+                    end: 30,
+                    title: "TEAM BUILDING: WOMEN'S MENTAL HEALTH AWARENESS"
+                }
+            ]
+        },
+
+
+        {
+            name: "FEBRUARY",
+            year: 2027,
+
+            events: [
+                {
+                    start: 8,
+                    end: 9,
+                    title: "Preliminary Examination"
+                },
+
+                {
+                    start: 15,
+                    end: 15,
+                    title: "RANDOM ACT OF KINDNESS"
+                },
+
+                {
+                    start: 18,
+                    end: 18,
+                    title: "Imago Dei Human and Spiritual Recollection"
+                },
+
+                {
+                    start: 20,
+                    end: 20,
+                    title: "CES"
+                },
+
+                {
+                    start: 25,
+                    end: 25,
+                    title: "EDSA People Power Anniversary"
+                }
+            ]
+        },
+
+
+        {
+            name: "MARCH",
+            year: 2027,
+
+            events: [
+                {
+                    start: 1,
+                    end: 1,
+                    title: "POSTING: SELF-HARM AWARENESS"
+                },
+
+                {
+                    start: 2,
+                    end: 2,
+                    title: "Public Speaking & Presentation Skills Enhancement"
+                },
+
+                {
+                    start: 8,
+                    end: 8,
+                    title: "POSTING: INTERNATIONAL WOMENS DAY"
+                },
+
+                {
+                    start: 8,
+                    end: 9,
+                    title: "Feac Days"
+                },
+
+                {
+                    start: 10,
+                    end: 10,
+                    title: "Eid'l Fitr (tentative)"
+                },
+
+                {
+                    start: 15,
+                    end: 16,
+                    title: "Midterm Examinations"
+                },
+
+                {
+                    start: 19,
+                    end: 19,
+                    title: "PSYCHOLOGY SUMMIT (MINSU AND DWCC)"
+                },
+
+                {
+                    start: 20,
+                    end: 20,
+                    title: "WEBINAR: SEXUAL HARASSMENT AWARENESS"
+                },
+
+                {
+                    start: 20,
+                    end: 20,
+                    title: "POSTING: MIDTERMS TOPNOTCHERS"
+                },
+
+                {
+                    start: 21,
+                    end: 21,
+                    title: "Calapan City Founding Anniversary"
+                },
+
+                {
+                    start: 24,
+                    end: 27,
+                    title: "Holy Week"
+                }
+            ]
+        },
+
+
+        {
+            name: "APRIL",
+            year: 2027,
+
+            events: [
+                {
+                    start: 2,
+                    end: 2,
+                    title: "POSTING: WORLD'S AUTISM AWARENESS DAY"
+                },
+
+                {
+                    start: 3,
+                    end: 3,
+                    title: "CES LET'S PSYCH IT OUT/POLITIX NOW"
+                },
+
+                {
+                    start: 9,
+                    end: 9,
+                    title: "Day of Valor"
+                },
+
+                {
+                    start: 12,
+                    end: 13,
+                    title: "College Days"
+                },
+
+                {
+                    start: 22,
+                    end: 22,
+                    title: "RANDOM ACT OF KINDNESS (FACULTY)"
+                },
+
+                {
+                    start: 22,
+                    end: 23,
+                    title: "Pre-Finals Examination"
+                }
+            ]
+        },
+
+
+        {
+            name: "MAY",
+            year: 2027,
+
+            events: [
+                {
+                    start: 1,
+                    end: 1,
+                    title: "Labor Day"
+                },
+
+                {
+                    start: 14,
+                    end: 14,
+                    title: "SAS NIGHT"
+                },
+
+                {
+                    start: 17,
+                    end: 17,
+                    title: "Eidul Adha (Tentative)"
+                },
+
+                {
+                    start: 24,
+                    end: 25,
+                    title: "Finals Examination"
+                },
+
+                {
+                    start: 24,
+                    end: 25,
+                    title: "POSTING: FINAL'S TOPNOTCHERS"
+                }
+            ]
+        }
+
+    ];
+
+
+    /* =====================================================
+       IMPORTANT EVENTS
+    ===================================================== */
+
+    const importantEvents = [
+
+        ["AUG 15", "SEMINAR: GENERAL PFA"],
+        ["AUG 22", "GENERAL ORIENTATION"],
+
+        ["SEP 2", "PINNING CEREMONY"],
+        ["SEP 13", "OFFICERS LEADERSHIP TRAINING"],
+        ["SEP 19", "General Psychological First-Aid"],
+        ["SEP 25", "OPENING: MENTAL HEALTH HUB"],
+        ["SEP 26", "SEMINAR: SUICIDE PREVENTION MONTH"],
+
+        ["OCT 10", "POSTING: MENTAL HEALTH AWARENESS"],
+        ["OCT 12", "SEMINAR: MENTAL HEALTH AWARENESS"],
+        ["OCT 24", "SAS TEAM BUILDING"],
+        ["OCT 25", "Submission — Frames of Mind, Judging"],
+        ["OCT 27", "Announcement of Winners and Awarding"],
+
+        ["NOV 19", "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS"],
+
+        ["DEC 1", "POSTING: WORLD'S AIDS DAY"],
+        ["DEC 6", "CES-Anima et Cevitas (Soul and Community)"],
+
+        ["JAN 16", "General Re-Orientation and Awarding"],
+        ["JAN 30", "TEAM BUILDING: WOMEN'S MENTAL HEALTH AWARENESS"],
+
+        ["FEB 15", "RANDOM ACT OF KINDNESS"],
+        ["FEB 18", "Imago Dei Human and Spiritual Recollection"],
+
+        ["MAR 19", "PSYCHOLOGY SUMMIT (MINSU AND DWCC)"],
+        ["MAR 20", "WEBINAR: SEXUAL HARASSMENT AWARENESS"],
+        ["MAR 20", "POSTING: MIDTERMS TOPNOTCHERS"],
+
+        ["APR 3", "CES LET'S PSYCH IT OUT/POLITIX NOW"],
+
+        ["MAY 14", "SAS NIGHT"],
+        ["MAY 24–25", "Finals Examination"],
+        ["MAY 24–25", "POSTING: FINAL'S TOPNOTCHERS"]
+
+    ];
+
+
+    /* =====================================================
+       HELPERS
+    ===================================================== */
 
     const weekdays = [
         "SUN",
@@ -8484,115 +9835,359 @@ function loadCalendar() {
     ];
 
 
-    /* =========================================================
-       CREATE MONTH
-    ========================================================= */
+    function escapeCalendarHTML(value) {
 
-function createMonth(month, index) {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
 
-    const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-    let html = `
-        <article class="calendar-month" data-month-index="${index}">
-
-            <div class="calendar-month-header"
-                 role="button"
-                 tabindex="0"
-                 aria-expanded="false">
-
-                <h3 class="calendar-month-name">
-                    ${month.name} ${month.year}
-                </h3>
-
-                <span class="calendar-month-toggle">+</span>
-
-            </div>
-
-            <div class="calendar-month-grid">
-
-                ${weekdays.map(day => `
-                    <div class="calendar-weekday">${day}</div>
-                `).join("")}
-    `;
-
-    // Empty cells before first day
-    for (let i = 0; i < month.firstDay; i++) {
-        html += `<div class="calendar-day empty"></div>`;
     }
 
-    // Days
-    for (let day = 1; day <= month.days; day++) {
 
-        const event = month.events[day];
+    function getMonthIndex(monthName, year) {
+
+        return new Date(
+            year,
+            new Date(`${monthName} 1, ${year}`).getMonth(),
+            1
+        ).getMonth();
+
+    }
+
+
+    function getEventsForDay(month, day) {
+
+        return month.events.filter(function(event) {
+
+            return (
+                day >= event.start &&
+                day <= event.end
+            );
+
+        });
+
+    }
+
+
+    function createMonth(month, index) {
+
+        const monthNumber =
+            new Date(
+                `${month.name} 1, ${month.year}`
+            ).getMonth();
+
+
+        const firstDay =
+            new Date(
+                month.year,
+                monthNumber,
+                1
+            ).getDay();
+
+
+        const daysInMonth =
+            new Date(
+                month.year,
+                monthNumber + 1,
+                0
+            ).getDate();
+
+
+        let html = `
+
+            <article
+                class="calendar-month"
+                data-month-index="${index}"
+                data-month-name="${escapeCalendarHTML(month.name)}"
+                data-year="${month.year}"
+            >
+
+                <div
+                    class="calendar-month-header"
+                    role="button"
+                    tabindex="0"
+                    aria-expanded="false"
+                    aria-label="Expand ${escapeCalendarHTML(month.name)} ${month.year}"
+                >
+
+                    <h3 class="calendar-month-name">
+                        ${escapeCalendarHTML(month.name)}
+
+                        <span class="calendar-month-year">
+                            ${month.year}
+                        </span>
+                    </h3>
+
+                    <span
+                        class="calendar-month-toggle"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
+
+                </div>
+
+
+                <div class="calendar-month-grid">
+
+        `;
+
+
+        /* =================================================
+           WEEKDAYS
+        ================================================= */
+
+        weekdays.forEach(function(day) {
+
+            html += `
+                <div class="calendar-weekday">
+                    ${day}
+                </div>
+            `;
+
+        });
+
+
+        /* =================================================
+           EMPTY DAYS BEFORE MONTH STARTS
+        ================================================= */
+
+        for (
+            let i = 0;
+            i < firstDay;
+            i++
+        ) {
+
+            html += `
+                <div class="calendar-day empty"></div>
+            `;
+
+        }
+
+
+        /* =================================================
+           DAYS
+        ================================================= */
+
+        for (
+            let day = 1;
+            day <= daysInMonth;
+            day++
+        ) {
+
+            const events =
+                getEventsForDay(
+                    month,
+                    day
+                );
+
+
+            const hasEvent =
+                events.length > 0;
+
+
+            html += `
+
+                <div
+                    class="
+                        calendar-day
+                        ${hasEvent ? "has-event" : ""}
+                    "
+                    data-day="${day}"
+                >
+
+                    <span class="calendar-day-number">
+                        ${day}
+                    </span>
+
+            `;
+
+
+            /* =============================================
+               EVENTS ON THIS DAY
+            ============================================= */
+
+            events.forEach(function(event) {
+
+                const eventClass =
+                    event.title
+                        .toLowerCase()
+                        .includes("exam")
+                        ||
+                    event.title
+                        .toLowerCase()
+                        .includes("seminar")
+                        ||
+                    event.title
+                        .toLowerCase()
+                        .includes("pinning")
+                        ?
+                        "important"
+                        :
+                        "";
+
+
+                html += `
+
+                    <div
+                        class="calendar-event ${eventClass}"
+                        title="${escapeCalendarHTML(event.title)}"
+                    >
+                        ${escapeCalendarHTML(event.title)}
+                    </div>
+
+                `;
+
+            });
+
+
+            html += `
+
+                </div>
+
+            `;
+
+        }
+
 
         html += `
-            <div class="calendar-day ${event ? "has-event" : ""}"
-                 data-day="${day}">
 
-                <span class="calendar-day-number">
-                    ${day}
-                </span>
+                </div>
 
-                ${event ? `
-                    <div class="calendar-event">
-                        ${event}
-                    </div>
-                ` : ""}
+            </article>
 
-            </div>
         `;
+
+
+        return html;
+
     }
 
-    html += `
-            </div>
-        </article>
-    `;
 
-    return html;
-}
+    /* =====================================================
+       CREATE SEMESTER
+    ===================================================== */
 
-    /* =========================================================
+    function createSemester(
+        title,
+        note,
+        months,
+        semesterClass
+    ) {
+
+        return `
+
+            <section
+                class="calendar-semester ${semesterClass}"
+            >
+
+                <div
+                    class="
+                        calendar-semester-label
+                        ${semesterClass}
+                    "
+                >
+
+                    <div class="calendar-semester-label-text">
+
+                        <h3
+                            class="calendar-semester-label-title"
+                        >
+                            ${escapeCalendarHTML(title)}
+                        </h3>
+
+                        <p
+                            class="calendar-semester-label-note"
+                        >
+                            ${escapeCalendarHTML(note)}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calendar-months">
+
+                    ${
+                        months
+                            .map(function(month, index) {
+
+                                return createMonth(
+                                    month,
+                                    `${semesterClass}-${index}`
+                                );
+
+                            })
+                            .join("")
+                    }
+
+                </div>
+
+            </section>
+
+        `;
+
+    }
+
+
+    /* =====================================================
        FEATURED EVENTS
-    ========================================================= */
+    ===================================================== */
 
-    const importantEvents = [
+    function createFeaturedEvents() {
 
-        ["AUG 15", "SEMINAR: GENERAL PFA"],
+        return `
 
-        ["AUG 22", "GENERAL ORIENTATION"],
+            <div class="calendar-summary">
 
-        ["SEP 2", "PINNING CEREMONY"],
+                <h3 class="calendar-summary-title">
+                    Featured Events
+                </h3>
 
-        ["SEP 13", "OFFICERS LEADERSHIP TRAINING"],
+                ${
+                    importantEvents
+                        .map(function(item) {
 
-        ["SEP 19", "General Psychological First-Aid"],
+                            return `
 
-        ["SEP 25", "OPENING: MENTAL HEALTH HUB"],
+                                <div
+                                    class="calendar-summary-item"
+                                >
 
-        ["SEP 26", "SEMINAR: SUICIDE PREVENTION MONTH"],
+                                    <div
+                                        class="calendar-summary-date"
+                                    >
+                                        ${escapeCalendarHTML(item[0])}
+                                    </div>
 
-        ["OCT 10", "POSTING: MENTAL HEALTH AWARENESS"],
+                                    <div
+                                        class="calendar-summary-event"
+                                    >
+                                        ${escapeCalendarHTML(item[1])}
+                                    </div>
 
-        ["OCT 12", "SEMINAR: MENTAL HEALTH AWARENESS"],
+                                </div>
 
-        ["OCT 24", "SAS TEAM BUILDING"],
+                            `;
 
-        ["OCT 25", "Submission — Frames of Mind, Judging"],
+                        })
+                        .join("")
+                }
 
-        ["OCT 27", "Announcement of Winners and Awarding"],
+            </div>
 
-        ["NOV 19", "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS"],
+        `;
 
-        ["DEC 1", "POSTING: WORLD'S AIDS DAY"],
-
-        ["DEC 6", "CES-Anima et Cevitas (Soul and Community)"]
-
-    ];
+    }
 
 
-    /* =========================================================
+    /* =====================================================
        BUILD CALENDAR
-    ========================================================= */
+    ===================================================== */
 
     calendarContent.innerHTML = `
 
@@ -8604,24 +10199,17 @@ function createMonth(month, index) {
                 <div>
 
                     <div class="calendar-semester-kicker">
-
                         ACADEMIC YEAR 2026–2027
-
                     </div>
 
-
                     <h2 class="calendar-semester-title">
-
-                        1st Semester
-
+                        School Calendar
                     </h2>
 
-
                     <p class="calendar-semester-note">
-
-                        Important academic, organizational,
-                        and student development activities.
-
+                        Academic, organizational, and
+                        student development activities
+                        for Academic Year 2026–2027.
                     </p>
 
                 </div>
@@ -8629,162 +10217,281 @@ function createMonth(month, index) {
             </div>
 
 
-            <div class="calendar-months">
-
-                ${
-                    months
-                        .map(
-                            function (month, index) {
-
-                                return createMonth(
-                                    month,
-                                    index
-                                );
-
-                            }
-                        )
-                        .join("")
-                }
-
-            </div>
+            ${
+                createSemester(
+                    "1st Semester",
+                    "August–December 2026",
+                    firstSemester,
+                    "first-semester"
+                )
+            }
 
 
-            <div class="calendar-summary">
-
-                <h3 class="calendar-summary-title">
-
-                    Featured Events
-
-                </h3>
-
-
-                ${
-                    importantEvents
-                        .map(
-                            function (item) {
-
-                                return `
-
-                                    <div
-                                        class="
-                                            calendar-summary-item
-                                        "
-                                    >
-
-                                        <div
-                                            class="
-                                                calendar-summary-date
-                                            "
-                                        >
-
-                                            ${escapeHTML(
-                                                item[0]
-                                            )}
-
-                                        </div>
+            ${
+                createSemester(
+                    "2nd Semester",
+                    "January–May 2027",
+                    secondSemester,
+                    "second-semester"
+                )
+            }
 
 
-                                        <div
-                                            class="
-                                                calendar-summary-event
-                                            "
-                                        >
-
-                                            ${escapeHTML(
-                                                item[1]
-                                            )}
-
-                                        </div>
-
-                                    </div>
-
-                                `;
-
-                            }
-                        )
-                        .join("")
-                }
-
-            </div>
+            ${createFeaturedEvents()}
 
 
         </div>
 
     `;
 
-}
 
-/* =========================================================
-   CALENDAR MONTH CLICK
-========================================================= */
+    /* =====================================================
+       MONTH CLICK HANDLER
+       EVENT DELEGATION
+    ===================================================== */
 
-calendarContent.addEventListener("click", function (e) {
+    calendarContent.addEventListener(
+        "click",
+        function(event) {
 
-    const header = e.target.closest(".calendar-month-header");
-
-    if (!header) return;
-
-    const month = header.closest(".calendar-month");
-
-    if (!month) return;
-
-    const currentlyExpanded =
-        month.classList.contains("expanded");
-
-    // Close all months first
-    calendarContent
-        .querySelectorAll(".calendar-month.expanded")
-        .forEach(function (item) {
-
-            item.classList.remove("expanded");
-
-            const itemHeader =
-                item.querySelector(".calendar-month-header");
-
-            if (itemHeader) {
-                itemHeader.setAttribute(
-                    "aria-expanded",
-                    "false"
+            const header =
+                event.target.closest(
+                    ".calendar-month-header"
                 );
+
+
+            if (!header) {
+                return;
             }
 
-            const toggle =
-                item.querySelector(".calendar-month-toggle");
 
-            if (toggle) {
-                toggle.textContent = "+";
+            const month =
+                header.closest(
+                    ".calendar-month"
+                );
+
+
+            if (!month) {
+                return;
             }
-        });
 
-    // Open selected month
-    if (!currentlyExpanded) {
 
-        month.classList.add("expanded");
+            toggleCalendarMonth(
+                month
+            );
 
-        header.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-        const toggle =
-            month.querySelector(".calendar-month-toggle");
-
-        if (toggle) {
-            toggle.textContent = "−";
         }
+    );
 
-        // Scroll the selected month into view
-        setTimeout(function () {
 
-            month.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest"
+    /* =====================================================
+       KEYBOARD ACCESS
+    ===================================================== */
+
+    calendarContent.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key !== "Enter" &&
+                event.key !== " "
+            ) {
+
+                return;
+
+            }
+
+
+            const header =
+                event.target.closest(
+                    ".calendar-month-header"
+                );
+
+
+            if (!header) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+
+            const month =
+                header.closest(
+                    ".calendar-month"
+                );
+
+
+            if (!month) {
+                return;
+            }
+
+
+            toggleCalendarMonth(
+                month
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       TOGGLE MONTH
+    ===================================================== */
+
+    function toggleCalendarMonth(month) {
+
+        const isExpanded =
+            month.classList.contains(
+                "expanded"
+            );
+
+
+        /* ================================================
+           CLOSE ALL MONTHS
+        ================================================ */
+
+        calendarContent
+            .querySelectorAll(
+                ".calendar-month.expanded"
+            )
+            .forEach(function(item) {
+
+                item.classList.remove(
+                    "expanded"
+                );
+
+
+                const itemHeader =
+                    item.querySelector(
+                        ".calendar-month-header"
+                    );
+
+
+                if (itemHeader) {
+
+                    itemHeader.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    itemHeader.setAttribute(
+                        "aria-label",
+                        `Expand ${item.dataset.monthName} ${item.dataset.year}`
+                    );
+
+                }
+
+
+                const toggle =
+                    item.querySelector(
+                        ".calendar-month-toggle"
+                    );
+
+
+                if (toggle) {
+
+                    toggle.textContent =
+                        "+";
+
+                }
+
             });
 
-        }, 100);
+
+        /* ================================================
+           IF IT WAS ALREADY OPEN,
+           LEAVE EVERYTHING CLOSED
+        ================================================ */
+
+        if (isExpanded) {
+
+            return;
+
+        }
+
+
+        /* ================================================
+           OPEN SELECTED MONTH
+        ================================================ */
+
+        month.classList.add(
+            "expanded"
+        );
+
+
+        const header =
+            month.querySelector(
+                ".calendar-month-header"
+            );
+
+
+        if (header) {
+
+            header.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+            header.setAttribute(
+                "aria-label",
+                `Collapse ${month.dataset.monthName} ${month.dataset.year}`
+            );
+
+        }
+
+
+        const toggle =
+            month.querySelector(
+                ".calendar-month-toggle"
+            );
+
+
+        if (toggle) {
+
+            toggle.textContent =
+                "−";
+
+        }
+
+
+        /* ================================================
+           MOVE SELECTED MONTH INTO VIEW
+        ================================================ */
+
+        setTimeout(function() {
+
+            const calendarRect =
+                calendarContent.getBoundingClientRect();
+
+            const monthRect =
+                month.getBoundingClientRect();
+
+
+            if (
+                monthRect.top <
+                calendarRect.top
+            ) {
+
+                month.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        }, 80);
+
     }
 
-});
+}
+
+
+/* =========================================================
+   INITIALIZE CALENDAR
+========================================================= */
+
+loadCalendar();
 
 /* =========================================================
    INITIALIZE
