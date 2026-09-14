@@ -4347,6 +4347,373 @@ const notificationStatus =
     );
 
 /* =================================================
+   GET ANNOUNCEMENTS FOR NOTIFICATIONS
+================================================= */
+
+async function getAnnouncementsForNotifications() {
+
+    const data =
+        await announcementApiRequest({
+
+            method: "GET",
+
+            params: {
+
+                action:
+                    "getAnnouncements",
+
+                visitorID:
+                    getAnnouncementVisitorID()
+
+            }
+
+        });
+
+
+    if (
+        !data ||
+        !data.success
+    ) {
+
+        throw new Error(
+            "Unable to retrieve announcements."
+        );
+
+    }
+
+
+    return Array.isArray(
+        data.announcements
+    )
+        ? data.announcements
+        : [];
+
+}
+
+
+/* =================================================
+   INITIAL BASELINE
+================================================= */
+
+async function establishAnnouncementNotificationBaseline() {
+
+    if (
+        announcementNotificationBaselineReady
+    ) {
+
+        return;
+
+    }
+
+
+    const announcements =
+        await getAnnouncementsForNotifications();
+
+
+    announcementNotificationKnownIDs.clear();
+
+
+    announcements.forEach(
+        announcement => {
+
+            if (
+                announcement &&
+                announcement.id != null
+            ) {
+
+                announcementNotificationKnownIDs.add(
+                    String(
+                        announcement.id
+                    )
+                );
+
+            }
+
+        }
+    );
+
+
+    announcementNotificationBaselineReady =
+        true;
+
+}
+
+
+/* =================================================
+   SHOW NEW ANNOUNCEMENT
+================================================= */
+
+function showNewAnnouncementNotification(
+    announcement
+) {
+
+    if (
+        !isNotificationSupported()
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        return;
+
+    }
+
+
+    const notification =
+        new Notification(
+            "New SAS Announcement",
+            {
+
+                body:
+                    announcement.title ||
+                    "A new announcement has been posted.",
+
+                icon:
+                    "assets/sas-logo.png"
+
+            }
+        );
+
+
+    notification.onclick =
+        function () {
+
+            window.focus();
+
+            notification.close();
+
+        };
+
+}
+
+
+/* =================================================
+   CHECK FOR NEW ANNOUNCEMENTS
+================================================= */
+
+async function checkForNewAnnouncementNotifications() {
+
+    if (
+        !isNotificationSupported()
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        announcementNotificationCheckRunning
+    ) {
+
+        return;
+
+    }
+
+
+    announcementNotificationCheckRunning =
+        true;
+
+
+    try {
+
+        const announcements =
+            await getAnnouncementsForNotifications();
+
+
+        /*
+         * First check = establish baseline.
+         *
+         * Existing announcements will NOT
+         * trigger notifications.
+         */
+
+        if (
+            !announcementNotificationBaselineReady
+        ) {
+
+            announcements.forEach(
+                announcement => {
+
+                    if (
+                        announcement &&
+                        announcement.id != null
+                    ) {
+
+                        announcementNotificationKnownIDs.add(
+                            String(
+                                announcement.id
+                            )
+                        );
+
+                    }
+
+                }
+            );
+
+
+            announcementNotificationBaselineReady =
+                true;
+
+
+            return;
+
+        }
+
+
+        /*
+         * Find announcements that were
+         * not present during the previous check.
+         */
+
+        const newAnnouncements =
+            announcements.filter(
+                announcement => {
+
+                    if (
+                        !announcement ||
+                        announcement.id == null
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    return !announcementNotificationKnownIDs.has(
+                        String(
+                            announcement.id
+                        )
+                    );
+
+                }
+            );
+
+
+        /*
+         * Remember all current announcements.
+         */
+
+        announcements.forEach(
+            announcement => {
+
+                if (
+                    announcement &&
+                    announcement.id != null
+                ) {
+
+                    announcementNotificationKnownIDs.add(
+                        String(
+                            announcement.id
+                        )
+                    );
+
+                }
+
+            }
+        );
+
+
+        /*
+         * Notify only new announcements.
+         */
+
+        newAnnouncements.forEach(
+            announcement => {
+
+                showNewAnnouncementNotification(
+                    announcement
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Notification check failed:",
+            error
+        );
+
+    } finally {
+
+        announcementNotificationCheckRunning =
+            false;
+
+    }
+
+}
+
+
+/* =================================================
+   START NOTIFICATION MONITORING
+================================================= */
+
+async function startAnnouncementNotificationMonitoring() {
+
+    if (
+        !isNotificationSupported()
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        return;
+
+    }
+
+
+    await establishAnnouncementNotificationBaseline();
+
+
+    if (
+        announcementNotificationTimer
+    ) {
+
+        return;
+
+    }
+
+
+    announcementNotificationTimer =
+        setInterval(
+            checkForNewAnnouncementNotifications,
+            ANNOUNCEMENT_NOTIFICATION_INTERVAL
+        );
+
+
+    console.log(
+        "SAS notification monitoring started."
+    );
+
+}
+
+/* =================================================
    ANNOUNCEMENT NOTIFICATION MONITORING
 ================================================= */
 
@@ -5096,34 +5463,7 @@ notificationAllowBtn.addEventListener(
     "granted"
 ) {
 
-    /*
-     * Establish the current announcements
-     * as the starting point.
-     *
-     * Existing announcements will NOT
-     * trigger notifications.
-     */
-
     await startAnnouncementNotificationMonitoring();
-
-
-    /*
-     * Confirmation notification.
-     */
-
-    new Notification(
-        "SAS Notifications Enabled",
-        {
-            body:
-                "You will now receive notifications for new SAS announcements.",
-
-            icon:
-                "assets/sas-logo.png",
-
-            tag:
-                "sas-notification-enabled"
-        }
-    );
 
 }
 
@@ -8223,16 +8563,10 @@ requestAnimationFrame(async () => {
     await loadAnnouncements();
 
 
-    /*
-     * If the user already allowed
-     * notifications previously, activate
-     * monitoring automatically.
-     */
-
     if (
-        "Notification" in window &&
+        isNotificationSupported() &&
         Notification.permission ===
-            "granted"
+        "granted"
     ) {
 
         await startAnnouncementNotificationMonitoring();
