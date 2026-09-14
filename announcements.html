@@ -4872,10 +4872,22 @@ function closeNotificationModal() {
 
 function isNotificationSupported() {
 
+    console.log("Notification:", window.Notification);
+    console.log(
+        "Notification in window:",
+        "Notification" in window
+    );
+    console.log(
+        "Secure Context:",
+        window.isSecureContext
+    );
+    console.log(
+        "User Agent:",
+        navigator.userAgent
+    );
+
     return (
-        typeof window !== "undefined" &&
-        "Notification" in window &&
-        typeof Notification.requestPermission === "function"
+        "Notification" in window
     );
 
 }
