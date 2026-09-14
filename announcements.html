@@ -31,6 +31,228 @@
 
     <style>
 
+/* =========================================================
+   COMMENT PROFILE
+========================================================= */
+
+.announcement-comment {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.announcement-comment-avatar {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,210,0,0.20),
+            rgba(255,255,255,0.08)
+        );
+
+    border: 1px solid rgba(255,255,255,0.14);
+
+    color: var(--yellow);
+
+    font-size: 0.52rem;
+    font-weight: 900;
+
+    letter-spacing: 0.03em;
+
+    overflow: hidden;
+}
+
+.announcement-comment-content {
+    min-width: 0;
+    flex: 1;
+}
+
+
+/* =========================================================
+   COMMENT SETTINGS
+========================================================= */
+
+.announce-comments-setting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 13px;
+
+    background: #f8fafc;
+
+    border: 1px solid #d6dce5;
+}
+
+.announce-comments-checkbox {
+    width: 16px;
+    height: 16px;
+
+    margin: 0;
+
+    accent-color: var(--blue-deep);
+
+    cursor: pointer;
+}
+
+.announce-comments-setting-text {
+    min-width: 0;
+}
+
+.announce-comments-setting-title {
+    margin: 0;
+
+    color: var(--blue-deep);
+
+    font-size: 0.67rem;
+    font-weight: 900;
+
+    letter-spacing: 0.04em;
+}
+
+.announce-comments-setting-description {
+    margin: 3px 0 0;
+
+    color: #737b87;
+
+    font-size: 0.61rem;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   COMMENT CONTROL
+========================================================= */
+
+.announcement-comment-control {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 9px;
+}
+
+.announcement-comment-control-btn {
+    min-height: 25px;
+
+    padding: 4px 8px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background: rgba(255,255,255,0.045);
+
+    color: rgba(255,255,255,0.48);
+
+    font-family: inherit;
+
+    font-size: 0.52rem;
+    font-weight: 800;
+
+    letter-spacing: 0.05em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease;
+}
+
+.announcement-comment-control-btn:hover {
+    background: rgba(255,255,255,0.09);
+
+    border-color:
+        rgba(255,255,255,0.22);
+
+    color: var(--white);
+}
+
+.announcement-comment-control-btn.comments-disabled {
+    color: rgba(255,255,255,0.36);
+}
+
+.announcement-comments-disabled-note {
+    margin-top: 9px;
+
+    color: rgba(255,255,255,0.34);
+
+    font-size: 0.57rem;
+
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    .announcement-comment-avatar {
+        width: 27px;
+        height: 27px;
+        flex-basis: 27px;
+
+        font-size: 0.47rem;
+    }
+
+}
+
+/* =================================================
+   ANNOUNCEMENTS LOADING
+================================================= */
+
+.announcements-loading {
+    display: none;
+
+    width: 100%;
+    padding: 55px 20px;
+
+    box-sizing: border-box;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 13px;
+
+    color: rgba(255,255,255,0.62);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.announcements-loading-spinner {
+    width: 28px;
+    height: 28px;
+
+    border: 2px solid rgba(255,255,255,0.12);
+    border-top-color: var(--yellow);
+
+    border-radius: 50%;
+
+    animation:
+        announcementLoadingSpin
+        0.75s linear infinite;
+}
+
+@keyframes announcementLoadingSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
         /* =================================================
            ANNOUNCEMENTS MAIN
         ================================================= */
@@ -315,7 +537,7 @@
                 1.7;
         }
 
-
+        
         /* =================================================
            EMPTY ANNOUNCEMENTS STATE
         ================================================= */
@@ -733,8 +955,14 @@
     font-size: 0.82rem;
     line-height: 1.85;
 
-    white-space: pre-wrap;
-    word-break: break-word;
+    /*
+     * Normal text wrapping.
+     * Hindi mag-i-indent ang second line.
+     */
+    white-space: normal;
+
+    overflow-wrap: break-word;
+    word-break: normal;
 
     text-align: left;
 
@@ -747,6 +975,237 @@
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* =========================================================
+   ANNOUNCEMENT REACTIONS
+========================================================= */
+
+.announcement-social {
+    margin-top: 8px;
+    padding: 0;
+    border: 0;
+}
+
+.announcement-social-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+
+/* =========================================================
+   PLUS / REACTION PICKER
+========================================================= */
+
+.announcement-reaction-add {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.announcement-reaction-add-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.045);
+    color: rgba(255,255,255,0.62);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease,
+        transform 0.16s ease;
+}
+
+.announcement-reaction-add-button:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.20);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.announcement-reaction-add-button:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================================
+   REACTION PILLS
+========================================================= */
+
+.announcement-reaction-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    min-height: 28px;
+    padding: 4px 8px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.045);
+
+    color: rgba(255,255,255,0.70);
+
+    font-family: inherit;
+    font-size: 0.70rem;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease,
+        transform 0.16s ease;
+}
+
+.announcement-reaction-pill:hover {
+    background: rgba(255,255,255,0.085);
+    border-color: rgba(255,255,255,0.20);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.announcement-reaction-pill:active {
+    transform: scale(0.94);
+}
+
+
+/* User's own reaction */
+
+.announcement-reaction-pill.active {
+    background: rgba(255,210,0,0.12);
+    border-color: rgba(255,210,0,0.42);
+    color: var(--white);
+}
+
+
+.announcement-reaction-emoji {
+    font-size: 0.80rem;
+    line-height: 1;
+}
+
+
+.announcement-reaction-count {
+    min-width: 7px;
+    font-size: 0.61rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   REACTION PICKER
+========================================================= */
+
+.announcement-reaction-picker {
+    position: absolute;
+
+    left: 0;
+    bottom: calc(100% + 7px);
+
+    z-index: 30;
+
+    display: none;
+    align-items: center;
+    gap: 3px;
+
+    padding: 6px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+
+    background: rgba(20,24,30,0.97);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.30);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.announcement-reaction-picker.show {
+    display: flex;
+}
+
+
+.announcement-reaction-picker-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 31px;
+    height: 31px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 5px;
+
+    background: transparent;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.14s ease,
+        transform 0.14s ease;
+}
+
+.announcement-reaction-picker-button:hover {
+    background: rgba(255,255,255,0.10);
+    transform: scale(1.12);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .announcement-social {
+        margin-top: 7px;
+    }
+
+    .announcement-social-actions {
+        gap: 4px;
+    }
+
+    .announcement-reaction-add-button {
+        width: 27px;
+        height: 27px;
+    }
+
+    .announcement-reaction-pill {
+        min-height: 27px;
+        padding: 4px 7px;
+        font-size: 0.67rem;
+    }
+
+    .announcement-reaction-emoji {
+        font-size: 0.76rem;
+    }
+
 }
 
 /* =================================================
@@ -2520,6 +2979,14 @@
 
             </div>
 
+            <div
+    class="announcements-loading"
+    id="announcementsLoading"
+    aria-live="polite"
+>
+    <div class="announcements-loading-spinner"></div>
+    <span>Loading announcements...</span>
+</div>
 
             <!-- =================================================
                  EMPTY STATE
@@ -2747,6 +3214,39 @@
                 class="announce-form"
                 id="announceForm"
             >
+
+<!-- COMMENTS -->
+
+<div class="announce-form-group">
+
+    <label class="announce-form-label">
+        Comments
+    </label>
+
+    <label class="announce-comments-setting">
+
+        <input
+            type="checkbox"
+            id="announcementCommentsEnabled"
+            class="announce-comments-checkbox"
+            checked
+        >
+
+        <span class="announce-comments-setting-text">
+
+            <span class="announce-comments-setting-title">
+                Allow comments
+            </span>
+
+            <span class="announce-comments-setting-description">
+                Students can leave comments on this announcement.
+            </span>
+
+        </span>
+
+    </label>
+
+</div>
 
                 <!-- TITLE -->
 
@@ -3112,7 +3612,106 @@
         const ANNOUNCEMENT_API =
             "https://script.google.com/macros/s/AKfycbynR4QX8TznBCSwv6DYNjJyUvIgemtxVXXOEPB2_NRXBo7GZb5whgjZFCA4lyscoqhT/exec";
 
+/* =========================================================
+   FAST API REQUEST HELPER
+========================================================= */
 
+async function announcementApiRequest(
+    options = {}
+) {
+
+    const {
+        method = "GET",
+        params = {},
+        body = null
+    } = options;
+
+
+    let url =
+        ANNOUNCEMENT_API;
+
+
+    if (method === "GET") {
+
+        const query =
+            new URLSearchParams(
+                params
+            ).toString();
+
+
+        if (query) {
+
+            url +=
+                "?" +
+                query;
+
+        }
+
+    }
+
+
+    const fetchOptions = {
+
+        method:
+
+            method === "POST"
+                ? "POST"
+                : "GET"
+
+    };
+
+
+    if (method === "POST") {
+
+        fetchOptions.headers = {
+
+            "Content-Type":
+                "text/plain;charset=utf-8"
+
+        };
+
+
+        fetchOptions.body =
+            JSON.stringify(
+                body || {}
+            );
+
+    }
+
+
+    const response =
+        await fetch(
+            url,
+            fetchOptions
+        );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Server returned HTTP " +
+            response.status
+        );
+
+    }
+
+
+    const result =
+        await response.json();
+
+
+    if (!result) {
+
+        throw new Error(
+            "Empty server response."
+        );
+
+    }
+
+
+    return result;
+
+}
 
         /* =================================================
            ELEMENTS
@@ -3143,7 +3742,10 @@
                 "announcementsEmpty"
             );
 
-
+const announcementsLoading =
+    document.getElementById(
+        "announcementsLoading"
+    );
 
         /* =================================================
            LOGIN MODAL
@@ -3229,6 +3831,11 @@
             document.getElementById(
                 "announcementPhoto"
             );
+
+const announcementCommentsEnabled =
+    document.getElementById(
+        "announcementCommentsEnabled"
+    );
 
         const announcePhotoPreview =
             document.getElementById(
@@ -3322,9 +3929,17 @@
         ================================================= */
 
         loginBtn.addEventListener(
-            "click",
-            openLoginModal
+    "click",
+    function () {
+
+        console.log(
+            "LOGIN BUTTON CLICKED"
         );
+
+        openLoginModal();
+
+    }
+);
 
 
         loginModalClose.addEventListener(
@@ -3376,28 +3991,25 @@
 
                 try {
 
-                    const apiURL =
-                        ANNOUNCEMENT_API +
-                        "?action=login" +
-                        "&username=" +
-                        encodeURIComponent(
-                            username
-                        ) +
-                        "&password=" +
-                        encodeURIComponent(
-                            password
-                        );
-
-
-                    const response =
-                        await fetch(
-                            apiURL
-                        );
-
-
                     const data =
-                        await response.json();
+    await announcementApiRequest({
 
+        method: "GET",
+
+        params: {
+
+            action:
+                "login",
+
+            username:
+                username,
+
+            password:
+                password
+
+        }
+
+    });
 
                     if (
                         !data.success
@@ -3626,100 +4238,141 @@
 
 
 
-        /* =================================================
-           PHOTO PREVIEW
-        ================================================= */
+        /* =========================================================
+   ANNOUNCEMENT PHOTO PREVIEW
+========================================================= */
 
-        announcementPhoto.addEventListener(
-            "change",
+announcementPhoto.addEventListener(
+    "change",
+    function () {
+
+        const file =
+            announcementPhoto.files[0];
+
+
+        if (!file) {
+
+            announcePhotoPreview.style.display =
+                "none";
+
+            announcePhotoPreviewImage.src =
+                "";
+
+            return;
+
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert(
+                "Please select an image file."
+            );
+
+            announcementPhoto.value =
+                "";
+
+            announcePhotoPreview.style.display =
+                "none";
+
+            announcePhotoPreviewImage.src =
+                "";
+
+            return;
+
+        }
+
+
+        if (
+            file.size >
+            2 * 1024 * 1024
+        ) {
+
+            alert(
+                "Photo must be 2 MB or smaller."
+            );
+
+            announcementPhoto.value =
+                "";
+
+            announcePhotoPreview.style.display =
+                "none";
+
+            announcePhotoPreviewImage.src =
+                "";
+
+            return;
+
+        }
+
+
+        /*
+         * Object URL is faster and avoids
+         * converting the image to Base64
+         * just for preview.
+         */
+        const previewURL =
+            URL.createObjectURL(
+                file
+            );
+
+
+        announcePhotoPreviewImage.onload =
             function () {
 
-                const file =
-                    announcementPhoto.files[0];
+                URL.revokeObjectURL(
+                    previewURL
+                );
+
+            };
 
 
-                if (!file) {
-
-                    announcePhotoPreview.classList.remove(
-                        "show"
-                    );
-
-                    announcePhotoPreviewImage.src =
-                        "";
-
-                    return;
-
-                }
+        announcePhotoPreviewImage.src =
+            previewURL;
 
 
-                if (
-                    !file.type.startsWith(
-                        "image/"
-                    )
-                ) {
+        announcePhotoPreview.style.display =
+            "";
 
-                    announcementPhoto.value =
-                        "";
+    }
+);
 
-                    announcePhotoPreview.classList.remove(
-                        "show"
-                    );
+/* =========================================================
+   COMPRESS ANNOUNCEMENT PHOTO
+========================================================= */
 
-                    announcePhotoPreviewImage.src =
-                        "";
+async function compressAnnouncementImage(
+    file
+) {
 
-                    alert(
-                        "Please select an image file."
-                    );
-
-                    return;
-
-                }
+    if (!file) {
+        return "";
+    }
 
 
-                const maxSize =
-                    2 * 1024 * 1024;
-
-
-                if (
-                    file.size >
-                    maxSize
-                ) {
-
-                    announcementPhoto.value =
-                        "";
-
-                    announcePhotoPreview.classList.remove(
-                        "show"
-                    );
-
-                    announcePhotoPreviewImage.src =
-                        "";
-
-                    alert(
-                        "The announcement photo must be 2 MB or smaller."
-                    );
-
-                    return;
-
-                }
-
+    /*
+     * Read the original image.
+     */
+    const imageData =
+        await new Promise(
+            (resolve, reject) => {
 
                 const reader =
                     new FileReader();
 
 
-                reader.onload =
-                    function (event) {
+                reader.onload = () =>
+                    resolve(
+                        reader.result
+                    );
 
-                        announcePhotoPreviewImage.src =
-                            event.target.result;
 
-                        announcePhotoPreview.classList.add(
-                            "show"
-                        );
-
-                    };
+                reader.onerror = () =>
+                    reject(
+                        new Error(
+                            "Unable to read image."
+                        )
+                    );
 
 
                 reader.readAsDataURL(
@@ -3730,293 +4383,487 @@
         );
 
 
+    /*
+     * Create an image element.
+     */
+    const image =
+        await new Promise(
+            (resolve, reject) => {
 
-        /* =================================================
-           FILE TO BASE64
-        ================================================= */
-
-        function fileToBase64(
-            file
-        ) {
-
-            return new Promise(
-                function (
-                    resolve,
-                    reject
-                ) {
-
-                    const reader =
-                        new FileReader();
+                const img =
+                    new Image();
 
 
-                    reader.onload =
-                        function () {
-
-                            resolve(
-                                reader.result
-                            );
-
-                        };
+                img.onload = () =>
+                    resolve(img);
 
 
-                    reader.onerror =
-                        function () {
-
-                            reject(
-                                new Error(
-                                    "Unable to read the selected photo."
-                                )
-                            );
-
-                        };
-
-
-                    reader.readAsDataURL(
-                        file
+                img.onerror = () =>
+                    reject(
+                        new Error(
+                            "Unable to process image."
+                        )
                     );
 
+
+                img.src =
+                    imageData;
+
+            }
+        );
+
+
+    const MAX_SIZE =
+        1600;
+
+
+    let width =
+        image.naturalWidth;
+
+
+    let height =
+        image.naturalHeight;
+
+
+    /*
+     * Keep the original dimensions if
+     * already small enough.
+     */
+    if (
+        width > MAX_SIZE ||
+        height > MAX_SIZE
+    ) {
+
+        const ratio =
+            Math.min(
+                MAX_SIZE / width,
+                MAX_SIZE / height
+            );
+
+
+        width =
+            Math.round(
+                width * ratio
+            );
+
+
+        height =
+            Math.round(
+                height * ratio
+            );
+
+    }
+
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+
+    canvas.width =
+        width;
+
+    canvas.height =
+        height;
+
+
+    const context =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    /*
+     * White background prevents transparent
+     * PNG images from becoming black when
+     * converted to JPEG.
+     */
+    context.fillStyle =
+        "#ffffff";
+
+    context.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    context.drawImage(
+        image,
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+     * JPEG is considerably smaller for
+     * announcement photos.
+     */
+    return canvas.toDataURL(
+        "image/jpeg",
+        0.82
+    );
+
+}
+
+
+        /* =========================================================
+   CREATE ANNOUNCEMENT
+========================================================= */
+
+announceForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        const officer =
+            JSON.parse(
+                localStorage.getItem(
+                    "sasOfficer"
+                ) || "null"
+            );
+
+
+        if (!officer) {
+
+            showLoginMessage(
+                "Please log in as an officer first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const title =
+            announcementTitle.value.trim();
+
+
+        const message =
+            announcementMessage.value.trim();
+
+
+        const photoFile =
+            announcementPhoto.files[0];
+
+
+        if (!title) {
+
+            alert(
+                "Please enter an announcement title."
+            );
+
+            announcementTitle.focus();
+
+            return;
+
+        }
+
+
+        if (!message) {
+
+            alert(
+                "Please enter an announcement message."
+            );
+
+            announcementMessage.focus();
+
+            return;
+
+        }
+
+
+        if (
+            photoFile &&
+            photoFile.size > 2 * 1024 * 1024
+        ) {
+
+            alert(
+                "Photo must be 2 MB or smaller."
+            );
+
+            return;
+
+        }
+
+
+        announceSubmitBtn.disabled = true;
+
+        announceSubmitBtn.textContent =
+            "POSTING...";
+
+
+        try {
+
+            let photoBase64 = "";
+
+
+            if (photoFile) {
+
+                photoBase64 =
+                    await compressAnnouncementImage(
+                        photoFile
+                    );
+
+            }
+
+
+            const postData = {
+
+                action:
+                    "createAnnouncement",
+
+                title:
+                    title,
+
+                message:
+                    message,
+
+                photo:
+                    photoBase64,
+
+                officerID:
+                    officer.officerID || "",
+
+                fullName:
+                    officer.fullName || "",
+
+                position:
+                    officer.position || "",
+
+                officerPhoto:
+                    officer.photo || "",
+
+            };
+
+
+            const data =
+                await announcementApiRequest({
+
+                    method: "POST",
+
+                    body: postData
+
+                });
+
+
+            if (
+                !data ||
+                !data.success
+            ) {
+
+                throw new Error(
+                    data?.message ||
+                    "Failed to post announcement."
+                );
+
+            }
+
+
+            /*
+             * Close immediately after successful
+             * server response.
+             */
+            closeAnnounceModal();
+
+
+            /*
+             * If the server returns the newly
+             * created announcement, insert it
+             * directly instead of downloading
+             * the entire announcement list again.
+             */
+            if (
+                data.announcement
+            ) {
+
+                const card =
+                    createAnnouncementCard(
+                        data.announcement
+                    );
+
+
+                if (card) {
+
+                    announcementsList.prepend(
+                        card
+                    );
+
+                    announcementsEmpty.style.display =
+                        "none";
+
+                    announcementsList.style.display =
+                        "";
+
                 }
+
+            } else {
+
+                /*
+                 * Fallback for older API response.
+                 */
+                await loadAnnouncements();
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Create announcement error:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Failed to post announcement."
+            );
+
+
+        } finally {
+
+            announceSubmitBtn.disabled =
+                false;
+
+            announceSubmitBtn.textContent =
+                "POST ANNOUNCEMENT";
+
+        }
+
+    }
+);
+
+
+
+        /* =========================================================
+   LOAD ANNOUNCEMENTS
+========================================================= */
+
+let announcementsLoadRequest = 0;
+
+async function loadAnnouncements() {
+
+    const requestID =
+        ++announcementsLoadRequest;
+
+
+   announcementsEmpty.style.display =
+    "none";
+
+announcementsList.style.display =
+    "none";
+
+announcementsLoading.style.display =
+    "flex";
+
+announcementsList.innerHTML =
+    "";
+
+    try {
+
+        const data =
+            await announcementApiRequest({
+
+                method: "GET",
+
+                params: {
+
+                    action:
+                        "getAnnouncements",
+
+                    visitorID:
+                        getAnnouncementVisitorID()
+
+                }
+
+            });
+
+
+        /*
+         * Ignore an older request if
+         * a newer load already started.
+         */
+        if (
+            requestID !==
+            announcementsLoadRequest
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            !data ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data?.message ||
+                "Failed to load announcements."
             );
 
         }
 
 
+        const announcements =
+            Array.isArray(
+                data.announcements
+            )
+                ? data.announcements
+                : [];
 
-        /* =================================================
-           CREATE ANNOUNCEMENT
-        ================================================= */
-
-        announceForm.addEventListener(
-            "submit",
-            async function (event) {
-
-                event.preventDefault();
+        announcementsLoading.style.display =
+    "none";
 
 
-                const savedOfficer =
-                    localStorage.getItem(
-                        "sasOfficer"
+        if (
+    announcements.length === 0
+) {
+
+    announcementsLoading.style.display =
+        "none";
+
+    announcementsEmpty.style.display =
+        "";
+
+    announcementsList.style.display =
+        "none";
+
+    return;
+
+}
+
+
+        /*
+         * Build everything first,
+         * then insert into the page once.
+         */
+        const fragment =
+            document.createDocumentFragment();
+
+
+        announcements.forEach(
+            announcement => {
+
+                const card =
+                    createAnnouncementCard(
+                        announcement
                     );
 
+                if (card) {
 
-                if (!savedOfficer) {
-
-                    closeAnnounceModal();
-
-                    openLoginModal();
-
-                    return;
-
-                }
-
-
-                let officer;
-
-
-                try {
-
-                    officer =
-                        JSON.parse(
-                            savedOfficer
-                        );
-
-                } catch (error) {
-
-                    localStorage.removeItem(
-                        "sasOfficer"
+                    fragment.appendChild(
+                        card
                     );
-
-                    updateOfficerInterface();
-
-                    closeAnnounceModal();
-
-                    openLoginModal();
-
-                    return;
-
-                }
-
-
-                const title =
-                    announcementTitle.value.trim();
-
-
-                const message =
-                    announcementMessage.value.trim();
-
-
-                const photoFile =
-                    announcementPhoto.files[0];
-
-
-                if (
-                    !title ||
-                    !message
-                ) {
-
-                    alert(
-                        "Please enter both a title and message."
-                    );
-
-                    return;
-
-                }
-
-
-                if (photoFile) {
-
-                    if (
-                        !photoFile.type.startsWith(
-                            "image/"
-                        )
-                    ) {
-
-                        alert(
-                            "Please select a valid image file."
-                        );
-
-                        return;
-
-                    }
-
-
-                    const maxSize =
-                        2 * 1024 * 1024;
-
-
-                    if (
-                        photoFile.size >
-                        maxSize
-                    ) {
-
-                        alert(
-                            "The announcement photo must be 2 MB or smaller."
-                        );
-
-                        return;
-
-                    }
-
-                }
-
-
-                announceSubmitBtn.disabled =
-                    true;
-
-                announceSubmitBtn.textContent =
-                    "POSTING...";
-
-
-                try {
-
-                    let photoBase64 =
-                        "";
-
-
-                    if (photoFile) {
-
-                        photoBase64 =
-                            await fileToBase64(
-                                photoFile
-                            );
-
-                    }
-
-
-                    const postData = {
-
-                        action:
-                            "createAnnouncement",
-
-                        title:
-                            title,
-
-                        message:
-                            message,
-
-                        photo:
-                            photoBase64,
-
-                        officerID:
-                            officer.officerID || "",
-
-                        fullName:
-                            officer.fullName || "",
-
-                        position:
-                            officer.position || "",
-
-                        officerPhoto:
-                            officer.photo || ""
-
-                    };
-
-
-                    const response =
-                        await fetch(
-                            ANNOUNCEMENT_API,
-                            {
-
-                                method:
-                                    "POST",
-
-                                headers: {
-
-                                    "Content-Type":
-                                        "text/plain;charset=utf-8"
-
-                                },
-
-                                body:
-                                    JSON.stringify(
-                                        postData
-                                    )
-
-                            }
-                        );
-
-
-                    const data =
-                        await response.json();
-
-
-                    if (
-                        !data.success
-                    ) {
-
-                        throw new Error(
-                            data.message ||
-                            "Unable to post announcement."
-                        );
-
-                    }
-
-
-                    closeAnnounceModal();
-
-                    await loadAnnouncements();
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Announcement posting error:",
-                        error
-                    );
-
-
-                    alert(
-                        error.message ||
-                        "Unable to post the announcement."
-                    );
-
-                } finally {
-
-                    announceSubmitBtn.disabled =
-                        false;
-
-                    announceSubmitBtn.textContent =
-                        "POST ANNOUNCEMENT";
 
                 }
 
@@ -4024,141 +4871,78 @@
         );
 
 
-
-        /* =================================================
-           LOAD ANNOUNCEMENTS
-        ================================================= */
-
-        async function loadAnnouncements() {
-
-            announcementsList.innerHTML =
-                `
-                <div class="announcements-loading">
-                    LOADING ANNOUNCEMENTS...
-                </div>
-                `;
+        announcementsList.appendChild(
+            fragment
+        );
 
 
-            announcementsList.style.display =
-                "block";
-
-            announcementsEmpty.style.display =
-                "none";
+        announcementsList.style.display =
+            "";
 
 
-            try {
+    } catch (error) {
 
-                const response =
-                    await fetch(
-                        ANNOUNCEMENT_API +
-                        "?action=getAnnouncements"
-                    );
-
-
-                const data =
-                    await response.json();
+        console.error(
+            "Failed to load announcements:",
+            error
+        );
 
 
-                if (
-                    !data.success
-                ) {
+        if (
+            requestID !==
+            announcementsLoadRequest
+        ) {
 
-                    throw new Error(
-                        data.message ||
-                        "Unable to load announcements."
-                    );
-
-                }
-
-
-                const announcements =
-                    Array.isArray(
-                        data.announcements
-                    )
-                        ? data.announcements
-                        : [];
-
-
-                if (
-                    announcements.length === 0
-                ) {
-
-                    announcementsList.innerHTML =
-                        "";
-
-                    announcementsList.style.display =
-                        "none";
-
-                    announcementsEmpty.style.display =
-                        "block";
-
-                    return;
-
-                }
-
-
-                announcementsEmpty.style.display =
-                    "none";
-
-                announcementsList.style.display =
-                    "flex";
-
-                announcementsList.innerHTML =
-                    "";
-
-
-                announcements.forEach(
-                    function (announcement) {
-
-                        const card =
-                            createAnnouncementCard(
-                                announcement
-                            );
-
-                        announcementsList.appendChild(
-                            card
-                        );
-
-                    }
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Announcement loading error:",
-                    error
-                );
-
-
-                announcementsList.innerHTML =
-                    `
-                    <div class="announcements-empty">
-
-                        <div class="announcements-empty-icon">
-                            !
-                        </div>
-
-                        <h2 class="announcements-empty-title">
-                            Unable to load announcements
-                        </h2>
-
-                        <p class="announcements-empty-text">
-                            Please refresh the page and try again.
-                        </p>
-
-                    </div>
-                    `;
-
-                announcementsList.style.display =
-                    "block";
-
-                announcementsEmpty.style.display =
-                    "none";
-
-            }
+            return;
 
         }
+
+
+        announcementsEmpty.style.display =
+            "";
+
+
+        announcementsEmpty.innerHTML = `
+            <div class="announcements-empty-icon">
+                <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M12 9V13"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="9"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    />
+                    <circle
+                        cx="12"
+                        cy="17"
+                        r="1"
+                        fill="currentColor"
+                    />
+                </svg>
+            </div>
+
+            <h2>Unable to load announcements</h2>
+
+            <p>
+                Please check your connection and try again.
+            </p>
+        `;
+
+    }
+
+}
 
 
 
@@ -4175,9 +4959,11 @@
                     "article"
                 );
 
-
             card.className =
                 "announcement-card";
+
+                card.dataset.announcementId =
+    announcement.id;
 
 
             const author =
@@ -4218,7 +5004,6 @@
             const message =
                 announcement.message ||
                 "";
-
 
             const photo =
                 announcement.photo ||
@@ -4290,6 +5075,7 @@
                             <button
                                 type="button"
                                 class="announcement-delete-btn"
+data-delete-announcement
                                 data-announcement-id="${escapeHTML(
                                     announcement.id
                                 )}"
@@ -4334,17 +5120,20 @@
 
 
                 <p class="announcement-card-message">
-                    ${escapeHTML(message)}
-                </p>
+    ${escapeHTML(message)}
+</p>
 
 
-                ${photoHTML}
+${photoHTML}
 
 
-                ${deleteHTML}
+${createAnnouncementSocialHTML(announcement)}
+
+
+${deleteHTML}
                 `;
 
-
+        
             const deleteButton =
                 card.querySelector(
                     ".announcement-delete-btn"
@@ -4353,19 +5142,20 @@
 
             if (deleteButton) {
 
-                deleteButton.addEventListener(
-                    "click",
-                    function () {
+    deleteButton.addEventListener(
+        "click",
+        function (event) {
 
-                        deleteAnnouncement(
-                            announcement.id,
-                            deleteButton
-                        );
+            event.stopPropagation();
 
-                    }
-                );
+            deleteAnnouncement(
+                card
+            );
 
-            }
+        }
+    );
+
+}
 
 
             return card;
@@ -4374,140 +5164,171 @@
 
 
 
-        /* =================================================
-           DELETE ANNOUNCEMENT
-        ================================================= */
+        /* =========================================================
+   DELETE ANNOUNCEMENT
+========================================================= */
 
-        async function deleteAnnouncement(
-            announcementID,
-            button
-        ) {
+async function deleteAnnouncement(card) {
 
-            if (!announcementID) {
-
-                return;
-
-            }
+    if (!card) {
+        return;
+    }
 
 
-            const confirmed =
-                confirm(
-                    "Are you sure you want to delete this announcement?"
-                );
+    const announcementID =
+        card.dataset.announcementId;
 
 
-            if (!confirmed) {
-
-                return;
-
-            }
+    if (!announcementID) {
+        return;
+    }
 
 
-            const savedOfficer =
-                localStorage.getItem(
-                    "sasOfficer"
-                );
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this announcement?"
+        );
 
 
-            if (!savedOfficer) {
-
-                alert(
-                    "Please log in as an officer first."
-                );
-
-                updateOfficerInterface();
-
-                return;
-
-            }
+    if (!confirmed) {
+        return;
+    }
 
 
-            button.disabled =
-                true;
+    const officer =
+        JSON.parse(
+            localStorage.getItem(
+                "sasOfficer"
+            ) || "null"
+        );
 
-            button.textContent =
-                "DELETING...";
+
+    if (!officer) {
+
+        alert(
+            "Please log in as an officer first."
+        );
+
+        return;
+
+    }
 
 
-            try {
+    const deleteButton =
+        card.querySelector(
+            "[data-delete-announcement]"
+        );
 
-                const postData = {
+
+    if (deleteButton) {
+
+        deleteButton.disabled =
+            true;
+
+        deleteButton.textContent =
+            "DELETING...";
+
+    }
+
+
+    try {
+
+        const data =
+            await announcementApiRequest({
+
+                method: "POST",
+
+                body: {
 
                     action:
                         "deleteAnnouncement",
 
-                    id:
-                        announcementID
+                    announcementID:
+                        announcementID,
 
-                };
-
-
-                const response =
-                    await fetch(
-                        ANNOUNCEMENT_API,
-                        {
-
-                            method:
-                                "POST",
-
-                            headers: {
-
-                                "Content-Type":
-                                    "text/plain;charset=utf-8"
-
-                            },
-
-                            body:
-                                JSON.stringify(
-                                    postData
-                                )
-
-                        }
-                    );
-
-
-                const data =
-                    await response.json();
-
-
-                if (
-                    !data.success
-                ) {
-
-                    throw new Error(
-                        data.message ||
-                        "Unable to delete announcement."
-                    );
+                    officerID:
+                        officer.officerID || ""
 
                 }
 
-
-                await loadAnnouncements();
-
-
-            } catch (error) {
-
-                console.error(
-                    "Delete announcement error:",
-                    error
-                );
+            });
 
 
-                alert(
-                    error.message ||
-                    "Unable to delete announcement."
-                );
+        if (
+            !data ||
+            !data.success
+        ) {
 
-
-                button.disabled =
-                    false;
-
-                button.textContent =
-                    "DELETE";
-
-            }
+            throw new Error(
+                data?.message ||
+                "Failed to delete announcement."
+            );
 
         }
+
+
+        /*
+         * Remove only the deleted card.
+         */
+        card.remove();
+
+
+        /*
+         * If there are no remaining cards,
+         * show the existing empty state.
+         */
+        const remainingCards =
+            announcementsList.querySelectorAll(
+                "[data-announcement-id]"
+            );
+
+
+        if (
+            remainingCards.length === 0
+        ) {
+
+            announcementsList.style.display =
+                "none";
+
+            announcementsEmpty.style.display =
+                "";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Delete announcement error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Failed to delete announcement."
+        );
+
+
+        if (deleteButton) {
+
+            deleteButton.disabled =
+                false;
+
+            /*
+             * Restore the existing label.
+             * If your original button says
+             * something different, we can
+             * adjust this later.
+             */
+            deleteButton.textContent =
+                "DELETE";
+
+        }
+
+    }
+
+}
 
 
 
@@ -4700,9 +5521,6 @@
         ================================================= */
 
         updateOfficerInterface();
-
-        loadAnnouncements();
-
        
     </script>
 
@@ -4833,6 +5651,1137 @@ document.addEventListener(
         }
     }
 );
+
+/* =========================================================
+   ANNOUNCEMENT LIKE + COMMENT SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   VISITOR ID
+========================================================= */
+
+function getAnnouncementVisitorID() {
+
+    const storageKey =
+        "sas_announcement_visitor_id";
+
+
+    let visitorID =
+        localStorage.getItem(
+            storageKey
+        );
+
+
+    if (!visitorID) {
+
+        visitorID =
+            "VIS-" +
+            Date.now() +
+            "-" +
+            Math.random()
+                .toString(36)
+                .substring(2, 12);
+
+
+        localStorage.setItem(
+            storageKey,
+            visitorID
+        );
+
+    }
+
+
+    return visitorID;
+
+}
+
+/* =========================================================
+   REACTION DATA
+========================================================= */
+
+const ANNOUNCEMENT_REACTION_TYPES = [
+    "👍",
+    "❤️",
+    "😂",
+    "😮",
+    "😢",
+    "😡"
+];
+
+
+/* =========================================================
+   REACTION DATA HELPER
+========================================================= */
+
+function getAnnouncementReactionData(
+    announcement
+) {
+
+    const reactions =
+        announcement &&
+        announcement.reactions;
+
+
+    const counts =
+        reactions &&
+        reactions.counts &&
+        typeof reactions.counts === "object"
+            ? reactions.counts
+            : {};
+
+
+    let userReactions = [];
+
+
+    /*
+     * New backend format:
+     * userReactions: ["👍", "❤️"]
+     */
+
+    if (
+        reactions &&
+        Array.isArray(
+            reactions.userReactions
+        )
+    ) {
+
+        userReactions =
+            reactions.userReactions
+                .filter(
+                    function (reaction) {
+
+                        return ANNOUNCEMENT_REACTION_TYPES
+                            .includes(reaction);
+
+                    }
+                );
+
+    }
+
+
+    /*
+     * Backward compatibility with
+     * the old single-reaction format.
+     */
+
+    else if (
+        reactions &&
+        reactions.userReaction
+    ) {
+
+        userReactions = [
+            reactions.userReaction
+        ];
+
+    }
+
+
+    return {
+
+        counts: {
+
+            "👍":
+                Number(counts["👍"] || 0),
+
+            "❤️":
+                Number(counts["❤️"] || 0),
+
+            "😂":
+                Number(counts["😂"] || 0),
+
+            "😮":
+                Number(counts["😮"] || 0),
+
+            "😢":
+                Number(counts["😢"] || 0),
+
+            "😡":
+                Number(counts["😡"] || 0)
+
+        },
+
+        userReactions:
+            userReactions
+
+    };
+
+}
+
+/* =========================================================
+   REACTION PILL HTML
+========================================================= */
+
+function createAnnouncementReactionPillHTML(
+    reaction,
+    count,
+    userReactions
+) {
+
+    const reactionIsMine =
+        Array.isArray(userReactions) &&
+        userReactions.includes(
+            reaction
+        );
+
+
+    /*
+     * Hide reactions with zero count,
+     * UNLESS the current visitor
+     * has reacted with that emoji.
+     */
+
+    if (
+        Number(count || 0) <= 0 &&
+        !reactionIsMine
+    ) {
+
+        return "";
+
+    }
+
+
+    return `
+        <button
+            type="button"
+            class="announcement-reaction-pill${reactionIsMine ? " active" : ""}"
+            data-announcement-reaction="${escapeHTML(reaction)}"
+            aria-label="React ${escapeHTML(reaction)}"
+            aria-pressed="${reactionIsMine ? "true" : "false"}"
+        >
+
+            <span
+                class="announcement-reaction-emoji"
+            >
+                ${reaction}
+            </span>
+
+            <span
+                class="announcement-reaction-count"
+                data-reaction-count="${escapeHTML(reaction)}"
+            >
+                ${Number(count || 0)}
+            </span>
+
+        </button>
+    `;
+
+}
+
+
+/* =========================================================
+   REACTION PICKER HTML
+========================================================= */
+
+function createAnnouncementReactionPickerHTML() {
+
+    return `
+        <div
+            class="announcement-reaction-picker"
+            data-reaction-picker
+        >
+
+            ${ANNOUNCEMENT_REACTION_TYPES
+                .map(
+                    function (reaction) {
+
+                        return `
+                            <button
+                                type="button"
+                                class="announcement-reaction-picker-button"
+                                data-reaction-picker-item="${escapeHTML(reaction)}"
+                                aria-label="React ${escapeHTML(reaction)}"
+                            >
+                                ${reaction}
+                            </button>
+                        `;
+
+                    }
+                )
+                .join("")
+            }
+
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   REACTION HTML
+========================================================= */
+
+function createAnnouncementReactionsHTML(
+    announcement
+) {
+
+    const reactionData =
+        getAnnouncementReactionData(
+            announcement
+        );
+
+
+    const visibleReactions =
+        ANNOUNCEMENT_REACTION_TYPES
+            .map(
+                function (reaction) {
+
+                    return createAnnouncementReactionPillHTML(
+
+                        reaction,
+
+                        reactionData.counts[
+                            reaction
+                        ],
+
+                        reactionData.userReactions
+
+                    );
+
+                }
+            )
+            .join("");
+
+
+    return `
+        <div
+            class="announcement-reactions"
+            data-announcement-reactions
+        >
+
+            <div
+                class="announcement-reaction-add-wrapper"
+                style="position:relative;"
+            >
+
+                <button
+                    type="button"
+                    class="announcement-reaction-add"
+                    data-reaction-add
+                    aria-label="Add reaction"
+                    aria-expanded="false"
+                >
+                    +
+                </button>
+
+
+                ${createAnnouncementReactionPickerHTML()}
+
+            </div>
+
+
+            ${visibleReactions}
+
+        </div>
+    `;
+
+}
+
+/* =========================================================
+   SOCIAL HTML
+========================================================= */
+
+function createAnnouncementSocialHTML(announcement) {
+
+    const reactionTypes = [
+        "👍",
+        "❤️",
+        "😂",
+        "😮",
+        "😢",
+        "😡"
+    ];
+
+    const reactionData =
+        announcement.reactions || {};
+
+    const counts =
+        reactionData.counts || {};
+
+    /*
+     * New system:
+     * userReactions = ["👍", "❤️", ...]
+     */
+    const userReactions =
+        Array.isArray(
+            reactionData.userReactions
+        )
+            ? reactionData.userReactions
+            : (
+                reactionData.userReaction
+                    ? [reactionData.userReaction]
+                    : []
+            );
+
+
+    /* =====================================================
+       REACTION PILLS
+    ===================================================== */
+
+    let reactionHTML = "";
+
+
+    reactionTypes.forEach(
+        function (reaction) {
+
+            const count =
+                Number(
+                    counts[reaction] || 0
+                );
+
+
+            /*
+             * Only show reactions that
+             * currently have at least 1 reaction.
+             */
+
+            if (count <= 0) {
+                return;
+            }
+
+
+            const isActive =
+                userReactions.includes(
+                    reaction
+                );
+
+
+            reactionHTML += `
+
+                <button
+                    type="button"
+                    class="announcement-reaction-pill ${
+                        isActive
+                            ? "active"
+                            : ""
+                    }"
+                    data-announcement-reaction="${reaction}"
+                    aria-label="React ${reaction}"
+                >
+
+                    <span
+                        class="announcement-reaction-emoji"
+                    >
+                        ${reaction}
+                    </span>
+
+                    <span
+                        class="announcement-reaction-count"
+                    >
+                        ${count}
+                    </span>
+
+                </button>
+
+            `;
+
+        }
+    );
+
+
+    /* =====================================================
+       FINAL REACTION UI
+    ===================================================== */
+
+    return `
+
+        <div class="announcement-social">
+
+            <div class="announcement-social-actions">
+
+                <!-- PLUS -->
+                <div
+                    class="announcement-reaction-add"
+                >
+
+                    <button
+                        type="button"
+                        class="announcement-reaction-add-button"
+                        data-reaction-picker-toggle
+                        aria-label="Add reaction"
+                    >
+                        +
+                    </button>
+
+
+                    <!-- EMOJI PICKER -->
+                    <div
+                        class="announcement-reaction-picker"
+                    >
+
+                        ${reactionTypes
+                            .map(
+                                function (
+                                    reaction
+                                ) {
+
+                                    return `
+
+                                        <button
+                                            type="button"
+                                            class="announcement-reaction-picker-button"
+                                            data-announcement-reaction="${reaction}"
+                                            aria-label="React ${reaction}"
+                                        >
+                                            ${reaction}
+                                        </button>
+
+                                    `;
+
+                                }
+                            )
+                            .join("")}
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXISTING REACTIONS -->
+                ${reactionHTML}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+ /* =========================================================
+    UPDATE REACTION DISPLAY
+ ========================================================= */
+
+ function updateAnnouncementReactionDisplay(
+     card,
+     reactions,
+     userReactions
+ ) {
+
+     if (!card) {
+         return;
+     }
+
+
+     const container =
+         card.querySelector(
+             ".announcement-social-actions"
+         );
+
+
+     if (!container) {
+         return;
+     }
+
+
+     const safeUserReactions =
+         Array.isArray(userReactions)
+             ? userReactions
+             : (
+                 userReactions
+                     ? [userReactions]
+                     : []
+             );
+
+
+     const visibleReactions =
+         ANNOUNCEMENT_REACTION_TYPES
+             .map(
+                 function (reaction) {
+
+                     return createAnnouncementReactionPillHTML(
+                         reaction,
+                         Number(
+                             reactions?.[reaction] || 0
+                         ),
+                         safeUserReactions
+                     );
+
+                 }
+             )
+             .join("");
+
+
+     container.innerHTML = `
+
+         <div
+             class="announcement-reaction-add"
+         >
+
+             <button
+                 type="button"
+                 class="announcement-reaction-add-button"
+                 data-reaction-picker-toggle
+                 aria-label="Add reaction"
+                 aria-expanded="false"
+             >
+                 +
+             </button>
+
+
+             <div
+                 class="announcement-reaction-picker"
+             >
+
+                 ${ANNOUNCEMENT_REACTION_TYPES
+                     .map(
+                         function (reaction) {
+
+                             return `
+                                 <button
+                                     type="button"
+                                     class="announcement-reaction-picker-button"
+                                     data-announcement-reaction="${escapeHTML(reaction)}"
+                                     aria-label="React ${escapeHTML(reaction)}"
+                                 >
+                                     ${reaction}
+                                 </button>
+                             `;
+
+                         }
+                     )
+                     .join("")
+                 }
+
+             </div>
+
+         </div>
+
+         ${visibleReactions}
+
+     `;
+
+ }
+
+
+/* =========================================================
+   REACT TO ANNOUNCEMENT
+   MULTIPLE REACTIONS + OPTIMISTIC UI
+========================================================= */
+
+async function reactToAnnouncementFrontend(
+    card,
+    reaction
+) {
+
+    if (!card || !reaction) {
+        return;
+    }
+
+
+    if (card._reactionRequestPending) {
+        return;
+    }
+
+
+    const announcementID =
+        card.dataset.announcementId;
+
+
+    if (!announcementID) {
+        return;
+    }
+
+
+    const reactionContainer =
+        card.querySelector(
+            ".announcement-social-actions"
+        );
+
+
+    if (!reactionContainer) {
+        return;
+    }
+
+
+    /*
+     * -----------------------------------------------
+     * GET CURRENT COUNTS
+     * -----------------------------------------------
+     */
+
+    const oldCounts = {};
+
+    ANNOUNCEMENT_REACTION_TYPES.forEach(
+        function (type) {
+
+            const button =
+                reactionContainer.querySelector(
+                    `[data-announcement-reaction="${type}"]`
+                );
+
+
+            oldCounts[type] =
+                button
+                    ? Number(
+                        button.querySelector(
+                            ".announcement-reaction-count"
+                        )?.textContent || 0
+                    )
+                    : 0;
+
+        }
+    );
+
+
+    /*
+     * -----------------------------------------------
+     * GET CURRENT USER REACTIONS
+     * -----------------------------------------------
+     */
+
+    const activeButtons =
+        reactionContainer.querySelectorAll(
+            ".announcement-reaction-pill.active"
+        );
+
+
+    const previousUserReactions =
+        Array.from(
+            activeButtons
+        )
+            .map(
+                function (button) {
+
+                    return button.dataset
+                        .announcementReaction;
+
+                }
+            )
+            .filter(Boolean);
+
+
+    /*
+     * -----------------------------------------------
+     * COPY CURRENT STATE
+     * -----------------------------------------------
+     */
+
+    const nextCounts = {
+        ...oldCounts
+    };
+
+
+    const nextUserReactions = [
+        ...previousUserReactions
+    ];
+
+
+    const existingIndex =
+        nextUserReactions.indexOf(
+            reaction
+        );
+
+
+    /*
+     * -----------------------------------------------
+     * TOGGLE ONLY THIS REACTION
+     * -----------------------------------------------
+     */
+
+    if (existingIndex !== -1) {
+
+        nextUserReactions.splice(
+            existingIndex,
+            1
+        );
+
+
+        nextCounts[reaction] =
+            Math.max(
+                0,
+                nextCounts[reaction] - 1
+            );
+
+    } else {
+
+        nextUserReactions.push(
+            reaction
+        );
+
+
+        nextCounts[reaction] =
+            nextCounts[reaction] + 1;
+
+    }
+
+
+    /*
+     * -----------------------------------------------
+     * LOCK REQUEST
+     * -----------------------------------------------
+     */
+
+    card._reactionRequestPending =
+        true;
+
+
+    /*
+     * -----------------------------------------------
+     * OPTIMISTIC UI
+     * -----------------------------------------------
+     */
+
+    updateAnnouncementReactionDisplay(
+
+        card,
+
+        nextCounts,
+
+        nextUserReactions
+
+    );
+
+
+    try {
+
+        const data =
+            await announcementApiRequest({
+
+                method:
+                    "POST",
+
+                body: {
+
+                    action:
+                        "reactAnnouncement",
+
+                    announcementID:
+                        announcementID,
+
+                    visitorID:
+                        getAnnouncementVisitorID(),
+
+                    reaction:
+                        reaction
+
+                }
+
+            });
+
+
+        if (
+            !data ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data?.message ||
+                "Failed to update reaction."
+            );
+
+        }
+
+
+        /*
+         * -------------------------------------------
+         * SERVER FINAL STATE
+         * -------------------------------------------
+         */
+
+        updateAnnouncementReactionDisplay(
+
+            card,
+
+            data.reactions ||
+                nextCounts,
+
+            Array.isArray(
+                data.userReactions
+            )
+                ? data.userReactions
+                : nextUserReactions
+
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Reaction error:",
+            error
+        );
+
+
+        /*
+         * -------------------------------------------
+         * ROLLBACK
+         * -------------------------------------------
+         */
+
+        updateAnnouncementReactionDisplay(
+
+            card,
+
+            oldCounts,
+
+            previousUserReactions
+
+        );
+
+    } finally {
+
+        card._reactionRequestPending =
+            false;
+
+    }
+
+}
+
+/* =========================================================
+   REACTION EVENT
+   CLICK / TAP ONLY
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        /* =================================================
+           PLUS / ADD REACTION BUTTON
+        ================================================= */
+
+        const addButton =
+            event.target.closest(
+                "[data-reaction-picker-toggle]"
+            );
+
+
+        if (addButton) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            const wrapper =
+                addButton.closest(
+                    ".announcement-reaction-add"
+                );
+
+
+            if (!wrapper) {
+                return;
+            }
+
+
+            const picker =
+                wrapper.querySelector(
+                    ".announcement-reaction-picker"
+                );
+
+
+            if (!picker) {
+                return;
+            }
+
+
+            const currentlyOpen =
+                picker.classList.contains(
+                    "show"
+                );
+
+
+            /*
+             * Close all other pickers.
+             */
+
+            document
+                .querySelectorAll(
+                    ".announcement-reaction-picker.show"
+                )
+                .forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "show"
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Open this picker.
+             */
+
+            if (!currentlyOpen) {
+
+                picker.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            return;
+        }
+
+
+        /* =================================================
+           EMOJI FROM PICKER
+        ================================================= */
+
+        const pickerButton =
+            event.target.closest(
+                ".announcement-reaction-picker-button"
+            );
+
+
+        if (pickerButton) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            const reaction =
+                pickerButton.dataset
+                    .announcementReaction;
+
+
+            const card =
+                pickerButton.closest(
+                    ".announcement-card"
+                );
+
+
+            if (!card || !reaction) {
+                return;
+            }
+
+
+            /*
+             * Close picker immediately.
+             */
+
+            const picker =
+                pickerButton.closest(
+                    ".announcement-reaction-picker"
+                );
+
+
+            if (picker) {
+
+                picker.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            /*
+             * React immediately.
+             */
+
+            reactToAnnouncementFrontend(
+                card,
+                reaction
+            );
+
+
+            return;
+        }
+
+
+        /* =================================================
+           EXISTING REACTION PILL
+        ================================================= */
+
+        const reactionButton =
+            event.target.closest(
+                ".announcement-reaction-pill"
+            );
+
+
+        if (!reactionButton) {
+            return;
+        }
+
+
+        event.preventDefault();
+        event.stopPropagation();
+
+
+        const card =
+            reactionButton.closest(
+                ".announcement-card"
+            );
+
+
+        if (!card) {
+            return;
+        }
+
+
+        const reaction =
+            reactionButton.dataset
+                .announcementReaction;
+
+
+        if (!reaction) {
+            return;
+        }
+
+
+        /*
+         * Toggle only this reaction.
+         */
+
+        reactToAnnouncementFrontend(
+            card,
+            reaction
+        );
+
+    },
+    false
+);
+
+
+/* =========================================================
+   CLOSE REACTION PICKER OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target.closest(
+                ".announcement-reaction-add"
+            ) ||
+            event.target.closest(
+                ".announcement-reaction-picker"
+            )
+        ) {
+
+            return;
+        }
+
+
+        document
+            .querySelectorAll(
+                ".announcement-reaction-picker.show"
+            )
+            .forEach(
+                function (picker) {
+
+                    picker.classList.remove(
+                        "show"
+                    );
+
+                }
+            );
+
+    },
+    false
+);
+
+/* =========================================================
+   INITIALIZE ANNOUNCEMENTS
+========================================================= */
+
+requestAnimationFrame(() => {
+    loadAnnouncements();
+});
 
 </script>
 
