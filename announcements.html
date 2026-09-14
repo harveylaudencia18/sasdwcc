@@ -5356,6 +5356,59 @@ function updateNotificationModalStatus() {
 
 }
 
+async function testSASNotification() {
+
+    if (
+        !isNotificationSupported()
+    ) {
+
+        console.log(
+            "Notification API is not supported."
+        );
+
+        return;
+
+    }
+
+    console.log(
+        "Notification permission:",
+        Notification.permission
+    );
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        console.log(
+            "Notification permission is not granted."
+        );
+
+        return;
+
+    }
+
+    const testNotification =
+        new Notification(
+            "SAS Notification Test",
+            {
+                body:
+                    "Browser notifications are working.",
+                icon:
+                    "assets/sas-logo.png"
+            }
+        );
+
+    testNotification.onclick =
+        function () {
+
+            window.focus();
+
+            testNotification.close();
+
+        };
+
+}
 
 /* =================================================
    NOTIFICATION BUTTON
@@ -5392,44 +5445,36 @@ notificationBlockBtn.addEventListener(
 
 
 /* =================================================
-   ALLOW
+   NOTIFICATION ALLOW
 ================================================= */
 
 notificationAllowBtn.addEventListener(
     "click",
     async function () {
 
-       if (
-    !isNotificationSupported()
-) {
-
+        if (!isNotificationSupported()) {
             updateNotificationModalStatus();
-
             return;
-
         }
 
-
         /*
-         * Already allowed.
+         * Already allowed
          */
-
         if (
             Notification.permission ===
             "granted"
         ) {
 
+            await startAnnouncementNotificationMonitoring();
+
             updateNotificationModalStatus();
 
             return;
-
         }
 
-
         /*
-         * Browser already blocked it.
+         * Already blocked
          */
-
         if (
             Notification.permission ===
             "denied"
@@ -5438,9 +5483,7 @@ notificationAllowBtn.addEventListener(
             updateNotificationModalStatus();
 
             return;
-
         }
-
 
         notificationAllowBtn.disabled =
             true;
@@ -5448,37 +5491,27 @@ notificationAllowBtn.addEventListener(
         notificationAllowBtn.textContent =
             "ALLOWING...";
 
-
         try {
 
             const permission =
                 await Notification.requestPermission();
 
-
             updateNotificationModalStatus();
 
-
             if (
-    permission ===
-    "granted"
-) {
+                permission ===
+                "granted"
+            ) {
 
-    await startAnnouncementNotificationMonitoring();
+                await startAnnouncementNotificationMonitoring();
 
-}
+            }
 
         } catch (error) {
 
             console.error(
                 "Notification permission error:",
                 error
-            );
-
-            notificationStatus.textContent =
-                "Unable to enable notifications. Please try again.";
-
-            notificationStatus.classList.add(
-                "blocked"
             );
 
         } finally {
@@ -5490,6 +5523,42 @@ notificationAllowBtn.addEventListener(
                 "ALLOW";
 
         }
+
+    }
+);
+
+
+/* =================================================
+   NOTIFICATION BLOCK
+================================================= */
+
+notificationBlockBtn.addEventListener(
+    "click",
+    function () {
+
+        /*
+         * JavaScript cannot directly revoke
+         * notification permission.
+         *
+         * If permission is already granted,
+         * we simply stop our announcement
+         * monitoring.
+         */
+
+        if (
+            announcementNotificationTimer
+        ) {
+
+            clearInterval(
+                announcementNotificationTimer
+            );
+
+            announcementNotificationTimer =
+                null;
+
+        }
+
+        updateNotificationModalStatus();
 
     }
 );
