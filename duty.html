@@ -2967,722 +2967,700 @@
 
     <script>
 
-        "use strict";
+"use strict";
 
 
-        /* =====================================================
-           API
-        ====================================================== */
+/* =========================================================
+   API
+========================================================= */
 
-        const API_URL =
-            "https://script.google.com/macros/s/AKfycbyKNaHwmd20pryj0GHCe2iFHgFtQOp0BJFL_qFH_qNzwoBL1Nij7A_yJx9vXntGTM-2vA/exec";
-
-
-        /* =====================================================
-           STATE
-        ====================================================== */
-
-        let currentOfficer =
-            null;
-
-        let currentDuty =
-            null;
-
-        let transparencyData =
-            [];
-
-        let timerInterval =
-            null;
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbyKNaHwmd20pryj0GHCe2iFHgFtQOp0BJFL_qFH_qNzwoBL1Nij7A_yJx9vXntGTM-2vA/exec";
 
 
-        /* =====================================================
-           ELEMENTS
-        ====================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
-        const header =
-            document.getElementById(
-                "siteHeader"
-            );
+let currentOfficer = null;
+let currentDuty = null;
 
+let transparencyData = [];
 
-        const menuButton =
-            document.getElementById(
-                "menuButton"
-            );
+let timerInterval = null;
 
+let dutyBoardRequest = null;
 
-        const mobileNavigation =
-            document.getElementById(
-                "mobileNavigation"
-            );
+let lastDutyBoardLoad = 0;
+
+const DUTY_CACHE_TIME = 15000;
 
 
-        const onDutySection =
-            document.getElementById(
-                "onDutySection"
-            );
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const header =
+    document.getElementById("siteHeader");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileNavigation =
+    document.getElementById("mobileNavigation");
+
+const onDutySection =
+    document.getElementById("onDutySection");
+
+const onDutyBoard =
+    document.getElementById("onDutyBoard");
+
+const offDutyBoard =
+    document.getElementById("offDutyBoard");
+
+const loginModal =
+    document.getElementById("loginModal");
+
+const startDutyModal =
+    document.getElementById("startDutyModal");
+
+const endDutyModal =
+    document.getElementById("endDutyModal");
+
+const transparencyModal =
+    document.getElementById("transparencyModal");
+
+const officerLoginButton =
+    document.getElementById("officerLoginButton");
+
+const refreshDutyButton =
+    document.getElementById("refreshDutyButton");
+
+const transparencyButton =
+    document.getElementById("transparencyButton");
+
+const dutyMessage =
+    document.getElementById("dutyMessage");
+
+const loginUsername =
+    document.getElementById("loginUsername");
+
+const loginPassword =
+    document.getElementById("loginPassword");
+
+const loginSubmitButton =
+    document.getElementById("loginSubmitButton");
+
+const dutyLocation =
+    document.getElementById("dutyLocation");
+
+const customLocation =
+    document.getElementById("customLocation");
+
+const customLocationGroup =
+    document.getElementById("customLocationGroup");
+
+const confirmStartDutyButton =
+    document.getElementById("confirmStartDutyButton");
+
+const confirmEndDutyButton =
+    document.getElementById("confirmEndDutyButton");
+
+const transparencyContent =
+    document.getElementById("transparencyContent");
+
+const totalOfficers =
+    document.getElementById("totalOfficers");
+
+const onDutyCount =
+    document.getElementById("onDutyCount");
+
+const totalDutyHours =
+    document.getElementById("totalDutyHours");
+
+const onDutyLabelCount =
+    document.getElementById("onDutyLabelCount");
+
+const offDutyLabelCount =
+    document.getElementById("offDutyLabelCount");
 
 
-        const onDutyBoard =
-            document.getElementById(
-                "onDutyBoard"
-            );
+/* =========================================================
+   HEADER SCROLL
+========================================================= */
+
+function updateHeader() {
+
+    if (window.scrollY > 30) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+}
 
 
-        const offDutyBoard =
-            document.getElementById(
-                "offDutyBoard"
-            );
+window.addEventListener(
+    "scroll",
+    updateHeader,
+    { passive: true }
+);
+
+updateHeader();
 
 
-        const loginModal =
-            document.getElementById(
-                "loginModal"
-            );
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
+menuButton.addEventListener(
+    "click",
+    function () {
 
-        const startDutyModal =
-            document.getElementById(
-                "startDutyModal"
-            );
+        const opened =
+            mobileNavigation.classList.toggle("open");
 
-
-        const endDutyModal =
-            document.getElementById(
-                "endDutyModal"
-            );
-
-
-        const transparencyModal =
-            document.getElementById(
-                "transparencyModal"
-            );
-
-
-        const officerLoginButton =
-            document.getElementById(
-                "officerLoginButton"
-            );
-
-
-        const refreshDutyButton =
-            document.getElementById(
-                "refreshDutyButton"
-            );
-
-
-        const transparencyButton =
-            document.getElementById(
-                "transparencyButton"
-            );
-
-
-        /* =====================================================
-           HEADER SCROLL
-        ====================================================== */
-
-        function updateHeader() {
-
-            if (
-                window.scrollY > 30
-            ) {
-
-                header.classList.add(
-                    "scrolled"
-                );
-
-            } else {
-
-                header.classList.remove(
-                    "scrolled"
-                );
-
-            }
-
-        }
-
-
-        window.addEventListener(
-            "scroll",
-            updateHeader
+        menuButton.classList.toggle(
+            "open",
+            opened
         );
 
+        menuButton.setAttribute(
+            "aria-expanded",
+            String(opened)
+        );
 
-        updateHeader();
+    }
+);
 
 
-        /* =====================================================
-           MOBILE MENU
-        ====================================================== */
+document
+    .querySelectorAll(".mobile-nav-item")
+    .forEach(
+        function (item) {
 
-        menuButton.addEventListener(
-            "click",
-            function () {
+            item.addEventListener(
+                "click",
+                function () {
 
-                const opened =
-                    mobileNavigation.classList.toggle(
+                    mobileNavigation.classList.remove(
                         "open"
                     );
 
+                    menuButton.classList.remove(
+                        "open"
+                    );
 
-                menuButton.classList.toggle(
-                    "open",
-                    opened
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+let messageTimeout = null;
+
+
+function showMessage(message) {
+
+    dutyMessage.textContent =
+        message;
+
+    dutyMessage.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        messageTimeout
+    );
+
+    messageTimeout =
+        setTimeout(
+            function () {
+
+                dutyMessage.classList.remove(
+                    "show"
                 );
 
+            },
+            3000
+        );
 
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    String(
-                        opened
-                    )
+}
+
+
+/* =========================================================
+   API REQUEST
+========================================================= */
+
+async function apiRequest(
+    action,
+    params = {}
+) {
+
+    const url =
+        new URL(API_URL);
+
+    url.searchParams.set(
+        "action",
+        action
+    );
+
+    for (
+        const key in params
+    ) {
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                params,
+                key
+            )
+        ) {
+
+            const value =
+                params[key];
+
+            if (
+                value !== undefined &&
+                value !== null
+            ) {
+
+                url.searchParams.set(
+                    key,
+                    String(value)
                 );
 
+            }
+
+        }
+
+    }
+
+
+    const response =
+        await fetch(
+            url.toString(),
+            {
+                method: "GET",
+                cache: "no-store"
             }
         );
 
 
-        document
-            .querySelectorAll(
-                ".mobile-nav-item"
-            )
-            .forEach(
-                function (item) {
+    if (!response.ok) {
 
-                    item.addEventListener(
-                        "click",
-                        function () {
+        throw new Error(
+            "API request failed."
+        );
 
-                            mobileNavigation.classList.remove(
-                                "open"
-                            );
+    }
 
 
-                            menuButton.classList.remove(
-                                "open"
-                            );
+    return response.json();
 
+}
 
-                            menuButton.setAttribute(
-                                "aria-expanded",
-                                "false"
-                            );
 
-                        }
-                    );
+/* =========================================================
+   DRIVE PHOTO URL
+========================================================= */
 
-                }
-            );
+function getPhotoUrl(value) {
 
+    if (!value) {
 
-        /* =====================================================
-           MESSAGE
-        ====================================================== */
+        return "assets/sas-logo.png";
 
-        function showMessage(
-            message
-        ) {
+    }
 
-            const element =
-                document.getElementById(
-                    "dutyMessage"
-                );
 
+    const url =
+        String(value).trim();
 
-            element.textContent =
-                message;
 
+    const driveMatch =
+        url.match(
+            /drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([^/&]+)/
+        );
 
-            element.classList.add(
-                "show"
-            );
 
+    if (driveMatch) {
 
-            setTimeout(
-                function () {
+        return (
+            "https://drive.google.com/thumbnail" +
+            "?id=" +
+            encodeURIComponent(
+                driveMatch[1]
+            ) +
+            "&sz=w400"
+        );
 
-                    element.classList.remove(
-                        "show"
-                    );
+    }
 
-                },
-                3000
-            );
 
-        }
+    return url;
 
+}
 
-        /* =====================================================
-           API REQUEST
-        ====================================================== */
 
-        async function apiRequest(
-            action,
-            params = {}
-        ) {
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-            const url =
-                new URL(
-                    API_URL
-                );
+function escapeHtml(value) {
 
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
-            url.searchParams.set(
-                "action",
-                action
-            );
+}
 
 
-            Object.keys(
-                params
-            ).forEach(
-                function (key) {
+function escapeAttribute(value) {
 
-                    const value =
-                        params[key];
+    return escapeHtml(value);
 
+}
 
-                    if (
-                        value !==
-                        undefined &&
-                        value !==
-                        null
-                    ) {
 
-                        url.searchParams.set(
-                            key,
-                            String(value)
-                        );
+/* =========================================================
+   DUTY STATUS
+========================================================= */
 
-                    }
+function isOfficerOnDuty(officer) {
 
-                }
-            );
+    const value =
+        officer?.isOnDuty;
 
 
-            const response =
-                await fetch(
-                    url.toString(),
-                    {
-                        method:
-                            "GET",
+    return (
+        value === true ||
+        value === 1 ||
+        value === "1" ||
+        String(value).toLowerCase() === "true"
+    );
 
-                        cache:
-                            "no-store"
-                    }
-                );
+}
 
 
-            if (
-                !response.ok
-            ) {
+/* =========================================================
+   DATE PARSER
+========================================================= */
 
-                throw new Error(
-                    "API request failed."
-                );
+function parseDutyStartTime(startTime) {
 
-            }
+    if (!startTime) {
 
+        return null;
 
-            return await response.json();
+    }
 
-        }
 
+    if (
+        startTime instanceof Date
+    ) {
 
-        /* =====================================================
-           DRIVE PHOTO URL
-        ====================================================== */
+        return Number.isNaN(
+            startTime.getTime()
+        )
+            ? null
+            : startTime;
 
-        function getPhotoUrl(
-            value
-        ) {
+    }
 
-            if (
-                !value
-            ) {
 
-                return "assets/sas-logo.png";
+    if (
+        typeof startTime === "number"
+    ) {
 
-            }
+        const date =
+            new Date(startTime);
 
+        return Number.isNaN(
+            date.getTime()
+        )
+            ? null
+            : date;
 
-            const url =
-                String(
-                    value
-                ).trim();
+    }
 
 
-            const driveFileMatch =
-                url.match(
-                    /drive\.google\.com\/file\/d\/([^/]+)/
-                );
+    const value =
+        String(startTime).trim();
 
 
-            if (
-                driveFileMatch
-            ) {
+    if (!value) {
 
-                const fileId =
-                    driveFileMatch[1];
+        return null;
 
+    }
 
-                return (
-                    "https://drive.google.com/thumbnail" +
-                    "?id=" +
-                    encodeURIComponent(
-                        fileId
-                    ) +
-                    "&sz=w400"
-                );
 
-            }
+    const directDate =
+        new Date(value);
 
 
-            const driveOpenMatch =
-                url.match(
-                    /drive\.google\.com\/open\?id=([^&]+)/
-                );
+    if (
+        !Number.isNaN(
+            directDate.getTime()
+        )
+    ) {
 
+        return directDate;
 
-            if (
-                driveOpenMatch
-            ) {
+    }
 
-                const fileId =
-                    driveOpenMatch[1];
 
+    const match =
+        value.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i
+        );
 
-                return (
-                    "https://drive.google.com/thumbnail" +
-                    "?id=" +
-                    encodeURIComponent(
-                        fileId
-                    ) +
-                    "&sz=w400"
-                );
 
-            }
+    if (!match) {
 
+        return null;
 
-            const driveUcMatch =
-                url.match(
-                    /drive\.google\.com\/uc\?id=([^&]+)/
-                );
+    }
 
 
-            if (
-                driveUcMatch
-            ) {
+    const month =
+        Number(match[1]);
 
-                const fileId =
-                    driveUcMatch[1];
+    const day =
+        Number(match[2]);
 
+    const year =
+        Number(match[3]);
 
-                return (
-                    "https://drive.google.com/thumbnail" +
-                    "?id=" +
-                    encodeURIComponent(
-                        fileId
-                    ) +
-                    "&sz=w400"
-                );
+    let hour =
+        Number(match[4]);
 
-            }
+    const minute =
+        Number(match[5]);
 
+    const second =
+        Number(match[6] || 0);
 
-            return url;
+    const meridiem =
+        match[7]
+            ? match[7].toUpperCase()
+            : "";
 
-        }
 
+    if (
+        meridiem === "PM" &&
+        hour < 12
+    ) {
 
-        /* =====================================================
-           ESCAPE HTML
-        ====================================================== */
+        hour += 12;
 
-        function escapeHtml(
-            value
-        ) {
+    }
 
-            return String(
-                value ?? ""
-            )
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
 
-        }
+    if (
+        meridiem === "AM" &&
+        hour === 12
+    ) {
 
+        hour = 0;
 
-        function escapeAttribute(
-            value
-        ) {
+    }
 
-            return escapeHtml(
-                value
-            );
 
-        }
+    const date =
+        new Date(
+            year,
+            month - 1,
+            day,
+            hour,
+            minute,
+            second
+        );
 
 
-        /* =====================================================
-           DUTY STATUS HELPER
-        ====================================================== */
+    return Number.isNaN(
+        date.getTime()
+    )
+        ? null
+        : date;
 
-        function isOfficerOnDuty(
-            officer
-        ) {
+}
 
-            const value =
-                officer?.isOnDuty;
 
+/* =========================================================
+   FORMAT DUTY TIME
+========================================================= */
 
-            return (
-                value === true ||
-                value === 1 ||
-                value === "1" ||
-                String(value).toLowerCase() ===
-                "true"
-            );
+function formatElapsedTime(
+    startTimestamp
+) {
 
-        }
+    if (!startTimestamp) {
 
+        return "00:00:00";
 
-        /* =====================================================
-           DATE PARSER
-        ====================================================== */
+    }
 
-        function parseDutyStartTime(
+
+    let elapsed =
+        Math.floor(
+            (
+                Date.now() -
+                startTimestamp
+            ) / 1000
+        );
+
+
+    if (elapsed < 0) {
+
+        elapsed = 0;
+
+    }
+
+
+    const hours =
+        Math.floor(
+            elapsed / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                elapsed % 3600
+            ) / 60
+        );
+
+
+    const seconds =
+        elapsed % 60;
+
+
+    return (
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0")
+    );
+
+}
+
+
+/* =========================================================
+   PREPARE TIMER START TIME
+========================================================= */
+
+function getTimerTimestamp(
+    startTime
+) {
+
+    const date =
+        parseDutyStartTime(
             startTime
-        ) {
-
-            if (
-                !startTime
-            ) {
-
-                return null;
-
-            }
+        );
 
 
-            if (
-                startTime instanceof Date
-            ) {
+    if (!date) {
 
-                return Number.isNaN(
-                    startTime.getTime()
-                )
-                    ? null
-                    : startTime;
+        return "";
 
-            }
+    }
 
 
-            if (
-                typeof startTime ===
-                "number"
-            ) {
+    return String(
+        date.getTime()
+    );
 
-                const numericDate =
-                    new Date(
-                        startTime
-                    );
+}
 
 
-                return Number.isNaN(
-                    numericDate.getTime()
-                )
-                    ? null
-                    : numericDate;
+/* =========================================================
+   UPDATE ALL TIMERS
+========================================================= */
 
-            }
+function updateDutyTimers() {
 
-
-            const value =
-                String(
-                    startTime
-                ).trim();
+    const timers =
+        document.querySelectorAll(
+            ".duty-timer[data-start-time]"
+        );
 
 
-            if (
-                !value
-            ) {
+    if (!timers.length) {
 
-                return null;
+        return;
 
-            }
+    }
 
 
-            let date =
-                new Date(
-                    value
+    const now =
+        Date.now();
+
+
+    timers.forEach(
+        function (timer) {
+
+            const timestamp =
+                Number(
+                    timer.dataset.startTime
                 );
 
 
             if (
-                !Number.isNaN(
-                    date.getTime()
-                )
+                !timestamp ||
+                Number.isNaN(timestamp)
             ) {
 
-                return date;
+                return;
 
             }
-
-
-            const match =
-                value.match(
-                    /^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i
-                );
-
-
-            if (
-                match
-            ) {
-
-                const month =
-                    Number(
-                        match[1]
-                    );
-
-
-                const day =
-                    Number(
-                        match[2]
-                    );
-
-
-                const year =
-                    Number(
-                        match[3]
-                    );
-
-
-                let hour =
-                    Number(
-                        match[4]
-                    );
-
-
-                const minute =
-                    Number(
-                        match[5]
-                    );
-
-
-                const second =
-                    Number(
-                        match[6] ||
-                        0
-                    );
-
-
-                const meridiem =
-                    match[7]
-                        ? match[7].toUpperCase()
-                        : "";
-
-
-                if (
-                    meridiem === "PM" &&
-                    hour < 12
-                ) {
-
-                    hour += 12;
-
-                }
-
-
-                if (
-                    meridiem === "AM" &&
-                    hour === 12
-                ) {
-
-                    hour = 0;
-
-                }
-
-
-                date =
-                    new Date(
-                        year,
-                        month - 1,
-                        day,
-                        hour,
-                        minute,
-                        second
-                    );
-
-
-                return Number.isNaN(
-                    date.getTime()
-                )
-                    ? null
-                    : date;
-
-            }
-
-
-            return null;
-
-        }
-
-
-        /* =====================================================
-           FORMAT DUTY TIMER
-        ====================================================== */
-
-        function formatDutyTime(
-            startTime
-        ) {
-
-            const start =
-                parseDutyStartTime(
-                    startTime
-                );
-
-
-            if (
-                !start
-            ) {
-
-                return "00:00:00";
-
-            }
-
-
-            const now =
-                new Date();
 
 
             let elapsed =
                 Math.floor(
                     (
-                        now.getTime() -
-                        start.getTime()
+                        now -
+                        timestamp
                     ) / 1000
                 );
 
 
-            if (
-                elapsed < 0
-            ) {
+            if (elapsed < 0) {
 
                 elapsed = 0;
 
@@ -3707,142 +3685,512 @@
                 elapsed % 60;
 
 
-            return [
+            const value =
+                String(hours).padStart(2, "0") +
+                ":" +
+                String(minutes).padStart(2, "0") +
+                ":" +
+                String(seconds).padStart(2, "0");
 
-                String(
-                    hours
-                ).padStart(
-                    2,
-                    "0"
-                ),
 
-                String(
-                    minutes
-                ).padStart(
-                    2,
-                    "0"
-                ),
+            const valueElement =
+                timer.querySelector(
+                    ".duty-timer-value"
+                );
 
-                String(
-                    seconds
-                ).padStart(
-                    2,
-                    "0"
-                )
 
-            ].join(
-                ":"
+            if (
+                valueElement &&
+                valueElement.textContent !== value
+            ) {
+
+                valueElement.textContent =
+                    value;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   START TIMER LOOP
+========================================================= */
+
+function startTimerLoop() {
+
+    if (timerInterval) {
+
+        clearInterval(
+            timerInterval
+        );
+
+    }
+
+
+    updateDutyTimers();
+
+
+    timerInterval =
+        setInterval(
+            updateDutyTimers,
+            1000
+        );
+
+}
+
+
+/* =========================================================
+   UPDATE SUMMARY
+========================================================= */
+
+function updateSummary(
+    officers
+) {
+
+    let onDuty = 0;
+    let totalHours = 0;
+
+
+    for (
+        let i = 0;
+        i < officers.length;
+        i++
+    ) {
+
+        const officer =
+            officers[i];
+
+
+        if (
+            isOfficerOnDuty(
+                officer
+            )
+        ) {
+
+            onDuty++;
+
+        }
+
+
+        totalHours +=
+            Number(
+                officer.overallHours || 0
+            );
+
+    }
+
+
+    totalOfficers.textContent =
+        officers.length;
+
+
+    onDutyCount.textContent =
+        onDuty;
+
+
+    totalDutyHours.textContent =
+        totalHours.toFixed(2);
+
+}
+
+
+/* =========================================================
+   CREATE OFFICER CARD
+========================================================= */
+
+function createOfficerCard(
+    officer
+) {
+
+    const onDuty =
+        isOfficerOnDuty(
+            officer
+        );
+
+
+    const article =
+        document.createElement(
+            "article"
+        );
+
+
+    article.className =
+        "duty-card " +
+        (
+            onDuty
+                ? "on-duty"
+                : "off-duty"
+        );
+
+
+    const photo =
+        getPhotoUrl(
+            officer.photoUrl
+        );
+
+
+    const name =
+        officer.name ||
+        "Officer";
+
+
+    const position =
+        officer.position ||
+        "SAS Officer";
+
+
+    const location =
+        onDuty
+            ? String(
+                officer.location || ""
+            ).trim()
+            : "";
+
+
+    const startTime =
+        onDuty
+            ? String(
+                officer.startTime || ""
+            ).trim()
+            : "";
+
+
+    const officerId =
+        officer.id ||
+        "—";
+
+
+    const locationMarkup =
+        onDuty && location
+            ? `
+                <div class="duty-location">
+
+                    <span class="location-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        ${escapeHtml(location)}
+                    </span>
+
+                </div>
+            `
+            : "";
+
+
+    const timerTimestamp =
+        onDuty && startTime
+            ? getTimerTimestamp(
+                startTime
+            )
+            : "";
+
+
+    const timerMarkup =
+        timerTimestamp
+            ? `
+                <div
+                    class="duty-timer"
+                    data-start-time="${timerTimestamp}"
+                >
+
+                    <span class="duty-timer-label">
+                        ON DUTY FOR
+                    </span>
+
+                    <span class="duty-timer-value">
+                        ${formatElapsedTime(
+                            Number(timerTimestamp)
+                        )}
+                    </span>
+
+                </div>
+            `
+            : "";
+
+
+    article.innerHTML = `
+
+        <div class="duty-card-top">
+
+            <img
+                src="${escapeAttribute(photo)}"
+                alt="${escapeAttribute(name)}"
+                class="duty-photo"
+                loading="lazy"
+                decoding="async"
+                onerror="
+                    this.onerror=null;
+                    this.src='assets/sas-logo.png';
+                "
+            >
+
+            <div class="duty-card-info">
+
+                <h3 class="duty-name">
+                    ${escapeHtml(name)}
+                </h3>
+
+                <div class="duty-position">
+                    ${escapeHtml(position)}
+                </div>
+
+                ${locationMarkup}
+
+                ${timerMarkup}
+
+            </div>
+
+        </div>
+
+        <div class="duty-status">
+            ${onDuty ? "ON DUTY" : "OFF DUTY"}
+        </div>
+
+        <div class="duty-card-bottom">
+
+            <div class="duty-id-row">
+
+                <span class="duty-id-label">
+                    Officer ID
+                </span>
+
+                <span class="duty-id-value">
+                    ${escapeHtml(officerId)}
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    return article;
+
+}
+
+
+/* =========================================================
+   RENDER BOARD
+========================================================= */
+
+function renderDutyBoard(
+    officers
+) {
+
+    const onDuty = [];
+    const offDuty = [];
+
+
+    for (
+        let i = 0;
+        i < officers.length;
+        i++
+    ) {
+
+        const officer =
+            officers[i];
+
+
+        if (
+            isOfficerOnDuty(
+                officer
+            )
+        ) {
+
+            onDuty.push(
+                officer
+            );
+
+        } else {
+
+            offDuty.push(
+                officer
             );
 
         }
 
-
-        /* =====================================================
-           UPDATE ALL TIMERS
-        ====================================================== */
-
-        function updateDutyTimers() {
-
-            document
-                .querySelectorAll(
-                    ".duty-timer[data-start-time]"
-                )
-                .forEach(
-                    function (
-                        timer
-                    ) {
-
-                        const startTime =
-                            timer.getAttribute(
-                                "data-start-time"
-                            );
+    }
 
 
-                        if (
-                            !startTime
-                        ) {
-
-                            return;
-
-                        }
+    updateSummary(
+        officers
+    );
 
 
-                        const value =
-                            formatDutyTime(
-                                startTime
-                            );
+    onDutyLabelCount.textContent =
+        onDuty.length +
+        (
+            onDuty.length === 1
+                ? " officer"
+                : " officers"
+        );
 
 
-                        const valueElement =
-                            timer.querySelector(
-                                ".duty-timer-value"
-                            );
+    offDutyLabelCount.textContent =
+        offDuty.length +
+        (
+            offDuty.length === 1
+                ? " officer"
+                : " officers"
+        );
 
 
-                        if (
-                            valueElement
-                        ) {
-
-                            valueElement.textContent =
-                                value;
-
-                        }
-
-                    }
-                );
-
-        }
+    const onDutyFragment =
+        document.createDocumentFragment();
 
 
-        function startTimerLoop() {
-
-            if (
-                timerInterval
-            ) {
-
-                clearInterval(
-                    timerInterval
-                );
-
-            }
+    const offDutyFragment =
+        document.createDocumentFragment();
 
 
-            updateDutyTimers();
+    for (
+        let i = 0;
+        i < onDuty.length;
+        i++
+    ) {
+
+        onDutyFragment.appendChild(
+            createOfficerCard(
+                onDuty[i]
+            )
+        );
+
+    }
 
 
-            timerInterval =
-                setInterval(
-                    updateDutyTimers,
-                    1000
-                );
+    for (
+        let i = 0;
+        i < offDuty.length;
+        i++
+    ) {
 
-        }
+        offDutyFragment.appendChild(
+            createOfficerCard(
+                offDuty[i]
+            )
+        );
 
-
-        /* =====================================================
-           LOAD DUTY BOARD
-        ====================================================== */
-
-        async function loadDutyBoard() {
-
-            onDutyBoard.innerHTML =
-                "";
+    }
 
 
-            offDutyBoard.innerHTML = `
-                <div class="duty-loading">
-                    Loading duty information...
-                </div>
-            `;
+    onDutyBoard.replaceChildren(
+        onDutyFragment
+    );
 
 
-            try {
+    offDutyBoard.replaceChildren(
+        offDutyFragment
+    );
 
-                const data =
-                    await apiRequest(
-                        "getTransparency"
-                    );
 
+    if (
+        onDuty.length
+    ) {
+
+        onDutySection.style.display =
+            "block";
+
+    } else {
+
+        onDutySection.style.display =
+            "none";
+
+    }
+
+
+    if (!offDuty.length) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        empty.className =
+            "duty-empty";
+
+        empty.textContent =
+            "All officers are currently on duty.";
+
+
+        offDutyBoard.appendChild(
+            empty
+        );
+
+    }
+
+
+    startTimerLoop();
+
+}
+
+
+/* =========================================================
+   LOAD DUTY BOARD
+========================================================= */
+
+async function loadDutyBoard(
+    force = false
+) {
+
+    const now =
+        Date.now();
+
+
+    /*
+     * If the data was loaded recently
+     * and a fresh request is not required,
+     * simply render the cached data.
+     */
+
+    if (
+        !force &&
+        transparencyData.length &&
+        now - lastDutyBoardLoad <
+        DUTY_CACHE_TIME
+    ) {
+
+        renderDutyBoard(
+            transparencyData
+        );
+
+        return transparencyData;
+
+    }
+
+
+    /*
+     * Prevent multiple simultaneous
+     * getTransparency requests.
+     */
+
+    if (dutyBoardRequest) {
+
+        return dutyBoardRequest;
+
+    }
+
+
+    onDutyBoard.replaceChildren();
+
+
+    offDutyBoard.innerHTML = `
+        <div class="duty-loading">
+            Loading duty information...
+        </div>
+    `;
+
+
+    dutyBoardRequest =
+        apiRequest(
+            "getTransparency"
+        )
+        .then(
+            function (data) {
 
                 if (
                     !data.success
@@ -3856,16 +4204,25 @@
                 }
 
 
+                transparencyData =
+                    data.officers || [];
+
+
+                lastDutyBoardLoad =
+                    Date.now();
+
+
                 renderDutyBoard(
-                    data.officers ||
-                    []
+                    transparencyData
                 );
 
 
-                startTimerLoop();
+                return transparencyData;
 
-
-            } catch (error) {
+            }
+        )
+        .catch(
+            function (error) {
 
                 console.error(
                     error
@@ -3888,1747 +4245,1213 @@
                     "Unable to load duty information."
                 );
 
+
+                throw error;
+
             }
+        )
+        .finally(
+            function () {
 
-        }
+                dutyBoardRequest =
+                    null;
 
+            }
+        );
 
-        /* =====================================================
-           CREATE OFFICER CARD
-        ====================================================== */
 
-        function createOfficerCard(
-            officer
-        ) {
+    return dutyBoardRequest;
 
-            const onDuty =
-                isOfficerOnDuty(
-                    officer
-                );
+}
 
 
-            const article =
-                document.createElement(
-                    "article"
-                );
+/* =========================================================
+   RESET START DUTY FORM
+========================================================= */
 
+function resetStartDutyForm() {
 
-            article.className =
-                "duty-card " +
-                (
-                    onDuty
-                        ? "on-duty"
-                        : "off-duty"
-                );
+    dutyLocation.value =
+        "";
 
+    customLocation.value =
+        "";
 
-            const photo =
-                getPhotoUrl(
-                    officer.photoUrl
-                );
+    customLocationGroup.style.display =
+        "none";
 
+}
 
-            const name =
-                officer.name ||
-                "Officer";
 
+/* =========================================================
+   LOGIN
+========================================================= */
 
-            const position =
-                officer.position ||
-                "SAS Officer";
+async function loginOfficer() {
 
+    const username =
+        loginUsername.value.trim();
 
-            const location =
-                onDuty
-                    ? String(
-                        officer.location ||
-                        ""
-                    ).trim()
-                    : "";
 
+    const password =
+        loginPassword.value;
 
-            const startTime =
-                onDuty
-                    ? String(
-                        officer.startTime ||
-                        ""
-                    ).trim()
-                    : "";
 
+    if (
+        !username ||
+        !password
+    ) {
 
-            const officerId =
-                officer.id ||
-                "—";
+        showMessage(
+            "Please enter your username and password."
+        );
 
+        return;
 
-            const locationMarkup =
-                (
-                    onDuty &&
-                    location
-                )
-                    ? `
-                        <div class="duty-location">
+    }
 
-                            <span class="location-icon">
-                               📍
-                            </span>
 
-                            <span>
-                                ${escapeHtml(
-                                    location
-                                )}
-                            </span>
+    loginSubmitButton.disabled =
+        true;
 
-                        </div>
-                    `
-                    : "";
+    loginSubmitButton.textContent =
+        "Logging in...";
 
 
-            const timerMarkup =
-                (
-                    onDuty &&
-                    startTime
-                )
-                    ? `
-                        <div
-                            class="duty-timer"
-                            data-start-time="${escapeAttribute(
-                                startTime
-                            )}"
-                        >
+    try {
 
-                            <span class="duty-timer-label">
-                                ON DUTY FOR
-                            </span>
+        /*
+         * Authenticate first.
+         */
 
-                            <span class="duty-timer-value">
-                                ${escapeHtml(
-                                    formatDutyTime(
-                                        startTime
-                                    )
-                                )}
-                            </span>
-
-                        </div>
-                    `
-                    : "";
-
-
-            article.innerHTML = `
-
-                <div class="duty-card-top">
-
-
-                    <img
-                        src="${escapeAttribute(photo)}"
-                        alt="${escapeAttribute(name)}"
-                        class="duty-photo"
-                        loading="lazy"
-                        onerror="
-                            this.onerror=null;
-                            this.src='assets/sas-logo.png';
-                        "
-                    >
-
-
-                    <div class="duty-card-info">
-
-
-                        <h3 class="duty-name">
-                            ${escapeHtml(name)}
-                        </h3>
-
-
-                        <div class="duty-position">
-                            ${escapeHtml(position)}
-                        </div>
-
-
-                        ${locationMarkup}
-
-
-                        ${timerMarkup}
-
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="duty-status">
-
-                    ${
-                        onDuty
-                            ? "ON DUTY"
-                            : "OFF DUTY"
-                    }
-
-                </div>
-
-
-                <div class="duty-card-bottom">
-
-                    <div class="duty-id-row">
-
-                        <span class="duty-id-label">
-                            Officer ID
-                        </span>
-
-
-                        <span class="duty-id-value">
-                            ${escapeHtml(
-                                officerId
-                            )}
-                        </span>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            return article;
-
-        }
-
-
-        /* =====================================================
-           RENDER BOARD
-        ====================================================== */
-
-        function renderDutyBoard(
-            officers
-        ) {
-
-            const onDuty =
-                officers.filter(
-                    function (
-                        officer
-                    ) {
-
-                        return isOfficerOnDuty(
-                            officer
-                        );
-
-                    }
-                );
-
-
-            const offDuty =
-                officers.filter(
-                    function (
-                        officer
-                    ) {
-
-                        return !isOfficerOnDuty(
-                            officer
-                        );
-
-                    }
-                );
-
-
-            updateSummary(
-                officers
+        const data =
+            await apiRequest(
+                "login",
+                {
+                    username,
+                    password
+                }
             );
 
 
-            document.getElementById(
-                "onDutyLabelCount"
-            ).textContent =
-                onDuty.length +
-                (
-                    onDuty.length === 1
-                        ? " officer"
-                        : " officers"
-                );
-
-
-            document.getElementById(
-                "offDutyLabelCount"
-            ).textContent =
-                offDuty.length +
-                (
-                    offDuty.length === 1
-                        ? " officer"
-                        : " officers"
-                );
-
-
-            onDutyBoard.innerHTML =
-                "";
-
-
-            offDutyBoard.innerHTML =
-                "";
-
-
-            if (
-                onDuty.length > 0
-            ) {
-
-                onDutySection.style.display =
-                    "block";
-
-
-                onDuty.forEach(
-                    function (
-                        officer
-                    ) {
-
-                        onDutyBoard.appendChild(
-                            createOfficerCard(
-                                officer
-                            )
-                        );
-
-                    }
-                );
-
-            } else {
-
-                onDutySection.style.display =
-                    "none";
-
-            }
-
-
-            if (
-                offDuty.length > 0
-            ) {
-
-                offDuty.forEach(
-                    function (
-                        officer
-                    ) {
-
-                        offDutyBoard.appendChild(
-                            createOfficerCard(
-                                officer
-                            )
-                        );
-
-                    }
-                );
-
-            } else {
-
-                offDutyBoard.innerHTML = `
-                    <div class="duty-empty">
-                        All officers are currently on duty.
-                    </div>
-                `;
-
-            }
-
-        }
-
-
-        /* =====================================================
-           SUMMARY
-        ====================================================== */
-
-        function updateSummary(
-            officers
+        if (
+            !data.success
         ) {
 
-            const total =
-                officers.length;
-
-
-            const onDuty =
-                officers.filter(
-                    function (
-                        officer
-                    ) {
-
-                        return isOfficerOnDuty(
-                            officer
-                        );
-
-                    }
-                ).length;
-
-
-            const totalHours =
-                officers.reduce(
-                    function (
-                        sum,
-                        officer
-                    ) {
-
-                        return (
-                            sum +
-                            Number(
-                                officer.overallHours ||
-                                0
-                            )
-                        );
-
-                    },
-                    0
-                );
-
-
-            document.getElementById(
-                "totalOfficers"
-            ).textContent =
-                total;
-
-
-            document.getElementById(
-                "onDutyCount"
-            ).textContent =
-                onDuty;
-
-
-            document.getElementById(
-                "totalDutyHours"
-            ).textContent =
-                totalHours.toFixed(
-                    2
-                );
+            throw new Error(
+                data.message ||
+                "Login failed."
+            );
 
         }
 
 
-        /* =====================================================
-           LOGIN
-        ====================================================== */
-
-        async function loginOfficer() {
-
-            const username =
-                document.getElementById(
-                    "loginUsername"
-                ).value.trim();
+        currentOfficer =
+            data.officer ||
+            data.user ||
+            data.account ||
+            null;
 
 
-            const password =
-                document.getElementById(
-                    "loginPassword"
-                ).value;
+        if (!currentOfficer) {
+
+            currentOfficer = {
+
+                id:
+                    data.officerId ||
+                    data.id ||
+                    data.ID ||
+                    username,
+
+                officerId:
+                    data.officerId ||
+                    data.id ||
+                    data.ID ||
+                    username,
+
+                username:
+                    data.username ||
+                    username,
+
+                name:
+                    data.name ||
+                    username,
+
+                position:
+                    data.position ||
+                    "SAS Officer",
+
+                photoUrl:
+                    data.photoUrl ||
+                    ""
+
+            };
+
+        }
 
 
-            if (
-                !username ||
-                !password
-            ) {
+        /*
+         * Login must verify the latest duty status.
+         *
+         * Force one fresh transparency request.
+         */
 
-                showMessage(
-                    "Please enter your username and password."
-                );
-
-                return;
-
-            }
+        const officers =
+            await loadDutyBoard(
+                true
+            );
 
 
-            const button =
-                document.getElementById(
-                    "loginSubmitButton"
-                );
+        const officerId =
+            currentOfficer.id ||
+            currentOfficer.officerId ||
+            currentOfficer.ID ||
+            currentOfficer.username;
 
 
-            button.disabled =
-                true;
+        const matchedOfficer =
+            officers.find(
+                function (officer) {
 
-
-            button.textContent =
-                "Logging in...";
-
-
-            try {
-
-                const data =
-                    await apiRequest(
-                        "login",
-                        {
-                            username:
-                                username,
-
-                            password:
-                                password
-                        }
-                    );
-
-
-                if (
-                    !data.success
-                ) {
-
-                    throw new Error(
-                        data.message ||
-                        "Login failed."
-                    );
-
-                }
-
-
-                currentOfficer =
-                    data.officer ||
-                    data.user ||
-                    data.account ||
-                    null;
-
-
-                if (
-                    !currentOfficer
-                ) {
-
-                    currentOfficer = {
-
-                        id:
-                            data.officerId ||
-                            data.id ||
-                            data.ID ||
-                            username,
-
-                        officerId:
-                            data.officerId ||
-                            data.id ||
-                            data.ID ||
-                            username,
-
-                        username:
-                            data.username ||
-                            username,
-
-                        name:
-                            data.name ||
-                            username,
-
-                        position:
-                            data.position ||
-                            "SAS Officer",
-
-                        photoUrl:
-                            data.photoUrl ||
-                            ""
-
-                    };
-
-                }
-
-
-                /*
-                 * Refresh transparency data after login.
-                 *
-                 * This determines whether the officer
-                 * is currently ON DUTY or OFF DUTY.
-                 */
-
-                const transparency =
-                    await apiRequest(
-                        "getTransparency"
-                    );
-
-
-                if (
-                    !transparency.success
-                ) {
-
-                    throw new Error(
-                        transparency.message ||
-                        "Unable to verify duty status."
+                    return (
+                        String(
+                            officer.id
+                        ).trim() ===
+                        String(
+                            officerId
+                        ).trim()
                     );
 
                 }
+            );
 
 
-                const officers =
-                    transparency.officers ||
-                    [];
+        loginModal.classList.remove(
+            "is-open"
+        );
 
 
-                const officerId =
-                    currentOfficer.id ||
-                    currentOfficer.officerId ||
-                    currentOfficer.ID ||
-                    currentOfficer.username;
+        /*
+         * Officer is currently ON DUTY.
+         */
+
+        if (
+            matchedOfficer &&
+            isOfficerOnDuty(
+                matchedOfficer
+            )
+        ) {
+
+            currentOfficer =
+                matchedOfficer;
 
 
-                const matchedOfficer =
-                    officers.find(
-                        function (
-                            officer
-                        ) {
+            currentDuty = {
 
-                            return String(
-                                officer.id
-                            ).trim() ===
-                            String(
-                                officerId
-                            ).trim();
+                officerId:
+                    matchedOfficer.id,
 
-                        }
-                    );
+                location:
+                    matchedOfficer.location ||
+                    "",
 
+                startTime:
+                    matchedOfficer.startTime ||
+                    ""
 
-                loginModal.classList.remove(
-                    "is-open"
-                );
+            };
 
 
-                /*
-                 * ON DUTY
-                 *
-                 * The officer must log in again
-                 * before being allowed to end duty.
-                 */
+            endDutyModal.classList.add(
+                "is-open"
+            );
 
-                if (
-                    matchedOfficer &&
-                    isOfficerOnDuty(
-                        matchedOfficer
+
+            showMessage(
+                "You are currently on duty."
+            );
+
+
+        } else {
+
+            /*
+             * Officer is OFF DUTY.
+             */
+
+            resetStartDutyForm();
+
+
+            startDutyModal.classList.add(
+                "is-open"
+            );
+
+
+            showMessage(
+                "Login successful."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Login failed."
+        );
+
+
+    } finally {
+
+        loginSubmitButton.disabled =
+            false;
+
+        loginSubmitButton.textContent =
+            "Log In";
+
+    }
+
+}
+
+
+/* =========================================================
+   START DUTY
+========================================================= */
+
+async function startDuty() {
+
+    if (!currentOfficer) {
+
+        showMessage(
+            "Please log in first."
+        );
+
+        return;
+
+    }
+
+
+    let location =
+        dutyLocation.value.trim();
+
+
+    if (
+        location === "Custom"
+    ) {
+
+        location =
+            customLocation.value.trim();
+
+    }
+
+
+    if (!location) {
+
+        showMessage(
+            "Please select a duty location."
+        );
+
+        return;
+
+    }
+
+
+    const officerId =
+        currentOfficer.id ||
+        currentOfficer.officerId ||
+        currentOfficer.ID ||
+        currentOfficer.username;
+
+
+    if (!officerId) {
+
+        showMessage(
+            "Officer ID is missing."
+        );
+
+        return;
+
+    }
+
+
+    confirmStartDutyButton.disabled =
+        true;
+
+    confirmStartDutyButton.textContent =
+        "Starting...";
+
+
+    try {
+
+        const data =
+            await apiRequest(
+                "startDuty",
+                {
+                    officerId,
+                    location
+                }
+            );
+
+
+        if (
+            !data.success
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Unable to start duty."
+            );
+
+        }
+
+
+        currentDuty =
+            data.duty ||
+            {
+                officerId,
+                location,
+                startTime:
+                    new Date().toISOString()
+            };
+
+
+        startDutyModal.classList.remove(
+            "is-open"
+        );
+
+
+        currentOfficer =
+            null;
+
+        currentDuty =
+            null;
+
+
+        /*
+         * Force fresh board data because
+         * duty status has changed.
+         */
+
+        await loadDutyBoard(
+            true
+        );
+
+
+        showMessage(
+            "You are now on duty. Log in again to end duty."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to start duty."
+        );
+
+
+    } finally {
+
+        confirmStartDutyButton.disabled =
+            false;
+
+        confirmStartDutyButton.textContent =
+            "Start Duty";
+
+    }
+
+}
+
+
+/* =========================================================
+   END DUTY
+========================================================= */
+
+async function endDuty() {
+
+    if (!currentOfficer) {
+
+        showMessage(
+            "Please log in first."
+        );
+
+        return;
+
+    }
+
+
+    confirmEndDutyButton.disabled =
+        true;
+
+    confirmEndDutyButton.textContent =
+        "Ending...";
+
+
+    try {
+
+        const officerId =
+            currentOfficer.id ||
+            currentOfficer.officerId ||
+            currentOfficer.ID ||
+            currentOfficer.username;
+
+
+        if (!officerId) {
+
+            throw new Error(
+                "Officer ID is missing."
+            );
+
+        }
+
+
+        const data =
+            await apiRequest(
+                "endDuty",
+                {
+                    officerId
+                }
+            );
+
+
+        if (
+            !data.success
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Unable to end duty."
+            );
+
+        }
+
+
+        endDutyModal.classList.remove(
+            "is-open"
+        );
+
+
+        currentOfficer =
+            null;
+
+        currentDuty =
+            null;
+
+
+        /*
+         * Force fresh board data because
+         * duty status has changed.
+         */
+
+        await loadDutyBoard(
+            true
+        );
+
+
+        showMessage(
+            "Duty ended successfully."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to end duty."
+        );
+
+
+    } finally {
+
+        confirmEndDutyButton.disabled =
+            false;
+
+        confirmEndDutyButton.textContent =
+            "End Duty";
+
+    }
+
+}
+
+
+/* =========================================================
+   TRANSPARENCY
+========================================================= */
+
+function renderTransparency(
+    officers
+) {
+
+    if (!officers.length) {
+
+        transparencyContent.innerHTML = `
+            <div style="
+                padding:30px;
+                text-align:center;
+                color:#718096;
+                font-family:Inter,sans-serif;
+                font-size:.72rem;
+            ">
+                No transparency data available.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    const sorted =
+        [...officers].sort(
+            function (a, b) {
+
+                return (
+                    Number(
+                        b.overallHours || 0
+                    ) -
+                    Number(
+                        a.overallHours || 0
                     )
-                ) {
-
-                    currentOfficer =
-                        matchedOfficer;
-
-
-                    currentDuty = {
-
-                        officerId:
-                            matchedOfficer.id,
-
-                        location:
-                            matchedOfficer.location ||
-                            "",
-
-                        startTime:
-                            matchedOfficer.startTime ||
-                            ""
-
-                    };
-
-
-                    endDutyModal.classList.add(
-                        "is-open"
-                    );
-
-
-                    showMessage(
-                        "You are currently on duty."
-                    );
-
-
-                } else {
-
-                    /*
-                     * OFF DUTY
-                     *
-                     * Normal login proceeds to
-                     * Start Duty.
-                     */
-
-                    resetStartDutyForm();
-
-
-                    startDutyModal.classList.add(
-                        "is-open"
-                    );
-
-
-                    showMessage(
-                        "Login successful."
-                    );
-
-                }
-
-
-            } catch (error) {
-
-                console.error(
-                    error
                 );
-
-
-                showMessage(
-                    error.message ||
-                    "Login failed."
-                );
-
-
-            } finally {
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "Log In";
 
             }
+        );
+
+
+    const fragment =
+        document.createDocumentFragment();
+
+
+    for (
+        let i = 0;
+        i < sorted.length;
+        i++
+    ) {
+
+        const officer =
+            sorted[i];
+
+
+        const monthly =
+            Number(
+                officer.monthlyHours || 0
+            ).toFixed(2);
+
+
+        const overall =
+            Number(
+                officer.overallHours || 0
+            ).toFixed(2);
+
+
+        const onDuty =
+            isOfficerOnDuty(
+                officer
+            );
+
+
+        const status =
+            onDuty
+                ? "ON DUTY"
+                : "OFF DUTY";
+
+
+        const wrapper =
+            document.createElement(
+                "div"
+            );
+
+
+        wrapper.innerHTML = `
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:20px;
+                    padding:13px 0;
+                    border-bottom:1px solid #e7edf3;
+                    font-family:Inter,sans-serif;
+                "
+            >
+
+                <div
+                    style="
+                        min-width:0;
+                    "
+                >
+
+                    <div
+                        style="
+                            font-weight:800;
+                            color:#003b73;
+                            font-size:.76rem;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                            white-space:nowrap;
+                        "
+                    >
+                        ${escapeHtml(
+                            officer.name || ""
+                        )}
+                    </div>
+
+
+                    <div
+                        style="
+                            margin-top:4px;
+                            font-size:.67rem;
+                            color:#718096;
+                        "
+                    >
+                        ${escapeHtml(
+                            officer.position || ""
+                        )}
+                    </div>
+
+
+                    <div
+                        style="
+                            margin-top:4px;
+                            font-size:.58rem;
+                            font-weight:800;
+                            color:${onDuty ? "#147a3e" : "#8a949e"};
+                        "
+                    >
+                        ${status}
+                    </div>
+
+                </div>
+
+
+                <div
+                    style="
+                        display:grid;
+                        grid-template-columns:repeat(2,minmax(65px,auto));
+                        gap:16px;
+                        text-align:right;
+                        flex-shrink:0;
+                    "
+                >
+
+                    <div>
+
+                        <strong
+                            style="
+                                color:#0057a8;
+                                font-size:.72rem;
+                            "
+                        >
+                            ${monthly}
+                        </strong>
+
+
+                        <div
+                            style="
+                                color:#718096;
+                                margin-top:2px;
+                                font-size:.55rem;
+                            "
+                        >
+                            monthly
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong
+                            style="
+                                color:#003b73;
+                                font-size:.72rem;
+                            "
+                        >
+                            ${overall}
+                        </strong>
+
+
+                        <div
+                            style="
+                                color:#718096;
+                                margin-top:2px;
+                                font-size:.55rem;
+                            "
+                        >
+                            overall
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        fragment.appendChild(
+            wrapper.firstElementChild
+        );
+
+    }
+
+
+    transparencyContent.replaceChildren(
+        fragment
+    );
+
+}
+
+
+/* =========================================================
+   LOAD TRANSPARENCY
+========================================================= */
+
+async function loadTransparency() {
+
+    transparencyContent.textContent =
+        "Loading transparency data...";
+
+
+    try {
+
+        /*
+         * Reuse recently loaded data.
+         *
+         * If the cache is older than 15 seconds,
+         * get fresh information.
+         */
+
+        const now =
+            Date.now();
+
+
+        if (
+            !transparencyData.length ||
+            now - lastDutyBoardLoad >=
+            DUTY_CACHE_TIME
+        ) {
+
+            await loadDutyBoard(
+                true
+            );
 
         }
 
 
-        /* =====================================================
-           RESET LOCATION
-        ====================================================== */
-
-        function resetStartDutyForm() {
-
-            const locationSelect =
-                document.getElementById(
-                    "dutyLocation"
-                );
+        renderTransparency(
+            transparencyData
+        );
 
 
-            const customInput =
-                document.getElementById(
-                    "customLocation"
-                );
+    } catch (error) {
+
+        console.error(
+            error
+        );
 
 
-            const customGroup =
-                document.getElementById(
-                    "customLocationGroup"
-                );
+        transparencyContent.innerHTML = `
+            <div style="
+                padding:30px;
+                text-align:center;
+                color:#b42318;
+                font-family:Inter,sans-serif;
+                font-size:.72rem;
+            ">
+                Unable to load transparency data.
+            </div>
+        `;
+
+    }
+
+}
 
 
-            locationSelect.value =
-                "";
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal(
+    modal
+) {
+
+    modal.classList.remove(
+        "is-open"
+    );
+
+}
 
 
-            customInput.value =
-                "";
+/* =========================================================
+   LOGIN OPEN
+========================================================= */
+
+officerLoginButton.addEventListener(
+    "click",
+    function () {
+
+        currentOfficer =
+            null;
+
+        currentDuty =
+            null;
 
 
-            customGroup.style.display =
+        loginUsername.value =
+            "";
+
+        loginPassword.value =
+            "";
+
+
+        loginModal.classList.add(
+            "is-open"
+        );
+
+
+        setTimeout(
+            function () {
+
+                loginUsername.focus();
+
+            },
+            100
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN CLOSE
+========================================================= */
+
+document
+    .getElementById("closeLoginButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            closeModal(
+                loginModal
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   LOGIN SUBMIT
+========================================================= */
+
+loginSubmitButton.addEventListener(
+    "click",
+    loginOfficer
+);
+
+
+/* =========================================================
+   ENTER LOGIN
+========================================================= */
+
+loginPassword.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            loginOfficer();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE START DUTY
+========================================================= */
+
+document
+    .getElementById("closeStartDutyButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            closeModal(
+                startDutyModal
+            );
+
+
+            currentOfficer =
+                null;
+
+            currentDuty =
+                null;
+
+        }
+    );
+
+
+/* =========================================================
+   CONFIRM START DUTY
+========================================================= */
+
+confirmStartDutyButton.addEventListener(
+    "click",
+    startDuty
+);
+
+
+/* =========================================================
+   CLOSE END DUTY
+========================================================= */
+
+document
+    .getElementById("closeEndDutyButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            closeModal(
+                endDutyModal
+            );
+
+
+            currentOfficer =
+                null;
+
+            currentDuty =
+                null;
+
+        }
+    );
+
+
+/* =========================================================
+   CONFIRM END DUTY
+========================================================= */
+
+confirmEndDutyButton.addEventListener(
+    "click",
+    endDuty
+);
+
+
+/* =========================================================
+   LOCATION SELECT
+========================================================= */
+
+dutyLocation.addEventListener(
+    "change",
+    function () {
+
+        if (
+            this.value === "Custom"
+        ) {
+
+            customLocationGroup.style.display =
+                "block";
+
+            customLocation.focus();
+
+        } else {
+
+            customLocationGroup.style.display =
                 "none";
 
         }
 
+    }
+);
 
-        /* =====================================================
-           START DUTY
-        ====================================================== */
 
-        async function startDuty() {
+/* =========================================================
+   REFRESH
+========================================================= */
 
-            if (
-                !currentOfficer
-            ) {
+refreshDutyButton.addEventListener(
+    "click",
+    async function () {
 
-                showMessage(
-                    "Please log in first."
-                );
-
-                return;
-
-            }
-
-
-            const locationSelect =
-                document.getElementById(
-                    "dutyLocation"
-                );
-
-
-            const customLocationInput =
-                document.getElementById(
-                    "customLocation"
-                );
-
-
-            let location =
-                locationSelect.value.trim();
-
-
-            if (
-                location ===
-                "Custom"
-            ) {
-
-                location =
-                    customLocationInput.value.trim();
-
-            }
-
-
-            if (
-                !location
-            ) {
-
-                showMessage(
-                    "Please select a duty location."
-                );
-
-                return;
-
-            }
-
-
-            const officerId =
-                currentOfficer.id ||
-                currentOfficer.officerId ||
-                currentOfficer.ID ||
-                currentOfficer.username;
-
-
-            if (
-                !officerId
-            ) {
-
-                showMessage(
-                    "Officer ID is missing."
-                );
-
-                return;
-
-            }
-
-
-            const button =
-                document.getElementById(
-                    "confirmStartDutyButton"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Starting...";
-
-
-            try {
-
-                const data =
-                    await apiRequest(
-                        "startDuty",
-                        {
-
-                            officerId:
-                                officerId,
-
-                            location:
-                                location
-
-                        }
-                    );
-
-
-                if (
-                    !data.success
-                ) {
-
-                    throw new Error(
-                        data.message ||
-                        "Unable to start duty."
-                    );
-
-                }
-
-
-                currentDuty =
-                    data.duty ||
-                    {
-
-                        officerId:
-                            officerId,
-
-                        location:
-                            location,
-
-                        startTime:
-                            new Date().toISOString()
-
-                    };
-
-
-                startDutyModal.classList.remove(
-                    "is-open"
-                );
-
-
-                /*
-                 * Clear local login state after
-                 * successfully starting duty.
-                 *
-                 * The officer must log in again
-                 * to end duty.
-                 */
-
-                currentOfficer =
-                    null;
-
-
-                currentDuty =
-                    null;
-
-
-                await loadDutyBoard();
-
-
-                showMessage(
-                    "You are now on duty. Log in again to end duty."
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    error
-                );
-
-
-                showMessage(
-                    error.message ||
-                    "Unable to start duty."
-                );
-
-
-            } finally {
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "Start Duty";
-
-            }
-
-        }
-
-
-        /* =====================================================
-           END DUTY
-        ====================================================== */
-
-        async function endDuty() {
-
-            if (
-                !currentOfficer
-            ) {
-
-                showMessage(
-                    "Please log in first."
-                );
-
-                return;
-
-            }
-
-
-            const button =
-                document.getElementById(
-                    "confirmEndDutyButton"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Ending...";
-
-
-            try {
-
-                const officerId =
-                    currentOfficer.id ||
-                    currentOfficer.officerId ||
-                    currentOfficer.ID ||
-                    currentOfficer.username;
-
-
-                if (
-                    !officerId
-                ) {
-
-                    throw new Error(
-                        "Officer ID is missing."
-                    );
-
-                }
-
-
-                const data =
-                    await apiRequest(
-                        "endDuty",
-                        {
-
-                            officerId:
-                                officerId
-
-                        }
-                    );
-
-
-                if (
-                    !data.success
-                ) {
-
-                    throw new Error(
-                        data.message ||
-                        "Unable to end duty."
-                    );
-
-                }
-
-
-                endDutyModal.classList.remove(
-                    "is-open"
-                );
-
-
-                currentOfficer =
-                    null;
-
-
-                currentDuty =
-                    null;
-
-
-                await loadDutyBoard();
-
-
-                showMessage(
-                    "Duty ended successfully."
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    error
-                );
-
-
-                showMessage(
-                    error.message ||
-                    "Unable to end duty."
-                );
-
-
-            } finally {
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "End Duty";
-
-            }
-
-        }
-
-
-        /* =====================================================
-           TRANSPARENCY
-        ====================================================== */
-
-        async function loadTransparency() {
-
-            const content =
-                document.getElementById(
-                    "transparencyContent"
-                );
-
-
-            content.innerHTML =
-                "Loading transparency data...";
-
-
-            try {
-
-                const data =
-                    await apiRequest(
-                        "getTransparency"
-                    );
-
-
-                if (
-                    !data.success
-                ) {
-
-                    throw new Error(
-                        data.message ||
-                        "Unable to load transparency."
-                    );
-
-                }
-
-
-                transparencyData =
-                    data.officers ||
-                    [];
-
-
-                if (
-                    !transparencyData.length
-                ) {
-
-                    content.innerHTML = `
-                        <div style="
-                            padding:30px;
-                            text-align:center;
-                            color:#718096;
-                            font-family:Inter,sans-serif;
-                            font-size:.72rem;
-                        ">
-                            No transparency data available.
-                        </div>
-                    `;
-
-                    return;
-
-                }
-
-
-                const sorted =
-                    [...transparencyData].sort(
-                        function (
-                            a,
-                            b
-                        ) {
-
-                            return (
-                                Number(
-                                    b.overallHours ||
-                                    0
-                                ) -
-                                Number(
-                                    a.overallHours ||
-                                    0
-                                )
-                            );
-
-                        }
-                    );
-
-
-                content.innerHTML =
-                    sorted
-                        .map(
-                            function (
-                                officer
-                            ) {
-
-                                const monthly =
-                                    Number(
-                                        officer.monthlyHours ||
-                                        0
-                                    ).toFixed(
-                                        2
-                                    );
-
-
-                                const overall =
-                                    Number(
-                                        officer.overallHours ||
-                                        0
-                                    ).toFixed(
-                                        2
-                                    );
-
-
-                                const status =
-                                    isOfficerOnDuty(
-                                        officer
-                                    )
-                                        ? "ON DUTY"
-                                        : "OFF DUTY";
-
-
-                                return `
-
-                                    <div
-                                        style="
-                                            display:flex;
-                                            justify-content:space-between;
-                                            align-items:center;
-                                            gap:20px;
-                                            padding:13px 0;
-                                            border-bottom:1px solid #e7edf3;
-                                            font-family:Inter,sans-serif;
-                                        "
-                                    >
-
-                                        <div
-                                            style="
-                                                min-width:0;
-                                            "
-                                        >
-
-                                            <div
-                                                style="
-                                                    font-weight:800;
-                                                    color:#003b73;
-                                                    font-size:.76rem;
-                                                    overflow:hidden;
-                                                    text-overflow:ellipsis;
-                                                    white-space:nowrap;
-                                                "
-                                            >
-                                                ${escapeHtml(
-                                                    officer.name ||
-                                                    ""
-                                                )}
-                                            </div>
-
-
-                                            <div
-                                                style="
-                                                    margin-top:4px;
-                                                    font-size:.67rem;
-                                                    color:#718096;
-                                                "
-                                            >
-                                                ${escapeHtml(
-                                                    officer.position ||
-                                                    ""
-                                                )}
-                                            </div>
-
-
-                                            <div
-                                                style="
-                                                    margin-top:4px;
-                                                    font-size:.58rem;
-                                                    font-weight:800;
-                                                    color:${
-                                                        isOfficerOnDuty(
-                                                            officer
-                                                        )
-                                                            ? "#147a3e"
-                                                            : "#8a949e"
-                                                    };
-                                                "
-                                            >
-                                                ${status}
-                                            </div>
-
-                                        </div>
-
-
-                                        <div
-                                            style="
-                                                display:grid;
-                                                grid-template-columns:repeat(2,minmax(65px,auto));
-                                                gap:16px;
-                                                text-align:right;
-                                                flex-shrink:0;
-                                            "
-                                        >
-
-                                            <div>
-
-                                                <strong
-                                                    style="
-                                                        color:#0057a8;
-                                                        font-size:.72rem;
-                                                    "
-                                                >
-                                                    ${monthly}
-                                                </strong>
-
-
-                                                <div
-                                                    style="
-                                                        color:#718096;
-                                                        margin-top:2px;
-                                                        font-size:.55rem;
-                                                    "
-                                                >
-                                                    monthly
-                                                </div>
-
-                                            </div>
-
-
-                                            <div>
-
-                                                <strong
-                                                    style="
-                                                        color:#003b73;
-                                                        font-size:.72rem;
-                                                    "
-                                                >
-                                                    ${overall}
-                                                </strong>
-
-
-                                                <div
-                                                    style="
-                                                        color:#718096;
-                                                        margin-top:2px;
-                                                        font-size:.55rem;
-                                                    "
-                                                >
-                                                    overall
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                `;
-
-                            }
-                        )
-                        .join("");
-
-            } catch (error) {
-
-                console.error(
-                    error
-                );
-
-
-                content.innerHTML = `
-                    <div style="
-                        padding:30px;
-                        text-align:center;
-                        color:#b42318;
-                        font-family:Inter,sans-serif;
-                        font-size:.72rem;
-                    ">
-                        Unable to load transparency data.
-                    </div>
-                `;
-
-            }
-
-        }
-
-
-        /* =====================================================
-           CLOSE MODAL
-        ====================================================== */
-
-        function closeModal(
-            modal
+        if (
+            refreshDutyButton.disabled
         ) {
 
-            modal.classList.remove(
-                "is-open"
-            );
+            return;
 
         }
 
 
-        /* =====================================================
-           LOGIN OPEN
-        ====================================================== */
+        refreshDutyButton.disabled =
+            true;
 
-        officerLoginButton.addEventListener(
-            "click",
-            function () {
-
-                /*
-                 * Always require fresh login.
-                 */
-
-                currentOfficer =
-                    null;
-
-                currentDuty =
-                    null;
+        refreshDutyButton.textContent =
+            "Refreshing...";
 
 
-                document.getElementById(
-                    "loginUsername"
-                ).value =
-                    "";
+        try {
+
+            await loadDutyBoard(
+                true
+            );
 
 
-                document.getElementById(
-                    "loginPassword"
-                ).value =
-                    "";
+        } catch (error) {
+
+            console.error(
+                error
+            );
 
 
-                loginModal.classList.add(
-                    "is-open"
-                );
+        } finally {
+
+            refreshDutyButton.disabled =
+                false;
+
+            refreshDutyButton.textContent =
+                "Refresh";
+
+        }
+
+    }
+);
 
 
-                setTimeout(
-                    function () {
+/* =========================================================
+   TRANSPARENCY OPEN
+========================================================= */
 
-                        document.getElementById(
-                            "loginUsername"
-                        ).focus();
+transparencyButton.addEventListener(
+    "click",
+    function () {
 
-                    },
-                    100
-                );
-
-            }
+        transparencyModal.classList.add(
+            "is-open"
         );
 
 
-        /* =====================================================
-           LOGIN CLOSE
-        ====================================================== */
+        loadTransparency();
 
-        document
-            .getElementById(
-                "closeLoginButton"
-            )
-            .addEventListener(
-                "click",
-                function () {
+    }
+);
 
-                    closeModal(
-                        loginModal
-                    );
 
-                }
+/* =========================================================
+   CLOSE TRANSPARENCY
+========================================================= */
+
+document
+    .getElementById("closeTransparencyButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            closeModal(
+                transparencyModal
             );
 
+        }
+    );
 
-        /* =====================================================
-           LOGIN SUBMIT
-        ====================================================== */
 
-        document
-            .getElementById(
-                "loginSubmitButton"
-            )
-            .addEventListener(
+/* =========================================================
+   OUTSIDE CLICK
+========================================================= */
+
+document
+    .querySelectorAll(".duty-overlay")
+    .forEach(
+        function (overlay) {
+
+            overlay.addEventListener(
                 "click",
-                loginOfficer
-            );
-
-
-        /* =====================================================
-           ENTER LOGIN
-        ====================================================== */
-
-        document
-            .getElementById(
-                "loginPassword"
-            )
-            .addEventListener(
-                "keydown",
-                function (
-                    event
-                ) {
+                function (event) {
 
                     if (
-                        event.key ===
-                        "Enter"
+                        event.target === overlay
                     ) {
 
-                        loginOfficer();
-
-                    }
-
-                }
-            );
-
-
-        /* =====================================================
-           CLOSE START DUTY
-        ====================================================== */
-
-        document
-            .getElementById(
-                "closeStartDutyButton"
-            )
-            .addEventListener(
-                "click",
-                function () {
-
-                    closeModal(
-                        startDutyModal
-                    );
-
-
-                    currentOfficer =
-                        null;
-
-                    currentDuty =
-                        null;
-
-                }
-            );
-
-
-        /* =====================================================
-           CONFIRM START DUTY
-        ====================================================== */
-
-        document
-            .getElementById(
-                "confirmStartDutyButton"
-            )
-            .addEventListener(
-                "click",
-                startDuty
-            );
-
-
-        /* =====================================================
-           CLOSE END DUTY
-        ====================================================== */
-
-        document
-            .getElementById(
-                "closeEndDutyButton"
-            )
-            .addEventListener(
-                "click",
-                function () {
-
-                    closeModal(
-                        endDutyModal
-                    );
-
-
-                    currentOfficer =
-                        null;
-
-                    currentDuty =
-                        null;
-
-                }
-            );
-
-
-        /* =====================================================
-           CONFIRM END DUTY
-        ====================================================== */
-
-        document
-            .getElementById(
-                "confirmEndDutyButton"
-            )
-            .addEventListener(
-                "click",
-                endDuty
-            );
-
-
-        /* =====================================================
-           LOCATION SELECT
-        ====================================================== */
-
-        document
-            .getElementById(
-                "dutyLocation"
-            )
-            .addEventListener(
-                "change",
-                function () {
-
-                    const customGroup =
-                        document.getElementById(
-                            "customLocationGroup"
+                        closeModal(
+                            overlay
                         );
 
-
-                    if (
-                        this.value ===
-                        "Custom"
-                    ) {
-
-                        customGroup.style.display =
-                            "block";
-
-
-                        document.getElementById(
-                            "customLocation"
-                        ).focus();
-
-                    } else {
-
-                        customGroup.style.display =
-                            "none";
-
                     }
 
                 }
             );
 
-
-        /* =====================================================
-           REFRESH
-        ====================================================== */
-
-        refreshDutyButton.addEventListener(
-            "click",
-            async function () {
-
-                refreshDutyButton.disabled =
-                    true;
+        }
+    );
 
 
-                refreshDutyButton.textContent =
-                    "Refreshing...";
+/* =========================================================
+   ESCAPE
+========================================================= */
 
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-                try {
+        if (
+            event.key !== "Escape"
+        ) {
 
-                    await loadDutyBoard();
+            return;
 
-                } finally {
+        }
 
-                    refreshDutyButton.disabled =
-                        false;
-
-
-                    refreshDutyButton.textContent =
-                        "Refresh";
-
-                }
-
-            }
-        );
-
-
-        /* =====================================================
-           TRANSPARENCY
-        ====================================================== */
-
-        transparencyButton.addEventListener(
-            "click",
-            function () {
-
-                transparencyModal.classList.add(
-                    "is-open"
-                );
-
-
-                loadTransparency();
-
-            }
-        );
-
-
-        /* =====================================================
-           CLOSE TRANSPARENCY
-        ====================================================== */
-
-        document
-            .getElementById(
-                "closeTransparencyButton"
-            )
-            .addEventListener(
-                "click",
-                function () {
-
-                    closeModal(
-                        transparencyModal
-                    );
-
-                }
-            );
-
-
-        /* =====================================================
-           OUTSIDE CLICK
-        ====================================================== */
 
         document
             .querySelectorAll(
-                ".duty-overlay"
+                ".duty-overlay.is-open"
             )
             .forEach(
-                function (
-                    overlay
-                ) {
+                function (modal) {
 
-                    overlay.addEventListener(
-                        "click",
-                        function (
-                            event
-                        ) {
-
-                            if (
-                                event.target ===
-                                overlay
-                            ) {
-
-                                closeModal(
-                                    overlay
-                                );
-
-                            }
-
-                        }
+                    closeModal(
+                        modal
                     );
 
                 }
             );
 
 
-        /* =====================================================
-           ESCAPE
-        ====================================================== */
+        currentOfficer =
+            null;
 
-        document.addEventListener(
-            "keydown",
-            function (
-                event
-            ) {
+        currentDuty =
+            null;
 
-                if (
-                    event.key !==
-                    "Escape"
-                ) {
-
-                    return;
-
-                }
+    }
+);
 
 
-                document
-                    .querySelectorAll(
-                        ".duty-overlay.is-open"
-                    )
-                    .forEach(
-                        function (
-                            modal
-                        ) {
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-                            closeModal(
-                                modal
-                            );
-
-                        }
-                    );
+loadDutyBoard();
 
 
-                currentOfficer =
-                    null;
-
-                currentDuty =
-                    null;
-
-            }
-        );
-
-
-        /* =====================================================
-           INITIALIZE
-        ====================================================== */
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-                loadDutyBoard();
-
-            }
-        );
-
-    </script>
-
-</body>
-
-</html>
+</script>
