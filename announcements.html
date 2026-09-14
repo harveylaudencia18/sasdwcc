@@ -2717,6 +2717,480 @@
 }
 
 
+/* =================================================
+   NOTIFICATION MODAL
+================================================= */
+
+.announcement-notification-modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        5000;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    box-sizing:
+        border-box;
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+        rgba(0,18,38,0.80);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+.announcement-notification-modal.show {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+}
+
+
+.announcement-notification-box {
+
+    position:
+        relative;
+
+    width:
+        min(
+            400px,
+            calc(100% - 10px)
+        );
+
+    padding:
+        32px 28px 27px;
+
+    box-sizing:
+        border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--blue-dark),
+            var(--blue-deep)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.20);
+
+    box-shadow:
+        0 25px 65px
+        rgba(0,0,0,0.38);
+
+    transform:
+        translateY(12px);
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.announcement-notification-modal.show
+.announcement-notification-box {
+
+    transform:
+        translateY(0);
+}
+
+
+/* =================================================
+   NOTIFICATION ICON
+================================================= */
+
+.announcement-notification-icon {
+
+    width:
+        52px;
+
+    height:
+        52px;
+
+    margin:
+        0 auto 17px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        rgba(255,210,0,0.35);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,210,0,0.10);
+
+    color:
+        var(--yellow);
+
+    font-size:
+        1.25rem;
+}
+
+
+/* =================================================
+   NOTIFICATION CONTENT
+================================================= */
+
+.announcement-notification-kicker {
+
+    text-align:
+        center;
+
+    color:
+        var(--yellow);
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.20em;
+}
+
+
+.announcement-notification-title {
+
+    margin:
+        7px 0 0;
+
+    color:
+        var(--white);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.65rem;
+
+    line-height:
+        1.1;
+
+    text-align:
+        center;
+}
+
+
+.announcement-notification-description {
+
+    margin:
+        11px auto 0;
+
+    max-width:
+        310px;
+
+    color:
+        rgba(255,255,255,0.62);
+
+    font-size:
+        0.72rem;
+
+    line-height:
+        1.65;
+
+    text-align:
+        center;
+}
+
+
+/* =================================================
+   NOTIFICATION STATUS
+================================================= */
+
+.announcement-notification-status {
+
+    margin:
+        18px 0 0;
+
+    padding:
+        10px 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    background:
+        rgba(255,255,255,0.055);
+
+    color:
+        rgba(255,255,255,0.58);
+
+    font-size:
+        0.62rem;
+
+    line-height:
+        1.5;
+
+    text-align:
+        center;
+}
+
+
+.announcement-notification-status.enabled {
+
+    border-color:
+        rgba(92,220,145,0.30);
+
+    background:
+        rgba(92,220,145,0.08);
+
+    color:
+        rgba(190,255,215,0.82);
+}
+
+
+.announcement-notification-status.blocked {
+
+    border-color:
+        rgba(215,25,32,0.35);
+
+    background:
+        rgba(215,25,32,0.08);
+
+    color:
+        rgba(255,210,210,0.80);
+}
+
+
+/* =================================================
+   NOTIFICATION ACTIONS
+================================================= */
+
+.announcement-notification-actions {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    margin-top:
+        20px;
+}
+
+
+.announcement-notification-action {
+
+    flex:
+        1;
+
+    min-height:
+        40px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color:
+        var(--white);
+
+    font-family:
+        inherit;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.announcement-notification-action:hover {
+
+    background:
+        rgba(255,255,255,0.13);
+
+    border-color:
+        rgba(255,255,255,0.30);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.announcement-notification-allow {
+
+    background:
+        var(--yellow);
+
+    border-color:
+        var(--yellow);
+
+    color:
+        var(--blue-deep);
+}
+
+
+.announcement-notification-allow:hover {
+
+    background:
+        var(--yellow);
+
+    border-color:
+        var(--yellow);
+}
+
+
+.announcement-notification-action:disabled {
+
+    opacity:
+        0.50;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+}
+
+
+/* =================================================
+   NOTIFICATION CLOSE
+================================================= */
+
+.announcement-notification-close {
+
+    position:
+        absolute;
+
+    top:
+        12px;
+
+    right:
+        13px;
+
+    width:
+        31px;
+
+    height:
+        31px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color:
+        var(--white);
+
+    font-size:
+        1.1rem;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+}
+
+
+.announcement-notification-close:hover {
+
+    background:
+        rgba(255,255,255,0.13);
+}
+
+
+@media (max-width: 600px) {
+
+    .announcement-notification-box {
+
+        padding:
+            30px 21px 23px;
+    }
+
+    .announcement-notification-title {
+
+        font-size:
+            1.45rem;
+    }
+
+    .announcement-notification-description {
+
+        font-size:
+            0.68rem;
+    }
+
+}
+
         /* =================================================
            REDUCED MOTION
         ================================================= */
@@ -2934,6 +3408,14 @@
                     ANNOUNCE
                 </button>
 
+<button
+    type="button"
+    class="announcement-officer-btn"
+    id="notificationBtn"
+    aria-label="Notifications"
+>
+    NOTIFICATIONS
+</button>
 
                 <button
                     type="button"
@@ -3169,7 +3651,90 @@
 
     </div>
 
+<!-- =====================================================
+     NOTIFICATION MODAL
+====================================================== -->
 
+<div
+    class="announcement-notification-modal"
+    id="notificationModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="announcement-notification-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="notificationModalTitle"
+    >
+
+        <button
+            type="button"
+            class="announcement-notification-close"
+            id="notificationModalClose"
+            aria-label="Close notifications"
+        >
+            ×
+        </button>
+
+
+        <div class="announcement-notification-icon">
+            🔔
+        </div>
+
+
+        <div class="announcement-notification-kicker">
+            SAS STUDENT PORTAL
+        </div>
+
+
+        <h2
+            class="announcement-notification-title"
+            id="notificationModalTitle"
+        >
+            Notifications
+        </h2>
+
+
+        <p class="announcement-notification-description">
+            Stay updated with the latest announcements
+            and important information from the School
+            of Arts and Sciences.
+        </p>
+
+
+        <div
+            class="announcement-notification-status"
+            id="notificationStatus"
+        >
+            Notifications are currently turned off.
+        </div>
+
+
+        <div class="announcement-notification-actions">
+
+            <button
+                type="button"
+                class="announcement-notification-action"
+                id="notificationBlockBtn"
+            >
+                BLOCK
+            </button>
+
+
+            <button
+                type="button"
+                class="announcement-notification-action announcement-notification-allow"
+                id="notificationAllowBtn"
+            >
+                ALLOW
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
     <!-- =====================================================
          ANNOUNCE MODAL
@@ -3746,6 +4311,844 @@ const announcementsLoading =
     document.getElementById(
         "announcementsLoading"
     );
+
+/* =================================================
+   NOTIFICATIONS
+================================================= */
+
+const notificationBtn =
+    document.getElementById(
+        "notificationBtn"
+    );
+
+const notificationModal =
+    document.getElementById(
+        "notificationModal"
+    );
+
+const notificationModalClose =
+    document.getElementById(
+        "notificationModalClose"
+    );
+
+const notificationBlockBtn =
+    document.getElementById(
+        "notificationBlockBtn"
+    );
+
+const notificationAllowBtn =
+    document.getElementById(
+        "notificationAllowBtn"
+    );
+
+const notificationStatus =
+    document.getElementById(
+        "notificationStatus"
+    );
+
+/* =================================================
+   ANNOUNCEMENT NOTIFICATION MONITORING
+================================================= */
+
+const ANNOUNCEMENT_NOTIFICATION_INTERVAL =
+    30000; // 30 seconds
+
+
+let announcementNotificationTimer =
+    null;
+
+let announcementNotificationKnownIDs =
+    new Set();
+
+let announcementNotificationBaselineReady =
+    false;
+
+let announcementNotificationCheckRunning =
+    false;
+
+
+/* =================================================
+   GET CURRENT ANNOUNCEMENTS
+================================================= */
+
+async function getAnnouncementsForNotifications() {
+
+    const data =
+        await announcementApiRequest({
+
+            method:
+                "GET",
+
+            params: {
+
+                action:
+                    "getAnnouncements",
+
+                visitorID:
+                    getAnnouncementVisitorID()
+
+            }
+
+        });
+
+
+    if (
+        !data ||
+        !data.success
+    ) {
+
+        throw new Error(
+            "Unable to retrieve announcements."
+        );
+
+    }
+
+
+    return Array.isArray(
+        data.announcements
+    )
+        ? data.announcements
+        : [];
+
+}
+
+
+/* =================================================
+   CREATE INITIAL BASELINE
+================================================= */
+
+async function establishAnnouncementNotificationBaseline() {
+
+    if (
+        announcementNotificationBaselineReady
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const announcements =
+            await getAnnouncementsForNotifications();
+
+
+        announcementNotificationKnownIDs.clear();
+
+
+        announcements.forEach(
+            function (announcement) {
+
+                if (
+                    announcement &&
+                    announcement.id !== undefined &&
+                    announcement.id !== null
+                ) {
+
+                    announcementNotificationKnownIDs.add(
+                        String(
+                            announcement.id
+                        )
+                    );
+
+                }
+
+            }
+        );
+
+
+        announcementNotificationBaselineReady =
+            true;
+
+
+        console.log(
+            "SAS notification baseline established."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Unable to establish notification baseline:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   SHOW BROWSER NOTIFICATION
+================================================= */
+
+function showNewAnnouncementNotification(
+    announcement
+) {
+
+    if (
+        !announcement
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !("Notification" in window)
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        return;
+
+    }
+
+
+    const announcementID =
+        String(
+            announcement.id ||
+            Date.now()
+        );
+
+
+    const announcementTitle =
+        announcement.title ||
+        "A new announcement has been posted.";
+
+
+    const notification =
+        new Notification(
+            "New SAS Announcement",
+            {
+
+                body:
+                    announcementTitle,
+
+                icon:
+                    "assets/sas-logo.png",
+
+                tag:
+                    "sas-announcement-" +
+                    announcementID
+
+            }
+        );
+
+
+    notification.onclick =
+        function () {
+
+            window.focus();
+
+
+            const announcementCards =
+                document.querySelectorAll(
+                    ".announcement-card"
+                );
+
+
+            let targetCard =
+                null;
+
+
+            announcementCards.forEach(
+                function (card) {
+
+                    if (
+                        card.dataset
+                            .announcementId ===
+                        announcementID
+                    ) {
+
+                        targetCard =
+                            card;
+
+                    }
+
+                }
+            );
+
+
+            if (
+                targetCard
+            ) {
+
+                targetCard.scrollIntoView({
+
+                    behavior:
+                        "smooth",
+
+                    block:
+                        "center"
+
+                });
+
+            }
+
+
+            notification.close();
+
+        };
+
+}
+
+
+/* =================================================
+   CHECK FOR NEW ANNOUNCEMENTS
+================================================= */
+
+async function checkForNewAnnouncementNotifications() {
+
+    if (
+        !("Notification" in window)
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !announcementNotificationBaselineReady
+    ) {
+
+        await establishAnnouncementNotificationBaseline();
+
+        return;
+
+    }
+
+
+    if (
+        announcementNotificationCheckRunning
+    ) {
+
+        return;
+
+    }
+
+
+    announcementNotificationCheckRunning =
+        true;
+
+
+    try {
+
+        const announcements =
+            await getAnnouncementsForNotifications();
+
+
+        const newAnnouncements =
+            announcements.filter(
+                function (announcement) {
+
+                    if (
+                        !announcement ||
+                        announcement.id === undefined ||
+                        announcement.id === null
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    return !announcementNotificationKnownIDs.has(
+                        String(
+                            announcement.id
+                        )
+                    );
+
+                }
+            );
+
+
+        /*
+         * Save every announcement ID first
+         * so the same announcement is never
+         * notified twice.
+         */
+
+        announcements.forEach(
+            function (announcement) {
+
+                if (
+                    announcement &&
+                    announcement.id !== undefined &&
+                    announcement.id !== null
+                ) {
+
+                    announcementNotificationKnownIDs.add(
+                        String(
+                            announcement.id
+                        )
+                    );
+
+                }
+
+            }
+        );
+
+
+        /*
+         * If multiple announcements were posted
+         * between checks, show them oldest first.
+         */
+
+        newAnnouncements
+            .slice()
+            .reverse()
+            .forEach(
+                function (announcement) {
+
+                    showNewAnnouncementNotification(
+                        announcement
+                    );
+
+                }
+            );
+
+
+    } catch (error) {
+
+        console.error(
+            "Announcement notification check failed:",
+            error
+        );
+
+    } finally {
+
+        announcementNotificationCheckRunning =
+            false;
+
+    }
+
+}
+
+
+/* =================================================
+   START MONITORING
+================================================= */
+
+async function startAnnouncementNotificationMonitoring() {
+
+    if (
+        !("Notification" in window)
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        return;
+
+    }
+
+
+    await establishAnnouncementNotificationBaseline();
+
+
+    if (
+        announcementNotificationTimer
+    ) {
+
+        return;
+
+    }
+
+
+    announcementNotificationTimer =
+        setInterval(
+
+            checkForNewAnnouncementNotifications,
+
+            ANNOUNCEMENT_NOTIFICATION_INTERVAL
+
+        );
+
+
+    console.log(
+        "SAS announcement notifications are active."
+    );
+
+}
+
+
+/* =================================================
+   CHECK WHEN USER RETURNS TO PAGE
+================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function () {
+
+        if (
+            !document.hidden &&
+            "Notification" in window &&
+            Notification.permission ===
+                "granted"
+        ) {
+
+            checkForNewAnnouncementNotifications();
+
+        }
+
+    }
+);
+
+/* =================================================
+   OPEN NOTIFICATION MODAL
+================================================= */
+
+function openNotificationModal() {
+
+    updateNotificationModalStatus();
+
+    notificationModal.classList.add(
+        "show"
+    );
+
+    notificationModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =================================================
+   CLOSE NOTIFICATION MODAL
+================================================= */
+
+function closeNotificationModal() {
+
+    notificationModal.classList.remove(
+        "show"
+    );
+
+    notificationModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =================================================
+   UPDATE NOTIFICATION STATUS
+================================================= */
+
+function updateNotificationModalStatus() {
+
+    notificationStatus.classList.remove(
+        "enabled",
+        "blocked"
+    );
+
+
+    notificationAllowBtn.disabled =
+        false;
+
+
+    notificationBlockBtn.disabled =
+        false;
+
+
+    /*
+     * Browser does not support notifications.
+     */
+
+    if (
+        !("Notification" in window)
+    ) {
+
+        notificationStatus.textContent =
+            "This browser does not support notifications.";
+
+        notificationStatus.classList.add(
+            "blocked"
+        );
+
+        notificationAllowBtn.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    /*
+     * Notifications already allowed.
+     */
+
+    if (
+        Notification.permission ===
+        "granted"
+    ) {
+
+        notificationStatus.textContent =
+            "Notifications are enabled. You will receive alerts for new announcements.";
+
+        notificationStatus.classList.add(
+            "enabled"
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Notifications blocked.
+     */
+
+    if (
+        Notification.permission ===
+        "denied"
+    ) {
+
+        notificationStatus.textContent =
+            "Notifications are blocked by your browser. Please allow them in your browser settings.";
+
+        notificationStatus.classList.add(
+            "blocked"
+        );
+
+        notificationAllowBtn.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    /*
+     * Permission has not been requested yet.
+     */
+
+    notificationStatus.textContent =
+        "Notifications are currently turned off. Choose ALLOW to receive announcement alerts.";
+
+}
+
+
+/* =================================================
+   NOTIFICATION BUTTON
+================================================= */
+
+notificationBtn.addEventListener(
+    "click",
+    openNotificationModal
+);
+
+
+/* =================================================
+   CLOSE BUTTON
+================================================= */
+
+notificationModalClose.addEventListener(
+    "click",
+    closeNotificationModal
+);
+
+
+/* =================================================
+   BLOCK
+================================================= */
+
+notificationBlockBtn.addEventListener(
+    "click",
+    function () {
+
+        closeNotificationModal();
+
+    }
+);
+
+
+/* =================================================
+   ALLOW
+================================================= */
+
+notificationAllowBtn.addEventListener(
+    "click",
+    async function () {
+
+        if (
+            !("Notification" in window)
+        ) {
+
+            updateNotificationModalStatus();
+
+            return;
+
+        }
+
+
+        /*
+         * Already allowed.
+         */
+
+        if (
+            Notification.permission ===
+            "granted"
+        ) {
+
+            updateNotificationModalStatus();
+
+            return;
+
+        }
+
+
+        /*
+         * Browser already blocked it.
+         */
+
+        if (
+            Notification.permission ===
+            "denied"
+        ) {
+
+            updateNotificationModalStatus();
+
+            return;
+
+        }
+
+
+        notificationAllowBtn.disabled =
+            true;
+
+        notificationAllowBtn.textContent =
+            "ALLOWING...";
+
+
+        try {
+
+            const permission =
+                await Notification.requestPermission();
+
+
+            updateNotificationModalStatus();
+
+
+            if (
+    permission ===
+    "granted"
+) {
+
+    /*
+     * Establish the current announcements
+     * as the starting point.
+     *
+     * Existing announcements will NOT
+     * trigger notifications.
+     */
+
+    await startAnnouncementNotificationMonitoring();
+
+
+    /*
+     * Confirmation notification.
+     */
+
+    new Notification(
+        "SAS Notifications Enabled",
+        {
+            body:
+                "You will now receive notifications for new SAS announcements.",
+
+            icon:
+                "assets/sas-logo.png",
+
+            tag:
+                "sas-notification-enabled"
+        }
+    );
+
+}
+
+        } catch (error) {
+
+            console.error(
+                "Notification permission error:",
+                error
+            );
+
+            notificationStatus.textContent =
+                "Unable to enable notifications. Please try again.";
+
+            notificationStatus.classList.add(
+                "blocked"
+            );
+
+        } finally {
+
+            notificationAllowBtn.disabled =
+                false;
+
+            notificationAllowBtn.textContent =
+                "ALLOW";
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   NOTIFICATION MODAL BACKDROP
+================================================= */
+
+notificationModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            notificationModal
+        ) {
+
+            closeNotificationModal();
+
+        }
+
+    }
+);
 
         /* =================================================
            LOGIN MODAL
@@ -5487,6 +6890,17 @@ async function deleteAnnouncement(card) {
 
                 }
 
+if (
+    notificationModal.classList.contains(
+        "show"
+    )
+) {
+
+    closeNotificationModal();
+
+    return;
+
+}
 
                 if (
                     announceModal.classList.contains(
@@ -6779,8 +8193,27 @@ document.addEventListener(
    INITIALIZE ANNOUNCEMENTS
 ========================================================= */
 
-requestAnimationFrame(() => {
-    loadAnnouncements();
+requestAnimationFrame(async () => {
+
+    await loadAnnouncements();
+
+
+    /*
+     * If the user already allowed
+     * notifications previously, activate
+     * monitoring automatically.
+     */
+
+    if (
+        "Notification" in window &&
+        Notification.permission ===
+            "granted"
+    ) {
+
+        await startAnnouncementNotificationMonitoring();
+
+    }
+
 });
 
 </script>
