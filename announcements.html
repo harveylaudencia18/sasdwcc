@@ -4754,8 +4754,8 @@ async function checkForNewAnnouncementNotifications() {
 async function startAnnouncementNotificationMonitoring() {
 
     if (
-        !("Notification" in window)
-    ) {
+    !isNotificationSupported()
+) {
 
         return;
 
@@ -4866,6 +4866,19 @@ function closeNotificationModal() {
 
 }
 
+/* =================================================
+   CHECK NOTIFICATION SUPPORT
+================================================= */
+
+function isNotificationSupported() {
+
+    return (
+        typeof window !== "undefined" &&
+        "Notification" in window &&
+        typeof Notification.requestPermission === "function"
+    );
+
+}
 
 /* =================================================
    UPDATE NOTIFICATION STATUS
@@ -4892,11 +4905,11 @@ function updateNotificationModalStatus() {
      */
 
     if (
-        !("Notification" in window)
+        !isNotificationSupported()
     ) {
 
         notificationStatus.textContent =
-            "This browser does not support notifications.";
+            "Notifications are not available in this browser.";
 
         notificationStatus.classList.add(
             "blocked"
@@ -5007,9 +5020,9 @@ notificationAllowBtn.addEventListener(
     "click",
     async function () {
 
-        if (
-            !("Notification" in window)
-        ) {
+       if (
+    !isNotificationSupported()
+) {
 
             updateNotificationModalStatus();
 
