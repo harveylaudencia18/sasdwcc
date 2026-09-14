@@ -903,8 +903,14 @@
     font-size: 0.82rem;
     line-height: 1.85;
 
-    white-space: pre-wrap;
-    word-break: break-word;
+    /*
+     * Normal text wrapping.
+     * Hindi mag-i-indent ang second line.
+     */
+    white-space: normal;
+
+    overflow-wrap: break-word;
+    word-break: normal;
 
     text-align: left;
 
@@ -6447,17 +6453,16 @@ async function reactToAnnouncementFrontend(
 
 /* =========================================================
    REACTION EVENT
+   CLICK / TAP ONLY
 ========================================================= */
 
 document.addEventListener(
     "click",
     function (event) {
 
-        /*
-         * -----------------------------------------------
-         * ADD REACTION BUTTON
-         * -----------------------------------------------
-         */
+        /* =================================================
+           ADD REACTION BUTTON
+        ================================================= */
 
         const addButton =
             event.target.closest(
@@ -6467,6 +6472,7 @@ document.addEventListener(
 
         if (addButton) {
 
+            event.preventDefault();
             event.stopPropagation();
 
 
@@ -6499,7 +6505,7 @@ document.addEventListener(
 
 
             /*
-             * Close every other picker first.
+             * Close all other reaction pickers.
              */
 
             document
@@ -6533,6 +6539,10 @@ document.addEventListener(
                 );
 
 
+            /*
+             * Toggle this picker.
+             */
+
             if (!currentlyOpen) {
 
                 picker.classList.add(
@@ -6548,15 +6558,12 @@ document.addEventListener(
 
 
             return;
-
         }
 
 
-        /*
-         * -----------------------------------------------
-         * PICKER REACTION
-         * -----------------------------------------------
-         */
+        /* =================================================
+           PICKER EMOJI
+        ================================================= */
 
         const pickerButton =
             event.target.closest(
@@ -6566,6 +6573,7 @@ document.addEventListener(
 
         if (pickerButton) {
 
+            event.preventDefault();
             event.stopPropagation();
 
 
@@ -6584,6 +6592,10 @@ document.addEventListener(
                 return;
             }
 
+
+            /*
+             * Close picker immediately.
+             */
 
             const picker =
                 pickerButton.closest(
@@ -6616,6 +6628,10 @@ document.addEventListener(
             }
 
 
+            /*
+             * Toggle ONLY the clicked reaction.
+             */
+
             reactToAnnouncementFrontend(
                 card,
                 reaction
@@ -6623,15 +6639,12 @@ document.addEventListener(
 
 
             return;
-
         }
 
 
-        /*
-         * -----------------------------------------------
-         * EXISTING REACTION PILL
-         * -----------------------------------------------
-         */
+        /* =================================================
+           EXISTING REACTION PILL
+        ================================================= */
 
         const reactionButton =
             event.target.closest(
@@ -6640,12 +6653,11 @@ document.addEventListener(
 
 
         if (!reactionButton) {
-
             return;
-
         }
 
 
+        event.preventDefault();
         event.stopPropagation();
 
 
@@ -6669,12 +6681,80 @@ document.addEventListener(
         }
 
 
+        /*
+         * Toggle ONLY this reaction.
+         *
+         * Other reactions remain active.
+         */
+
         reactToAnnouncementFrontend(
             card,
             reaction
         );
 
-    }
+    },
+    false
+);
+
+
+/* =========================================================
+   CLOSE REACTION PICKER OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        /*
+         * Do not close when clicking
+         * inside the reaction controls.
+         */
+
+        if (
+            event.target.closest(
+                "[data-reaction-add]"
+            ) ||
+            event.target.closest(
+                "[data-reaction-picker]"
+            )
+        ) {
+
+            return;
+        }
+
+
+        document
+            .querySelectorAll(
+                "[data-reaction-picker].show"
+            )
+            .forEach(
+                function (picker) {
+
+                    picker.classList.remove(
+                        "show"
+                    );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-reaction-add][aria-expanded='true']"
+            )
+            .forEach(
+                function (button) {
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+    },
+    false
 );
 
 /* =========================================================
