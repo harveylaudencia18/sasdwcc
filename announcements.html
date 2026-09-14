@@ -12,30 +12,22 @@
 
     <title>Announcements | SAS Student Portal</title>
 
-    <link rel="icon" type="image/png" href="assets/sas-logo.png">
+    <link
+        rel="icon"
+        type="image/png"
+        href="assets/sas-logo.png"
+    >
 
     <meta
         name="description"
         content="Official announcements of the School of Arts and Sciences, Divine Word College of Calapan."
     >
 
-    <!-- =====================================================
-         MAIN STYLESHEET
-    ====================================================== -->
-
     <link
         rel="stylesheet"
         href="style.css"
     >
 
-
-    <!-- =====================================================
-         PAGE-SPECIFIC ANNOUNCEMENT STYLES ONLY
-         
-         NOTE:
-         Header and footer are NOT styled here.
-         They use style.css exactly as provided.
-    ====================================================== -->
 
     <style>
 
@@ -44,17 +36,12 @@
         ================================================= */
 
         body.announcement-body {
-
             margin: 0;
-
-            background:
-                var(--blue-deep);
-
+            background: var(--blue-deep);
         }
 
 
         main.announcement-page {
-
             position: relative;
 
             width: 100%;
@@ -67,13 +54,11 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
             overflow: hidden;
 
-            padding:
-                55px 20px;
+            padding: 55px 20px;
 
             background-color:
                 var(--blue-deep);
@@ -85,211 +70,190 @@
                 ),
                 url("assets/background.png");
 
-            background-size:
-                cover;
+            background-size: cover;
 
             background-position:
                 center center;
 
-            background-repeat:
-                no-repeat;
+            background-repeat: no-repeat;
 
-            background-attachment:
-                fixed;
-
+            background-attachment: fixed;
         }
 
 
         /* =================================================
-           ANNOUNCEMENT CARD
+           OFFICER CONTROLS
         ================================================= */
 
-        .announcement-content {
+        .announcement-officer-controls {
 
             position: relative;
 
-            z-index: 5;
+            z-index: 10;
 
-            width: fit-content;
+            width:
+                min(
+                    100%,
+                    1100px
+                );
 
-            max-width:
-                calc(100% - 10px);
-
-            margin: 0 auto;
-
-            padding:
-                35px 38px 27px;
-
-            box-sizing: border-box;
-
-            text-align: center;
-
-            cursor: pointer;
-
-            background:
-                rgba(255,255,255,0.075);
-
-            border:
-                1px solid rgba(255,255,255,0.23);
-
-            box-shadow:
-                0 14px 38px rgba(0,0,0,0.18);
-
-            backdrop-filter:
-                blur(5px);
-
-            -webkit-backdrop-filter:
-                blur(5px);
-
-            transition:
-                transform 0.25s ease,
-                background 0.25s ease,
-                border-color 0.25s ease;
-
-        }
-
-
-        .announcement-content:hover {
-
-            transform:
-                translateY(-3px);
-
-            background:
-                rgba(255,255,255,0.10);
-
-            border-color:
-                rgba(255,255,255,0.34);
-
-        }
-
-
-        .announcement-content:focus-visible {
-
-            outline:
-                2px solid var(--yellow);
-
-            outline-offset:
-                5px;
-
-        }
-
-
-        /* =================================================
-           INSTITUTION
-        ================================================= */
-
-        .announcement-institution {
+            margin:
+                0 auto 18px;
 
             display: flex;
 
-            align-items: center;
+            justify-content:
+                flex-end;
 
+            align-items:
+                center;
+
+            padding:
+                18px 24px 0;
+
+            box-sizing:
+                border-box;
+
+            gap:
+                8px;
+        }
+
+
+        .announcement-officer-btn {
+
+            display: inline-flex;
+
+            align-items: center;
             justify-content: center;
 
-            gap: 13px;
+            min-height: 34px;
 
-            margin-bottom:
-                19px;
+            padding:
+                0 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.22);
+
+            background:
+                rgba(255,255,255,0.07);
 
             color:
-                rgba(255,255,255,0.72);
+                var(--white);
+
+            font-family:
+                inherit;
 
             font-size:
-                0.64rem;
+                0.60rem;
 
             font-weight:
                 800;
 
             letter-spacing:
-                0.17em;
+                0.10em;
+
+            cursor:
+                pointer;
 
             white-space:
                 nowrap;
 
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
         }
 
 
-        .announcement-institution::before,
-        .announcement-institution::after {
-
-            content: "";
-
-            width:
-                48px;
-
-            height:
-                1px;
+        .announcement-officer-btn:hover {
 
             background:
-                rgba(255,255,255,0.30);
+                rgba(255,255,255,0.14);
 
+            border-color:
+                rgba(255,255,255,0.35);
+
+            transform:
+                translateY(-1px);
         }
 
 
-        /* =================================================
-           CONSTRUCTION ICON
-        ================================================= */
+        .announcement-officer-btn:focus-visible {
 
-        .announcement-icon {
+            outline:
+                2px solid var(--yellow);
 
-            width:
-                64px;
+            outline-offset:
+                2px;
+        }
 
-            height:
-                64px;
 
-            margin:
-                0 auto 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border:
-                1px solid rgba(255,255,255,0.25);
-
-            border-radius:
-                50%;
+        .announcement-announce-btn {
 
             background:
-                rgba(255,255,255,0.07);
-
-        }
-
-
-        .announcement-icon svg {
-
-            width:
-                30px;
-
-            height:
-                30px;
-
-            fill:
-                none;
-
-            stroke:
                 var(--yellow);
 
-            stroke-width:
-                1.45;
+            border-color:
+                var(--yellow);
 
-            stroke-linecap:
-                round;
+            color:
+                var(--blue-deep);
+        }
 
-            stroke-linejoin:
-                round;
 
+        .announcement-announce-btn:hover {
+
+            background:
+                var(--yellow);
+
+            border-color:
+                var(--yellow);
+        }
+
+
+        .announcement-logout-btn {
+
+            border-color:
+                rgba(255,255,255,0.18);
         }
 
 
         /* =================================================
-           LABEL
+           ANNOUNCEMENTS CONTAINER
         ================================================= */
 
-        .announcement-label {
+        .announcements-wrapper {
+
+            position: relative;
+
+            z-index: 5;
+
+            width:
+                min(
+                    100%,
+                    1100px
+                );
+
+            margin:
+                0 auto;
+
+            box-sizing:
+                border-box;
+        }
+
+
+        .announcements-header {
+
+            text-align:
+                center;
+
+            margin-bottom:
+                28px;
+        }
+
+
+        .announcements-kicker {
 
             margin-bottom:
                 8px;
@@ -305,58 +269,10 @@
 
             letter-spacing:
                 0.22em;
-
         }
 
 
-        /* =================================================
-           CLICKABLE CONTENT
-        ================================================= */
-
-        .announcement-trigger {
-
-            background:
-                transparent;
-
-        }
-
-
-        .announcement-badge {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            padding:
-                5px 10px;
-
-            margin-bottom:
-                12px;
-
-            color:
-                var(--blue-deep);
-
-            background:
-                var(--yellow);
-
-            font-size:
-                0.56rem;
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                0.14em;
-
-        }
-
-
-        .announcement-heading {
+        .announcements-title {
 
             margin:
                 0;
@@ -371,207 +287,771 @@
 
             font-size:
                 clamp(
-                    1.55rem,
-                    4vw,
-                    2.25rem
+                    2rem,
+                    5vw,
+                    3rem
                 );
 
-            font-weight:
-                700;
-
             line-height:
-                1.1;
-
-            letter-spacing:
-                0.01em;
-
+                1.05;
         }
 
 
-        .announcement-description {
+        .announcements-subtitle {
 
             max-width:
-                520px;
+                560px;
 
             margin:
                 12px auto 0;
 
             color:
-                rgba(255,255,255,0.69);
+                rgba(255,255,255,0.66);
 
             font-size:
                 0.80rem;
 
             line-height:
                 1.7;
-
-        }
-
-
-        .announcement-arrow {
-
-            margin-top:
-                17px;
-
-            color:
-                rgba(255,255,255,0.65);
-
-            font-size:
-                1rem;
-
-            transition:
-                transform 0.25s ease;
-
-        }
-
-
-        .announcement-content:hover
-        .announcement-arrow {
-
-            transform:
-                translateY(4px);
-
         }
 
 
         /* =================================================
-           BOTTOM TEXT
+           EMPTY ANNOUNCEMENTS STATE
         ================================================= */
 
-        .announcement-bottom {
+        .announcements-empty {
 
-            display: flex;
+            width:
+                100%;
 
-            align-items: center;
+            box-sizing:
+                border-box;
 
-            justify-content: center;
+            padding:
+                42px 30px;
+
+            text-align:
+                center;
+
+            background:
+                rgba(255,255,255,0.075);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.20);
+
+            box-shadow:
+                0 14px 38px
+                rgba(0,0,0,0.18);
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+        }
+
+
+        .announcements-empty-icon {
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            margin:
+                0 auto 17px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.20);
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,0.06);
+        }
+
+
+        .announcements-empty-icon svg {
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            fill:
+                none;
+
+            stroke:
+                var(--yellow);
+
+            stroke-width:
+                1.45;
+
+            stroke-linecap:
+                round;
+
+            stroke-linejoin:
+                round;
+        }
+
+
+        .announcements-empty-title {
+
+            margin:
+                0;
+
+            color:
+                var(--white);
+
+            font-size:
+                1rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.03em;
+        }
+
+
+        .announcements-empty-text {
+
+            max-width:
+                430px;
+
+            margin:
+                9px auto 0;
+
+            color:
+                rgba(255,255,255,0.58);
+
+            font-size:
+                0.76rem;
+
+            line-height:
+                1.7;
+        }
+
+
+        /* =================================================
+           ANNOUNCEMENT LIST
+        ================================================= */
+
+        .announcements-list {
+
+            width:
+                100%;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
 
             gap:
-                12px;
+                16px;
+        }
+
+
+        /* =================================================
+   ANNOUNCEMENT CARD
+================================================= */
+
+.announcement-card {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        27px 30px 25px;
+
+    background:
+        rgba(255,255,255,0.075);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.20);
+
+    box-shadow:
+        0 14px 38px
+        rgba(0,0,0,0.18);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    animation:
+        announcementAppear 0.35s ease;
+}
+
+
+        /* =================================================
+   OFFICER INFORMATION
+================================================= */
+
+.announcement-author {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding-bottom:
+        17px;
+
+    margin-bottom:
+        22px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.12);
+}
+
+
+.announcement-author-photo {
+
+    width:
+        46px;
+
+    height:
+        46px;
+
+    flex:
+        0 0 46px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.24);
+
+    background:
+        rgba(255,255,255,0.10);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        var(--yellow);
+
+    font-size:
+        0.70rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.04em;
+}
+
+
+.announcement-author-photo img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+}
+
+
+.announcement-author-info {
+
+    min-width:
+        0;
+
+    flex:
+        1;
+}
+
+
+.announcement-author-name {
+
+    margin:
+        0;
+
+    color:
+        var(--white);
+
+    font-size:
+        0.80rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.35;
+}
+
+
+.announcement-author-position {
+
+    margin-top:
+        3px;
+
+    color:
+        rgba(255,255,255,0.58);
+
+    font-size:
+        0.63rem;
+
+    line-height:
+        1.4;
+}
+
+
+.announcement-date {
+
+    margin-top:
+        4px;
+
+    color:
+        rgba(255,255,255,0.38);
+
+    font-size:
+        0.57rem;
+
+    line-height:
+        1.4;
+
+    letter-spacing:
+        0.01em;
+}
+
+
+       /* =================================================
+   ANNOUNCEMENT CONTENT
+================================================= */
+
+.announcement-card-title {
+    position:relative;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    padding:
+        0 0 15px;
+
+    color:var(--white);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(1.35rem, 3vw, 1.80rem);
+
+    font-weight:700;
+
+    line-height:1.25;
+
+    text-align:center;
+
+    letter-spacing:0.01em;
+}
+
+/* subtle academic divider underneath title */
+
+.announcement-card-title::after {
+    content:"";
+
+    display:block;
+
+    width:52px;
+    height:2px;
+
+    margin:
+        13px auto 0;
+
+    background:
+        var(--yellow);
+
+    opacity:0.85;
+}
+
+
+/* =================================================
+   ANNOUNCEMENT MESSAGE
+================================================= */
+
+.announcement-card-message {
+    max-width:850px;
+
+    margin:
+        19px auto 0;
+
+    padding:
+        15px 17px;
+
+    box-sizing:border-box;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.85;
+
+    white-space:
+        pre-wrap;
+
+    word-break:
+        break-word;
+
+    text-align:
+        left;
+
+    background:
+        rgba(0,0,0,0.10);
+
+    border-left:
+        3px solid
+        rgba(255,210,0,0.75);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-right:
+        1px solid
+        rgba(255,255,255,0.06);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.06);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.025);
+}
+
+/* =================================================
+   ANNOUNCEMENT PHOTO
+================================================= */
+
+.announcement-card-photo {
+
+    width:
+        130px;
+
+    height:
+        85px;
+
+    margin:
+        20px auto 0;
+
+    padding:
+        4px;
+
+    box-sizing:
+        border-box;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.16);
+
+    background:
+        rgba(0,0,0,0.10);
+
+    cursor:
+        pointer;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.announcement-card-photo:hover {
+
+    border-color:
+        rgba(255,255,255,0.32);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.announcement-card-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+    margin:
+        0;
+
+    transition:
+        opacity 0.2s ease;
+}
+
+
+.announcement-card-photo:hover img {
+
+    opacity:
+        0.88;
+}
+
+        /* =================================================
+           DELETE BUTTON
+        ================================================= */
+
+        .announcement-card-actions {
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
 
             margin-top:
-                23px;
+                16px;
+        }
+
+
+        .announcement-delete-btn {
+
+            min-height:
+                31px;
+
+            padding:
+                0 11px;
+
+            border:
+                1px solid
+                rgba(215,25,32,0.45);
+
+            background:
+                rgba(215,25,32,0.10);
+
+            color:
+                rgba(255,255,255,0.72);
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.54rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.08em;
+
+            cursor:
+                pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .announcement-delete-btn:hover {
+
+            background:
+                rgba(215,25,32,0.20);
+
+            border-color:
+                rgba(215,25,32,0.70);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .announcement-delete-btn:disabled {
+
+            opacity:
+                0.5;
+
+            cursor:
+                wait;
+
+            transform:
+                none;
+        }
+
+
+        /* =================================================
+           LOADING
+        ================================================= */
+
+        .announcements-loading {
+
+            width:
+                100%;
+
+            box-sizing:
+                border-box;
+
+            padding:
+                35px 20px;
+
+            text-align:
+                center;
 
             color:
                 rgba(255,255,255,0.55);
 
             font-size:
-                0.55rem;
-
-            font-weight:
-                700;
+                0.70rem;
 
             letter-spacing:
-                0.17em;
-
-            white-space:
-                nowrap;
-
-        }
-
-
-        .announcement-bottom::before,
-        .announcement-bottom::after {
-
-            content: "";
-
-            width:
-                40px;
-
-            height:
-                1px;
-
-            background:
-                rgba(255,255,255,0.22);
-
+                0.05em;
         }
 
 
         /* =================================================
-           MODAL
+           LOGIN MODAL
         ================================================= */
 
-        .announcement-modal {
+        .officer-login-modal {
 
-            position: fixed;
+            position:
+                fixed;
 
-            inset: 0;
+            inset:
+                0;
 
-            z-index: 2000;
+            z-index:
+                3000;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            justify-content:
+                center;
 
             padding:
                 20px;
 
-            box-sizing: border-box;
+            box-sizing:
+                border-box;
 
-            visibility: hidden;
+            visibility:
+                hidden;
 
-            opacity: 0;
+            opacity:
+                0;
 
             transition:
                 opacity 0.25s ease,
                 visibility 0.25s ease;
-
         }
 
 
-        .announcement-modal.open {
+        .officer-login-modal.open {
 
             visibility:
                 visible;
 
             opacity:
                 1;
-
         }
 
 
-        .announcement-modal-backdrop {
+        .officer-login-backdrop {
 
-            position: absolute;
+            position:
+                absolute;
 
-            inset: 0;
+            inset:
+                0;
 
             background:
-                rgba(0,18,38,0.78);
+                rgba(0,18,38,0.80);
 
             backdrop-filter:
-                blur(3px);
+                blur(4px);
 
             -webkit-backdrop-filter:
-                blur(3px);
-
+                blur(4px);
         }
 
 
-        /* =================================================
-           MODAL BOX
-        ================================================= */
+        .officer-login-box {
 
-        .announcement-modal-box {
+            position:
+                relative;
 
-            position: relative;
-
-            z-index: 2;
+            z-index:
+                2;
 
             width:
                 min(
-                    560px,
-                    calc(100% - 20px)
+                    420px,
+                    calc(100% - 10px)
                 );
 
             padding:
-                42px 38px 34px;
+                38px 32px 30px;
 
-            box-sizing: border-box;
-
-            text-align: center;
+            box-sizing:
+                border-box;
 
             background:
                 linear-gradient(
@@ -581,36 +1061,37 @@
                 );
 
             border:
-                1px solid rgba(255,255,255,0.20);
+                1px solid
+                rgba(255,255,255,0.20);
 
             box-shadow:
-                0 25px 65px rgba(0,0,0,0.38);
+                0 25px 65px
+                rgba(0,0,0,0.38);
 
             transform:
                 translateY(12px);
 
             transition:
                 transform 0.25s ease;
-
         }
 
 
-        .announcement-modal.open
-        .announcement-modal-box {
+        .officer-login-modal.open
+        .officer-login-box {
 
             transform:
                 translateY(0);
-
         }
 
 
         /* =================================================
-           CLOSE BUTTON
+           LOGIN CLOSE
         ================================================= */
 
-        .announcement-modal-close {
+        .officer-login-close {
 
-            position: absolute;
+            position:
+                absolute;
 
             top:
                 13px;
@@ -624,16 +1105,490 @@
             height:
                 34px;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            padding: 0;
+            padding:
+                0;
 
             border:
-                1px solid rgba(255,255,255,0.18);
+                1px solid
+                rgba(255,255,255,0.18);
+
+            background:
+                rgba(255,255,255,0.07);
+
+            color:
+                var(--white);
+
+            font-size:
+                1.25rem;
+
+            line-height:
+                1;
+
+            cursor:
+                pointer;
+        }
+
+
+        .officer-login-close:hover {
+
+            background:
+                rgba(255,255,255,0.15);
+        }
+
+
+        .officer-login-close:focus-visible {
+
+            outline:
+                2px solid var(--yellow);
+
+            outline-offset:
+                2px;
+        }
+
+
+        /* =================================================
+           LOGIN HEADER
+        ================================================= */
+
+        .officer-login-kicker {
+
+            color:
+                var(--yellow);
+
+            font-size:
+                0.60rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.22em;
+        }
+
+
+        .officer-login-title {
+
+            margin:
+                7px 0 0;
+
+            color:
+                var(--white);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                2rem;
+
+            line-height:
+                1.05;
+        }
+
+
+        .officer-login-description {
+
+            margin:
+                10px 0 25px;
+
+            color:
+                rgba(255,255,255,0.62);
+
+            font-size:
+                0.76rem;
+
+            line-height:
+                1.65;
+        }
+
+
+        /* =================================================
+           LOGIN FORM
+        ================================================= */
+
+        .officer-form-group {
+
+            margin-bottom:
+                17px;
+        }
+
+
+        .officer-form-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                7px;
+
+            color:
+                rgba(255,255,255,0.78);
+
+            font-size:
+                0.60rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.10em;
+
+            text-transform:
+                uppercase;
+        }
+
+
+        .officer-form-input {
+
+            width:
+                100%;
+
+            height:
+                45px;
+
+            padding:
+                0 13px;
+
+            box-sizing:
+                border-box;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.18);
+
+            border-radius:
+                0;
+
+            outline:
+                none;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            color:
+                var(--white);
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.82rem;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .officer-form-input::placeholder {
+
+            color:
+                rgba(255,255,255,0.32);
+        }
+
+
+        .officer-form-input:focus {
+
+            border-color:
+                var(--yellow);
+
+            background:
+                rgba(255,255,255,0.10);
+        }
+
+
+        /* =================================================
+           LOGIN MESSAGE
+        ================================================= */
+
+        .officer-login-message {
+
+            margin:
+                0 0 15px;
+
+            padding:
+                10px 12px;
+
+            border:
+                1px solid
+                rgba(215,25,32,0.45);
+
+            background:
+                rgba(215,25,32,0.12);
+
+            color:
+                #ffffff;
+
+            font-size:
+                0.68rem;
+
+            line-height:
+                1.5;
+        }
+
+
+        /* =================================================
+           LOGIN BUTTON
+        ================================================= */
+
+        .officer-login-submit {
+
+            width:
+                100%;
+
+            height:
+                45px;
+
+            border:
+                1px solid
+                var(--yellow);
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--blue-deep);
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.64rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.13em;
+
+            cursor:
+                pointer;
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .officer-login-submit:hover {
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .officer-login-submit:disabled {
+
+            opacity:
+                0.55;
+
+            cursor:
+                wait;
+
+            transform:
+                none;
+        }
+
+
+        /* =================================================
+           ANNOUNCE MODAL
+        ================================================= */
+
+        .announce-modal {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                4000;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                20px;
+
+            box-sizing:
+                border-box;
+
+            visibility:
+                hidden;
+
+            opacity:
+                0;
+
+            pointer-events:
+                none;
+
+            background:
+                rgba(0,18,38,0.80);
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+
+        .announce-modal.show {
+
+            visibility:
+                visible;
+
+            opacity:
+                1;
+
+            pointer-events:
+                auto;
+        }
+
+
+        .announce-modal-box {
+
+            position:
+                relative;
+
+            width:
+                min(
+                    620px,
+                    calc(100% - 10px)
+                );
+
+            max-height:
+                calc(100vh - 40px);
+
+            overflow-y:
+                auto;
+
+            box-sizing:
+                border-box;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.20);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,0.38);
+
+            transform:
+                translateY(14px);
+
+            transition:
+                transform 0.25s ease;
+        }
+
+
+        .announce-modal.show
+        .announce-modal-box {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =================================================
+           ANNOUNCE HEADER
+        ================================================= */
+
+        .announce-modal-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            padding:
+                22px 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--blue-dark),
+                    var(--blue-deep)
+                );
+
+            border-bottom:
+                1px solid
+                rgba(0,0,0,0.10);
+        }
+
+
+        .announce-modal-heading {
+
+            margin:
+                0;
+
+            color:
+                var(--white);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                1.55rem;
+
+            line-height:
+                1.1;
+        }
+
+
+        .announce-modal-close {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                0;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.18);
 
             background:
                 rgba(255,255,255,0.07);
@@ -652,334 +1607,386 @@
 
             transition:
                 background 0.2s ease;
-
         }
 
 
-        .announcement-modal-close:hover {
+        .announce-modal-close:hover {
 
             background:
                 rgba(255,255,255,0.15);
-
         }
 
 
-        .announcement-modal-close:focus-visible {
+        .announce-modal-close:focus-visible {
 
             outline:
                 2px solid var(--yellow);
 
             outline-offset:
                 2px;
-
         }
 
 
         /* =================================================
-           MODAL ICON
+           ANNOUNCE FORM
         ================================================= */
 
-        .modal-icon {
+        .announce-form {
 
-            width:
-                58px;
-
-            height:
-                58px;
-
-            margin:
-                0 auto 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border:
-                1px solid rgba(255,255,255,0.22);
-
-            border-radius:
-                50%;
-
-            background:
-                rgba(255,255,255,0.06);
-
+            padding:
+                25px;
         }
 
 
-        .modal-icon svg {
+        .announce-form-group {
 
-            width:
-                27px;
-
-            height:
-                27px;
-
-            fill:
-                none;
-
-            stroke:
-                var(--yellow);
-
-            stroke-width:
-                1.5;
-
-            stroke-linecap:
-                round;
-
-            stroke-linejoin:
-                round;
-
+            margin-bottom:
+                19px;
         }
 
 
-        /* =================================================
-           MODAL TEXT
-        ================================================= */
+        .announce-form-label {
 
-        .modal-currently {
+            display:
+                block;
+
+            margin-bottom:
+                8px;
 
             color:
-                var(--yellow);
+                var(--blue-deep);
 
             font-size:
-                0.60rem;
+                0.63rem;
 
             font-weight:
-                800;
+                900;
 
             letter-spacing:
-                0.23em;
+                0.10em;
 
+            text-transform:
+                uppercase;
         }
 
 
-        .modal-title {
-
-            margin:
-                7px 0 0;
-
-            color:
-                var(--white);
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-
-            font-size:
-                clamp(
-                    1.75rem,
-                    5vw,
-                    2.6rem
-                );
-
-            line-height:
-                1.05;
-
-        }
-
-
-        .modal-accent {
+        .announce-form-input,
+        .announce-form-textarea {
 
             width:
-                80px;
+                100%;
 
-            height:
-                3px;
+            box-sizing:
+                border-box;
 
-            margin:
-                17px auto;
+            border:
+                1px solid
+                #d6dce5;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--blue),
-                    var(--yellow),
-                    var(--red)
-                );
-
-        }
-
-
-        .modal-message {
-
-            margin:
+            border-radius:
                 0;
 
+            background:
+                #ffffff;
+
             color:
-                var(--white);
+                #222222;
+
+            font-family:
+                inherit;
 
             font-size:
-                0.93rem;
+                0.82rem;
 
-            font-weight:
-                600;
+            outline:
+                none;
 
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
-        .modal-description {
+        .announce-form-input {
 
-            max-width:
-                430px;
+            height:
+                45px;
 
-            margin:
-                11px auto 0;
+            padding:
+                0 13px;
+        }
 
-            color:
-                rgba(255,255,255,0.65);
 
-            font-size:
-                0.76rem;
+        .announce-form-textarea {
+
+            min-height:
+                155px;
+
+            padding:
+                13px;
+
+            resize:
+                vertical;
 
             line-height:
-                1.7;
+                1.6;
+        }
 
+
+        .announce-form-input::placeholder,
+        .announce-form-textarea::placeholder {
+
+            color:
+                #9ca3af;
+        }
+
+
+        .announce-form-input:focus,
+        .announce-form-textarea:focus {
+
+            border-color:
+                var(--blue-deep);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0,87,168,0.10);
         }
 
 
         /* =================================================
-           MODAL STATUS
+           PHOTO INPUT
         ================================================= */
 
-        .modal-status {
+        .announce-photo-input {
+
+            width:
+                100%;
+
+            box-sizing:
+                border-box;
+
+            padding:
+                10px;
+
+            border:
+                1px dashed
+                #b9c2cf;
+
+            background:
+                #f8fafc;
+
+            color:
+                #555;
+
+            font-family:
+                inherit;
+
+            font-size:
+                0.72rem;
+
+            cursor:
+                pointer;
+        }
+
+
+        .announce-photo-preview {
+
+            display:
+                none;
+
+            margin-top:
+                12px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                #d6dce5;
+
+            background:
+                #f3f5f8;
+        }
+
+
+        .announce-photo-preview.show {
+
+            display:
+                block;
+        }
+
+
+        .announce-photo-preview img {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            max-height:
+                260px;
+
+            object-fit:
+                cover;
+        }
+
+
+        /* =================================================
+           ANNOUNCE ACTIONS
+        ================================================= */
+
+        .announce-form-actions {
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
 
             margin-top:
                 25px;
 
             padding-top:
-                18px;
+                19px;
 
             border-top:
-                1px solid rgba(255,255,255,0.10);
-
+                1px solid
+                #e5e7eb;
         }
 
 
-        .modal-status-top {
+        .announce-cancel-btn,
+        .announce-submit-btn {
 
-            display: flex;
+            min-height:
+                42px;
 
-            align-items: center;
+            padding:
+                0 17px;
 
-            justify-content: space-between;
+            border-radius:
+                0;
 
-            gap:
-                10px;
-
-            color:
-                rgba(255,255,255,0.56);
+            font-family:
+                inherit;
 
             font-size:
-                0.56rem;
+                0.62rem;
 
             font-weight:
-                700;
+                900;
 
             letter-spacing:
-                0.11em;
+                0.08em;
 
+            cursor:
+                pointer;
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease,
+                background 0.2s ease;
         }
 
 
-        .modal-live {
+        .announce-cancel-btn {
 
-            color:
-                var(--yellow);
-
-        }
-
-
-        .modal-loading {
-
-            width:
-                100%;
-
-            height:
-                4px;
-
-            margin-top:
-                10px;
-
-            overflow:
-                hidden;
+            border:
+                1px solid
+                #d6dce5;
 
             background:
-                rgba(255,255,255,0.10);
-
-        }
-
-
-        .modal-loading-bar {
-
-            width:
-                35%;
-
-            height:
-                100%;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--blue),
-                    var(--yellow),
-                    var(--red)
-                );
-
-            animation:
-                announcementLoading
-                2.2s
-                ease-in-out
-                infinite;
-
-        }
-
-
-        @keyframes announcementLoading {
-
-            0% {
-                transform:
-                    translateX(-130%);
-            }
-
-            50% {
-                transform:
-                    translateX(120%);
-            }
-
-            100% {
-                transform:
-                    translateX(280%);
-            }
-
-        }
-
-
-        .modal-bottom {
-
-            margin-top:
-                21px;
+                #ffffff;
 
             color:
-                rgba(255,255,255,0.44);
+                #555555;
+        }
 
-            font-size:
-                0.55rem;
 
-            font-weight:
-                700;
+        .announce-cancel-btn:hover {
 
-            letter-spacing:
-                0.17em;
+            background:
+                #f4f5f7;
 
+            transform:
+                translateY(-1px);
+        }
+
+
+        .announce-submit-btn {
+
+            border:
+                1px solid
+                var(--blue-deep);
+
+            background:
+                var(--blue-deep);
+
+            color:
+                var(--white);
+        }
+
+
+        .announce-submit-btn:hover {
+
+            opacity:
+                0.92;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .announce-submit-btn:disabled {
+
+            opacity:
+                0.55;
+
+            cursor:
+                wait;
+
+            transform:
+                none;
         }
 
 
         /* =================================================
            MOBILE
         ================================================= */
+
+        @media (max-width: 800px) {
+
+            .announcement-officer-controls {
+
+                padding:
+                    18px 12px 0;
+            }
+
+
+            .announcement-officer-btn {
+
+                min-height:
+                    32px;
+
+                padding:
+                    0 10px;
+
+                font-size:
+                    0.54rem;
+
+                letter-spacing:
+                    0.07em;
+            }
+
+        }
+
 
         @media (max-width: 600px) {
 
@@ -989,117 +1996,289 @@
                     calc(100vh - 76px);
 
                 padding:
-                    42px 12px;
+                    42px 14px;
 
                 background-attachment:
                     scroll;
-
             }
 
 
-            .announcement-content {
-
-                max-width:
-                    calc(100% - 4px);
-
-                padding:
-                    30px 21px 24px;
-
-            }
-
-
-            .announcement-institution {
+            .announcement-officer-controls {
 
                 gap:
-                    8px;
+                    5px;
+
+                margin-bottom:
+                    12px;
+
+                padding:
+                    12px 0 0;
+            }
+
+
+            .announcement-officer-btn {
+
+                min-height:
+                    30px;
+
+                padding:
+                    0 8px;
 
                 font-size:
-                    0.52rem;
-
-                letter-spacing:
-                    0.11em;
-
+                    0.48rem;
             }
 
 
-            .announcement-institution::before,
-            .announcement-institution::after {
+            .announcements-wrapper {
 
                 width:
-                    23px;
-
+                    100%;
             }
 
 
-            .announcement-icon {
+            .announcements-header {
+
+                margin-bottom:
+                    20px;
+            }
+
+
+            .announcements-title {
+
+                font-size:
+                    2rem;
+            }
+
+
+            .announcements-subtitle {
+
+                font-size:
+                    0.72rem;
+            }
+
+
+            .announcements-empty {
+
+                padding:
+                    34px 20px;
+            }
+
+
+            .announcement-card {
+
+                padding:
+                    20px 18px 21px;
+            }
+
+
+            .announcement-author {
+
+                gap:
+                    10px;
+
+                padding-bottom:
+                    14px;
+
+                margin-bottom:
+                    15px;
+            }
+
+
+            .announcement-author-photo {
 
                 width:
-                    58px;
+                    40px;
 
                 height:
-                    58px;
+                    40px;
 
+                flex-basis:
+                    40px;
             }
 
 
-            .announcement-heading {
+            .announcement-author-name {
 
                 font-size:
-                    1.48rem;
-
+                    0.72rem;
             }
 
 
-            .announcement-description {
+            .announcement-author-position,
+            .announcement-date {
+
+                font-size:
+                    0.57rem;
+            }
+
+
+            .announcement-card-message {
 
                 font-size:
                     0.74rem;
 
                 line-height:
-                    1.65;
-
+                    1.7;
             }
 
-
-            .announcement-bottom {
-
-                gap:
-                    8px;
-
-                font-size:
-                    0.49rem;
-
-                letter-spacing:
-                    0.12em;
-
-            }
-
-
-            .announcement-bottom::before,
-            .announcement-bottom::after {
-
-                width:
-                    20px;
-
-            }
-
-
-            .announcement-modal-box {
+            .officer-login-box {
 
                 padding:
-                    39px 22px 29px;
-
+                    37px 22px 27px;
             }
 
 
-            .modal-status-top {
+            .announce-modal {
+
+                padding:
+                    12px;
+            }
+
+
+            .announce-modal-box {
+
+                width:
+                    100%;
+
+                max-height:
+                    calc(100vh - 24px);
+            }
+
+
+            .announce-modal-header {
+
+                padding:
+                    19px;
+            }
+
+
+            .announce-modal-heading {
 
                 font-size:
-                    0.50rem;
+                    1.35rem;
+            }
 
+
+            .announce-form {
+
+                padding:
+                    19px;
+            }
+
+
+            .announce-form-actions {
+
+                flex-direction:
+                    column-reverse;
+
+                align-items:
+                    stretch;
+            }
+
+
+            .announce-cancel-btn,
+            .announce-submit-btn {
+
+                width:
+                    100%;
             }
 
         }
+
+        /* =================================================
+   ANNOUNCEMENT PHOTO LIGHTBOX
+================================================= */
+
+.announcement-photo-lightbox {
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+    background:
+        rgba(0,0,0,0.88);
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.announcement-photo-lightbox.active {
+    opacity:1;
+    visibility:visible;
+}
+
+.announcement-photo-lightbox img {
+    display:block;
+
+    width:auto;
+    height:auto;
+
+    max-width:
+        min(92vw, 1100px);
+
+    max-height:
+        90vh;
+
+    object-fit:
+        contain;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.45);
+
+    cursor:default;
+}
+
+.announcement-photo-lightbox-close {
+    position:absolute;
+
+    top:18px;
+    right:22px;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid
+        rgba(255,255,255,0.20);
+
+    background:
+        rgba(255,255,255,0.10);
+
+    color:var(--white);
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+}
 
 
         /* =================================================
@@ -1108,23 +2287,26 @@
 
         @media (prefers-reduced-motion: reduce) {
 
-            .announcement-content,
-            .announcement-arrow,
-            .announcement-modal,
-            .announcement-modal-box,
-            .announcement-modal-close {
+            .announcement-officer-btn,
+            .officer-login-modal,
+            .officer-login-box,
+            .officer-login-close,
+            .officer-form-input,
+            .officer-login-submit,
+            .announce-modal,
+            .announce-modal-box,
+            .announce-modal-close,
+            .announce-form-input,
+            .announce-form-textarea,
+            .announce-cancel-btn,
+            .announce-submit-btn,
+            .announcement-card {
 
                 transition:
                     none;
 
-            }
-
-
-            .modal-loading-bar {
-
                 animation:
                     none;
-
             }
 
         }
@@ -1139,7 +2321,6 @@
 
     <!-- =====================================================
          HEADER
-         Uses style.css
     ====================================================== -->
 
     <header
@@ -1188,8 +2369,6 @@
             </a>
 
 
-            <!-- DESKTOP NAVIGATION -->
-
             <nav class="desktop-navigation">
 
                 <a
@@ -1230,8 +2409,6 @@
             </nav>
 
 
-            <!-- MOBILE MENU BUTTON -->
-
             <button
                 class="menu-button"
                 id="menuButton"
@@ -1247,8 +2424,6 @@
 
         </div>
 
-
-        <!-- MOBILE NAVIGATION -->
 
         <nav
             class="mobile-navigation"
@@ -1302,241 +2477,414 @@
 
     <main class="announcement-page">
 
-
-        <section
-            class="announcement-content"
-            id="announcementTrigger"
-            role="button"
-            tabindex="0"
-            aria-haspopup="dialog"
-            aria-controls="announcementModal"
-        >
+        <div class="announcements-wrapper">
 
 
-            <!-- INSTITUTION -->
+            <!-- =================================================
+                 OFFICER CONTROLS
+            ================================================== -->
 
-            <div class="announcement-institution">
+            <div
+                class="announcement-officer-controls"
+                id="officerControls"
+            >
 
-                <span>
-                    DIVINE WORD COLLEGE OF CALAPAN
-                </span>
-
-            </div>
-
-
-            <!-- CONSTRUCTION ICON -->
-
-            <div class="announcement-icon">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+                <button
+                    type="button"
+                    class="announcement-officer-btn announcement-announce-btn"
+                    id="announceBtn"
+                    style="display: none;"
                 >
+                    ANNOUNCE
+                </button>
 
-                    <path
-                        d="M3 21h18"
-                    />
 
-                    <path
-                        d="M5 21V10l7-5 7 5v11"
-                    />
+                <button
+                    type="button"
+                    class="announcement-officer-btn"
+                    id="loginBtn"
+                >
+                    OFFICER LOG-IN
+                </button>
 
-                    <path
-                        d="M9 21v-6h6v6"
-                    />
 
-                    <path
-                        d="M4 10h16"
-                    />
-
-                </svg>
+                <button
+                    type="button"
+                    class="announcement-officer-btn announcement-logout-btn"
+                    id="logoutBtn"
+                    style="display: none;"
+                >
+                    LOG-OUT
+                </button>
 
             </div>
 
 
-            <!-- LABEL -->
+            <!-- =================================================
+                 PAGE HEADER
+            ================================================== -->
 
-            <div class="announcement-label">
-                ANNOUNCEMENTS
-            </div>
+            <div class="announcements-header">
 
-
-            <!-- CLICKABLE CONTENT -->
-
-            <div class="announcement-trigger">
-
-                <div class="announcement-badge">
-                    NEW
+                <div class="announcements-kicker">
+                    SCHOOL OF ARTS AND SCIENCES
                 </div>
 
-
-                <h1 class="announcement-heading">
-                    ANNOUNCEMENT SECTION
+                <h1 class="announcements-title">
+                    Announcements
                 </h1>
 
-
-                <p class="announcement-description">
-
-                    Click to view the latest SAS announcements,
-                    updates, activities, and important student
-                    information.
-
+                <p class="announcements-subtitle">
+                    Official announcements, updates,
+                    activities, and important student
+                    information from the School of Arts
+                    and Sciences.
                 </p>
 
+            </div>
 
-                <div
-                    class="announcement-arrow"
-                    aria-hidden="true"
-                >
-                    ↓
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <section
+                class="announcements-empty"
+                id="announcementsEmpty"
+            >
+
+                <div class="announcements-empty-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M4 6.5h16"
+                        />
+
+                        <path
+                            d="M4 11.5h16"
+                        />
+
+                        <path
+                            d="M4 16.5h10"
+                        />
+
+                    </svg>
+
                 </div>
 
-            </div>
+
+                <h2 class="announcements-empty-title">
+                    No announcements yet
+                </h2>
 
 
-            <!-- BOTTOM -->
+                <p class="announcements-empty-text">
+                    Official SAS announcements will appear
+                    here once they are posted.
+                </p>
 
-            <div class="announcement-bottom">
+            </section>
 
-                <span>
-                    PLEASE CHECK BACK SOON
-                </span>
 
-            </div>
+            <!-- =================================================
+                 ANNOUNCEMENT LIST
+            ================================================== -->
 
-        </section>
+            <section
+                class="announcements-list"
+                id="announcementsList"
+                style="display: none;"
+            ></section>
+
+        </div>
 
     </main>
 
 
 
     <!-- =====================================================
-         ANNOUNCEMENT MODAL
+         OFFICER LOGIN MODAL
     ====================================================== -->
 
     <div
-        class="announcement-modal"
-        id="announcementModal"
+        class="officer-login-modal"
+        id="loginModal"
         aria-hidden="true"
     >
 
-
         <div
-            class="announcement-modal-backdrop"
-            id="announcementModalBackdrop"
+            class="officer-login-backdrop"
+            id="loginModalBackdrop"
         ></div>
 
 
         <div
-            class="announcement-modal-box"
+            class="officer-login-box"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="announcementModalTitle"
+            aria-labelledby="loginModalTitle"
         >
-
-
-            <!-- CLOSE -->
 
             <button
                 type="button"
-                class="announcement-modal-close"
-                id="announcementModalClose"
-                aria-label="Close announcement"
+                class="officer-login-close"
+                id="loginModalClose"
+                aria-label="Close officer login"
             >
                 ×
             </button>
 
 
-            <!-- ICON -->
-
-            <div class="modal-icon">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-
-                    <path
-                        d="M3 21h18"
-                    />
-
-                    <path
-                        d="M5 21V10l7-5 7 5v11"
-                    />
-
-                    <path
-                        d="M9 21v-6h6v6"
-                    />
-
-                </svg>
-
-            </div>
-
-
-            <!-- STATUS -->
-
-            <div class="modal-currently">
-                CURRENTLY
+            <div class="officer-login-kicker">
+                SAS OFFICER
             </div>
 
 
             <h2
-                class="modal-title"
-                id="announcementModalTitle"
+                class="officer-login-title"
+                id="loginModalTitle"
             >
-                WORK IN PROGRESS
+                Officer Log-In
             </h2>
 
 
-            <div class="modal-accent"></div>
-
-
-            <p class="modal-message">
-                We are working for something better.
+            <p class="officer-login-description">
+                Sign in using your official officer account
+                to manage SAS announcements.
             </p>
 
 
-            <p class="modal-description">
+            <form id="loginForm">
 
-                The SAS Announcement Section is currently
-                being prepared to provide students with
-                official announcements, activities,
-                updates, and important information.
+                <div class="officer-form-group">
 
-            </p>
+                    <label
+                        for="loginUsername"
+                        class="officer-form-label"
+                    >
+                        Username
+                    </label>
 
-
-            <!-- LOADING STATUS -->
-
-            <div class="modal-status">
-
-                <div class="modal-status-top">
-
-                    <span>
-                        PREPARING ANNOUNCEMENT SERVICES
-                    </span>
-
-                    <span class="modal-live">
-                        LIVE
-                    </span>
+                    <input
+                        type="text"
+                        id="loginUsername"
+                        class="officer-form-input"
+                        name="username"
+                        autocomplete="username"
+                        placeholder="Enter username"
+                        required
+                    >
 
                 </div>
 
 
-                <div class="modal-loading">
+                <div class="officer-form-group">
+
+                    <label
+                        for="loginPassword"
+                        class="officer-form-label"
+                    >
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        class="officer-form-input"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                </div>
+
+
+                <p
+                    class="officer-login-message"
+                    id="loginMessage"
+                    style="display: none;"
+                ></p>
+
+
+                <button
+                    type="submit"
+                    class="officer-login-submit"
+                    id="loginSubmitBtn"
+                >
+                    LOG-IN
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ANNOUNCE MODAL
+    ====================================================== -->
+
+    <div
+        class="announce-modal"
+        id="announceModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="announce-modal-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="announceModalTitle"
+        >
+
+            <div class="announce-modal-header">
+
+                <h2
+                    class="announce-modal-heading"
+                    id="announceModalTitle"
+                >
+                    Create Announcement
+                </h2>
+
+
+                <button
+                    type="button"
+                    class="announce-modal-close"
+                    id="announceModalClose"
+                    aria-label="Close announcement form"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                class="announce-form"
+                id="announceForm"
+            >
+
+                <!-- TITLE -->
+
+                <div class="announce-form-group">
+
+                    <label
+                        class="announce-form-label"
+                        for="announcementTitle"
+                    >
+                        Title
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="announcementTitle"
+                        class="announce-form-input"
+                        placeholder="Enter announcement title"
+                        maxlength="150"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="announce-form-group">
+
+                    <label
+                        class="announce-form-label"
+                        for="announcementMessage"
+                    >
+                        Message
+                    </label>
+
+
+                    <textarea
+                        id="announcementMessage"
+                        class="announce-form-textarea"
+                        placeholder="Write your announcement here..."
+                        maxlength="5000"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- PHOTO -->
+
+                <div class="announce-form-group">
+
+                    <label
+                        class="announce-form-label"
+                        for="announcementPhoto"
+                    >
+                        Photo
+                        <span
+                            style="font-weight:500;"
+                        >
+                            (Optional)
+                        </span>
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="announcementPhoto"
+                        class="announce-photo-input"
+                        accept="image/*"
+                    >
+
 
                     <div
-                        class="modal-loading-bar"
-                    ></div>
+                        class="announce-photo-preview"
+                        id="announcePhotoPreview"
+                    >
+
+                        <img
+                            id="announcePhotoPreviewImage"
+                            src=""
+                            alt="Announcement photo preview"
+                        >
+
+                    </div>
 
                 </div>
 
-            </div>
+
+                <!-- ACTIONS -->
+
+                <div
+                    class="announce-form-actions"
+                >
+
+                    <button
+                        type="button"
+                        class="announce-cancel-btn"
+                        id="announceCancelBtn"
+                    >
+                        CANCEL
+                    </button>
 
 
-            <div class="modal-bottom">
-                PLEASE CHECK BACK SOON
-            </div>
+                    <button
+                        type="submit"
+                        class="announce-submit-btn"
+                        id="announceSubmitBtn"
+                    >
+                        POST ANNOUNCEMENT
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
 
@@ -1546,7 +2894,6 @@
 
     <!-- =====================================================
          FOOTER
-         EXACTLY USING style.css
     ====================================================== -->
 
     <footer class="site-footer">
@@ -1554,12 +2901,7 @@
         <div class="footer-container">
 
 
-            <!-- CONTACT -->
-
             <div class="footer-contact">
-
-
-                <!-- FACEBOOK -->
 
                 <a
                     href="https://www.facebook.com/DWCCSASOfficial"
@@ -1590,8 +2932,6 @@
 
                 </a>
 
-
-                <!-- GMAIL -->
 
                 <a
                     href="mailto:polpsychsas@gmail.com"
@@ -1633,8 +2973,6 @@
             </div>
 
 
-            <!-- DEVELOPER -->
-
             <div class="footer-developer">
 
                 <span class="developer-label">
@@ -1649,8 +2987,6 @@
 
         </div>
 
-
-        <!-- FOOTER BOTTOM -->
 
         <div class="footer-bottom">
 
@@ -1677,6 +3013,7 @@
     ====================================================== -->
 
     <script>
+
 
         /* =================================================
            HEADER
@@ -1727,6 +3064,7 @@
 
 
         updateHeader();
+
 
 
         /* =================================================
@@ -1789,42 +3127,160 @@
             );
 
 
+
         /* =================================================
-           ANNOUNCEMENT MODAL
+           API
         ================================================= */
 
-        const announcementTrigger =
-            document.getElementById(
-                "announcementTrigger"
-            );
+        const ANNOUNCEMENT_API =
+            "https://script.google.com/macros/s/AKfycbynR4QX8TznBCSwv6DYNjJyUvIgemtxVXXOEPB2_NRXBo7GZb5whgjZFCA4lyscoqhT/exec";
 
-        const announcementModal =
-            document.getElementById(
-                "announcementModal"
-            );
-
-        const announcementModalClose =
-            document.getElementById(
-                "announcementModalClose"
-            );
-
-        const announcementModalBackdrop =
-            document.getElementById(
-                "announcementModalBackdrop"
-            );
 
 
         /* =================================================
-           OPEN
+           ELEMENTS
         ================================================= */
 
-        function openAnnouncementModal() {
+        const loginBtn =
+            document.getElementById(
+                "loginBtn"
+            );
 
-            announcementModal.classList.add(
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+        const announceBtn =
+            document.getElementById(
+                "announceBtn"
+            );
+
+        const announcementsList =
+            document.getElementById(
+                "announcementsList"
+            );
+
+        const announcementsEmpty =
+            document.getElementById(
+                "announcementsEmpty"
+            );
+
+
+
+        /* =================================================
+           LOGIN MODAL
+        ================================================= */
+
+        const loginModal =
+            document.getElementById(
+                "loginModal"
+            );
+
+        const loginModalClose =
+            document.getElementById(
+                "loginModalClose"
+            );
+
+        const loginModalBackdrop =
+            document.getElementById(
+                "loginModalBackdrop"
+            );
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        const loginUsername =
+            document.getElementById(
+                "loginUsername"
+            );
+
+        const loginPassword =
+            document.getElementById(
+                "loginPassword"
+            );
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+        const loginSubmitBtn =
+            document.getElementById(
+                "loginSubmitBtn"
+            );
+
+
+
+        /* =================================================
+           ANNOUNCE MODAL
+        ================================================= */
+
+        const announceModal =
+            document.getElementById(
+                "announceModal"
+            );
+
+        const announceModalClose =
+            document.getElementById(
+                "announceModalClose"
+            );
+
+        const announceCancelBtn =
+            document.getElementById(
+                "announceCancelBtn"
+            );
+
+        const announceForm =
+            document.getElementById(
+                "announceForm"
+            );
+
+        const announcementTitle =
+            document.getElementById(
+                "announcementTitle"
+            );
+
+        const announcementMessage =
+            document.getElementById(
+                "announcementMessage"
+            );
+
+        const announcementPhoto =
+            document.getElementById(
+                "announcementPhoto"
+            );
+
+        const announcePhotoPreview =
+            document.getElementById(
+                "announcePhotoPreview"
+            );
+
+        const announcePhotoPreviewImage =
+            document.getElementById(
+                "announcePhotoPreviewImage"
+            );
+
+        const announceSubmitBtn =
+            document.getElementById(
+                "announceSubmitBtn"
+            );
+
+
+
+        /* =================================================
+           LOGIN MODAL
+        ================================================= */
+
+        function openLoginModal() {
+
+            loginModal.classList.add(
                 "open"
             );
 
-            announcementModal.setAttribute(
+            loginModal.setAttribute(
                 "aria-hidden",
                 "false"
             );
@@ -1832,20 +3288,26 @@
             document.body.style.overflow =
                 "hidden";
 
+
+            setTimeout(
+                function () {
+
+                    loginUsername.focus();
+
+                },
+                100
+            );
+
         }
 
 
-        /* =================================================
-           CLOSE
-        ================================================= */
+        function closeLoginModal() {
 
-        function closeAnnouncementModal() {
-
-            announcementModal.classList.remove(
+            loginModal.classList.remove(
                 "open"
             );
 
-            announcementModal.setAttribute(
+            loginModal.setAttribute(
                 "aria-hidden",
                 "true"
             );
@@ -1853,35 +3315,161 @@
             document.body.style.overflow =
                 "";
 
+            loginMessage.style.display =
+                "none";
+
+            loginMessage.textContent =
+                "";
+
+            loginForm.reset();
+
         }
 
 
+        function showLoginMessage(
+            message
+        ) {
+
+            loginMessage.textContent =
+                message;
+
+            loginMessage.style.display =
+                "block";
+
+        }
+
+
+
         /* =================================================
-           CARD CLICK
+           LOGIN EVENTS
         ================================================= */
 
-        announcementTrigger.addEventListener(
+        loginBtn.addEventListener(
             "click",
-            openAnnouncementModal
+            openLoginModal
         );
 
 
-        /* =================================================
-           CARD KEYBOARD
-        ================================================= */
+        loginModalClose.addEventListener(
+            "click",
+            closeLoginModal
+        );
 
-        announcementTrigger.addEventListener(
-            "keydown",
-            function (event) {
+
+        loginModalBackdrop.addEventListener(
+            "click",
+            closeLoginModal
+        );
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    loginUsername.value.trim();
+
+                const password =
+                    loginPassword.value;
+
 
                 if (
-                    event.key === "Enter" ||
-                    event.key === " "
+                    !username ||
+                    !password
                 ) {
 
-                    event.preventDefault();
+                    showLoginMessage(
+                        "Please enter your username and password."
+                    );
 
-                    openAnnouncementModal();
+                    return;
+
+                }
+
+
+                loginSubmitBtn.disabled =
+                    true;
+
+                loginSubmitBtn.textContent =
+                    "LOGGING IN...";
+
+
+                try {
+
+                    const apiURL =
+                        ANNOUNCEMENT_API +
+                        "?action=login" +
+                        "&username=" +
+                        encodeURIComponent(
+                            username
+                        ) +
+                        "&password=" +
+                        encodeURIComponent(
+                            password
+                        );
+
+
+                    const response =
+                        await fetch(
+                            apiURL
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !data.success
+                    ) {
+
+                        showLoginMessage(
+                            data.message ||
+                            "Invalid username or password."
+                        );
+
+                        return;
+
+                    }
+
+
+                    localStorage.setItem(
+                        "sasOfficer",
+                        JSON.stringify(
+                            data.officer
+                        )
+                    );
+
+
+                    updateOfficerInterface();
+
+                    closeLoginModal();
+
+                    await loadAnnouncements();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Officer login error:",
+                        error
+                    );
+
+
+                    showLoginMessage(
+                        "Unable to connect to the officer login system."
+                    );
+
+                } finally {
+
+                    loginSubmitBtn.disabled =
+                        false;
+
+                    loginSubmitBtn.textContent =
+                        "LOG-IN";
 
                 }
 
@@ -1889,28 +3477,1203 @@
         );
 
 
+
         /* =================================================
-           CLOSE BUTTON
+           OFFICER INTERFACE
         ================================================= */
 
-        announcementModalClose.addEventListener(
+        function updateOfficerInterface() {
+
+            const savedOfficer =
+                localStorage.getItem(
+                    "sasOfficer"
+                );
+
+
+            if (savedOfficer) {
+
+                loginBtn.style.display =
+                    "none";
+
+                announceBtn.style.display =
+                    "inline-flex";
+
+                logoutBtn.style.display =
+                    "inline-flex";
+
+            } else {
+
+                loginBtn.style.display =
+                    "inline-flex";
+
+                announceBtn.style.display =
+                    "none";
+
+                logoutBtn.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           LOGOUT
+        ================================================= */
+
+        logoutBtn.addEventListener(
             "click",
-            closeAnnouncementModal
+            async function () {
+
+                localStorage.removeItem(
+                    "sasOfficer"
+                );
+
+                updateOfficerInterface();
+
+                closeAnnounceModal();
+
+                await loadAnnouncements();
+
+            }
         );
 
 
+
         /* =================================================
-           BACKDROP
+           ANNOUNCE MODAL
         ================================================= */
 
-        announcementModalBackdrop.addEventListener(
+        function openAnnounceModal() {
+
+            const savedOfficer =
+                localStorage.getItem(
+                    "sasOfficer"
+                );
+
+
+            if (!savedOfficer) {
+
+                openLoginModal();
+
+                return;
+
+            }
+
+
+            announceModal.classList.add(
+                "show"
+            );
+
+            announceModal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow =
+                "hidden";
+
+
+            setTimeout(
+                function () {
+
+                    announcementTitle.focus();
+
+                },
+                100
+            );
+
+        }
+
+
+        function closeAnnounceModal() {
+
+            announceModal.classList.remove(
+                "show"
+            );
+
+            announceModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow =
+                "";
+
+            announceForm.reset();
+
+            announcePhotoPreview.classList.remove(
+                "show"
+            );
+
+            announcePhotoPreviewImage.src =
+                "";
+
+        }
+
+
+        announceBtn.addEventListener(
             "click",
-            closeAnnouncementModal
+            openAnnounceModal
         );
 
 
+        announceModalClose.addEventListener(
+            "click",
+            closeAnnounceModal
+        );
+
+
+        announceCancelBtn.addEventListener(
+            "click",
+            closeAnnounceModal
+        );
+
+
+        announceModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    announceModal
+                ) {
+
+                    closeAnnounceModal();
+
+                }
+
+            }
+        );
+
+
+
         /* =================================================
-           ESCAPE
+           PHOTO PREVIEW
+        ================================================= */
+
+        announcementPhoto.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    announcementPhoto.files[0];
+
+
+                if (!file) {
+
+                    announcePhotoPreview.classList.remove(
+                        "show"
+                    );
+
+                    announcePhotoPreviewImage.src =
+                        "";
+
+                    return;
+
+                }
+
+
+                if (
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ) {
+
+                    announcementPhoto.value =
+                        "";
+
+                    announcePhotoPreview.classList.remove(
+                        "show"
+                    );
+
+                    announcePhotoPreviewImage.src =
+                        "";
+
+                    alert(
+                        "Please select an image file."
+                    );
+
+                    return;
+
+                }
+
+
+                const maxSize =
+                    2 * 1024 * 1024;
+
+
+                if (
+                    file.size >
+                    maxSize
+                ) {
+
+                    announcementPhoto.value =
+                        "";
+
+                    announcePhotoPreview.classList.remove(
+                        "show"
+                    );
+
+                    announcePhotoPreviewImage.src =
+                        "";
+
+                    alert(
+                        "The announcement photo must be 2 MB or smaller."
+                    );
+
+                    return;
+
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        announcePhotoPreviewImage.src =
+                            event.target.result;
+
+                        announcePhotoPreview.classList.add(
+                            "show"
+                        );
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+
+
+        /* =================================================
+           FILE TO BASE64
+        ================================================= */
+
+        function fileToBase64(
+            file
+        ) {
+
+            return new Promise(
+                function (
+                    resolve,
+                    reject
+                ) {
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function () {
+
+                            resolve(
+                                reader.result
+                            );
+
+                        };
+
+
+                    reader.onerror =
+                        function () {
+
+                            reject(
+                                new Error(
+                                    "Unable to read the selected photo."
+                                )
+                            );
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =================================================
+           CREATE ANNOUNCEMENT
+        ================================================= */
+
+        announceForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const savedOfficer =
+                    localStorage.getItem(
+                        "sasOfficer"
+                    );
+
+
+                if (!savedOfficer) {
+
+                    closeAnnounceModal();
+
+                    openLoginModal();
+
+                    return;
+
+                }
+
+
+                let officer;
+
+
+                try {
+
+                    officer =
+                        JSON.parse(
+                            savedOfficer
+                        );
+
+                } catch (error) {
+
+                    localStorage.removeItem(
+                        "sasOfficer"
+                    );
+
+                    updateOfficerInterface();
+
+                    closeAnnounceModal();
+
+                    openLoginModal();
+
+                    return;
+
+                }
+
+
+                const title =
+                    announcementTitle.value.trim();
+
+
+                const message =
+                    announcementMessage.value.trim();
+
+
+                const photoFile =
+                    announcementPhoto.files[0];
+
+
+                if (
+                    !title ||
+                    !message
+                ) {
+
+                    alert(
+                        "Please enter both a title and message."
+                    );
+
+                    return;
+
+                }
+
+
+                if (photoFile) {
+
+                    if (
+                        !photoFile.type.startsWith(
+                            "image/"
+                        )
+                    ) {
+
+                        alert(
+                            "Please select a valid image file."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const maxSize =
+                        2 * 1024 * 1024;
+
+
+                    if (
+                        photoFile.size >
+                        maxSize
+                    ) {
+
+                        alert(
+                            "The announcement photo must be 2 MB or smaller."
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+
+                announceSubmitBtn.disabled =
+                    true;
+
+                announceSubmitBtn.textContent =
+                    "POSTING...";
+
+
+                try {
+
+                    let photoBase64 =
+                        "";
+
+
+                    if (photoFile) {
+
+                        photoBase64 =
+                            await fileToBase64(
+                                photoFile
+                            );
+
+                    }
+
+
+                    const postData = {
+
+                        action:
+                            "createAnnouncement",
+
+                        title:
+                            title,
+
+                        message:
+                            message,
+
+                        photo:
+                            photoBase64,
+
+                        officerID:
+                            officer.officerID || "",
+
+                        fullName:
+                            officer.fullName || "",
+
+                        position:
+                            officer.position || "",
+
+                        officerPhoto:
+                            officer.photo || ""
+
+                    };
+
+
+                    const response =
+                        await fetch(
+                            ANNOUNCEMENT_API,
+                            {
+
+                                method:
+                                    "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "text/plain;charset=utf-8"
+
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        postData
+                                    )
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !data.success
+                    ) {
+
+                        throw new Error(
+                            data.message ||
+                            "Unable to post announcement."
+                        );
+
+                    }
+
+
+                    closeAnnounceModal();
+
+                    await loadAnnouncements();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Announcement posting error:",
+                        error
+                    );
+
+
+                    alert(
+                        error.message ||
+                        "Unable to post the announcement."
+                    );
+
+                } finally {
+
+                    announceSubmitBtn.disabled =
+                        false;
+
+                    announceSubmitBtn.textContent =
+                        "POST ANNOUNCEMENT";
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================================
+           LOAD ANNOUNCEMENTS
+        ================================================= */
+
+        async function loadAnnouncements() {
+
+            announcementsList.innerHTML =
+                `
+                <div class="announcements-loading">
+                    LOADING ANNOUNCEMENTS...
+                </div>
+                `;
+
+
+            announcementsList.style.display =
+                "block";
+
+            announcementsEmpty.style.display =
+                "none";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        ANNOUNCEMENT_API +
+                        "?action=getAnnouncements"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load announcements."
+                    );
+
+                }
+
+
+                const announcements =
+                    Array.isArray(
+                        data.announcements
+                    )
+                        ? data.announcements
+                        : [];
+
+
+                if (
+                    announcements.length === 0
+                ) {
+
+                    announcementsList.innerHTML =
+                        "";
+
+                    announcementsList.style.display =
+                        "none";
+
+                    announcementsEmpty.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                announcementsEmpty.style.display =
+                    "none";
+
+                announcementsList.style.display =
+                    "flex";
+
+                announcementsList.innerHTML =
+                    "";
+
+
+                announcements.forEach(
+                    function (announcement) {
+
+                        const card =
+                            createAnnouncementCard(
+                                announcement
+                            );
+
+                        announcementsList.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Announcement loading error:",
+                    error
+                );
+
+
+                announcementsList.innerHTML =
+                    `
+                    <div class="announcements-empty">
+
+                        <div class="announcements-empty-icon">
+                            !
+                        </div>
+
+                        <h2 class="announcements-empty-title">
+                            Unable to load announcements
+                        </h2>
+
+                        <p class="announcements-empty-text">
+                            Please refresh the page and try again.
+                        </p>
+
+                    </div>
+                    `;
+
+                announcementsList.style.display =
+                    "block";
+
+                announcementsEmpty.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           CREATE ANNOUNCEMENT CARD
+        ================================================= */
+
+        function createAnnouncementCard(
+            announcement
+        ) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "announcement-card";
+
+
+            const author =
+                announcement.officer || {};
+
+
+            const fullName =
+                author.fullName ||
+                "SAS Officer";
+
+
+            const position =
+                author.position ||
+                "School of Arts and Sciences";
+
+
+            const officerPhoto =
+                author.photo ||
+                "";
+
+
+            const createdAt =
+                announcement.createdAt ||
+                "";
+
+
+            const formattedDate =
+                formatAnnouncementDate(
+                    createdAt
+                );
+
+
+            const title =
+                announcement.title ||
+                "";
+
+
+            const message =
+                announcement.message ||
+                "";
+
+
+            const photo =
+                announcement.photo ||
+                "";
+
+
+            const initials =
+                getOfficerInitials(
+                    fullName
+                );
+
+
+            const authorHTML =
+                officerPhoto
+
+                    ? `
+                        <div class="announcement-author-photo">
+
+                            <img
+                                src="${escapeHTML(
+                                    officerPhoto
+                                )}"
+                                alt="${escapeHTML(
+                                    fullName
+                                )}"
+                            >
+
+                        </div>
+                      `
+
+                    : `
+                        <div class="announcement-author-photo">
+                            ${escapeHTML(initials)}
+                        </div>
+                      `;
+
+
+            const photoHTML =
+    photo
+        ? `
+            <div
+                class="announcement-card-photo"
+                data-photo="${escapeHTML(photo)}"
+            >
+
+                <img
+                    src="${escapeHTML(photo)}"
+                    alt="${escapeHTML(title)}"
+                    loading="lazy"
+                >
+
+            </div>
+          `
+        : "";
+
+
+            const savedOfficer =
+                localStorage.getItem(
+                    "sasOfficer"
+                );
+
+
+            const deleteHTML =
+                savedOfficer
+
+                    ? `
+                        <div class="announcement-card-actions">
+
+                            <button
+                                type="button"
+                                class="announcement-delete-btn"
+                                data-announcement-id="${escapeHTML(
+                                    announcement.id
+                                )}"
+                            >
+                                DELETE
+                            </button>
+
+                        </div>
+                      `
+
+                    : "";
+
+
+            card.innerHTML =
+                `
+                <div class="announcement-author">
+
+                    ${authorHTML}
+
+                    <div class="announcement-author-info">
+
+                        <p class="announcement-author-name">
+                            ${escapeHTML(fullName)}
+                        </p>
+
+                        <div class="announcement-author-position">
+                            ${escapeHTML(position)}
+                        </div>
+
+                        <div class="announcement-date">
+                            ${escapeHTML(formattedDate)}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h2 class="announcement-card-title">
+                    ${escapeHTML(title)}
+                </h2>
+
+
+                <p class="announcement-card-message">
+                    ${escapeHTML(message)}
+                </p>
+
+
+                ${photoHTML}
+
+
+                ${deleteHTML}
+                `;
+
+
+            const deleteButton =
+                card.querySelector(
+                    ".announcement-delete-btn"
+                );
+
+
+            if (deleteButton) {
+
+                deleteButton.addEventListener(
+                    "click",
+                    function () {
+
+                        deleteAnnouncement(
+                            announcement.id,
+                            deleteButton
+                        );
+
+                    }
+                );
+
+            }
+
+
+            return card;
+
+        }
+
+
+
+        /* =================================================
+           DELETE ANNOUNCEMENT
+        ================================================= */
+
+        async function deleteAnnouncement(
+            announcementID,
+            button
+        ) {
+
+            if (!announcementID) {
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete this announcement?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            const savedOfficer =
+                localStorage.getItem(
+                    "sasOfficer"
+                );
+
+
+            if (!savedOfficer) {
+
+                alert(
+                    "Please log in as an officer first."
+                );
+
+                updateOfficerInterface();
+
+                return;
+
+            }
+
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "DELETING...";
+
+
+            try {
+
+                const postData = {
+
+                    action:
+                        "deleteAnnouncement",
+
+                    id:
+                        announcementID
+
+                };
+
+
+                const response =
+                    await fetch(
+                        ANNOUNCEMENT_API,
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "text/plain;charset=utf-8"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    postData
+                                )
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to delete announcement."
+                    );
+
+                }
+
+
+                await loadAnnouncements();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Delete announcement error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Unable to delete announcement."
+                );
+
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "DELETE";
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           DATE FORMAT
+        ================================================= */
+
+        function formatAnnouncementDate(
+            dateString
+        ) {
+
+            if (!dateString) {
+
+                return "";
+
+            }
+
+
+            const date =
+                new Date(
+                    dateString
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "";
+
+            }
+
+
+            return date.toLocaleString(
+                "en-PH",
+                {
+
+                    month:
+                        "short",
+
+                    day:
+                        "numeric",
+
+                    year:
+                        "numeric",
+
+                    hour:
+                        "numeric",
+
+                    minute:
+                        "2-digit"
+
+                }
+            );
+
+        }
+
+
+
+        /* =================================================
+           OFFICER INITIALS
+        ================================================= */
+
+        function getOfficerInitials(
+            name
+        ) {
+
+            const words =
+                String(name || "")
+                    .trim()
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            if (
+                words.length === 0
+            ) {
+
+                return "SAS";
+
+            }
+
+
+            if (
+                words.length === 1
+            ) {
+
+                return words[0]
+                    .substring(0, 2)
+                    .toUpperCase();
+
+            }
+
+
+            return (
+                words[0].charAt(0) +
+                words[words.length - 1].charAt(0)
+            ).toUpperCase();
+
+        }
+
+
+
+        /* =================================================
+           HTML ESCAPE
+        ================================================= */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =================================================
+           ESCAPE KEY
         ================================================= */
 
         document.addEventListener(
@@ -1918,13 +4681,35 @@
             function (event) {
 
                 if (
-                    event.key === "Escape" &&
-                    announcementModal.classList.contains(
+                    event.key !==
+                    "Escape"
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    announceModal.classList.contains(
+                        "show"
+                    )
+                ) {
+
+                    closeAnnounceModal();
+
+                    return;
+
+                }
+
+
+                if (
+                    loginModal.classList.contains(
                         "open"
                     )
                 ) {
 
-                    closeAnnouncementModal();
+                    closeLoginModal();
 
                 }
 
@@ -1932,28 +4717,148 @@
         );
 
 
+
         /* =================================================
-           PREVENT MODAL BOX CLICK FROM CLOSING
+           INITIALIZE
         ================================================= */
 
-        const modalBox =
-            document.querySelector(
-                ".announcement-modal-box"
+        updateOfficerInterface();
+
+        loadAnnouncements();
+
+       
+    </script>
+
+    <!-- =================================================
+     ANNOUNCEMENT PHOTO LIGHTBOX
+================================================= -->
+
+<div
+    class="announcement-photo-lightbox"
+    id="announcementPhotoLightbox"
+>
+
+    <button
+        type="button"
+        class="announcement-photo-lightbox-close"
+        id="announcementPhotoLightboxClose"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+    <img
+        id="announcementPhotoLightboxImage"
+        src=""
+        alt="Announcement photo"
+    >
+
+</div>
+
+<script>
+
+const announcementPhotoLightbox =
+    document.getElementById(
+        "announcementPhotoLightbox"
+    );
+
+const announcementPhotoLightboxImage =
+    document.getElementById(
+        "announcementPhotoLightboxImage"
+    );
+
+const announcementPhotoLightboxClose =
+    document.getElementById(
+        "announcementPhotoLightboxClose"
+    );
+
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const photo =
+            event.target.closest(
+                ".announcement-card-photo"
             );
 
+        if (!photo) return;
 
-        modalBox.addEventListener(
-            "click",
-            function (event) {
+        const image =
+            photo.querySelector("img");
 
-                event.stopPropagation();
+        if (!image) return;
 
-            }
+        announcementPhotoLightboxImage.src =
+            image.src;
+
+        announcementPhotoLightboxImage.alt =
+            image.alt || "Announcement photo";
+
+        announcementPhotoLightbox.classList.add(
+            "active"
         );
 
-    </script>
+        document.body.style.overflow =
+            "hidden";
+    }
+);
+
+
+function closeAnnouncementPhotoLightbox() {
+
+    announcementPhotoLightbox.classList.remove(
+        "active"
+    );
+
+    announcementPhotoLightboxImage.src = "";
+
+    document.body.style.overflow = "";
+}
+
+
+announcementPhotoLightboxClose.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+        closeAnnouncementPhotoLightbox();
+    }
+);
+
+
+announcementPhotoLightbox.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            announcementPhotoLightbox
+        ) {
+            closeAnnouncementPhotoLightbox();
+        }
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape" &&
+            announcementPhotoLightbox.classList.contains(
+                "active"
+            )
+        ) {
+            closeAnnouncementPhotoLightbox();
+        }
+    }
+);
+
+</script>
 
 </body>
 
 </html>
-
