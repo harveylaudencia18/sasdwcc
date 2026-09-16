@@ -1844,24 +1844,6 @@
     background: #fcfdfe;
 }
 
-/* =========================================================
-   EVENT CATEGORY LINES
-========================================================= */
-
-/* DWCC Psychology Society Events */
-.calendar-event.psychsoc-event {
-
-    border-left-color: #90EE90 !important;
-
-}
-
-
-/* Department Events */
-.calendar-event.department-event {
-
-    border-left-color: #00BFFF !important;
-
-}
 
 /* =========================================================
    EVENTS
@@ -5378,30 +5360,6 @@
     color: #8d151b;
 }
 
-/* =========================================================
-   EVENT CATEGORY COLORS
-========================================================= */
-
-/* DWCC Psychology Society */
-.calendar-event.psychsoc-event {
-
-    border-left-color: #90EE90;
-
-    background: #90EE90;
-
-    color: #164d16;
-}
-
-
-/* Department Events */
-.calendar-event.department-event {
-
-    border-left-color: #00BFFF;
-
-    background: #00BFFF;
-
-    color: #003b4d;
-}
 
 /* =========================================================
    MINI CALENDAR EVENT STYLE
@@ -5436,120 +5394,6 @@
     background: #d71920;
 }
 
-/* =========================================================
-   EVENT LEGEND
-========================================================= */
-
-.calendar-legend {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin: 14px 0 18px;
-
-    padding: 12px 15px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce5ed;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 4px 12px rgba(0, 59, 115, 0.04);
-
-}
-
-
-.calendar-legend-title {
-
-    color: #003b73;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-}
-
-
-.calendar-legend-items {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    flex-wrap: wrap;
-
-}
-
-
-.calendar-legend-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    color: #526476;
-
-    font-size: 9px;
-
-    font-weight: 600;
-
-}
-
-
-.calendar-legend-color {
-
-    width: 11px;
-    height: 11px;
-
-    flex: 0 0 11px;
-
-    border-radius: 3px;
-
-}
-
-
-.calendar-legend-color.psychsoc {
-
-    background: #90EE90;
-
-}
-
-
-.calendar-legend-color.department {
-
-    background: #00BFFF;
-
-}
-
-/* =========================================================
-   MINI CALENDAR CATEGORY COLORS
-========================================================= */
-
-.calendar-month:not(.expanded)
-.calendar-event.psychsoc-event {
-
-    background: #90EE90;
-}
-
-
-.calendar-month:not(.expanded)
-.calendar-event.department-event {
-
-    background: #00BFFF;
-}
 
 /* =========================================================
    EXPANDED MONTH
@@ -5962,24 +5806,6 @@
 
 }
 
-.calendar-legend {
-
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 9px;
-
-}
-
-
-.calendar-legend-items {
-
-    width: 100%;
-
-    gap: 10px 15px;
-
-}
 
 /* =========================================================
    SMALL MOBILE
@@ -6052,41 +5878,6 @@
     color: #6d7d8c;
 
     font-size: 12px;
-}
-
-/* =========================================================
-   MOBILE CALENDAR — KEEP WORDS INTACT
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .calendar-event {
-
-        word-break: normal !important;
-
-        overflow-wrap: normal !important;
-
-        white-space: normal !important;
-
-        hyphens: none !important;
-
-    }
-
-}
-
-@media (max-width: 480px) {
-
-    .calendar-month.expanded .calendar-event {
-        font-size: 9px;
-        line-height: 1.2;
-        padding: 4px 5px;
-        white-space: normal;
-        word-break: normal;
-        overflow-wrap: break-word;
-        height: auto;
-        min-height: 0;
-    }
-
 }
 
     </style>
@@ -10361,70 +10152,6 @@ function loadCalendar() {
 
         `;
 
-/* =====================================================
-   EVENT CATEGORIES
-===================================================== */
-
-const psychSocDates = new Set([
-
-    "2026-08-15",
-
-    "2026-09-02",
-    "2026-09-19",
-    "2026-09-25",
-    "2026-09-26",
-
-    "2026-10-10",
-    "2026-10-12",
-
-    "2026-11-19",
-
-    "2026-12-01",
-
-    "2027-01-30",
-
-    "2027-02-15",
-    "2027-02-20",
-
-    "2027-03-01",
-    "2027-03-08",
-    "2027-03-20",
-
-    "2027-04-02",
-    "2027-04-22"
-
-]);
-
-
-const departmentDates = new Set([
-
-    "2026-08-17",
-    "2026-08-22",
-    "2026-08-24",
-    "2026-08-27",
-
-    "2026-09-13",
-    "2026-09-15",
-
-    "2026-10-19",
-    "2026-10-24",
-    "2026-10-25",
-    "2026-10-27",
-
-    "2026-12-06",
-
-    "2027-01-16",
-    "2027-01-28",
-
-    "2027-02-18",
-
-    "2027-03-02",
-
-    "2027-04-03",
-
-    "2027-05-14"
-
-]);
 
         /* =================================================
            WEEKDAYS
@@ -10502,78 +10229,36 @@ const departmentDates = new Set([
 
             events.forEach(function(event) {
 
-    const eventTitle =
-        String(event.title || "").toLowerCase();
+                const eventClass =
+                    event.title
+                        .toLowerCase()
+                        .includes("exam")
+                        ||
+                    event.title
+                        .toLowerCase()
+                        .includes("seminar")
+                        ||
+                    event.title
+                        .toLowerCase()
+                        .includes("pinning")
+                        ?
+                        "important"
+                        :
+                        "";
 
 
-    let eventClass = "";
+                html += `
 
+                    <div
+                        class="calendar-event ${eventClass}"
+                        title="${escapeCalendarHTML(event.title)}"
+                    >
+                        ${escapeCalendarHTML(event.title)}
+                    </div>
 
-    /* =================================================
-       EXISTING IMPORTANT EVENT LOGIC
-    ================================================= */
+                `;
 
-    if (
-        eventTitle.includes("exam") ||
-        eventTitle.includes("seminar") ||
-        eventTitle.includes("pinning")
-    ) {
-
-        eventClass = "important";
-
-    }
-
-
-    /* =================================================
-       EVENT DATE
-    ================================================= */
-
-    const eventDate =
-        `${month.year}-${String(monthNumber + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-
-    /* =================================================
-       PSYCHOLOGY SOCIETY
-    ================================================= */
-
-    if (
-        psychSocDates.has(eventDate)
-    ) {
-
-        eventClass += " psychsoc-event";
-
-    }
-
-
-    /* =================================================
-       DEPARTMENT
-    ================================================= */
-
-    if (
-        departmentDates.has(eventDate)
-    ) {
-
-        eventClass += " department-event";
-
-    }
-
-
-    /* =================================================
-       EVENT HTML
-    ================================================= */
-
-    html += `
-
-        <div
-            class="calendar-event ${eventClass}"
-            title="${escapeCalendarHTML(event.title)}"
-        >
-            ${escapeCalendarHTML(event.title)}
-        </div>
-
-    `;
-
-});
+            });
 
 
             html += `
@@ -10748,43 +10433,6 @@ const departmentDates = new Set([
 
             </div>
 
-<div class="calendar-legend">
-
-    <div class="calendar-legend-title">
-        EVENT LEGEND
-    </div>
-
-
-    <div class="calendar-legend-items">
-
-        <div class="calendar-legend-item">
-
-            <span
-                class="calendar-legend-color psychsoc"
-            ></span>
-
-            <span>
-                DWCC Psychology Society Events
-            </span>
-
-        </div>
-
-
-        <div class="calendar-legend-item">
-
-            <span
-                class="calendar-legend-color department"
-            ></span>
-
-            <span>
-                Department Events
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
 
             ${
                 createSemester(
