@@ -5784,11 +5784,12 @@
     padding: 4px 5px;
     font-size: 7px;
 
-    white-space: nowrap;
+    white-space: normal;
     word-break: normal;
     overflow-wrap: normal;
+
     overflow: hidden;
-    text-overflow: clip;
+    box-sizing: border-box;
 }
 
     .calendar-summary {
@@ -10717,7 +10718,10 @@ function fitCalendarEventText() {
 
         while (
             fontSize > 5 &&
-            event.scrollWidth > event.clientWidth
+            (
+                event.scrollWidth > event.clientWidth ||
+                event.scrollHeight > event.clientHeight
+            )
         ) {
 
             fontSize -= 0.5;
