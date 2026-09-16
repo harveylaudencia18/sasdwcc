@@ -5780,12 +5780,16 @@
         font-size: 9px;
     }
 
-    .calendar-month.expanded
-    .calendar-event {
-        padding: 4px 5px;
+    .calendar-month.expanded .calendar-event {
+    padding: 4px 5px;
+    font-size: 7px;
 
-        font-size: 7px;
-    }
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+    overflow: hidden;
+    text-overflow: clip;
+}
 
     .calendar-summary {
         padding: 14px;
@@ -10554,6 +10558,9 @@ function loadCalendar() {
                 "expanded"
             );
 
+            requestAnimationFrame(function() {
+    fitCalendarEventText();
+});
 
         /* ================================================
            CLOSE ALL MONTHS
@@ -10705,10 +10712,11 @@ function fitCalendarEventText() {
 
         let fontSize = 9;
 
-        event.style.fontSize = fontSize + "px";
+        event.style.fontSize =
+            fontSize + "px";
 
         while (
-            fontSize > 6 &&
+            fontSize > 5 &&
             event.scrollWidth > event.clientWidth
         ) {
 
