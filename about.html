@@ -10694,6 +10694,32 @@ function loadCalendar() {
 
 }
 
+function fitCalendarEventText() {
+
+    const events =
+        document.querySelectorAll(
+            ".calendar-month.expanded .calendar-event"
+        );
+
+    events.forEach(function(event) {
+
+        let fontSize = 9;
+
+        event.style.fontSize = fontSize + "px";
+
+        while (
+            fontSize > 6 &&
+            event.scrollWidth > event.clientWidth
+        ) {
+
+            fontSize -= 0.5;
+
+            event.style.fontSize =
+                fontSize + "px";
+        }
+
+    });
+}
 
 /* =========================================================
    INITIALIZE
