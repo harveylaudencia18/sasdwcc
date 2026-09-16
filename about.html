@@ -1422,6 +1422,730 @@
 
         }
 
+
+        /* =========================================================
+           CALENDAR
+        ========================================================= */
+
+  /* =========================================================
+   MODERN ACADEMIC CALENDAR
+========================================================= */
+
+.calendar-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SEMESTER HEADER
+========================================================= */
+
+.calendar-semester-header {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-bottom: 22px;
+    padding: 20px 24px;
+
+    border: 1px solid #dce7f0;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f7fbff 100%
+        );
+
+    box-shadow:
+        0 8px 22px rgba(0, 59, 115, 0.06);
+
+    overflow: hidden;
+}
+
+.calendar-semester-header::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background: #0057a8;
+}
+
+.calendar-semester-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -45px;
+    top: -45px;
+
+    border: 1px solid #dce7f0;
+    border-radius: 50%;
+
+    opacity: 0.7;
+}
+
+.calendar-semester-kicker {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 5px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color: #0057a8;
+}
+
+.calendar-semester-title {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+
+    color: #003b73;
+}
+
+.calendar-semester-note {
+    position: relative;
+    z-index: 1;
+
+    margin: 6px 0 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: #68788a;
+}
+
+
+/* =========================================================
+   MONTH CONTAINER
+========================================================= */
+
+.calendar-months {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 12px;
+
+    width: 100%;
+    align-items: start;
+}
+
+
+/* =========================================================
+   MONTH CARD
+========================================================= */
+
+.calendar-month {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #dce7f0;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 59, 115, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.calendar-month:hover {
+    transform: translateY(-2px);
+
+    border-color: #b9cfe2;
+
+    box-shadow:
+        0 9px 22px rgba(0, 59, 115, 0.09);
+}
+
+
+/* =========================================================
+   EXPANDED MONTH
+========================================================= */
+
+.calendar-month.expanded {
+    grid-column: 1 / -1;
+
+    cursor: default;
+
+    transform: none;
+
+    border-color: #b9cfe2;
+
+    box-shadow:
+        0 12px 30px rgba(0, 59, 115, 0.09);
+
+    animation:
+        calendarExpand 0.3s ease;
+}
+
+@keyframes calendarExpand {
+
+    from {
+        opacity: 0.75;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   MONTH HEADER
+========================================================= */
+
+.calendar-month-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 48px;
+
+    padding: 10px 12px;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #e5edf4;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbfe 0%,
+            #ffffff 100%
+        );
+
+    transition:
+        background 0.25s ease;
+}
+
+.calendar-month.expanded .calendar-month-header {
+    padding: 14px 17px;
+
+    min-height: 58px;
+
+    border-bottom-color: #d8e4ee;
+}
+
+.calendar-month-header::before {
+    content: "";
+
+    width: 3px;
+    height: 25px;
+
+    margin-right: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 3px;
+
+    background: #0057a8;
+}
+
+.calendar-month.expanded .calendar-month-header::before {
+    height: 30px;
+}
+
+.calendar-month-name {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    color: #003b73;
+}
+
+.calendar-month.expanded .calendar-month-name {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   CLICK INDICATOR
+========================================================= */
+
+.calendar-month-header::after {
+    content: "+";
+
+    margin-left: auto;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    line-height: 1;
+
+    color: #8a9aaa;
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.calendar-month.expanded .calendar-month-header::after {
+    content: "−";
+
+    color: #0057a8;
+}
+
+
+/* =========================================================
+   CALENDAR GRID
+========================================================= */
+
+.calendar-month-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   WEEKDAY
+========================================================= */
+
+.calendar-weekday {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 25px;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #e5edf4;
+
+    background: #f8fbfe;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    color: #7b8b9b;
+}
+
+.calendar-month.expanded .calendar-weekday {
+    min-height: 31px;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DAY
+========================================================= */
+
+.calendar-day {
+    position: relative;
+
+    min-width: 0;
+
+    min-height: 43px;
+
+    padding: 5px;
+
+    box-sizing: border-box;
+
+    border-right: 1px solid #edf2f6;
+    border-bottom: 1px solid #edf2f6;
+
+    background: #ffffff;
+
+    overflow: hidden;
+}
+
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar-month.expanded .calendar-day {
+    min-height: 88px;
+
+    padding: 8px;
+}
+
+.calendar-day-empty {
+    background: #fbfcfd;
+}
+
+.calendar-day-number {
+    display: block;
+
+    margin-bottom: 2px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    color: #536477;
+}
+
+.calendar-month.expanded .calendar-day-number {
+    margin-bottom: 5px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   WEEKEND
+========================================================= */
+
+.calendar-day:nth-child(7n + 1),
+.calendar-day:nth-child(7n) {
+    background: #fcfdfe;
+}
+
+/* =========================================================
+   EVENT CATEGORY LINES
+========================================================= */
+
+/* DWCC Psychology Society Events */
+.calendar-event.psychsoc-event {
+
+    border-left-color: #90EE90 !important;
+
+}
+
+
+/* Department Events */
+.calendar-event.department-event {
+
+    border-left-color: #00BFFF !important;
+
+}
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+.calendar-event {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 2px;
+    padding: 3px 4px;
+
+    border-left: 2px solid #0057a8;
+    border-radius: 3px;
+
+    background: #f2f7fb;
+
+    font-size: 6.5px;
+    font-weight: 600;
+
+    line-height: 1.25;
+
+    color: #405466;
+
+    overflow: hidden;
+
+    word-break: break-word;
+}
+
+.calendar-event.important {
+    font-weight: 800;
+
+    color: #003b73;
+}
+
+.calendar-month.expanded .calendar-event {
+    margin-top: 3px;
+    padding: 5px 6px;
+
+    font-size: 9px;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   MINI CALENDAR EVENT MARKER
+========================================================= */
+
+.calendar-month:not(.expanded) .calendar-event {
+    display: block;
+
+    height: 3px;
+
+    padding: 0;
+    margin-top: 3px;
+
+    border-left: none;
+
+    border-radius: 2px;
+
+    background: #8fb1cf;
+
+    font-size: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.calendar-summary {
+    margin-top: 20px;
+
+    padding: 17px;
+
+    border: 1px solid #dce7f0;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 16px rgba(0, 59, 115, 0.04);
+}
+
+.calendar-summary-title {
+    margin: 0 0 12px;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    color: #003b73;
+}
+
+.calendar-summary-item {
+    display: grid;
+
+    grid-template-columns: 65px minmax(0, 1fr);
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #edf2f6;
+}
+
+.calendar-summary-item:last-child {
+    border-bottom: none;
+}
+
+.calendar-summary-date {
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    color: #0057a8;
+}
+
+.calendar-summary-event {
+    font-size: 10px;
+    line-height: 1.4;
+
+    color: #536477;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .calendar-months {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .calendar-month.expanded {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .calendar-semester-header {
+        padding: 17px 18px;
+        margin-bottom: 16px;
+    }
+
+    .calendar-semester-title {
+        font-size: 21px;
+    }
+
+    .calendar-semester-note {
+        font-size: 10px;
+    }
+
+    .calendar-months {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 9px;
+    }
+
+    .calendar-month.expanded {
+        grid-column: 1 / -1;
+    }
+
+    .calendar-month-header {
+        min-height: 45px;
+        padding: 9px 10px;
+    }
+
+    .calendar-month-name {
+        font-size: 10px;
+    }
+
+    .calendar-month.expanded .calendar-month-name {
+        font-size: 14px;
+    }
+
+    .calendar-day {
+        min-height: 38px;
+        padding: 4px;
+    }
+
+    .calendar-month.expanded .calendar-day {
+        min-height: 72px;
+        padding: 6px;
+    }
+
+    .calendar-weekday {
+        min-height: 23px;
+        font-size: 6.5px;
+    }
+
+    .calendar-month.expanded .calendar-weekday {
+        min-height: 27px;
+        font-size: 8px;
+    }
+
+    .calendar-month.expanded .calendar-event {
+        font-size: 8px;
+    }
+
+    .calendar-summary {
+        margin-top: 15px;
+        padding: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .calendar-months {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-month.expanded {
+        grid-column: 1;
+    }
+
+    .calendar-day {
+        min-height: 42px;
+    }
+
+}
+        /* =========================================================
+           ERROR / LOADING
+        ========================================================= */
+
+        .hub-loading {
+
+            padding: 35px;
+
+            text-align: center;
+
+            color:
+                #718096;
+
+            font-size: 12px;
+
+        }
+
+
+        .hub-error {
+
+            padding: 18px;
+
+            border:
+                1px solid #efc8ca;
+
+            border-radius: 5px;
+
+            background:
+                #fff8f8;
+
+            color:
+                #9f252b;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+
         /* =========================================================
            SAS OFFICER PRESENTATION
         ========================================================= */
@@ -4109,15 +4833,10 @@
 
         }
 
-        /* =========================================================
+/* =========================================================
    SAS SCHOOL CALENDAR
    ACADEMIC YEAR 2026–2027
-   FINAL CALENDAR DESIGN
-========================================================= */
-
-
-/* =========================================================
-   CALENDAR WRAPPER
+   MODERN RED / BLUE / YELLOW / WHITE DESIGN
 ========================================================= */
 
 .calendar-wrapper {
@@ -4133,13 +4852,10 @@
 
 .calendar-semester-header {
     position: relative;
-
     width: 100%;
-
-    margin-bottom: 22px;
-    padding: 20px 22px;
-
     box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 20px 22px;
 
     background: #ffffff;
 
@@ -4154,30 +4870,24 @@
 
 .calendar-semester-header::before {
     content: "";
-
     position: absolute;
-
-    left: 0;
     top: 0;
-
+    left: 0;
     width: 6px;
     height: 100%;
 
-    background:
-        linear-gradient(
-            to bottom,
-            #0057a8 0%,
-            #0057a8 55%,
-            #d71920 55%,
-            #d71920 100%
-        );
+    background: linear-gradient(
+        to bottom,
+        #0057a8 0%,
+        #0057a8 55%,
+        #d71920 55%,
+        #d71920 100%
+    );
 }
 
 .calendar-semester-header::after {
     content: "";
-
     position: absolute;
-
     right: -45px;
     top: -45px;
 
@@ -4203,7 +4913,6 @@
     font-weight: 800;
 
     letter-spacing: 1.4px;
-
     text-transform: uppercase;
 }
 
@@ -4232,18 +4941,16 @@
     color: #647587;
 
     font-size: 12px;
-
     line-height: 1.6;
 }
 
 
 /* =========================================================
-   SEMESTER
+   SEMESTER SECTION
 ========================================================= */
 
 .calendar-semester {
     width: 100%;
-
     margin-bottom: 30px;
 }
 
@@ -4253,9 +4960,7 @@
 
 .calendar-semester-label {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 
     margin: 0 0 13px;
@@ -4270,8 +4975,6 @@
     border-radius: 4px;
 
     background: #0057a8;
-
-    flex-shrink: 0;
 }
 
 .calendar-semester-label.second-semester::before {
@@ -4280,9 +4983,7 @@
 
 .calendar-semester-label-text {
     display: flex;
-
     flex-direction: column;
-
     gap: 2px;
 }
 
@@ -4308,7 +5009,7 @@
 
 
 /* =========================================================
-   MONTH CONTAINER
+   MONTH GRID
 ========================================================= */
 
 .calendar-months {
@@ -4377,6 +5078,7 @@
     align-items: center;
 
     width: 100%;
+
     min-height: 50px;
 
     padding: 10px 12px;
@@ -4407,29 +5109,23 @@
     flex-shrink: 0;
 }
 
-.calendar-month:nth-child(5n + 2)
-.calendar-month-header::before {
+.calendar-month:nth-child(5n + 2) .calendar-month-header::before {
     background: #d71920;
 }
 
-.calendar-month:nth-child(5n + 3)
-.calendar-month-header::before {
+.calendar-month:nth-child(5n + 3) .calendar-month-header::before {
     background: #ffd200;
 }
 
-.calendar-month:nth-child(5n + 4)
-.calendar-month-header::before {
+.calendar-month:nth-child(5n + 4) .calendar-month-header::before {
     background: #0057a8;
 }
 
-.calendar-month:nth-child(5n + 5)
-.calendar-month-header::before {
+.calendar-month:nth-child(5n + 5) .calendar-month-header::before {
     background: #d71920;
 }
 
 .calendar-month-name {
-    min-width: 0;
-
     margin: 0;
 
     color: #003b73;
@@ -4477,21 +5173,20 @@
 
     transition:
         background 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.calendar-month:hover
-.calendar-month-toggle {
+.calendar-month:hover .calendar-month-toggle {
     background: #0057a8;
-
     color: #ffffff;
 }
 
-.calendar-month.expanded
-.calendar-month-toggle {
+.calendar-month.expanded .calendar-month-toggle {
     background: #d71920;
-
     color: #ffffff;
+
+    transform: rotate(0deg);
 }
 
 
@@ -4506,8 +5201,6 @@
         repeat(7, minmax(0, 1fr));
 
     width: 100%;
-
-    box-sizing: border-box;
 }
 
 
@@ -4560,7 +5253,6 @@
     position: relative;
 
     min-width: 0;
-
     min-height: 31px;
 
     padding: 4px;
@@ -4583,17 +5275,43 @@
     background: #fafbfc;
 }
 
+.calendar-day-number {
+    display: block;
+
+    color: #526476;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.calendar-day:nth-child(7n + 1) .calendar-day-number {
+    color: #d71920;
+}
+
+.calendar-day:nth-child(7n) .calendar-day-number {
+    color: #0057a8;
+}
+
 
 /* =========================================================
-   DAY NUMBER
+   EVENT DAY
 ========================================================= */
 
-.calendar-day-number {
-    display: flex;
+.calendar-day.has-event {
+    background: #fffdf4;
+}
+
+.calendar-day.has-event .calendar-day-number {
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
 
     align-items: center;
-
-    width: fit-content;
+    justify-content: center;
 
     min-width: 16px;
     height: 16px;
@@ -4602,58 +5320,14 @@
 
     box-sizing: border-box;
 
-    color: #526476;
-
-    font-size: 8px;
-    font-weight: 700;
-
-    line-height: 1;
-
     border-radius: 5px;
-}
 
-.calendar-day:nth-child(7n + 1)
-.calendar-day-number {
-    color: #d71920;
-}
-
-.calendar-day:nth-child(7n)
-.calendar-day-number {
-    color: #0057a8;
-}
-
-.calendar-day.has-event {
-    background: #fffdf4;
-}
-
-.calendar-day.has-event
-.calendar-day-number {
     background: #ffd200;
 
     color: #003b73;
 
+    font-size: 8px;
     font-weight: 800;
-}
-
-
-/* =========================================================
-   EVENT AREA
-========================================================= */
-
-.calendar-events {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 3px;
-
-    min-width: 0;
-
-    min-height: 0;
-
-    margin-top: 4px;
-
-    overflow: hidden;
 }
 
 
@@ -4665,76 +5339,82 @@
     display: block;
 
     width: 100%;
-    max-width: 100%;
-
-    min-width: 0;
 
     box-sizing: border-box;
 
-    margin: 0;
+    margin-top: 3px;
+    padding: 3px 4px;
 
-    padding: 4px 5px;
-
-    border-left: 3px solid #0057a8;
-    border-radius: 4px;
+    border-left: 2px solid #0057a8;
+    border-radius: 3px;
 
     background: #eef5fb;
 
-    color: #34495a;
+    color: #405466;
 
-    font-size: 9px;
+    font-size: 6.5px;
     font-weight: 600;
 
-    line-height: 1.2;
-
-    white-space: normal;
-
-    word-break: normal;
-
-    overflow-wrap: normal;
-
-    hyphens: none;
+    line-height: 1.25;
 
     overflow: hidden;
-
-    flex-shrink: 0;
 }
 
+
+/* Multiple events */
 .calendar-event + .calendar-event {
     border-left-color: #d71920;
 
-    background: #fff0f0;
+    background: #fff1f1;
 }
 
+
+/* Important event */
 .calendar-event.important {
     border-left-color: #d71920;
 
-    background: #fff0f0;
+    background: #fff1f1;
 
     color: #8d151b;
 }
 
-
 /* =========================================================
-   MINI MONTH EVENTS
+   EVENT CATEGORY COLORS
 ========================================================= */
 
-.calendar-month:not(.expanded)
-.calendar-events {
-    display: flex;
+/* DWCC Psychology Society */
+.calendar-event.psychsoc-event {
 
-    gap: 2px;
+    border-left-color: #90EE90;
 
-    margin-top: 3px;
+    background: #90EE90;
+
+    color: #164d16;
 }
 
-.calendar-month:not(.expanded)
-.calendar-event {
+
+/* Department Events */
+.calendar-event.department-event {
+
+    border-left-color: #00BFFF;
+
+    background: #00BFFF;
+
+    color: #003b4d;
+}
+
+/* =========================================================
+   MINI CALENDAR EVENT STYLE
+========================================================= */
+
+.calendar-month:not(.expanded) .calendar-event {
+    display: block;
+
     width: 100%;
     height: 3px;
     min-height: 3px;
 
-    margin: 0;
+    margin-top: 3px;
     padding: 0;
 
     border: none;
@@ -4751,9 +5431,125 @@
 
 .calendar-month:not(.expanded)
 .calendar-event + .calendar-event {
+    margin-top: 2px;
+
     background: #d71920;
 }
 
+/* =========================================================
+   EVENT LEGEND
+========================================================= */
+
+.calendar-legend {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin: 14px 0 18px;
+
+    padding: 12px 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5ed;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 59, 115, 0.04);
+
+}
+
+
+.calendar-legend-title {
+
+    color: #003b73;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.calendar-legend-items {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.calendar-legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #526476;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+}
+
+
+.calendar-legend-color {
+
+    width: 11px;
+    height: 11px;
+
+    flex: 0 0 11px;
+
+    border-radius: 3px;
+
+}
+
+
+.calendar-legend-color.psychsoc {
+
+    background: #90EE90;
+
+}
+
+
+.calendar-legend-color.department {
+
+    background: #00BFFF;
+
+}
+
+/* =========================================================
+   MINI CALENDAR CATEGORY COLORS
+========================================================= */
+
+.calendar-month:not(.expanded)
+.calendar-event.psychsoc-event {
+
+    background: #90EE90;
+}
+
+
+.calendar-month:not(.expanded)
+.calendar-event.department-event {
+
+    background: #00BFFF;
+}
 
 /* =========================================================
    EXPANDED MONTH
@@ -4776,7 +5572,6 @@
 }
 
 @keyframes calendarMonthExpand {
-
     from {
         opacity: 0.75;
         transform: translateY(5px);
@@ -4786,11 +5581,9 @@
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
-.calendar-month.expanded
-.calendar-month-header {
+.calendar-month.expanded .calendar-month-header {
     min-height: 60px;
 
     padding: 13px 16px;
@@ -4804,26 +5597,22 @@
         );
 }
 
-.calendar-month.expanded
-.calendar-month-header::before {
+.calendar-month.expanded .calendar-month-header::before {
     width: 5px;
     height: 32px;
 
     background: #0057a8;
 }
 
-.calendar-month.expanded
-.calendar-month-name {
+.calendar-month.expanded .calendar-month-name {
     font-size: 17px;
 }
 
-.calendar-month.expanded
-.calendar-month-year {
+.calendar-month.expanded .calendar-month-year {
     font-size: 11px;
 }
 
-.calendar-month.expanded
-.calendar-month-toggle {
+.calendar-month.expanded .calendar-month-toggle {
     width: 27px;
     height: 27px;
 
@@ -4835,8 +5624,7 @@
    EXPANDED WEEKDAYS
 ========================================================= */
 
-.calendar-month.expanded
-.calendar-weekday {
+.calendar-month.expanded .calendar-weekday {
     min-height: 34px;
 
     font-size: 9px;
@@ -4848,61 +5636,32 @@
 
 
 /* =========================================================
-   EXPANDED DATE CELLS
+   EXPANDED DAYS
 ========================================================= */
 
-.calendar-month.expanded
-.calendar-day {
-    height: 122px;
-    min-height: 122px;
+.calendar-month.expanded .calendar-day {
+    min-height: 92px;
 
-    padding: 7px;
-
-    box-sizing: border-box;
-
-    overflow: hidden;
+    padding: 8px;
 
     background: #ffffff;
-
-    display: flex;
-
-    flex-direction: column;
 }
 
-.calendar-month.expanded
-.calendar-day-number {
-    flex: 0 0 auto;
-
-    min-width: 23px;
-    height: 23px;
-
-    margin: 0;
-
+.calendar-month.expanded .calendar-day-number {
     font-size: 11px;
+
+    margin-bottom: 5px;
 }
 
-.calendar-month.expanded
-.calendar-day.has-event {
+.calendar-month.expanded .calendar-day.has-event {
     background: #fffdf5;
 }
 
+.calendar-month.expanded .calendar-day.has-event .calendar-day-number {
+    min-width: 23px;
+    height: 23px;
 
-/* =========================================================
-   EXPANDED EVENT AREA
-========================================================= */
-
-.calendar-month.expanded
-.calendar-events {
-    flex: 1 1 auto;
-
-    min-width: 0;
-    min-height: 0;
-
-    margin-top: 5px;
-
-    gap: 3px;
-
-    overflow: hidden;
+    font-size: 11px;
 }
 
 
@@ -4910,20 +5669,13 @@
    EXPANDED EVENTS
 ========================================================= */
 
-.calendar-month.expanded
-.calendar-event {
-    flex: 0 0 auto;
-
-    width: 100%;
-    max-width: 100%;
-
+.calendar-month.expanded .calendar-event {
     height: auto;
-
     min-height: 0;
 
-    margin: 0;
+    margin-top: 4px;
 
-    padding: 4px 5px;
+    padding: 5px 6px;
 
     border-left: 3px solid #0057a8;
 
@@ -4934,22 +5686,11 @@
     color: #34495a;
 
     font-size: 9px;
-
     font-weight: 600;
 
-    line-height: 1.18;
+    line-height: 1.35;
 
-    white-space: normal;
-
-    word-break: keep-all;
-
-    overflow-wrap: normal;
-
-    hyphens: none;
-
-    overflow: hidden;
-
-    box-sizing: border-box;
+    overflow: visible;
 }
 
 .calendar-month.expanded
@@ -4961,7 +5702,7 @@
 
 
 /* =========================================================
-   EVENT INDICATOR
+   EVENT DOT / INDICATOR
 ========================================================= */
 
 .calendar-day.has-event::after {
@@ -5091,7 +5832,7 @@
 
 
 /* =========================================================
-   SECOND SEMESTER COLORS
+   SECOND SEMESTER COLOR VARIATION
 ========================================================= */
 
 .calendar-semester.second-semester
@@ -5131,354 +5872,117 @@
 
 
 /* =========================================================
-   MOBILE CALENDAR
+   MOBILE
 ========================================================= */
 
 @media (max-width: 700px) {
 
     .calendar-semester-header {
-        padding: 16px 17px;
-        margin-bottom: 16px;
+        padding: 17px 18px;
     }
 
     .calendar-semester-title {
-        font-size: 20px;
+        font-size: 21px;
     }
 
     .calendar-semester-note {
-        font-size: 10px;
-        line-height: 1.5;
+        font-size: 11px;
     }
-
-
-    /* MONTH CARDS */
 
     .calendar-months {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
-        gap: 8px;
+        gap: 9px;
     }
-
 
     .calendar-month-header {
-        min-height: 45px;
+        min-height: 46px;
 
-        padding: 8px 8px;
+        padding: 8px 9px;
     }
-
-
-    .calendar-month-header::before {
-        width: 3px;
-        height: 22px;
-
-        margin-right: 7px;
-    }
-
 
     .calendar-month-name {
-        font-size: 8.5px;
-
-        line-height: 1.15;
+        font-size: 9px;
     }
-
 
     .calendar-month-year {
-        display: block;
-
-        margin: 2px 0 0;
-
-        font-size: 7px;
+        font-size: 8px;
     }
-
 
     .calendar-month-toggle {
         width: 19px;
         height: 19px;
 
-        font-size: 13px;
+        font-size: 14px;
     }
-
-
-    /* WEEKDAYS */
 
     .calendar-weekday {
         min-height: 21px;
 
-        font-size: 5.5px;
-
-        letter-spacing: 0;
+        font-size: 6px;
     }
 
-
-    /* MINI DATE BOX */
-
-    .calendar-month:not(.expanded)
-    .calendar-day {
-
-        min-height: 28px;
+    .calendar-month:not(.expanded) .calendar-day {
+        min-height: 27px;
 
         padding: 3px;
-
-        overflow: hidden;
     }
-
 
     .calendar-month:not(.expanded)
     .calendar-day-number {
-
-        min-width: 14px;
-        height: 14px;
-
-        padding: 0 2px;
-
-        font-size: 6.5px;
+        font-size: 7px;
     }
 
+    .calendar-month.expanded .calendar-day {
+        min-height: 75px;
 
-    .calendar-month:not(.expanded)
-    .calendar-events {
-
-        margin-top: 2px;
-
-        gap: 1px;
+        padding: 6px;
     }
 
+    .calendar-month.expanded
+    .calendar-day-number {
+        font-size: 9px;
+    }
 
-    .calendar-month:not(.expanded)
+    .calendar-month.expanded
     .calendar-event {
-
-        height: 3px;
-        min-height: 3px;
-
-        padding: 0;
-
-        border: none;
-
-        font-size: 0;
-        line-height: 0;
-    }
-
-
-    /* =====================================================
-       EXPANDED MONTH
-    ===================================================== */
-
-    .calendar-month.expanded {
-        grid-column: 1 / -1;
-
-        overflow: hidden;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-month-header {
-
-        min-height: 52px;
-
-        padding: 10px 12px;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-month-header::before {
-
-        width: 4px;
-        height: 27px;
-
-        margin-right: 8px;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-month-name {
-
-        font-size: 14px;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-month-year {
-
-        display: inline;
-
-        margin-left: 3px;
-
-        font-size: 8px;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-month-toggle {
-
-        width: 23px;
-        height: 23px;
-
-        font-size: 16px;
-    }
-
-
-    /* EXPANDED WEEKDAYS */
-
-    .calendar-month.expanded
-    .calendar-weekday {
-
-        min-height: 26px;
+        padding: 4px 5px;
 
         font-size: 7px;
-
-        letter-spacing: 0;
     }
-
-
-    /* =====================================================
-       EXPANDED DATE BOX
-    ===================================================== */
-
-    .calendar-month.expanded
-    .calendar-day {
-
-        height: 108px;
-        min-height: 108px;
-
-        padding: 5px;
-
-        overflow: hidden;
-
-        box-sizing: border-box;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-day-number {
-
-        min-width: 19px;
-        height: 19px;
-
-        padding: 0 3px;
-
-        font-size: 8px;
-
-        flex-shrink: 0;
-    }
-
-
-    /* EVENT CONTAINER */
-
-    .calendar-month.expanded
-    .calendar-events {
-
-        display: flex;
-
-        flex-direction: column;
-
-        gap: 2px;
-
-        min-width: 0;
-        min-height: 0;
-
-        margin-top: 3px;
-
-        overflow: hidden;
-
-        flex: 1 1 auto;
-    }
-
-
-    /* EVENTS */
-
-    .calendar-month.expanded
-    .calendar-event {
-
-        width: 100%;
-        max-width: 100%;
-
-        min-width: 0;
-
-        margin: 0;
-
-        padding: 3px 4px;
-
-        border-left-width: 2px;
-
-        border-radius: 3px;
-
-        font-size: 7.5px;
-
-        line-height: 1.12;
-
-        white-space: normal;
-
-        word-break: normal;
-
-        overflow-wrap: break-word;
-
-        overflow: hidden;
-
-        box-sizing: border-box;
-
-        flex-shrink: 0;
-    }
-
-
-    /* EVENT DOT */
-
-    .calendar-month.expanded
-    .calendar-day.has-event::after {
-
-        width: 5px;
-        height: 5px;
-
-        right: 5px;
-        top: 7px;
-    }
-
-
-    /* SUMMARY */
 
     .calendar-summary {
-
-        margin-top: 15px;
-
-        padding: 13px;
+        padding: 14px;
     }
-
-
-    .calendar-summary-title {
-
-        font-size: 14px;
-    }
-
 
     .calendar-summary-item {
-
-        gap: 8px;
-
         align-items: flex-start;
-    }
-
-
-    .calendar-summary-date {
-
-        min-width: 52px;
-
-        padding: 5px;
-
-        font-size: 8px;
-    }
-
-
-    .calendar-summary-event {
-
-        font-size: 9px;
-
-        line-height: 1.35;
     }
 
 }
 
+.calendar-legend {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+}
+
+
+.calendar-legend-items {
+
+    width: 100%;
+
+    gap: 10px 15px;
+
+}
+
 /* =========================================================
-   VERY SMALL MOBILE
+   SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 430px) {
@@ -5489,64 +5993,28 @@
         gap: 8px;
     }
 
-
     .calendar-month.expanded {
         grid-column: 1;
     }
 
-
-    /* MINI MONTH */
+    .calendar-month:not(.expanded)
+    .calendar-month-grid {
+        max-height: none;
+    }
 
     .calendar-month:not(.expanded)
     .calendar-day {
-
         min-height: 30px;
-
-        padding: 3px;
     }
-
-
-    /* EXPANDED MONTH */
 
     .calendar-month.expanded
     .calendar-day {
-
-        height: 104px;
-        min-height: 104px;
-
-        padding: 5px;
+        min-height: 70px;
     }
-
-
-    .calendar-month.expanded
-    .calendar-day-number {
-
-        min-width: 19px;
-        height: 19px;
-
-        font-size: 8px;
-    }
-
 
     .calendar-month.expanded
     .calendar-event {
-
-        padding: 2px 3px;
-
         font-size: 7px;
-
-        line-height: 1.1;
-
-        border-left-width: 2px;
-    }
-
-
-    .calendar-month.expanded
-    .calendar-events {
-
-        gap: 2px;
-
-        margin-top: 3px;
     }
 
 }
@@ -5569,8 +6037,12 @@
 
 
 /* =========================================================
-   EMPTY / LOADING
+   NO JAVASCRIPT FALLBACK / LOADING
 ========================================================= */
+
+.calendar-wrapper * {
+    box-sizing: border-box;
+}
 
 .calendar-empty-message {
     padding: 30px;
@@ -5580,17 +6052,6 @@
     color: #6d7d8c;
 
     font-size: 12px;
-}
-
-
-/* =========================================================
-   UNIVERSAL CALENDAR BOX SIZING
-========================================================= */
-
-.calendar-wrapper *,
-.calendar-wrapper *::before,
-.calendar-wrapper *::after {
-    box-sizing: border-box;
 }
 
     </style>
@@ -7228,6 +7689,88 @@ function findRowsByPosition(
 
 }
 
+/* =========================================================
+   INFORMATION HUB CACHE
+   LOAD ONLY WHEN SECTION IS OPENED
+========================================================= */
+
+const hubCache = {
+    institution: null,
+    faculty: null,
+    sasOfficers: null,
+    psychologySociety: null
+};
+
+
+const hubLoadingPromises = {
+    institution: null,
+    faculty: null,
+    sasOfficers: null,
+    psychologySociety: null
+};
+
+
+/* =========================================================
+   CACHED SHEET FETCH
+========================================================= */
+
+async function fetchSheetCached(
+    action,
+    cacheKey
+) {
+
+    /* -----------------------------------------------------
+       RETURN ALREADY LOADED DATA
+    ----------------------------------------------------- */
+
+    if (
+        hubCache[cacheKey]
+    ) {
+
+        return hubCache[cacheKey];
+
+    }
+
+
+    /* -----------------------------------------------------
+       RETURN EXISTING REQUEST
+       PREVENT DOUBLE REQUESTS
+    ----------------------------------------------------- */
+
+    if (
+        hubLoadingPromises[cacheKey]
+    ) {
+
+        return hubLoadingPromises[cacheKey];
+
+    }
+
+
+    /* -----------------------------------------------------
+       START REQUEST
+    ----------------------------------------------------- */
+
+    hubLoadingPromises[cacheKey] =
+        fetchSheet(action)
+            .then(function(data) {
+
+                hubCache[cacheKey] =
+                    data;
+
+                return data;
+
+            })
+            .finally(function() {
+
+                hubLoadingPromises[cacheKey] =
+                    null;
+
+            });
+
+
+    return hubLoadingPromises[cacheKey];
+
+}
 
 /* =========================================================
    PERSON CARD
@@ -7348,6 +7891,25 @@ function renderGroup(
 async function loadSASOfficers(content) {
 
     /* ---------------------------------------------------------
+       ALREADY LOADED
+       SHOW IMMEDIATELY
+    --------------------------------------------------------- */
+
+    if (
+        hubCache.sasOfficers
+    ) {
+
+        renderSASOfficers(
+            content,
+            hubCache.sasOfficers
+        );
+
+        return;
+
+    }
+
+
+    /* ---------------------------------------------------------
        SHOW PRESENTATION
     --------------------------------------------------------- */
 
@@ -7356,7 +7918,6 @@ async function loadSASOfficers(content) {
         <div class="sas-presentation-loader">
 
             <div class="sas-presentation-inner">
-
 
                 <div class="sas-presentation-logo-wrap">
 
@@ -7372,24 +7933,19 @@ async function loadSASOfficers(content) {
 
                 </div>
 
-
                 <p class="sas-presentation-kicker">
                     School of Arts and Sciences
                 </p>
-
 
                 <h3 class="sas-presentation-title">
                     PRESENTING SAS OFFICERS
                 </h3>
 
-
                 <p class="sas-presentation-year">
                     Academic Year 2026–2027
                 </p>
 
-
                 <div class="sas-presentation-loading">
-
 
                     <div
                         class="sas-presentation-loading-label"
@@ -7408,7 +7964,6 @@ async function loadSASOfficers(content) {
 
                     </div>
 
-
                     <div class="sas-presentation-progress">
 
                         <div
@@ -7417,7 +7972,6 @@ async function loadSASOfficers(content) {
                         ></div>
 
                     </div>
-
 
                     <div class="sas-presentation-dots">
 
@@ -7439,9 +7993,7 @@ async function loadSASOfficers(content) {
 
                     </div>
 
-
                 </div>
-
 
             </div>
 
@@ -7451,29 +8003,48 @@ async function loadSASOfficers(content) {
 
 
     /* ---------------------------------------------------------
-       LOAD GOOGLE SHEETS AT THE SAME TIME
-       SO THE USER DOES NOT WAIT 4.5s + API TIME
+       FETCH STARTS IMMEDIATELY
+       ONLY AFTER USER OPENS SAS OFFICERS
     --------------------------------------------------------- */
 
     const dataPromise =
-        fetchSheet(
-            "sas-officers"
+        fetchSheetCached(
+            "sas-officers",
+            "sasOfficers"
         );
 
 
     /* ---------------------------------------------------------
-       4.5 SECOND PRESENTATION
+       WAIT FOR ACTUAL FETCH
+    --------------------------------------------------------- */
+
+    let fetchFinished = false;
+
+
+    dataPromise.then(
+        function() {
+
+            fetchFinished = true;
+
+        },
+        function() {
+
+            fetchFinished = true;
+
+        }
+    );
+
+
+    /* ---------------------------------------------------------
+       PRESENTATION PROGRESS
     --------------------------------------------------------- */
 
     const startTime =
         performance.now();
 
-    const duration =
-        4500;
-
 
     await new Promise(
-        function (resolve) {
+        function(resolve) {
 
             function updateProgress(
                 currentTime
@@ -7484,17 +8055,33 @@ async function loadSASOfficers(content) {
                     startTime;
 
 
-                const progress =
+                /*
+                 * Progress moves normally.
+                 * It will stop at 95% while
+                 * Google Sheets is still loading.
+                 */
+
+                let percentage =
                     Math.min(
-                        elapsed / duration,
-                        1
+                        Math.round(
+                            (elapsed / 4500) * 100
+                        ),
+                        95
                     );
 
 
-                const percentage =
-                    Math.round(
-                        progress * 100
-                    );
+                /*
+                 * Once the actual fetch is finished,
+                 * complete the presentation.
+                 */
+
+                if (
+                    fetchFinished
+                ) {
+
+                    percentage = 100;
+
+                }
 
 
                 const percentageElement =
@@ -7530,18 +8117,19 @@ async function loadSASOfficers(content) {
 
 
                 if (
-                    progress < 1
+                    fetchFinished
                 ) {
-
-                    requestAnimationFrame(
-                        updateProgress
-                    );
-
-                } else {
 
                     resolve();
 
+                    return;
+
                 }
+
+
+                requestAnimationFrame(
+                    updateProgress
+                );
 
             }
 
@@ -7555,12 +8143,51 @@ async function loadSASOfficers(content) {
 
 
     /* ---------------------------------------------------------
-       GOOGLE SHEETS RESULT
+       GET RESULT
     --------------------------------------------------------- */
 
-    const data =
-        await dataPromise;
+    try {
 
+        const data =
+            await dataPromise;
+
+
+        renderSASOfficers(
+            content,
+            data
+        );
+
+    }
+
+
+    catch (error) {
+
+        content.innerHTML = `
+
+            <div class="hub-error">
+
+                Unable to load SAS Department
+                Officer information at the moment.
+
+            </div>
+
+        `;
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER SAS OFFICERS
+========================================================= */
+
+function renderSASOfficers(
+    content,
+    data
+) {
 
     const rows =
         extractRows(data);
@@ -7568,10 +8195,6 @@ async function loadSASOfficers(content) {
 
     const groups = [];
 
-
-    /* ---------------------------------------------------------
-       ADVISORY
-    --------------------------------------------------------- */
 
     groups.push(
         renderGroup(
@@ -7587,10 +8210,6 @@ async function loadSASOfficers(content) {
     );
 
 
-    /* ---------------------------------------------------------
-       EXECUTIVE OFFICERS
-    --------------------------------------------------------- */
-
     groups.push(
         renderGroup(
             "Executive Officers",
@@ -7605,10 +8224,6 @@ async function loadSASOfficers(content) {
         )
     );
 
-
-    /* ---------------------------------------------------------
-       CORE OFFICERS
-    --------------------------------------------------------- */
 
     groups.push(
         renderGroup(
@@ -7627,10 +8242,6 @@ async function loadSASOfficers(content) {
     );
 
 
-    /* ---------------------------------------------------------
-       BUSINESS MANAGERS
-    --------------------------------------------------------- */
-
     groups.push(
         renderGroup(
             "Business Managers",
@@ -7643,10 +8254,6 @@ async function loadSASOfficers(content) {
         )
     );
 
-
-    /* ---------------------------------------------------------
-       COORDINATORS
-    --------------------------------------------------------- */
 
     groups.push(
         renderGroup(
@@ -7678,10 +8285,6 @@ async function loadSASOfficers(content) {
             </div>
         `;
 
-
-    /* ---------------------------------------------------------
-       REVEAL OFFICERS
-    --------------------------------------------------------- */
 
     content.innerHTML = `
 
@@ -8212,6 +8815,45 @@ document
         }
     );
 
+    /* =========================================================
+   INFORMATION HUB SECTIONS
+   LOAD ONLY WHEN OPENED
+========================================================= */
+
+document
+    .querySelectorAll(".information-card")
+    .forEach(function(card) {
+
+        card.addEventListener(
+            "click",
+            function() {
+
+                const modal =
+                    card.dataset.modal;
+
+
+                if (
+                    modal === "institutionModal"
+                ) {
+
+                    loadInstitution();
+
+                }
+
+
+                if (
+                    modal === "facultyModal"
+                ) {
+
+                    loadFaculty();
+
+                }
+
+            }
+        );
+
+    });
+
 
 /* =========================================================
    INSTITUTION
@@ -8320,15 +8962,35 @@ async function loadInstitution() {
 
 
     /* =========================================================
-       4.5 SECOND PRESENTATION
+       FETCH STARTS IMMEDIATELY
+       WHILE PRESENTATION IS SHOWING
     ========================================================= */
 
     const startTime =
         performance.now();
 
 
-    const duration =
-        4500;
+    const dataPromise =
+        fetchSheet(
+            "institution"
+        );
+
+
+    /* =========================================================
+       PRESENTATION + FETCH TIMING
+    ========================================================= */
+
+    let fetchFinished = false;
+
+
+    dataPromise.then(
+        function() {
+            fetchFinished = true;
+        },
+        function() {
+            fetchFinished = true;
+        }
+    );
 
 
     await new Promise(
@@ -8343,17 +9005,35 @@ async function loadInstitution() {
                     startTime;
 
 
-                const progress =
+                /*
+                 * Keep the animation moving smoothly,
+                 * but don't reach 100% until the
+                 * actual fetch is finished.
+                 */
+
+                const visualProgress =
                     Math.min(
-                        elapsed / duration,
-                        1
+                        elapsed / 4500,
+                        0.95
                     );
 
 
-                const percentage =
+                let percentage =
                     Math.round(
-                        progress * 100
+                        visualProgress * 100
                     );
+
+
+                /*
+                 * Once Google Sheets responds,
+                 * immediately complete the loader.
+                 */
+
+                if (fetchFinished) {
+
+                    percentage = 100;
+
+                }
 
 
                 const percentageElement =
@@ -8389,18 +9069,19 @@ async function loadInstitution() {
 
 
                 if (
-                    progress < 1
+                    fetchFinished
                 ) {
-
-                    requestAnimationFrame(
-                        updateProgress
-                    );
-
-                } else {
 
                     resolve();
 
+                    return;
+
                 }
+
+
+                requestAnimationFrame(
+                    updateProgress
+                );
 
             }
 
@@ -8415,15 +9096,12 @@ async function loadInstitution() {
 
     /* =========================================================
        FETCH INSTITUTION INFORMATION
-       AFTER PRESENTATION
     ========================================================= */
 
     try {
 
         const data =
-            await fetchSheet(
-                "institution"
-            );
+            await dataPromise;
 
 
         const rows =
@@ -9648,6 +10326,70 @@ function loadCalendar() {
 
         `;
 
+/* =====================================================
+   EVENT CATEGORIES
+===================================================== */
+
+const psychSocDates = new Set([
+
+    "2026-08-15",
+
+    "2026-09-02",
+    "2026-09-19",
+    "2026-09-25",
+    "2026-09-26",
+
+    "2026-10-10",
+    "2026-10-12",
+
+    "2026-11-19",
+
+    "2026-12-01",
+
+    "2027-01-30",
+
+    "2027-02-15",
+    "2027-02-20",
+
+    "2027-03-01",
+    "2027-03-08",
+    "2027-03-20",
+
+    "2027-04-02",
+    "2027-04-22"
+
+]);
+
+
+const departmentDates = new Set([
+
+    "2026-08-17",
+    "2026-08-22",
+    "2026-08-24",
+    "2026-08-27",
+
+    "2026-09-13",
+    "2026-09-15",
+
+    "2026-10-19",
+    "2026-10-24",
+    "2026-10-25",
+    "2026-10-27",
+
+    "2026-12-06",
+
+    "2027-01-16",
+    "2027-01-28",
+
+    "2027-02-18",
+
+    "2027-03-02",
+
+    "2027-04-03",
+
+    "2027-05-14"
+
+]);
 
         /* =================================================
            WEEKDAYS
@@ -9719,56 +10461,85 @@ function loadCalendar() {
             `;
 
 
-/* =============================================
-   EVENTS ON THIS DAY
-============================================= */
+            /* =============================================
+               EVENTS ON THIS DAY
+            ============================================= */
 
-if (events.length) {
+            events.forEach(function(event) {
+
+    const eventTitle =
+        String(event.title || "").toLowerCase();
+
+
+    let eventClass = "";
+
+
+    /* =================================================
+       EXISTING IMPORTANT EVENT LOGIC
+    ================================================= */
+
+    if (
+        eventTitle.includes("exam") ||
+        eventTitle.includes("seminar") ||
+        eventTitle.includes("pinning")
+    ) {
+
+        eventClass = "important";
+
+    }
+
+
+    /* =================================================
+       EVENT DATE
+    ================================================= */
+
+    const eventDate =
+        `${month.year}-${String(monthNumber + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+
+    /* =================================================
+       PSYCHOLOGY SOCIETY
+    ================================================= */
+
+    if (
+        psychSocDates.has(eventDate)
+    ) {
+
+        eventClass += " psychsoc-event";
+
+    }
+
+
+    /* =================================================
+       DEPARTMENT
+    ================================================= */
+
+    if (
+        departmentDates.has(eventDate)
+    ) {
+
+        eventClass += " department-event";
+
+    }
+
+
+    /* =================================================
+       EVENT HTML
+    ================================================= */
 
     html += `
-        <div class="calendar-events">
-    `;
 
-
-    events.forEach(function(event) {
-
-        const eventClass =
-            event.title
-                .toLowerCase()
-                .includes("exam")
-                ||
-            event.title
-                .toLowerCase()
-                .includes("seminar")
-                ||
-            event.title
-                .toLowerCase()
-                .includes("pinning")
-                ?
-                "important"
-                :
-                "";
-
-
-        html += `
-
-            <div
-                class="calendar-event ${eventClass}"
-                title="${escapeCalendarHTML(event.title)}"
-            >
-                ${escapeCalendarHTML(event.title)}
-            </div>
-
-        `;
-
-    });
-
-
-    html += `
+        <div
+            class="calendar-event ${eventClass}"
+            title="${escapeCalendarHTML(event.title)}"
+        >
+            ${escapeCalendarHTML(event.title)}
         </div>
+
     `;
 
-}
+});
+
 
             html += `
 
@@ -9942,6 +10713,43 @@ if (events.length) {
 
             </div>
 
+<div class="calendar-legend">
+
+    <div class="calendar-legend-title">
+        EVENT LEGEND
+    </div>
+
+
+    <div class="calendar-legend-items">
+
+        <div class="calendar-legend-item">
+
+            <span
+                class="calendar-legend-color psychsoc"
+            ></span>
+
+            <span>
+                DWCC Psychology Society Events
+            </span>
+
+        </div>
+
+
+        <div class="calendar-legend-item">
+
+            <span
+                class="calendar-legend-color department"
+            ></span>
+
+            <span>
+                Department Events
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
 
             ${
                 createSemester(
@@ -9970,42 +10778,6 @@ if (events.length) {
 
     `;
 
-    /* =====================================================
-   KEYBOARD ACCESS
-===================================================== */
-
-calendarContent.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key !== " ") {
-            return;
-        }
-
-        const header =
-            event.target.closest(
-                ".calendar-month-header"
-            );
-
-        if (!header) {
-            return;
-        }
-
-        event.preventDefault();
-
-        const month =
-            header.closest(
-                ".calendar-month"
-            );
-
-        if (!month) {
-            return;
-        }
-
-        toggleCalendarMonth(month);
-
-    }
-);
 
     /* =====================================================
        MONTH CLICK HANDLER
@@ -10045,277 +10817,57 @@ calendarContent.addEventListener(
         }
     );
 
-/* =====================================================
-   AUTO-FIT EVENT TEXT
-   WORD-BASED FITTING
-===================================================== */
 
-function fitCalendarEvents(scope) {
+    /* =====================================================
+       KEYBOARD ACCESS
+    ===================================================== */
 
-    if (!scope) {
-        return;
-    }
-
-    const days =
-        scope.querySelectorAll(
-            ".calendar-day.has-event"
-        );
-
-    days.forEach(function(day) {
-
-        const eventBox =
-            day.querySelector(
-                ".calendar-events"
-            );
-
-        if (!eventBox) {
-            return;
-        }
-
-        const events =
-            Array.from(
-                eventBox.querySelectorAll(
-                    ".calendar-event"
-                )
-            );
-
-        if (!events.length) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           STARTING FONT SIZE
-        --------------------------------------------- */
-
-        let maxFontSize = 9;
-        let minFontSize = 4.5;
-
-
-        if (window.innerWidth <= 700) {
-            maxFontSize = 7.5;
-            minFontSize = 4.5;
-        }
-
-
-        if (window.innerWidth <= 430) {
-            maxFontSize = 7;
-            minFontSize = 4.25;
-        }
-
-
-        /* ---------------------------------------------
-           FORCE WORD-BASED WRAPPING
-        --------------------------------------------- */
-
-        events.forEach(function(event) {
-
-            event.style.whiteSpace = "normal";
-            event.style.wordBreak = "normal";
-            event.style.overflowWrap = "normal";
-            event.style.hyphens = "none";
-
-            event.style.fontSize =
-                maxFontSize + "px";
-
-            event.style.lineHeight =
-                "1.12";
-
-        });
-
-
-        /* ---------------------------------------------
-           TEST WHETHER EVERYTHING FITS
-        --------------------------------------------- */
-
-        function fits() {
-
-            /*
-             * First make sure the event container
-             * itself is not overflowing vertically.
-             */
+    calendarContent.addEventListener(
+        "keydown",
+        function(event) {
 
             if (
-                eventBox.scrollHeight >
-                eventBox.clientHeight + 1
-            ) {
-                return false;
-            }
-
-
-            /*
-             * Then make sure no individual word
-             * is being forced beyond the available
-             * width.
-             */
-
-            for (
-                let i = 0;
-                i < events.length;
-                i++
+                event.key !== "Enter" &&
+                event.key !== " "
             ) {
 
-                const event =
-                    events[i];
-
-                const text =
-                    event.textContent
-                        .trim()
-                        .split(/\s+/);
-
-
-                /*
-                 * Temporarily measure each word.
-                 */
-
-                const canvas =
-                    document.createElement(
-                        "canvas"
-                    );
-
-                const context =
-                    canvas.getContext(
-                        "2d"
-                    );
-
-                const computed =
-                    window.getComputedStyle(
-                        event
-                    );
-
-                context.font =
-                    `${computed.fontWeight} ${computed.fontSize} ${computed.fontFamily}`;
-
-
-                const availableWidth =
-                    event.clientWidth -
-                    parseFloat(computed.paddingLeft) -
-                    parseFloat(computed.paddingRight) -
-                    parseFloat(computed.borderLeftWidth) -
-                    parseFloat(computed.borderRightWidth);
-
-
-                for (
-                    let w = 0;
-                    w < text.length;
-                    w++
-                ) {
-
-                    const wordWidth =
-                        context.measureText(
-                            text[w]
-                        ).width;
-
-
-                    if (
-                        wordWidth >
-                        availableWidth
-                    ) {
-
-                        return false;
-
-                    }
-
-                }
+                return;
 
             }
 
-            return true;
 
-        }
-
-
-        /* ---------------------------------------------
-           REDUCE FONT UNTIL EVERY WORD FITS
-        --------------------------------------------- */
-
-        let low =
-            minFontSize;
-
-        let high =
-            maxFontSize;
+            const header =
+                event.target.closest(
+                    ".calendar-month-header"
+                );
 
 
-        for (
-            let i = 0;
-            i < 12;
-            i++
-        ) {
-
-            const middle =
-                (low + high) / 2;
-
-
-            events.forEach(function(event) {
-
-                event.style.fontSize =
-                    middle + "px";
-
-            });
-
-
-            if (fits()) {
-
-                low = middle;
-
-            } else {
-
-                high = middle;
-
+            if (!header) {
+                return;
             }
 
-        }
+
+            event.preventDefault();
 
 
-        /* ---------------------------------------------
-           FINAL FONT SIZE
-        --------------------------------------------- */
+            const month =
+                header.closest(
+                    ".calendar-month"
+                );
 
-        const finalSize =
-            Math.max(
-                minFontSize,
-                Math.floor(
-                    low * 100
-                ) / 100
+
+            if (!month) {
+                return;
+            }
+
+
+            toggleCalendarMonth(
+                month
             );
 
-
-        events.forEach(function(event) {
-
-            event.style.fontSize =
-                finalSize + "px";
-
-        });
-
-
-        /* ---------------------------------------------
-           FINAL SAFETY CHECK
-        --------------------------------------------- */
-
-        let safetySize =
-            finalSize;
-
-
-        while (
-            !fits() &&
-            safetySize > minFontSize
-        ) {
-
-            safetySize -= 0.25;
-
-
-            events.forEach(function(event) {
-
-                event.style.fontSize =
-                    safetySize + "px";
-
-            });
-
         }
+    );
 
-    });
-
-}
 
     /* =====================================================
        TOGGLE MONTH
@@ -10443,65 +10995,37 @@ function fitCalendarEvents(scope) {
 
         setTimeout(function() {
 
-    fitCalendarEvents(month);
+            const calendarRect =
+                calendarContent.getBoundingClientRect();
 
-    const calendarRect =
-        calendarContent.getBoundingClientRect();
+            const monthRect =
+                month.getBoundingClientRect();
 
-    const monthRect =
-        month.getBoundingClientRect();
 
-    if (
-        monthRect.top <
-        calendarRect.top
-    ) {
+            if (
+                monthRect.top <
+                calendarRect.top
+            ) {
 
-        month.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+                month.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
-    }
+            }
 
-}, 120);
-
-    }
-
-    /* =====================================================
-   REFIT WHEN SCREEN SIZE CHANGES
-===================================================== */
-
-window.addEventListener(
-    "resize",
-    function() {
-
-        const expandedMonth =
-            calendarContent.querySelector(
-                ".calendar-month.expanded"
-            );
-
-        if (!expandedMonth) {
-            return;
-        }
-
-        fitCalendarEvents(
-            expandedMonth
-        );
+        }, 80);
 
     }
-);
 
 }
+
 
 /* =========================================================
    INITIALIZE
 ========================================================= */
 
 loadCalendar();
-
-loadInstitution();
-
-loadFaculty();
 
 </script>
 
