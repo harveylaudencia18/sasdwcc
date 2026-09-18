@@ -595,6 +595,425 @@
             overflow: hidden;
         }
 
+body.proof-viewer-open {
+    overflow: hidden;
+}
+
+/* =========================================================
+   PROOF OF ATTENDANCE
+========================================================= */
+
+.attendance-proof {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.proof-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #0057a8;
+    border-radius: 8px;
+
+    background: #0057a8;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 800;
+
+    text-decoration: none;
+    letter-spacing: 0.02em;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.proof-button:hover {
+    background: #003b73;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 14px
+        rgba(0, 59, 115, 0.18);
+}
+
+.proof-button:active {
+    transform: translateY(0);
+}
+
+.proof-button svg {
+    width: 13px;
+    height: 13px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.no-proof {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    color: #8a95a1;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+}
+
+/* =========================================================
+   PROOF VIEWER
+========================================================= */
+
+.proof-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 20, 45, 0.78);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.proof-viewer.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.proof-viewer-card {
+    position: relative;
+
+    width: min(900px, 100%);
+    max-height: calc(100vh - 40px);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 35px 100px rgba(0, 20, 45, 0.35);
+
+    transform:
+        translateY(20px)
+        scale(0.96);
+
+    transition:
+        transform 0.3s cubic-bezier(.22,1,.36,1);
+}
+
+.proof-viewer.show .proof-viewer-card {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   VIEWER HEADER
+========================================================= */
+
+.proof-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        18px
+        20px;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid
+        #e8eef5;
+}
+
+.proof-viewer-kicker {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #0057a8;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+}
+
+.proof-viewer-header h3 {
+    margin: 0;
+
+    color: #003b73;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.proof-viewer-close {
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f2f6fa;
+
+    color: #637383;
+
+    font-family: inherit;
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.proof-viewer-close:hover {
+    background: #d71920;
+    color: #ffffff;
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   IMAGE AREA
+========================================================= */
+
+.proof-viewer-image-wrap {
+    position: relative;
+
+    min-height: 300px;
+    max-height: calc(100vh - 130px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: #eef3f8;
+
+    overflow: auto;
+}
+
+.proof-viewer-image {
+    display: none;
+
+    max-width: 100%;
+    max-height: calc(100vh - 180px);
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 35, 70, 0.15);
+}
+
+.proof-viewer-image.loaded {
+    display: block;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.proof-viewer-loading {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #637383;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.proof-image-spinner {
+    width: 34px;
+    height: 34px;
+
+    border:
+        3px solid
+        #dbe5ee;
+
+    border-top-color:
+        #0057a8;
+
+    border-radius: 50%;
+
+    animation:
+        proofImageSpin
+        0.8s
+        linear
+        infinite;
+}
+
+@keyframes proofImageSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.proof-viewer-error {
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    text-align: center;
+
+    color: #687786;
+
+    font-size: 12px;
+}
+
+.proof-viewer-error strong {
+    color: #d71920;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.proof-viewer-counter {
+    padding:
+        10px
+        15px;
+
+    color: #7b8794;
+
+    background: #ffffff;
+
+    border-top:
+        1px solid
+        #edf1f5;
+
+    text-align: center;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .proof-viewer {
+        padding: 10px;
+    }
+
+    .proof-viewer-card {
+        max-height: calc(100vh - 20px);
+
+        border-radius: 16px;
+    }
+
+    .proof-viewer-header {
+        padding:
+            14px
+            15px;
+    }
+
+    .proof-viewer-header h3 {
+        font-size: 15px;
+    }
+
+    .proof-viewer-image-wrap {
+        min-height: 240px;
+
+        padding: 12px;
+    }
+
+    .proof-viewer-image {
+        max-height: calc(100vh - 140px);
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .proof-button {
+        width: 100%;
+    }
+
+}
 
         /* =====================================================
            MOBILE
@@ -1637,6 +2056,106 @@
 
 </div>
 
+<!-- =========================================================
+     PROOF OF ATTENDANCE VIEWER
+========================================================= -->
+
+<div
+    id="proofViewer"
+    class="proof-viewer"
+    aria-hidden="true"
+>
+
+    <div
+        class="proof-viewer-backdrop"
+        id="proofViewerBackdrop"
+    ></div>
+
+
+    <div
+        class="proof-viewer-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="proofViewerTitle"
+    >
+
+        <div class="proof-viewer-header">
+
+            <div>
+
+                <span class="proof-viewer-kicker">
+                    ATTENDANCE VERIFICATION
+                </span>
+
+                <h3 id="proofViewerTitle">
+                    Proof of Attendance
+                </h3>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="proofViewerClose"
+                class="proof-viewer-close"
+                aria-label="Close proof viewer"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="proof-viewer-image-wrap">
+
+            <div
+                id="proofViewerLoading"
+                class="proof-viewer-loading"
+            >
+
+                <div class="proof-image-spinner"></div>
+
+                <span>
+                    Loading proof...
+                </span>
+
+            </div>
+
+
+            <img
+                id="proofViewerImage"
+                class="proof-viewer-image"
+                src=""
+                alt="Proof of Attendance"
+            >
+
+
+            <div
+                id="proofViewerError"
+                class="proof-viewer-error"
+            >
+
+                <strong>
+                    Unable to display this proof.
+                </strong>
+
+                <span>
+                    The uploaded file could not be loaded.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="proofViewerCounter"
+            class="proof-viewer-counter"
+        ></div>
+
+    </div>
+
+</div>
 
 <!-- =========================================================
      FOOTER
@@ -3581,6 +4100,142 @@ function displayEvents(
             }
 
 
+            /* =========================================================
+   PROOF OF ATTENDANCE
+========================================================= */
+
+let proofHTML = "";
+
+let proofUrls = [];
+
+if (
+    Array.isArray(event.proofUrls)
+) {
+
+    proofUrls =
+        event.proofUrls.slice();
+
+}
+
+if (
+    proofUrls.length === 0 &&
+    event.proofUrl
+) {
+
+    proofUrls = [
+        event.proofUrl
+    ];
+
+}
+
+proofUrls =
+    proofUrls.filter(
+        function (url, index, array) {
+
+            return (
+                url &&
+                array.indexOf(url) === index
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   HAS PROOF
+===================================================== */
+
+if (
+    proofUrls.length > 0
+) {
+
+    proofHTML = `
+
+        <div class="attendance-proof">
+
+            ${
+                proofUrls.map(
+                    function (url, index) {
+
+                        const safeUrl =
+                            escapeHTML(
+                                String(
+                                    url || ""
+                                ).trim()
+                            );
+
+                        return `
+
+                            <a
+                                href="${safeUrl}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="proof-button"
+                                aria-label="View proof of attendance ${
+                                    index + 1
+                                }"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"
+                                    ></path>
+
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="2.5"
+                                    ></circle>
+
+                                </svg>
+
+                                <span>
+                                    ${
+                                        proofUrls.length > 1
+                                            ? "VIEW PROOF " +
+                                              (index + 1)
+                                            : "VIEW PROOF OF ATTENDANCE"
+                                    }
+                                </span>
+
+                            </a>
+
+                        `;
+
+                    }
+                ).join("")
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   NO PROOF
+===================================================== */
+
+else if (
+    event.attended &&
+    event.proofSystemAvailable
+) {
+
+    proofHTML = `
+
+        <span class="no-proof">
+            NO PROOF OF ATTENDANCE
+        </span>
+
+    `;
+
+}
+
             /* =================================================
                EVENT HTML
             ================================================= */
@@ -3617,6 +4272,8 @@ function displayEvents(
                     ${exemptionNote}
 
                     ${times}
+
+                    ${proofHTML}
 
                 </div>
 
