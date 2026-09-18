@@ -6,8 +6,6 @@
 
     <title>Attendance Portal | SAS Student Portal</title>
 
-    <link rel="icon" type="image/png" href="assets/sas-logo.png">
-
     <meta
         name="description"
         content="Attendance Portal of the School of Arts and Sciences, Divine Word College of Calapan."
@@ -696,6 +694,104 @@
 
         }
 
+/* =========================================================
+   SEARCH PROGRESS
+========================================================= */
+
+.search-progress-wrapper {
+
+    width: 100%;
+
+    max-width: 360px;
+
+    margin:
+        18px auto
+        0;
+
+}
+
+
+.search-progress-track {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 6px;
+
+    overflow: hidden;
+
+    background: #e8eef5;
+
+    border-radius: 999px;
+
+}
+
+
+.search-progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0057a8,
+            #0074d9,
+            #d71920
+        );
+
+    border-radius: 999px;
+
+    transition:
+        width 0.28s ease;
+
+}
+
+
+.search-progress-info {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 8px;
+
+    color: #718096;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+.search-progress-info strong {
+
+    color: #0057a8;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+@media (max-width: 480px) {
+
+    .search-progress-wrapper {
+
+        max-width: 100%;
+
+    }
+
+}
+
     </style>
 
 </head>
@@ -996,48 +1092,78 @@
             ================================================= -->
 
             <div
-                id="loading"
-                class="attendance-loading"
-                aria-live="polite"
-                aria-hidden="true"
-            >
+    id="loading"
+    class="attendance-loading"
+    aria-live="polite"
+    aria-hidden="true"
+>
 
-                <div class="loading-panel">
+    <div class="loading-panel">
 
-                    <div class="loading-spinner">
+        <div class="loading-spinner">
 
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
 
-                    </div>
-
-
-                    <div class="loading-text">
-
-                        <strong>
-                            Retrieving Attendance Record
-                        </strong>
-
-                        <span>
-                            Please wait while we retrieve your information
-                        </span>
-
-                    </div>
+        </div>
 
 
-                    <div class="loading-dots">
+        <div class="loading-text">
 
-                        <i></i>
-                        <i></i>
-                        <i></i>
+            <strong>
+                Retrieving Attendance Record
+            </strong>
 
-                    </div>
+            <span id="loadingMessage">
+                Please wait while we retrieve your information
+            </span>
 
-                </div>
+        </div>
+
+
+        <!-- =================================================
+             SEARCH PROGRESS
+        ================================================== -->
+
+        <div class="search-progress-wrapper">
+
+            <div class="search-progress-track">
+
+                <div
+                    id="searchProgressBar"
+                    class="search-progress-bar"
+                ></div>
 
             </div>
 
+
+            <div class="search-progress-info">
+
+                <span>
+                    Retrieving record
+                </span>
+
+                <strong id="searchProgressPercent">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="loading-dots">
+
+            <i></i>
+            <i></i>
+            <i></i>
+
+        </div>
+
+    </div>
+
+</div>
 
             <!-- =================================================
                  RESULT
@@ -1745,6 +1871,20 @@ const loading =
 const message =
     document.getElementById("message");
 
+const loadingMessage =
+    document.getElementById("loadingMessage");
+
+const searchProgressBar =
+    document.getElementById("searchProgressBar");
+
+const searchProgressPercent =
+    document.getElementById("searchProgressPercent");
+
+let searchProgressTimer =
+    null;
+
+let searchProgress =
+    0;   
 
 /* =========================================================
    FINE NOTICE
@@ -1835,184 +1975,239 @@ function searchAttendance() {
 
         studentId,
 
+
+        /* =================================================
+           SUCCESS
+        ================================================= */
+
         function (response) {
-
-            stopLoading();
-
-
-            /* =================================================
-               API ERROR
-            ================================================= */
-
-            if (!response) {
-
-                showMessage(
-                    "Unable to retrieve attendance information.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================================
-               API SUCCESS / FOUND CHECK
-            ================================================= */
-
-            if (
-                response.success === false
-            ) {
-
-                showMessage(
-                    response.error ||
-                    response.message ||
-                    "Unable to retrieve attendance information.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            if (
-                response.found === false
-            ) {
-
-                showMessage(
-                    response.message ||
-                    "No attendance record was found for this Student ID Number.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================================
-               GET STUDENT RECORD
-            ================================================= */
-
-            const studentRecord =
-                response.data ||
-                response;
-
-
-            if (
-                !studentRecord ||
-                typeof studentRecord !== "object"
-            ) {
-
-                showMessage(
-                    "The attendance record returned an invalid response.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================================
-               DISPLAY RESULT
-            ================================================= */
-
-            displayStudent(
-                studentRecord
-            );
-
-
-            result.style.display =
-                "block";
-
-
-            setTimeout(
-                function () {
-
-                    result.classList.add(
-                        "result-visible"
-                    );
-
-                },
-                40
-            );
-
-
-            setTimeout(
-                function () {
-
-                    result.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                },
-                80
-            );
-
-
-            /* =================================================
-               FINE NOTICE TRIGGER
-            ================================================= */
-
-            const needsFineSettlement =
-
-                studentRecord.needsFineSettlement === true ||
-
-                String(
-                    studentRecord.needsFineSettlement || ""
-                ).toLowerCase() === "true";
-
 
             /*
              * IMPORTANT:
              *
-             * EXEMPTED students must NEVER receive
-             * the settlement popup.
+             * The API has responded.
+             *
+             * Only now can progress reach 100%.
              */
 
-            const fineStatus =
-                String(
-                    studentRecord.finesStatus ||
-                    ""
-                )
-                .toUpperCase()
-                .trim();
+            completeSearchProgress(
+
+                function () {
+
+                    stopLoading();
 
 
-            if (
-                needsFineSettlement &&
-                fineStatus !== "EXEMPTED"
-            ) {
+                    /* =====================================
+                       NO RESPONSE
+                    ===================================== */
 
-                fineNoticeTimer =
+                    if (!response) {
+
+                        showMessage(
+                            "Unable to retrieve attendance information.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       API ERROR
+                    ===================================== */
+
+                    if (
+                        response.success === false
+                    ) {
+
+                        showMessage(
+
+                            response.error ||
+                            response.message ||
+                            "Unable to retrieve attendance information.",
+
+                            "error"
+
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       STUDENT NOT FOUND
+                    ===================================== */
+
+                    if (
+                        response.found === false
+                    ) {
+
+                        showMessage(
+
+                            response.message ||
+                            "No attendance record was found for this Student ID Number.",
+
+                            "error"
+
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       GET STUDENT RECORD
+                    ===================================== */
+
+                    const studentRecord =
+                        response.data ||
+                        response;
+
+
+                    if (
+                        !studentRecord ||
+                        typeof studentRecord !== "object"
+                    ) {
+
+                        showMessage(
+                            "The attendance record returned an invalid response.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       DISPLAY RESULT
+                    ===================================== */
+
+                    displayStudent(
+                        studentRecord
+                    );
+
+
+                    result.style.display =
+                        "block";
+
+
                     setTimeout(
                         function () {
 
-                            showFineNotice(
-                                studentRecord
+                            result.classList.add(
+                                "result-visible"
                             );
 
-                            fineNoticeTimer =
-                                null;
-
                         },
-                        500
+                        40
                     );
 
-            }
+
+                    setTimeout(
+                        function () {
+
+                            result.scrollIntoView({
+
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "start"
+
+                            });
+
+                        },
+                        80
+                    );
+
+
+                    /* =====================================
+                       FINE NOTICE
+                    ===================================== */
+
+                    const needsFineSettlement =
+
+                        studentRecord.needsFineSettlement === true ||
+
+                        String(
+                            studentRecord.needsFineSettlement ||
+                            ""
+                        )
+                        .toLowerCase() ===
+                        "true";
+
+
+                    const fineStatus =
+                        String(
+                            studentRecord.finesStatus ||
+                            ""
+                        )
+                        .toUpperCase()
+                        .trim();
+
+
+                    if (
+                        needsFineSettlement &&
+                        fineStatus !== "EXEMPTED"
+                    ) {
+
+                        fineNoticeTimer =
+                            setTimeout(
+                                function () {
+
+                                    showFineNotice(
+                                        studentRecord
+                                    );
+
+                                    fineNoticeTimer =
+                                        null;
+
+                                },
+                                500
+                            );
+
+                    }
+
+                }
+
+            );
 
         },
 
+
+        /* =================================================
+           ERROR / TIMEOUT
+        ================================================= */
+
         function () {
+
+            if (
+                searchProgressTimer
+            ) {
+
+                clearInterval(
+                    searchProgressTimer
+                );
+
+                searchProgressTimer =
+                    null;
+
+            }
+
 
             stopLoading();
 
+
             showMessage(
+
                 "Something went wrong while retrieving the attendance record. Please try again.",
+
                 "error"
+
             );
 
         }
@@ -2062,8 +2257,204 @@ function startLoading() {
 
     `;
 
+
+    /* =====================================================
+       RESET PROGRESS
+    ===================================================== */
+
+    searchProgress =
+        0;
+
+
+    updateSearchProgress();
+
+
+    if (
+        searchProgressTimer
+    ) {
+
+        clearInterval(
+            searchProgressTimer
+        );
+
+    }
+
+
+    /*
+     * The progress intentionally stops at 95%.
+     *
+     * This means 100% is only reached after
+     * the Google Apps Script has responded.
+     */
+
+    searchProgressTimer =
+        setInterval(
+            function () {
+
+                if (
+                    searchProgress < 70
+                ) {
+
+                    searchProgress += 5;
+
+                }
+
+                else if (
+                    searchProgress < 85
+                ) {
+
+                    searchProgress += 2;
+
+                }
+
+                else if (
+                    searchProgress < 95
+                ) {
+
+                    searchProgress += 0.5;
+
+                }
+
+
+                updateSearchProgress();
+
+            },
+            300
+        );
+
+
+    if (loadingMessage) {
+
+        loadingMessage.textContent =
+            "Please wait while we retrieve your information";
+
+    }
+
 }
 
+/* =========================================================
+   UPDATE SEARCH PROGRESS
+========================================================= */
+
+function updateSearchProgress() {
+
+    const percent =
+        Math.floor(
+            searchProgress
+        );
+
+
+    if (searchProgressBar) {
+
+        searchProgressBar.style.width =
+            percent + "%";
+
+    }
+
+
+    if (searchProgressPercent) {
+
+        searchProgressPercent.textContent =
+            percent + "%";
+
+    }
+
+}
+
+
+/* =========================================================
+   COMPLETE SEARCH PROGRESS
+========================================================= */
+
+function completeSearchProgress(
+    callback
+) {
+
+    if (
+        searchProgressTimer
+    ) {
+
+        clearInterval(
+            searchProgressTimer
+        );
+
+        searchProgressTimer =
+            null;
+
+    }
+
+
+    /*
+     * The API has already responded.
+     * Now and only now do we move to 100%.
+     */
+
+    searchProgress =
+        100;
+
+
+    updateSearchProgress();
+
+
+    if (loadingMessage) {
+
+        loadingMessage.textContent =
+            "Attendance record retrieved successfully.";
+
+    }
+
+
+    /*
+     * Give the user a very short visual
+     * confirmation at 100%.
+     */
+
+    setTimeout(
+        function () {
+
+            if (
+                typeof callback ===
+                "function"
+            ) {
+
+                callback();
+
+            }
+
+        },
+        180
+    );
+
+}
+
+
+/* =========================================================
+   RESET SEARCH PROGRESS
+========================================================= */
+
+function resetSearchProgress() {
+
+    if (
+        searchProgressTimer
+    ) {
+
+        clearInterval(
+            searchProgressTimer
+        );
+
+        searchProgressTimer =
+            null;
+
+    }
+
+
+    searchProgress =
+        0;
+
+
+    updateSearchProgress();
+
+}
 
 function stopLoading() {
 
@@ -2162,7 +2553,7 @@ function callAttendanceAPI(
                 errorCallback();
 
             },
-            15000
+            60000
         );
 
 
