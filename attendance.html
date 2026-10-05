@@ -600,6 +600,23 @@ body.proof-viewer-open {
 }
 
 /* =========================================================
+   EVENT FINE
+========================================================= */
+
+.event-fine {
+    display: inline-block;
+
+    margin-top: 6px;
+
+    color: #d71920;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.02em;
+}
+
+/* =========================================================
    PROOF OF ATTENDANCE
 ========================================================= */
 
@@ -2670,26 +2687,26 @@ function searchAttendance() {
 
 
                     if (
-                        needsFineSettlement &&
-                        fineStatus !== "EXEMPTED"
-                    ) {
+    needsFineSettlement &&
+    fineStatus === "UNSETTLED"
+) {
 
-                        fineNoticeTimer =
-                            setTimeout(
-                                function () {
+    fineNoticeTimer =
+        setTimeout(
+            function () {
 
-                                    showFineNotice(
-                                        studentRecord
-                                    );
+                showFineNotice(
+                    studentRecord
+                );
 
-                                    fineNoticeTimer =
-                                        null;
+                fineNoticeTimer =
+                    null;
 
-                                },
-                                500
-                            );
+            },
+            500
+        );
 
-                    }
+}
 
                 }
 
@@ -3221,133 +3238,223 @@ function displayStudent(
 
 
     /* =====================================================
-       FINES
-    ===================================================== */
+   FINES
+===================================================== */
 
-    const finesElement =
-        document.getElementById(
-            "finesDisplay"
-        );
-
-
-    if (finesElement) {
-
-        /*
-         * Read the fine status directly from
-         * the backend.
-         */
-
-        const finesStatus =
-            String(
-                data.finesStatus ||
-                ""
-            )
-            .toUpperCase()
-            .trim();
+const finesElement =
+    document.getElementById(
+        "finesDisplay"
+    );
 
 
-        /*
-         * Remove previous fine classes.
-         */
+if (finesElement) {
 
-        finesElement.classList.remove(
-            "fines-settled",
-            "fines-unsettled",
-            "fines-pending",
+    const finesStatus =
+        String(
+            data.finesStatus ||
+            ""
+        )
+        .toUpperCase()
+        .trim();
+
+
+    /*
+     * Remove all previous fine classes
+     * before applying the current status.
+     */
+
+    finesElement.classList.remove(
+        "fines-settled",
+        "fines-unsettled",
+        "fines-pending",
+        "fines-exempted",
+        "fines-no-fine"
+    );
+
+
+    /* =================================================
+       EXEMPTED
+       Student-wide fine exemption only.
+    ================================================= */
+
+    if (
+        finesStatus === "EXEMPTED"
+    ) {
+
+        finesElement.textContent =
+            "EXEMPTED";
+
+        finesElement.classList.add(
             "fines-exempted"
         );
-
-
-        /* =================================================
-           EXEMPTED
-        ================================================= */
-
-        if (
-            finesStatus === "EXEMPTED"
-        ) {
-
-            finesElement.textContent =
-                "EXEMPTED";
-
-
-            finesElement.classList.add(
-                "fines-exempted"
-            );
-
-        }
-
-
-        /* =================================================
-           SETTLED
-        ================================================= */
-
-        else if (
-            finesStatus === "SETTLED"
-        ) {
-
-            finesElement.textContent =
-                "SETTLED";
-
-
-            finesElement.classList.add(
-                "fines-settled"
-            );
-
-        }
-
-
-        /* =================================================
-           UNSETTLED
-        ================================================= */
-
-        else if (
-            finesStatus === "UNSETTLED"
-        ) {
-
-            finesElement.textContent =
-
-                data.finesDisplay ||
-                data.fines ||
-                "₱0.00";
-
-
-            finesElement.classList.add(
-                "fines-unsettled"
-            );
-
-        }
-
-
-        /* =================================================
-           NOT YET COMPUTED / PENDING
-        ================================================= */
-
-        else {
-
-            finesElement.textContent =
-                "NOT YET COMPUTED";
-
-
-            finesElement.classList.add(
-                "fines-pending"
-            );
-
-        }
 
     }
 
 
-    /* =====================================================
-       STUDENT CATEGORY
-    ===================================================== */
+    /* =================================================
+       SETTLED
+       Fine was actually settled / cleared.
+    ================================================= */
 
-    const officerElement =
-        document.getElementById(
-            "officerDisplay"
+    else if (
+        finesStatus === "SETTLED"
+    ) {
+
+        finesElement.textContent =
+            "SETTLED";
+
+        finesElement.classList.add(
+            "fines-settled"
         );
+
+    }
+
+
+    /* =================================================
+       COMPLETE ATTENDANCE
+       No missing required attendance.
+    ================================================= */
+
+    else if (
+        finesStatus === "COMPLETE ATTENDANCE"
+    ) {
+
+        finesElement.textContent =
+            "COMPLETE ATTENDANCE";
+
+        finesElement.classList.add(
+            "fines-settled"
+        );
+
+    }
+
+
+    /* =================================================
+       NO FINE
+       Computed, but there is no fine.
+    ================================================= */
+
+    else if (
+        finesStatus === "NO FINE" ||
+        finesStatus === "NO FINES"
+    ) {
+
+        finesElement.textContent =
+            "NO FINE";
+
+        finesElement.classList.add(
+            "fines-settled"
+        );
+
+    }
+
+
+    /* =================================================
+       UNSETTLED
+       Display actual outstanding amount.
+    ================================================= */
+
+    else if (
+        finesStatus === "UNSETTLED"
+    ) {
+
+        const fineAmount =
+            data.finesDisplay ||
+            data.fines ||
+            "₱0.00";
+
+        finesElement.textContent =
+            fineAmount;
+
+        finesElement.classList.add(
+            "fines-unsettled"
+        );
+
+    }
+
+
+    /* =================================================
+       NOT YET COMPUTED
+       Missing attendance exists but fine rate
+       has not yet been configured.
+    ================================================= */
+
+    else if (
+        finesStatus === "NOT YET COMPUTED"
+    ) {
+
+        finesElement.textContent =
+            "NOT YET COMPUTED";
+
+        finesElement.classList.add(
+            "fines-pending"
+        );
+
+    }
+
+
+    /* =================================================
+       FALLBACK
+    ================================================= */
+
+    else {
+
+        finesElement.textContent =
+            data.finesDisplay ||
+            "NO FINE";
+
+        finesElement.classList.add(
+            "fines-pending"
+        );
+
+    }
+
+}
+
+    /* =====================================================
+   STUDENT CATEGORY
+===================================================== */
+
+const officerElement =
+    document.getElementById(
+        "officerDisplay"
+    );
+
+
+if (officerElement) {
+
+    /*
+     * Priority:
+     *
+     * 1. Category from STUDENT CATEGORY sheet
+     * 2. Department Officer position
+     * 3. Department Officer
+     * 4. Regular Student
+     *
+     * IMPORTANT:
+     * Student Category is for display/identity only.
+     * Fine exemption is handled by Code.gs.
+     */
+
+    const studentCategory =
+        String(
+            data.category ||
+            data.studentCategory ||
+            ""
+        ).trim();
 
 
     if (
+        studentCategory
+    ) {
+
+        officerElement.textContent =
+            studentCategory;
+
+    }
+
+
+    else if (
         data.isOfficer &&
         data.position
     ) {
@@ -3356,6 +3463,7 @@ function displayStudent(
             data.position;
 
     }
+
 
     else if (
         data.isOfficer
@@ -3366,12 +3474,15 @@ function displayStudent(
 
     }
 
+
     else {
 
         officerElement.textContent =
             "Regular Student";
 
     }
+
+}
 
 
     /* =====================================================
@@ -3893,110 +4004,163 @@ function displayEvents(
                 );
 
 
-            /* =================================================
-               EVENT STATUS
-            ================================================= */
+            /* =====================================================
+   EVENT ATTENDANCE STATUS
+===================================================== */
 
-            let status =
-
-                event.status ||
-
-                (
-                    event.exempted
-
-                        ? "EXEMPTED"
-
-                        : event.notRequired
-
-                            ? "NOT REQUIRED"
-
-                            : event.attended
-
-                                ? "ATTENDED"
-
-                                : "NOT ATTENDED"
-                );
-
-
-            const normalized =
-                String(
-                    status
+let status =
+    event.status ||
+    (
+        event.exempted
+            ? "EXEMPTED"
+            : event.notRequired
+                ? "NOT REQUIRED"
+                : (
+                    event.attended ||
+                    event.timeIn ||
+                    event.inTime ||
+                    event.in ||
+                    event.timeOut ||
+                    event.outTime ||
+                    event.out
                 )
-                .toLowerCase()
-                .trim();
+                    ? "ATTENDED"
+                    : "NOT ATTENDED"
+    );
 
 
-            /* =================================================
-               STATUS CLASS
-            ================================================= */
+/* =====================================================
+   EVENT STATUS CLASS
+===================================================== */
 
-            let statusClass =
-                "no-record";
+const normalizedStatus =
+    String(
+        status
+    )
+    .toLowerCase()
+    .trim();
 
 
-            if (
-                normalized.includes(
-                    "exempt"
-                )
-            ) {
+let statusClass =
+    "status-neutral";
 
-                statusClass =
-                    "exempted";
 
-            }
+if (
+    normalizedStatus.includes(
+        "not attended"
+    )
+) {
 
-            else if (
-                normalized.includes(
-                    "attended"
-                ) ||
-                normalized.includes(
-                    "present"
-                )
-            ) {
+    statusClass =
+        "status-not-attended";
 
-                statusClass =
-                    "attended";
+}
 
-            }
 
-            else if (
-                normalized.includes(
-                    "not required"
-                )
-            ) {
+else if (
+    normalizedStatus.includes(
+        "exempt"
+    )
+) {
 
-                statusClass =
-                    "not-required";
+    statusClass =
+        "status-exempted";
 
-            }
+}
 
-            else if (
-                normalized.includes(
-                    "no attendance"
-                )
-            ) {
 
-                statusClass =
-                    "no-attendance";
+else if (
+    normalizedStatus.includes(
+        "not required"
+    )
+) {
 
-            }
+    statusClass =
+        "status-not-required";
 
-            else if (
-                normalized.includes(
-                    "miss"
-                ) ||
-                normalized.includes(
-                    "not attended"
-                ) ||
-                normalized.includes(
-                    "no record"
-                )
-            ) {
+}
 
-                statusClass =
-                    "not-attended";
 
-            }
+else if (
+    normalizedStatus.includes(
+        "attended"
+    )
+) {
+
+    statusClass =
+        "status-attended";
+
+}
+
+
+else {
+
+    statusClass =
+        "status-neutral";
+
+}
+
+
+/* =====================================================
+   EVENT FINE STATUS
+===================================================== */
+
+const eventFineStatus =
+    String(
+        event.fineStatus ||
+        ""
+    )
+    .toUpperCase()
+    .trim();
+
+
+const eventFineAmount =
+    event.fineAmount ||
+    event.fines ||
+    event.fine ||
+    "";
+
+
+const eventFineComputed =
+    event.fineComputed === true ||
+    String(
+        event.fineComputed || ""
+    ).toLowerCase() === "true";
+
+console.log(
+    "EVENT FINE DEBUG:",
+    {
+        eventName:
+            event.name ||
+            event.eventName,
+
+        fineStatus:
+            event.fineStatus,
+
+        fineAmount:
+            event.fineAmount,
+
+        fineComputed:
+            event.fineComputed,
+
+        exempted:
+            event.exempted
+    }
+);
+
+/* =====================================================
+   EVENT FINE
+===================================================== */
+
+const hasEventFine =
+
+    !event.exempted &&
+
+    eventFineComputed &&
+
+    Number(
+        eventFineAmount
+    ) > 0;
 
 
             /* =================================================
@@ -4263,19 +4427,30 @@ else if (
 
                 <div class="event-result">
 
-                    <span
-                        class="attendance-status ${statusClass}"
-                    >
-                        ${escapeHTML(status)}
-                    </span>
+    <span
+        class="attendance-status ${statusClass}"
+    >
+        ${escapeHTML(status)}
+    </span>
 
-                    ${exemptionNote}
+    ${
+        hasEventFine
+            ? `
+                <span class="event-fine">
+                    FINE:
+                    ₱${Number(eventFineAmount).toFixed(2)}
+                </span>
+              `
+            : ""
+    }
 
-                    ${times}
+    ${exemptionNote}
 
-                    ${proofHTML}
+    ${times}
 
-                </div>
+    ${proofHTML}
+
+</div>
 
             `;
 
