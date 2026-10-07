@@ -8372,35 +8372,36 @@ async function loadPsychologySociety(content) {
 
 
     groups.push(
-        renderGroup(
-            "Core Officers",
-            findRowsByPosition(
-                rows,
-                [
-                    "Secretary",
-                    "Treasurer",
-                    "Auditor",
-                    "Business Manager",
-                    "Press Relation Officer",
-                    "Press Relations Officer"
-                ]
-            )
+    renderGroup(
+        "Core Officers",
+        findRowsByPosition(
+            rows,
+            [
+                "Secretary",
+                "Treasurer",
+                "Auditor",
+                "Business Manager"
+            ]
         )
-    );
+    )
+);
 
 
-    groups.push(
-        renderGroup(
-            "Media & Creatives",
-            findRowsByPosition(
-                rows,
-                [
-                    "Media Writer",
-                    "Layout Artist"
-                ]
-            )
+groups.push(
+    renderGroup(
+        "Media & Creatives",
+        findRowsByPosition(
+            rows,
+            [
+                "Press Relation Officer",
+                "Press Relations Officer",
+                "Media Writer",
+                "Layout Artist",
+                "Committee Head"
+            ]
         )
-    );
+    )
+);
 
 
     groups.push(
@@ -8415,20 +8416,6 @@ async function loadPsychologySociety(content) {
             )
         )
     );
-
-
-    groups.push(
-        renderGroup(
-            "Committee",
-            findRowsByPosition(
-                rows,
-                [
-                    "Committee Head"
-                ]
-            )
-        )
-    );
-
 
     const hierarchy =
         groups
