@@ -2080,101 +2080,6 @@
 
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .calendar-semester-header {
-        padding: 17px 18px;
-        margin-bottom: 16px;
-    }
-
-    .calendar-semester-title {
-        font-size: 21px;
-    }
-
-    .calendar-semester-note {
-        font-size: 10px;
-    }
-
-    .calendar-months {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 9px;
-    }
-
-    .calendar-month.expanded {
-        grid-column: 1 / -1;
-    }
-
-    .calendar-month-header {
-        min-height: 45px;
-        padding: 9px 10px;
-    }
-
-    .calendar-month-name {
-        font-size: 10px;
-    }
-
-    .calendar-month.expanded .calendar-month-name {
-        font-size: 14px;
-    }
-
-    .calendar-day {
-        min-height: 38px;
-        padding: 4px;
-    }
-
-    .calendar-month.expanded .calendar-day {
-        min-height: 72px;
-        padding: 6px;
-    }
-
-    .calendar-weekday {
-        min-height: 23px;
-        font-size: 6.5px;
-    }
-
-    .calendar-month.expanded .calendar-weekday {
-        min-height: 27px;
-        font-size: 8px;
-    }
-
-    .calendar-month.expanded .calendar-event {
-        font-size: 8px;
-    }
-
-    .calendar-summary {
-        margin-top: 15px;
-        padding: 14px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .calendar-months {
-        grid-template-columns: 1fr;
-    }
-
-    .calendar-month.expanded {
-        grid-column: 1;
-    }
-
-    .calendar-day {
-        min-height: 42px;
-    }
-
-}
         /* =========================================================
            ERROR / LOADING
         ========================================================= */
@@ -5856,27 +5761,64 @@
         font-size: 7px;
     }
 
-    .calendar-month.expanded .calendar-day {
-        min-height: 75px;
+    /* =========================================================
+   EXPANDED MOBILE DATE BOX
+========================================================= */
 
-        padding: 6px;
-    }
+.calendar-month.expanded .calendar-day {
+    min-width: 0;
+    min-height: 75px;
+    height: auto;
 
-    .calendar-month.expanded
-    .calendar-day-number {
-        font-size: 9px;
-    }
-
-    .calendar-month.expanded .calendar-event {
-    padding: 4px 5px;
-    font-size: 7px;
-
-    white-space: normal;
-    word-break: normal;
-    overflow-wrap: normal;
+    padding: 5px;
 
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+/* DATE NUMBER */
+
+.calendar-month.expanded
+.calendar-day-number {
+    flex: 0 0 auto;
+
+    margin-bottom: 3px;
+
+    font-size: 9px;
+    line-height: 1.2;
+}
+
+
+/* EVENT */
+
+.calendar-month.expanded .calendar-event {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: auto;
+    min-height: 0;
+
+    margin-top: 3px;
+    padding: 4px;
+
     box-sizing: border-box;
+
+    font-size: 7px;
+    line-height: 1.2;
+
+    white-space: normal;
+
+    word-break: break-word;
+    overflow-wrap: anywhere;
+
+    overflow: hidden;
 }
 
     .calendar-summary {
@@ -5898,7 +5840,6 @@
 
     .calendar-months {
         grid-template-columns: 1fr;
-
         gap: 8px;
     }
 
@@ -5916,14 +5857,33 @@
         min-height: 30px;
     }
 
-    .calendar-month.expanded
-    .calendar-day {
+    .calendar-month.expanded .calendar-day {
         min-height: 70px;
+        height: auto;
+
+        padding: 4px;
+
+        overflow: hidden;
     }
 
-    .calendar-month.expanded
-    .calendar-event {
-        font-size: 7px;
+    .calendar-month.expanded .calendar-event {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        height: auto;
+
+        padding: 3px;
+
+        font-size: 6.5px;
+        line-height: 1.15;
+
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+
+        overflow: hidden;
+        box-sizing: border-box;
     }
 
 }
@@ -11293,13 +11253,9 @@ function loadCalendar() {
     function toggleCalendarMonth(month) {
 
         const isExpanded =
-            month.classList.contains(
-                "expanded"
-            );
-
-            requestAnimationFrame(function() {
-    fitCalendarEventText();
-});
+    month.classList.contains(
+        "expanded"
+    );
 
         /* ================================================
            CLOSE ALL MONTHS
@@ -11373,6 +11329,15 @@ function loadCalendar() {
             "expanded"
         );
 
+requestAnimationFrame(function() {
+
+    requestAnimationFrame(function() {
+
+        fitCalendarEventText();
+
+    });
+
+});
 
         const header =
             month.querySelector(
@@ -11442,33 +11407,49 @@ function loadCalendar() {
 
 function fitCalendarEventText() {
 
+    const allEvents =
+        document.querySelectorAll(
+            ".calendar-event"
+        );
+
+
+    /* =====================================================
+       REMOVE OLD INLINE FONT SIZES
+    ===================================================== */
+
+    allEvents.forEach(function(event) {
+
+        event.style.removeProperty(
+            "font-size"
+        );
+
+    });
+
+
+    /* =====================================================
+       GET EVENTS FROM EXPANDED MONTH ONLY
+    ===================================================== */
+
     const events =
         document.querySelectorAll(
             ".calendar-month.expanded .calendar-event"
         );
 
+
     events.forEach(function(event) {
 
-        let fontSize = 9;
+        /*
+         * Event boxes now use automatic height.
+         * The text is allowed to wrap naturally instead
+         * of being repeatedly reduced to fit a fixed box.
+         */
 
-        event.style.fontSize =
-            fontSize + "px";
-
-        while (
-            fontSize > 5 &&
-            (
-                event.scrollWidth > event.clientWidth ||
-                event.scrollHeight > event.clientHeight
-            )
-        ) {
-
-            fontSize -= 0.5;
-
-            event.style.fontSize =
-                fontSize + "px";
-        }
+        event.style.removeProperty(
+            "font-size"
+        );
 
     });
+
 }
 
 /* =========================================================
