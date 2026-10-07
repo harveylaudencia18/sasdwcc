@@ -6354,6 +6354,24 @@
 
 }
 
+/* =========================================================
+   FINAL CALENDAR EVENT WORD WRAPPING FIX
+   Keep complete words together on mobile
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .calendar-month.expanded .calendar-event {
+        white-space: normal;
+
+        word-break: normal;
+        overflow-wrap: normal;
+
+        hyphens: none;
+    }
+
+}
+
     </style>
 
     
