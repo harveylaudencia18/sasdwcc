@@ -706,6 +706,8 @@
 
         .modal-body {
 
+            position: relative;
+
             min-height: 0;
 
             overflow-y: auto;
@@ -1876,6 +1878,65 @@
     word-break: break-word;
 }
 
+/* =====================================================
+   SCHOOL CALENDAR CATEGORY COLORS
+===================================================== */
+
+/* BLANK CATEGORY - WHITE */
+
+.calendar-event.category-blank {
+    background: #ffffff;
+    border-left-color: #dce7f0;
+    color: #405466;
+}
+
+.calendar-month:not(.expanded)
+.calendar-event.category-blank {
+    background: #ffffff;
+    border: 1px solid #dce7f0;
+}
+
+/* DEPARTMENT - BLUE */
+
+.calendar-event.category-department {
+    background: #e8f2ff;
+    border-left-color: #0057a8;
+    color: #003b73;
+}
+
+/* PSYCHSOC - GREEN */
+
+.calendar-event.category-psychsoc {
+    background: #e7f7ec;
+    border-left-color: #16803c;
+    color: #11632e;
+}
+
+/* AIMING - YELLOW */
+
+.calendar-event.category-aiming {
+    background: #fff7d6;
+    border-left-color: #d4a000;
+    color: #806000;
+}
+
+/* MINI CALENDAR CATEGORY MARKERS */
+
+.calendar-month:not(.expanded)
+.calendar-event.category-department {
+    background: #0057a8;
+}
+
+.calendar-month:not(.expanded)
+.calendar-event.category-psychsoc {
+    background: #16803c;
+}
+
+.calendar-month:not(.expanded)
+.calendar-event.category-aiming {
+    background: #d4a000;
+}
+
 .calendar-event.important {
     font-weight: 800;
 
@@ -1956,6 +2017,64 @@
     color: #003b73;
 }
 
+/* =====================================================
+   UNSPECIFIED DATE EVENT CATEGORY COLORS
+===================================================== */
+
+/* DEPARTMENT - BLUE */
+
+.calendar-unspecified-event.category-department {
+    background: #e8f2ff;
+    border-left-color: #0057a8;
+    color: #003b73;
+}
+
+/* PSYCHSOC - GREEN */
+
+.calendar-unspecified-event.category-psychsoc {
+    background: #e7f7ec;
+    border-left-color: #16803c;
+    color: #11632e;
+}
+
+/* AIMING - YELLOW */
+
+.calendar-unspecified-event.category-aiming {
+    background: #fff7d6;
+    border-left-color: #d4a000;
+    color: #806000;
+}
+
+/* BLANK CATEGORY - WHITE */
+
+.calendar-unspecified-event.category-blank {
+    background: #ffffff;
+    border-left-color: #dce7f0;
+    color: #405466;
+}
+
+/* COLLAPSED MONTH CATEGORY MARKERS */
+
+.calendar-month:not(.expanded)
+.calendar-unspecified-event.category-department {
+    background: #0057a8;
+}
+
+.calendar-month:not(.expanded)
+.calendar-unspecified-event.category-psychsoc {
+    background: #16803c;
+}
+
+.calendar-month:not(.expanded)
+.calendar-unspecified-event.category-aiming {
+    background: #d4a000;
+}
+
+.calendar-month:not(.expanded)
+.calendar-unspecified-event.category-blank {
+    background: #ffffff;
+    border: 1px solid #dce7f0;
+}
 
 /* MINI / COLLAPSED MONTH */
 
@@ -6372,6 +6491,141 @@
 
 }
 
+/* ==========================================
+   FULL-SIZE MONTH CALENDAR MODAL
+========================================== */
+
+.calendar-month.calendar-month-modal {
+    position: absolute !important;
+
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    width: min(750px, calc(100% - 30px)) !important;
+    max-height: calc(100% - 30px) !important;
+
+    z-index: 10001 !important;
+
+    overflow-y: auto !important;
+
+    background: #ffffff !important;
+    border: 1px solid #dce7f0 !important;
+    border-radius: 12px !important;
+
+    box-shadow: 0 12px 35px rgba(0, 40, 80, 0.15) !important;
+
+    animation: none !important;
+}
+
+/* MONTH MODAL BOUNDARY */
+
+#calendarModal .modal-body {
+    position: relative;
+}
+
+#calendarModal .calendar-month.calendar-month-modal {
+    position: absolute !important;
+    top: 15px !important;
+    left: 15px !important;
+    right: 15px !important;
+    bottom: 15px !important;
+
+    transform: none !important;
+
+    width: calc(100% - 30px) !important;
+    max-height: calc(100% - 30px) !important;
+
+    overflow-y: auto !important;
+    background: #ffffff !important;
+
+    z-index: 10001 !important;
+}
+
+/* =========================================
+   CALENDAR MONTH - FIT TO SCREEN
+========================================= */
+
+#calendarModal .modal-body {
+    position: relative;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+#calendarModal .calendar-month.calendar-month-modal {
+    position: absolute !important;
+
+    top: var(--calendar-popup-top, 8px) !important;
+    left: 8px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+
+    width: calc(100% - 16px) !important;
+    height: calc(100% - 16px) !important;
+    max-height: none !important;
+
+    transform: none !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    overflow: hidden !important;
+
+    background: #ffffff !important;
+    z-index: 10001 !important;
+}
+
+#calendarModal .calendar-month.calendar-month-modal
+.calendar-month-header {
+    flex-shrink: 0;
+    min-height: 42px;
+    padding: 8px 12px;
+}
+
+#calendarModal .calendar-month.calendar-month-modal
+.calendar-month-grid {
+    flex: 1;
+    min-height: 0;
+
+    grid-template-rows:
+        24px repeat(6, minmax(0, 1fr));
+}
+
+#calendarModal .calendar-month.calendar-month-modal
+.calendar-day {
+    min-height: 0 !important;
+    padding: 4px !important;
+    overflow: hidden;
+}
+
+#calendarModal .calendar-month.calendar-month-modal
+.calendar-event {
+    font-size: clamp(6px, 0.7vw, 9px) !important;
+    line-height: 1.15 !important;
+    padding: 2px 3px !important;
+}
+
+#calendarModal .calendar-month.calendar-month-modal
+.calendar-day-number {
+    font-size: 10px !important;
+    margin-bottom: 2px !important;
+}
+
+@media (max-width: 600px) {
+    #calendarModal .calendar-month.calendar-month-modal
+    .calendar-event {
+        font-size: 6px !important;
+    }
+
+    #calendarModal .calendar-month.calendar-month-modal
+    .calendar-day {
+        padding: 2px !important;
+    }
+}
+
     </style>
 
     
@@ -7095,30 +7349,6 @@
 
 
         <div class="modal-body">
-
-            <div
-                style="
-                    text-align:center;
-                    margin-bottom:25px;
-                "
-            >
-
-                <img
-                    src="assets/divine-logo.png"
-                    alt="Divine Word College of Calapan"
-                    style="
-                        width:88px;
-                        height:88px;
-                        object-fit:contain;
-                        padding:8px;
-                        border:1px solid #dce7f1;
-                        border-radius:6px;
-                        background:#f8fbfe;
-                    "
-                >
-
-            </div>
-
 
             <div id="institutionContent">
 
@@ -9769,154 +9999,117 @@ async function loadFaculty() {
         }
 
 
-        let dean = null;
+        const groups = {
+    "SAS Dean": [],
+    "Psychology Faculty": [],
+    "General Education": [],
+    "Part-Time Faculty": []
+};
 
-        const faculty = [];
+rows.forEach(function(row) {
 
+    const category = String(
+        row.Category ||
+        row.category ||
+        ""
+    ).trim().toLowerCase();
 
-        rows.forEach(
-            function (row) {
+    const status = String(
+        row["Faculty Status"] ||
+        row.FacultyStatus ||
+        row.Status ||
+        ""
+    ).trim().toLowerCase();
 
-                const status =
-                    String(
-                        row["Faculty Status"] ||
-                        row.FacultyStatus ||
-                        row.Status ||
-                        ""
-                    )
-                        .trim()
-                        .toLowerCase();
+    let groupName = Object.keys(groups).find(
+        key => key.toLowerCase() === category
+    );
 
+    if (!groupName && (
+        status === "dean" ||
+        status === "sas dean"
+    )) {
+        groupName = "SAS Dean";
+    }
 
-                if (
-                    !dean &&
-                    (
-                        status === "dean" ||
-                        status === "sas dean"
-                    )
-                ) {
+    if (groupName) {
+        groups[groupName].push(row);
+    }
 
-                    dean = row;
+});
 
-                } else {
+let html = "";
 
-                    faculty.push(row);
+groups["SAS Dean"].forEach(function(dean) {
 
+    const deanPhoto = convertDriveImage(
+        dean.Photo || dean.photo || ""
+    );
+
+    html += `
+        <section class="person-group">
+
+            <h3 class="person-group-title">
+                SAS Dean
+            </h3>
+
+            <div class="featured-person">
+
+                ${
+                    deanPhoto
+                    ? `
+                        <img
+                            src="${escapeHTML(deanPhoto)}"
+                            alt="${escapeHTML(dean.Name || dean.name || "")}"
+                            class="person-photo"
+                            loading="lazy"
+                        >
+                    `
+                    : `
+                        <div class="person-photo-placeholder">
+                            👤
+                        </div>
+                    `
                 }
 
-            }
-        );
+                <div class="person-info">
 
+                    <h3 class="person-name">
+                        ${escapeHTML(dean.Name || dean.name || "")}
+                    </h3>
 
-        let html = "";
-
-
-        if (dean) {
-
-            const deanPhoto =
-                convertDriveImage(
-                    dean.Photo ||
-                    dean.photo ||
-                    ""
-                );
-
-
-            html += `
-
-                <div class="featured-person">
-
-                    ${
-                        deanPhoto
-                            ? `
-                                <img
-                                    src="${escapeHTML(
-                                        deanPhoto
-                                    )}"
-                                    alt="${escapeHTML(
-                                        dean.Name ||
-                                        dean.name ||
-                                        ""
-                                    )}"
-                                    class="person-photo"
-                                    loading="lazy"
-                                >
-                            `
-                            : `
-                                <div
-                                    class="person-photo-placeholder"
-                                    aria-label="No photo available"
-                                >
-                                    👤
-                                </div>
-                            `
-                    }
-
-
-                    <div class="person-info">
-
-                        <h3 class="person-name">
-
-                            ${escapeHTML(
-                                dean.Name ||
-                                dean.name ||
-                                ""
-                            )}
-
-                        </h3>
-
-
-                        <p class="person-position">
-
-                            ${
-                                escapeHTML(
-                                    dean["Faculty Status"] ||
-                                    dean.FacultyStatus ||
-                                    dean.Status ||
-                                    "SAS Dean"
-                                )
-                            }
-
-                        </p>
-
-                    </div>
+                    <p class="person-position">
+                        ${escapeHTML(
+                            dean["Faculty Status"] ||
+                            dean.FacultyStatus ||
+                            dean.Status ||
+                            "SAS Dean"
+                        )}
+                    </p>
 
                 </div>
 
-            `;
+            </div>
 
-        }
+        </section>
+    `;
 
+});
 
-        if (faculty.length) {
+[
+    "Psychology Faculty",
+    "General Education",
+    "Part-Time Faculty"
+].forEach(function(category) {
 
-            html += `
+    html += renderGroup(
+        category,
+        groups[category]
+    );
 
-                <section class="person-group">
+});
 
-                    <h3 class="person-group-title">
-                        Faculty Members
-                    </h3>
-
-                    <div class="person-grid">
-
-                        ${
-                            faculty
-                                .map(
-                                    createPersonCard
-                                )
-                                .join("")
-                        }
-
-                    </div>
-
-                </section>
-
-            `;
-
-        }
-
-
-        container.innerHTML =
+container.innerHTML = html;
             html;
 
     }
@@ -9947,7 +10140,7 @@ async function loadFaculty() {
    ACADEMIC YEAR 2026–2027
 ========================================================= */
 
-function loadCalendar() {
+async function loadCalendar() {
 
     const calendarContent =
         document.getElementById("calendarContent");
@@ -9956,52 +10149,45 @@ function loadCalendar() {
         return;
     }
 
-
     /* =====================================================
        CALENDAR DATA
     ===================================================== */
 
-    const firstSemester = [
+const firstSemester = [
+    {
+        name: "AUGUST",
+        year: 2026,
 
-        {
-    name: "AUGUST",
-    year: 2026,
-
-    events: [
-        {
-            start: 3,
-            end: 3,
-            title: "1st Day of Class"
-        },
-
-        {
-            start: 17,
-            end: 17,
-            title: "WEEKLY AFFIRMATION QUOTES START"
-        },
-
-        {
-            start: 21,
-            end: 21,
-            title: "Ninoy Aquino Day (Office Organizing Half Day)"
-        },
-
-        {
-            start: 29,
-            end: 29,
-            title: "GENERAL ORIENTATION"
-        },
-
-        {
-            start: 31,
-            end: 31,
-            title: "National Heroes Day"
-        }
-    ]
+        events: [
+            {
+                start: 3,
+                end: 3,
+                title: "1st Day of Class"
+            },
+            {
+                start: 17,
+                end: 17,
+                title: "WEEKLY AFFIRMATION QUOTES START"
+            },
+            {
+                start: 21,
+                end: 21,
+                title: "Ninoy Aquino Day (Office Organizing Half Day)"
+            },
+            {
+                start: 29,
+                end: 29,
+                title: "GENERAL ORIENTATION"
+            },
+            {
+    start: 31,
+    end: 31,
+    title: "National Heroes Day"
+}
+]
 },
 
-
-        {
+{
     name: "SEPTEMBER",
     year: 2026,
 
@@ -10011,55 +10197,47 @@ function loadCalendar() {
             end: 2,
             title: "PINNING CEREMONY"
         },
-
         {
             start: 3,
             end: 3,
             title: "FEAC Recollection"
         },
-
         {
             start: 7,
             end: 8,
             title: "Preliminary Exams"
         },
-
         {
             start: 8,
             end: 8,
             title: "SVD Foundation Day"
         },
-
         {
             start: 12,
             end: 12,
             title: "For Saturday Classes"
         },
-
         {
             start: 13,
             end: 13,
             title: "OFFICERS LEADERSHIP TRAINING"
         },
-
         {
             start: 17,
             end: 18,
             title: "FEAC Inter-colors"
         },
-
         {
             start: 19,
             end: 19,
             title: "Seminar General PFA"
         },
-
         {
             start: 22,
             end: 22,
             title: "SUICIDE PREVENTION SEMINAR"
         },
-
+        
         {
             start: 27,
             end: 27,
@@ -10067,503 +10245,161 @@ function loadCalendar() {
         }
     ]
 },
-
-
-        {
+{
     name: "OCTOBER",
     year: 2026,
-
     events: [
-        {
-            start: 1,
-            end: 1,
-            title: "PDAF LAUNCHING"
-        },
-
-        {
-            start: 8,
-            end: 9,
-            title: "Midterm Examination"
-        },
-
-        {
-            start: 10,
-            end: 10,
-            title: "POSTING: MENTAL HEALTH AWARENESS"
-        },
-
-        {
-            start: 10,
-            end: 10,
-            title: "MIDTERMS TOP NOTCH"
-        },
-
-        {
-            start: 10,
-            end: 10,
-            title: "For Saturday Class"
-        },
-
-        {
-            start: 12,
-            end: 12,
-            title: "SEMINAR: MENTAL HEALTH AWARENESS"
-        },
-
-        {
-            start: 12,
-            end: 12,
-            title: "MENTAL HEALTH HUB OPENING"
-        },
-
-        {
-            start: 13,
-            end: 13,
-            title: "PLANNING PSYCHOLOGY SUMMIT"
-        },
-
-        {
-            start: 15,
-            end: 15,
-            title: "PLANNING PSYCHOLOGY SUMMIT"
-        },
-
-        {
-            start: 28,
-            end: 30,
-            title: "Intramurals"
-        }
+        { start: 1, end: 1, title: "PDAF LAUNCHING" },
+        { start: 8, end: 9, title: "Midterm Examination" },
+        { start: 10, end: 10, title: "POSTING: MENTAL HEALTH AWARENESS" },
+        { start: 10, end: 10, title: "MIDTERMS TOP NOTCH" },
+        { start: 10, end: 10, title: "For Saturday Class" },
+        { start: 12, end: 12, title: "SEMINAR: MENTAL HEALTH AWARENESS" },
+        { start: 12, end: 12, title: "MENTAL HEALTH HUB OPENING" },
+        { start: 13, end: 13, title: "PLANNING PSYCHOLOGY SUMMIT" },
+        { start: 15, end: 15, title: "PLANNING PSYCHOLOGY SUMMIT" },
+        { start: 28, end: 30, title: "Intramurals" }
     ]
 },
-
-
-        {
+{
     name: "NOVEMBER",
     year: 2026,
-
     events: [
-        {
-            start: 2,
-            end: 2,
-            title: "Special Holiday"
-        },
-
-        {
-            start: 12,
-            end: 13,
-            title: "Pre-Finals"
-        },
-
-        {
-            start: 14,
-            end: 14,
-            title: "For Saturday Classes"
-        },
-
-        {
-            start: 15,
-            end: 15,
-            title: "Or. Mdo. Founding Anniversary"
-        },
-
-        {
-            start: 17,
-            end: 17,
-            title: "RANDOM ACTS OF APPRECIATION"
-        },
-
-        {
-            start: 17,
-            end: 17,
-            title: "FLYERS FOR CAREER GUIDANCE"
-        },
-
-        {
-            start: 19,
-            end: 19,
-            title: "COGNITIVE REFRAMING WORKSHOP"
-        },
-
-        {
-            start: 21,
-            end: 21,
-            title: "FRAMES OF MIND LISTING"
-        },
-
-        {
-            start: 21,
-            end: 21,
-            title: "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS"
-        },
-
-        {
-            start: 24,
-            end: 24,
-            title: "FOM ANNOUNCEMENT OF WINNERS"
-        },
-
-        {
-            start: 28,
-            end: 28,
-            title: "FOM SUBMISSION"
-        },
-
-        {
-            start: 30,
-            end: 30,
-            title: "Bonifacio Day"
-        }
+        { start: 2, end: 2, title: "Special Holiday" },
+        { start: 12, end: 13, title: "Pre-Finals" },
+        { start: 14, end: 14, title: "For Saturday Classes" },
+        { start: 15, end: 15, title: "Or. Mdo. Founding Anniversary" },
+        { start: 17, end: 17, title: "RANDOM ACTS OF APPRECIATION" },
+        { start: 17, end: 17, title: "FLYERS FOR CAREER GUIDANCE" },
+        { start: 19, end: 19, title: "COGNITIVE REFRAMING WORKSHOP" },
+        { start: 21, end: 21, title: "FRAMES OF MIND LISTING" },
+        { start: 21, end: 21, title: "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS" },
+        { start: 24, end: 24, title: "FOM ANNOUNCEMENT OF WINNERS" },
+        { start: 28, end: 28, title: "FOM SUBMISSION" },
+        { start: 30, end: 30, title: "Bonifacio Day" }
     ]
 },
-
-        {
+{
     name: "DECEMBER",
     year: 2026,
-
     events: [
-        {
-            start: 1,
-            end: 1,
-            title: "POSTING: WORLD'S AIDS DAY"
-        },
-
-        {
-            start: 1,
-            end: 1,
-            title: "POSTING: FINAL'S TOP NOTCH"
-        },
-
-        {
-            start: 3,
-            end: 4,
-            title: "Finals for Graduating"
-        },
-
-        {
-            start: 5,
-            end: 5,
-            title: "Advent Recollection"
-        },
-
-        {
-            start: 6,
-            end: 6,
-            title: "CES – Anima et Civitas (Soul and Community)"
-        },
-
-        {
-            start: 8,
-            end: 8,
-            title: "CES – Anima et Civitas (Soul and Community)"
-        },
-
-        {
-            start: 8,
-            end: 8,
-            title: "Immaculate Conception"
-        },
-
-        {
-            start: 14,
-            end: 15,
-            title: "Final Exams"
-                }
-            ]
-        }
-
-    ];
+        { start: 1, end: 1, title: "POSTING: WORLD'S AIDS DAY" },
+        { start: 1, end: 1, title: "POSTING: FINAL'S TOP NOTCH" },
+        { start: 3, end: 4, title: "Finals for Graduating" },
+        { start: 5, end: 5, title: "Advent Recollection" },
+        { start: 6, end: 6, title: "CES – Anima et Civitas (Soul and Community)" },
+        { start: 8, end: 8, title: "CES – Anima et Civitas (Soul and Community)" },
+        { start: 8, end: 8, title: "Immaculate Conception" },
+        { start: 14, end: 15, title: "Final Exams" }
+    ]
+}
+];
 
 
-    const secondSemester = [
+/* =====================================================
+   SECOND SEMESTER
+   JANUARY – MAY 2027
+===================================================== */
 
-        {
+const secondSemester = [
+{
     name: "JANUARY",
     year: 2027,
-
     events: [
-        {
-            start: 11,
-            end: 11,
-            title: "1st Day of Classes"
-        },
-
-        {
-            start: 15,
-            end: 15,
-            title: "St. Arnold Janssen Day"
-        },
-
-        {
-            start: 17,
-            end: 17,
-            title: "General Re-Orientation and Awarding"
-        },
-
-        {
-            start: 29,
-            end: 29,
-            title: "St. Joseph Freinademetz Day"
-        },
-
-        {
-            start: 30,
-            end: 30,
-            title: "TEAM BUILDING: WOMEN'S MENTAL HEALTH AWARENESS"
-        }
+        { start: 11, end: 11, title: "1st Day of Classes" },
+        { start: 15, end: 15, title: "St. Arnold Janssen Day" },
+        { start: 17, end: 17, title: "General Re-Orientation and Awarding" },
+        { start: 29, end: 29, title: "St. Joseph Freinademetz Day" },
+        { start: 30, end: 30, title: "TEAM BUILDING: WOMEN'S MENTAL HEALTH AWARENESS" }
     ]
 },
-
-
-        {
+{
     name: "FEBRUARY",
     year: 2027,
-
     events: [
-        {
-            start: 8,
-            end: 9,
-            title: "Preliminary Examination"
-        },
-
-        {
-            start: 15,
-            end: 15,
-            title: "RANDOM ACTS OF KINDNESS"
-        },
-
-        {
-            start: 18,
-            end: 18,
-            title: "Imago Dei Human and Spiritual Recollection"
-        },
-
-        {
-            start: 20,
-            end: 20,
-            title: "CES"
-        },
-
-        {
-            start: 25,
-            end: 25,
-            title: "EDSA People Power Anniversary"
-        }
+        { start: 8, end: 9, title: "Preliminary Examination" },
+        { start: 15, end: 15, title: "RANDOM ACTS OF KINDNESS" },
+        { start: 18, end: 18, title: "Imago Dei Human and Spiritual Recollection" },
+        { start: 20, end: 20, title: "CES" },
+        { start: 25, end: 25, title: "EDSA People Power Anniversary" }
     ]
 },
-
-
-        {
+{
     name: "MARCH",
     year: 2027,
-
     events: [
-        {
-            start: 1,
-            end: 1,
-            title: "POSTING: SELF-HARM AWARENESS"
-        },
-
-        {
-            start: 2,
-            end: 2,
-            title: "Public Speaking & Presentation Skills Enhancement"
-        },
-
-        {
-            start: 8,
-            end: 8,
-            title: "INTERNATIONAL WOMEN'S DAY"
-        },
-
-        {
-            start: 8,
-            end: 9,
-            title: "FEAC DAYS"
-        },
-
-        {
-            start: 9,
-            end: 9,
-            title: "Webinar: Sexual Harassment Awareness"
-        },
-
-        {
-            start: 9,
-            end: 9,
-            title: "POSTING: MIDTERMS TOP NOTCH"
-        },
-
-        {
-            start: 10,
-            end: 10,
-            title: "EID'L FITR"
-        },
-
-        {
-            start: 15,
-            end: 16,
-            title: "MIDTERMS EXAMS"
-        },
-
-        {
-            start: 21,
-            end: 21,
-            title: "CALAPAN CITY FOUNDING ANNIVERSARY"
-        },
-
-        {
-            start: 24,
-            end: 27,
-            title: "HOLY WEEK"
-        },
-
-        {
-            start: 31,
-            end: 31,
-            title: "PSYCHOLOGY SUMMIT"
-        }
+        { start: 1, end: 1, title: "POSTING: SELF-HARM AWARENESS" },
+        { start: 2, end: 2, title: "Public Speaking & Presentation Skills Enhancement" },
+        { start: 8, end: 8, title: "INTERNATIONAL WOMEN'S DAY" },
+        { start: 8, end: 9, title: "FEAC DAYS" },
+        { start: 9, end: 9, title: "Webinar: Sexual Harassment Awareness" },
+        { start: 9, end: 9, title: "POSTING: MIDTERMS TOP NOTCH" },
+        { start: 10, end: 10, title: "EID'L FITR" },
+        { start: 15, end: 16, title: "MIDTERMS EXAMS" },
+        { start: 21, end: 21, title: "CALAPAN CITY FOUNDING ANNIVERSARY" },
+        { start: 24, end: 27, title: "HOLY WEEK" },
+        { start: 31, end: 31, title: "PSYCHOLOGY SUMMIT" }
     ]
 },
-
-
-        {
+{
     name: "APRIL",
     year: 2027,
-
     events: [
-        {
-            start: 2,
-            end: 2,
-            title: "POSTING: WORLD'S AUTISM AWARENESS DAY"
-        },
-
-        {
-            start: 3,
-            end: 3,
-            title: "CES LET'S PSYCH IT OUT/POLITIX NOW"
-        },
-
-        {
-            start: 9,
-            end: 9,
-            title: "Day of Valor"
-        },
-
-        {
-            start: 12,
-            end: 13,
-            title: "College Days"
-        },
-
-        {
-            start: 22,
-            end: 23,
-            title: "Pre-Finals"
-        }
+        { start: 2, end: 2, title: "POSTING: WORLD'S AUTISM AWARENESS DAY" },
+        { start: 3, end: 3, title: "CES LET'S PSYCH IT OUT/POLITIX NOW" },
+        { start: 9, end: 9, title: "Day of Valor" },
+        { start: 12, end: 13, title: "College Days" },
+        { start: 22, end: 23, title: "Pre-Finals" }
     ],
-
     unspecifiedEvents: [
-        "PAPJA – 3RD YEAR"
-    ]
+    {
+        title: "PAPJA – 3RD YEAR",
+        category: "",
+        important: false
+    }
+]
 },
-
-
-        {
+{
     name: "MAY",
     year: 2027,
-
     events: [
-        {
-            start: 1,
-            end: 1,
-            title: "Labor Day"
-        },
-
-        {
-            start: 14,
-            end: 15,
-            title: "SAS CAMP"
-        },
-
-        {
-            start: 17,
-            end: 17,
-            title: "Eidul Adha (Tentative)"
-        },
-
-        {
-            start: 24,
-            end: 25,
-            title: "Finals"
-        },
-
-        {
-            start: 24,
-            end: 25,
-            title: "POSTING: FINAL'S TOP NOTCH"
-                }
-            ]
-        }
-
-    ];
+        { start: 1, end: 1, title: "Labor Day" },
+        { start: 14, end: 15, title: "SAS CAMP" },
+        { start: 17, end: 17, title: "Eidul Adha (Tentative)" },
+        { start: 24, end: 25, title: "Finals" },
+        { start: 24, end: 25, title: "POSTING: FINAL'S TOP NOTCH" }
+    ]
+}
+];
 
 
-    /* =====================================================
-       IMPORTANT EVENTS
-    ===================================================== */
+/* =====================================================
+   FEATURED EVENTS
+===================================================== */
 
-    const importantEvents = [
+const importantEvents = [
+    ...firstSemester,
+    ...secondSemester
+].flatMap(function(month) {
 
-        ["AUG 17", "WEEKLY AFFIRMATION QUOTES START"],
-        ["AUG 29", "GENERAL ORIENTATION"],
+    const monthKey = month.name.slice(0, 3).toUpperCase();
 
-        ["SEP 2", "PINNING CEREMONY"],
-        ["SEP 13", "OFFICERS LEADERSHIP TRAINING"],
-        ["SEP 19", "SEMINAR: GENERAL PFA"],
-        ["SEP 22", "SUICIDE PREVENTION SEMINAR"],
-        ["SEP 27", "SAS TEAM BUILDING"],
+    return (month.events || []).map(function(event) {
 
-        ["OCT 1", "PDAF LAUNCHING"],
-        ["OCT 10", "POSTING: MENTAL HEALTH AWARENESS"],
-        ["OCT 10", "MIDTERMS TOP NOTCH"],
-        ["OCT 12", "SEMINAR: MENTAL HEALTH AWARENESS"],
-        ["OCT 12", "MENTAL HEALTH HUB OPENING"],
-        ["OCT 13 & 15", "PLANNING PSYCHOLOGY SUMMIT"],
+        const dateLabel =
+            monthKey + " " + event.start +
+            (event.end !== event.start
+                ? "–" + event.end
+                : "");
 
-        ["NOV 17", "RANDOM ACTS OF APPRECIATION"],
-        ["NOV 17", "FLYERS FOR CAREER GUIDANCE"],
-        ["NOV 19", "COGNITIVE REFRAMING WORKSHOP"],
-        ["NOV 21", "FRAMES OF MIND LISTING"],
-        ["NOV 21", "TEAM BUILDING: MEN'S MENTAL HEALTH AWARENESS"],
-        ["NOV 24", "FORM ANNOUNCEMENT OF WINNERS"],
-        ["NOV 28", "FORM SUBMISSION"],
+        return [
+            dateLabel,
+            event.title
+        ];
 
-        ["DEC 1", "POSTING: WORLD'S AIDS DAY"],
-        ["DEC 1", "POSTING: FINAL'S TOP NOTCH"],
-        ["DEC 6 OR 8", "CES – Anima et Civitas (Soul and Community)"],
+    });
 
-        ["JAN 17", "GENERAL RE-ORIENTATION AND AWARDING"],
-        ["JAN 30", "TEAM BUILDING: WOMEN'S MENTAL HEALTH AWARENESS"],
-
-        ["FEB 15", "RANDOM ACTS OF KINDNESS"],
-        ["FEB 18", "IMAGO DEI HUMAN AND SPIRITUAL RECOLLECTION"],
-        ["FEB 20", "CES"],
-
-        ["MAR 1", "POSTING: SELF-HARM AWARENESS"],
-        ["MAR 2", "PUBLIC SPEAKING & PRESENTATION SKILLS ENHANCEMENT"],
-        ["MAR 8", "INTERNATIONAL WOMEN'S DAY"],
-        ["MAR 9", "WEBINAR: SEXUAL HARASSMENT AWARENESS"],
-        ["MAR 9", "POSTING: MIDTERMS TOP NOTCH"],
-        ["MAR 31", "PSYCHOLOGY SUMMIT"],
-
-        ["APR 2", "POSTING: WORLD'S AUTISM AWARENESS DAY"],
-        ["APR 3", "CES LET'S PSYCH IT OUT/POLITIX NOW"],
-        ["APR", "PAPJA – 3RD YEAR (NO SPECIFIED DATE)"],
-
-        ["MAY 14–15", "SAS CAMP"],
-        ["MAY 24–25", "POSTING: FINAL'S TOP NOTCH"]
-
-    ];
+});
 
 
     /* =====================================================
@@ -10779,7 +10615,7 @@ function loadCalendar() {
                 html += `
 
                     <div
-                        class="calendar-event ${eventClass}"
+                        class="calendar-event ${eventClass} ${event.category ? 'category-' + String(event.category).trim().toLowerCase() : 'category-blank'}"
                         title="${escapeCalendarHTML(event.title)}"
                     >
                         ${escapeCalendarHTML(event.title)}
@@ -10826,20 +10662,32 @@ function loadCalendar() {
             `;
 
 
-            month.unspecifiedEvents.forEach(function(eventTitle) {
+            month.unspecifiedEvents.forEach(function(event) {
 
-                html += `
+    const eventTitle = typeof event === "string"
+        ? event
+        : String(event.title || "");
 
-                    <div
-                        class="calendar-unspecified-event"
-                        title="${escapeCalendarHTML(eventTitle)}"
-                    >
-                        ${escapeCalendarHTML(eventTitle)}
-                    </div>
+    const eventCategory = typeof event === "string"
+        ? ""
+        : String(event.category || "").trim().toLowerCase();
 
-                `;
+    const categoryClass = eventCategory
+        ? "category-" + eventCategory
+        : "category-blank";
 
-            });
+    html += `
+
+        <div
+            class="calendar-unspecified-event ${categoryClass}"
+            title="${escapeCalendarHTML(eventTitle)}"
+        >
+            ${escapeCalendarHTML(eventTitle)}
+        </div>
+
+    `;
+
+});
 
 
             html += `
@@ -11113,7 +10961,6 @@ function loadCalendar() {
 
 }
 
-
     /* =====================================================
        BUILD CALENDAR
     ===================================================== */
@@ -11270,156 +11117,90 @@ function loadCalendar() {
 
     function toggleCalendarMonth(month) {
 
-        const isExpanded =
-    month.classList.contains(
-        "expanded"
+    const wasOpen = month.classList.contains(
+        "calendar-month-modal"
     );
 
-        /* ================================================
-           CLOSE ALL MONTHS
-        ================================================ */
+    document.querySelectorAll(
+        ".calendar-month.calendar-month-modal"
+    ).forEach(function(item) {
 
-        calendarContent
-            .querySelectorAll(
-                ".calendar-month.expanded"
-            )
-            .forEach(function(item) {
-
-                item.classList.remove(
-                    "expanded"
-                );
-
-
-                const itemHeader =
-                    item.querySelector(
-                        ".calendar-month-header"
-                    );
-
-
-                if (itemHeader) {
-
-                    itemHeader.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    itemHeader.setAttribute(
-                        "aria-label",
-                        `Expand ${item.dataset.monthName} ${item.dataset.year}`
-                    );
-
-                }
-
-
-                const toggle =
-                    item.querySelector(
-                        ".calendar-month-toggle"
-                    );
-
-
-                if (toggle) {
-
-                    toggle.textContent =
-                        "+";
-
-                }
-
-            });
-
-
-        /* ================================================
-           IF IT WAS ALREADY OPEN,
-           LEAVE EVERYTHING CLOSED
-        ================================================ */
-
-        if (isExpanded) {
-
-            return;
-
-        }
-
-
-        /* ================================================
-           OPEN SELECTED MONTH
-        ================================================ */
-
-        month.classList.add(
-            "expanded"
+        item.classList.remove(
+            "expanded",
+            "calendar-month-modal"
         );
 
-requestAnimationFrame(function() {
-
-    requestAnimationFrame(function() {
-
-        fitCalendarEventText();
-
-    });
-
-});
-
-        const header =
-            month.querySelector(
-                ".calendar-month-header"
-            );
-
+        const header = item.querySelector(
+            ".calendar-month-header"
+        );
 
         if (header) {
-
-            header.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-            header.setAttribute(
-                "aria-label",
-                `Collapse ${month.dataset.monthName} ${month.dataset.year}`
-            );
-
+            header.setAttribute("aria-expanded", "false");
         }
 
-
-        const toggle =
-            month.querySelector(
-                ".calendar-month-toggle"
-            );
-
+        const toggle = item.querySelector(
+            ".calendar-month-toggle"
+        );
 
         if (toggle) {
-
-            toggle.textContent =
-                "−";
-
+            toggle.textContent = "+";
         }
+    });
 
+    document.querySelectorAll(
+        ".calendar-month-backdrop"
+    ).forEach(function(backdrop) {
+        backdrop.remove();
+    });
 
-        /* ================================================
-           MOVE SELECTED MONTH INTO VIEW
-        ================================================ */
-
-        setTimeout(function() {
-
-            const calendarRect =
-                calendarContent.getBoundingClientRect();
-
-            const monthRect =
-                month.getBoundingClientRect();
-
-
-            if (
-                monthRect.top <
-                calendarRect.top
-            ) {
-
-                month.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        }, 80);
-
+    if (wasOpen) {
+        return;
     }
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "calendar-month-backdrop";
+
+    document.body.appendChild(backdrop);
+
+    month.classList.add(
+        "expanded",
+        "calendar-month-modal"
+    );
+
+const calendarBody = month.closest(".modal-body");
+
+if (calendarBody) {
+    month.style.setProperty(
+        "--calendar-popup-top",
+        (calendarBody.scrollTop + 8) + "px"
+    );
+}
+
+    const header = month.querySelector(
+        ".calendar-month-header"
+    );
+
+    if (header) {
+        header.setAttribute("aria-expanded", "true");
+    }
+
+    const toggle = month.querySelector(
+        ".calendar-month-toggle"
+    );
+
+    if (toggle) {
+        toggle.textContent = "×";
+    }
+
+    backdrop.addEventListener("click", function() {
+        toggleCalendarMonth(month);
+    });
+
+    requestAnimationFrame(function() {
+        fitCalendarEventText();
+    });
+
+}
 
 }
 
