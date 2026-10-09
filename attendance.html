@@ -1228,12 +1228,63 @@ body.proof-viewer-open {
 
 }
 
-.sas-circle-logo {
+/* =========================================================
+   SAS LOGO — DESKTOP AND MOBILE
+========================================================= */
+
+.student-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-avatar > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.student-avatar .sas-circle-logo {
+    display: block;
     width: 85%;
     height: 85%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
-    display: block;
-    margin: auto;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .student-avatar .sas-circle-logo {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   FORMAL EXEMPTION REASON TYPOGRAPHY
+========================================================= */
+
+.event-exemption-reason {
+    display: inline-block;
+
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    font-style: normal;
+
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+
+    text-transform: uppercase;
+    text-align: left;
+
+    color: #0057a8;
 }
 
     </style>
