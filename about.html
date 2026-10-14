@@ -6626,6 +6626,355 @@
     }
 }
 
+
+
+/* ==========================================
+   PROJECT DIAL-A-FRIEND
+   FORMAL INSTITUTIONAL DESIGN
+========================================== */
+
+.pdaf-section {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+    color: #34465a;
+}
+
+
+/* ==========================================
+   PDAF HEADER — REFINED DESIGN
+========================================== */
+
+
+.pdaf-intro {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #002b55 0%,
+        #0057a8 55%,
+        #003b73 100%
+    );
+
+    border: 1px solid #164f84;
+    border-bottom: 4px solid #ffd200;
+    border-radius: 10px;
+
+    box-shadow: 0 10px 28px rgba(0, 43, 85, 0.18);
+
+    overflow: hidden;
+    text-align: left;
+}
+
+
+/* PDAF HEADER LAYOUT */
+
+.pdaf-header-layout {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.pdaf-logo-container {
+    flex: 0 0 100px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.pdaf-logo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pdaf-header-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.pdaf-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ffd200;
+}
+
+.pdaf-intro h3 {
+    margin: 0 0 9px;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #ffffff;
+}
+
+.pdaf-intro p {
+    margin: 0;
+    max-width: 480px;
+    font-family: "Inter", sans-serif;
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+
+/* PDAF ABOUT AND HISTORY */
+
+.pdaf-section > .statement-card {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 25px 28px;
+    background: #ffffff;
+    border: 1px solid #dce7f0;
+    border-left: 4px solid #0057a8;
+    border-radius: 9px;
+    box-shadow: 0 5px 18px rgba(0, 43, 85, 0.05);
+}
+
+.pdaf-section > .statement-card > .statement-label {
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5edf4;
+    color: #0057a8;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.pdaf-section > .statement-card > .statement-text {
+    margin-bottom: 12px;
+    color: #40566b;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    line-height: 1.85;
+    text-align: justify;
+    overflow-wrap: break-word;
+}
+
+.pdaf-section > .statement-card > .statement-text:last-child {
+    margin-bottom: 0;
+}
+
+/* IMPORTANT NOTICE */
+
+.pdaf-notice {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: #f5f8fb;
+    border: 1px solid #e2e9ef;
+    border-left: 3px solid #7897b0;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.pdaf-notice strong {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #254763;
+}
+
+.pdaf-notice p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #526779;
+}
+
+/* VISION AND MISSION */
+
+.pdaf-vision-mission {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin-bottom: 24px;
+}
+
+
+.pdaf-vision-mission .statement-card {
+    height: 100%;
+    margin: 0;
+    padding: 26px 28px;
+
+    background: linear-gradient(
+        135deg,
+        #f4f9fd 0%,
+        #ffffff 100%
+    );
+
+    border: 1px solid #dce7f0;
+    border-top: 3px solid #0057a8;
+    border-radius: 9px;
+
+    box-shadow: 0 5px 18px rgba(0, 43, 85, 0.05);
+}
+
+
+/* CORE VALUES */
+
+.pdaf-values-heading {
+    margin: 8px 0 24px;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    text-align: center;
+    color: #183b5b;
+}
+
+.pdaf-values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+
+.pdaf-value {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+
+    padding: 20px 22px;
+    margin-bottom: 12px;
+
+    background: #ffffff;
+    border: 1px solid #e0e9f2;
+    border-left: 4px solid #0057a8;
+    border-radius: 8px;
+
+    box-shadow: 0 4px 14px rgba(0, 43, 85, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.pdaf-value:hover {
+    transform: translateY(-2px);
+    border-color: #a9c7e2;
+    border-left-color: #0057a8;
+    box-shadow: 0 8px 20px rgba(0, 43, 85, 0.08);
+}
+
+
+/* PDAF CORE VALUES LETTERING */
+
+.pdaf-value > span {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #edf5fc;
+    border: 1px solid #d6e7f5;
+    border-radius: 8px;
+
+    color: #0057a8;
+    font-family: "Inter", sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+
+/* PRIVACY NOTICE */
+
+.pdaf-privacy {
+    margin-top: 12px;
+    padding: 18px 20px;
+    background: #f7f9fb;
+    border: 1px solid #e5ebf0;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.pdaf-privacy strong {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #254763;
+}
+
+.pdaf-privacy p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #526779;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 650px) {
+
+    .pdaf-intro {
+        padding: 22px 8px 25px;
+        margin-bottom: 24px;
+    }
+
+    .pdaf-logo-container {
+    flex: 0 0 90px;
+width: 90px;
+height: 90px;
+background: #ffffff;
+}
+
+    .pdaf-intro h3 {
+        font-size: 23px;
+    }
+
+    .pdaf-intro p {
+        font-size: 12px;
+    }
+
+    .pdaf-section .statement-text {
+        font-size: 12.5px;
+        line-height: 1.8;
+    }
+
+    .pdaf-vision-mission {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .pdaf-values-heading {
+        font-size: 23px;
+    }
+
+    .pdaf-value {
+        gap: 13px;
+        padding: 16px 0;
+    }
+
+
+}
+
+
+
     </style>
 
     
@@ -9318,32 +9667,257 @@ document
                            NO PRESENTATION
                         ================================================= */
 
-                        else {
+                        
+else {
 
-                            content.innerHTML = `
+    content.innerHTML = `
 
-                                <div class="coming-soon">
+        <div class="pdaf-section">
 
-                                    <div class="coming-soon-icon">
-                                        🤝
-                                    </div>
+            
 
-                                    <h3>
-                                        Coming Soon
-                                    </h3>
+<div class="pdaf-intro">
+    <div class="pdaf-header-layout">
 
-                                    <p>
-                                        Official information
-                                        for Project Dial-A-Friend
-                                        will be available here
-                                        once finalized.
-                                    </p>
+        <div class="pdaf-logo-container">
+            <img
+                src="assets/pdaf-logo.png"
+                alt="Project Dial-a-Friend Logo"
+                class="pdaf-logo"
+            >
+        </div>
 
-                                </div>
+        <div class="pdaf-header-content">
+            <span class="pdaf-eyebrow">
+                PEER-SUPPORT INITIATIVE
+            </span>
 
-                            `;
+            <h3>Project Dial-a-Friend</h3>
 
-                        }
+            <p>
+                Promoting emotional well-being,
+                resilience, and meaningful connections
+                through compassionate peer support.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+            <div class="statement-card">
+                <span class="statement-label">
+                    ABOUT P-DAF
+                </span>
+
+                <p class="statement-text">
+                    Project Dial-a-Friend (P-DAF) is a
+                    peer-support initiative connecting
+                    trained volunteers with individuals
+                    experiencing academic, family,
+                    peer-related, mental health, and
+                    other personal challenges.
+                    Through online communication,
+                    P-DAF provides a safe, confidential,
+                    and compassionate space for
+                    individuals to share their concerns
+                    and receive emotional support.
+                </p>
+
+                <p class="statement-text" style="margin-top:12px;">
+                    The initiative promotes emotional
+                    well-being, resilience, empathy,
+                    and meaningful connections while
+                    cultivating a culture of care
+                    within the community.
+                </p>
+
+                <div class="pdaf-notice">
+                    <strong>Important Notice</strong>
+                    <p>
+                        P-DAF provides peer support and
+                        psychosocial listening services
+                        only. It does not offer clinical
+                        counseling, therapy, or
+                        psychiatric services.
+                    </p>
+                </div>
+            </div>
+
+            <div class="statement-card">
+                <span class="statement-label">
+                    BRIEF HISTORY
+                </span>
+
+                <p class="statement-text">
+                    Established on November 28, 2021,
+                    Project Dial-a-Friend was initiated
+                    by the Department Officers of the
+                    School of Liberal Arts and Criminal
+                    Justice (SLA-SCJ) at Divine Word
+                    College of Calapan, under the
+                    leadership of then-Department
+                    President Ms. Rain Rhymes F. Abanador.
+                    The initiative emerged during the
+                    COVID-19 pandemic to address
+                    social isolation and the need
+                    for accessible emotional support.
+                </p>
+
+                <p class="statement-text" style="margin-top:12px;">
+                    Initially serving DWCC students,
+                    P-DAF eventually reached individuals
+                    beyond Calapan City, including
+                    international clients. Its impact
+                    contributed to the SLA-SCJ
+                    Department's recognition as the
+                    Most Outstanding School of DWCC
+                    for Academic Year 2021–2022.
+                </p>
+
+                <p class="statement-text" style="margin-top:12px;">
+                    Following an operational hiatus
+                    beginning in mid-2023, the project
+                    was relaunched on January 14, 2025,
+                    through Ms. Abanador and
+                    Ms. Mary Mia G. Villanueva,
+                    with the DWCC Psychology Society
+                    as its official partner organization.
+                    In early 2026, the initiative was
+                    formally turned over to the
+                    DWCC Psychology Society to
+                    support its continuity and
+                    sustainability.
+                </p>
+            </div>
+
+            <div class="pdaf-vision-mission">
+
+                <div class="statement-card">
+                    <span class="statement-label">
+                        OUR VISION
+                    </span>
+
+                    <p class="statement-text">
+                        To become a trusted support network
+                        that empowers individuals to navigate
+                        life’s challenges while promoting
+                        mental health awareness and a culture
+                        of care within the community.
+                    </p>
+                </div>
+
+                <div class="statement-card">
+                    <span class="statement-label">
+                        OUR MISSION
+                    </span>
+
+                    <p class="statement-text">
+                        To provide accessible, compassionate,
+                        and confidential support to students
+                        and other individuals in need,
+                        fostering emotional well-being and
+                        resilience through empathetic
+                        listening and meaningful connections.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="statement-card">
+
+                <span class="statement-label">
+                    OUR CORE VALUES
+                </span>
+
+                <h3 class="pdaf-values-heading">
+                    WE LISTEN.
+                </h3>
+
+                <div class="pdaf-values-grid">
+
+                    <div class="pdaf-value">
+                        <span>W</span>
+                        <div>
+                            <strong>Warmth</strong>
+                            <p>We create a welcoming and safe space where everyone feels valued, accepted and understood.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>E</span>
+                        <div>
+                            <strong>Empathy</strong>
+                            <p>We listen with compassion and strive to understand the emotions and experiences of others.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>L</span>
+                        <div>
+                            <strong>Loyalty</strong>
+                            <p>We remain committed to supporting our clients, volunteers, and the mission of Project Dial-a-Friend, fostering trust and dependability.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>I</span>
+                        <div>
+                            <strong>Inclusivity</strong>
+                            <p>We embrace diversity and ensure that every individual, regardless of background or circumstances, feels respected and heard.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>S</span>
+                        <div>
+                            <strong>Support</strong>
+                            <p>We provide encouragement and guidance that empowers individuals to face challenges and pursue personal growth.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>T</span>
+                        <div>
+                            <strong>Teamwork</strong>
+                            <p>We collaborate and work harmoniously, recognizing that collective effort leads to greater impact and success.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>E</span>
+                        <div>
+                            <strong>Ethical</strong>
+                            <p>We uphold strict confidentiality and adhere to ethical standards that protect the trust, privacy, and dignity of every client.</p>
+                        </div>
+                    </div>
+
+                    <div class="pdaf-value">
+                        <span>N</span>
+                        <div>
+                            <strong>Nurturing</strong>
+                            <p>We promote growth, resilience, and well-being among our clients, volunteers, and the community.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="pdaf-privacy">
+                <strong>Confidentiality and Privacy</strong>
+                <p>
+                    The identities and personal information
+                    of current P-DAF volunteers are not
+                    publicly disclosed in respect of
+                    their privacy and confidentiality.
+                </p>
+            </div>
+
+        </div>
+
+    `;
+
+}
+
 
                     }
 
